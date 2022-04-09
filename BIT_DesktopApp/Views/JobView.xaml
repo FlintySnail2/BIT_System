@@ -1,0 +1,237 @@
+﻿<Page x:Class="BIT_DesktopApp.Views.JobView"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BIT_DesktopApp.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="JobView">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50px"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50px"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" 
+                    HorizontalAlignment="Center" 
+                    Width="800">
+
+            <TextBlock Text="Jobs" 
+                       FontSize="28px" 
+                       FontWeight="bold" 
+                       Foreground="#fff" 
+                       Width="323" 
+                       Margin="10,5,10,5"/>
+
+            <ComboBox x:Name="cmbSearchContractor" 
+                          Width="130" 
+                          Height="40" 
+                          Padding="5" 
+                          Margin="10,5,10,5" 
+                          >
+
+                <ComboBoxItem Content="Skill"/>
+                <ComboBoxItem Content="Availability"/>
+                <ComboBoxItem Content="Location"/>
+                <ComboBoxItem Content="Priority"/>
+            </ComboBox>
+
+            <TextBox x:Name="txtSearchContractor" 
+                     Width="200"
+                     Style="{StaticResource SearchTheme}"/>
+
+            <Button Content="SEARCH" 
+                        x:Name="btnSearchContractor" 
+                        Width="90" 
+                        Margin="10,10,10,10" 
+                        FontSize="18"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <DataGrid Grid.Column="0" 
+                      Name="dgJOBS" 
+                      Margin="5,5,5,-23" 
+                      Grid.RowSpan="2"
+                      AutoGenerateColumns="False"/>
+
+
+            <!-- JOB STATUS MANAGEMENT -->
+            <DataGrid Grid.Row="0" 
+                      Grid.Column="1"
+                      x:Name="dgcat" 
+                      Margin="5,5,5,15" 
+                      Grid.RowSpan="2">
+
+            </DataGrid>
+            <StackPanel Grid.Row="1" 
+                        Grid.Column="1" 
+                        Orientation="Horizontal" 
+                        Margin="0,29,0,-29">
+
+                <ComboBox x:Name="txtAddSuburb" 
+                          Width="110" 
+                          Height="31" 
+                          Margin="5">
+
+                    <ComboBoxItem Content="Verified"/>
+                    <ComboBoxItem Content="Send For Payment"/>
+                </ComboBox>
+
+                <Button x:Name="btnRemoveSuburb" 
+                        Width="70" Height="30" 
+                        Content=" UPDATE" 
+                        Margin="5">
+                    <Button.RenderTransform>
+
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform AngleY="0"/>
+                            <RotateTransform/>
+                            <TranslateTransform Y="0"/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                </Button>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="2" Margin="0,35,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- DATA COLUMN ONE -->
+
+            <Label Content="Client : " 
+                   Grid.Row="0" 
+                   Grid.Column="0" 
+                   Foreground="#fff"/>
+
+            <TextBox  x:Name="txtClient"
+                      Grid.Row="0" 
+                      Grid.Column="1" 
+                      Margin="5" />
+
+            <Label Content="First Name : " 
+                   Grid.Row="1" 
+                   Grid.Column="0" 
+                   Foreground="#fff"/>
+
+            <TextBox x:Name="txtFirstName" 
+                     Grid.Row="1" 
+                     Grid.Column="1" 
+                     Margin="5" />
+
+            <Label Content="Last Name : " 
+                   Grid.Row="2" 
+                   Grid.Column="0" 
+                   Foreground="#fff"/>
+
+            <TextBox x:Name="txtLastName"
+                     Grid.Row="2" 
+                     Grid.Column="1" 
+                     Margin="5" />
+
+            <Label Content="Job Description "
+                   Grid.Row="3" Grid.Column="0" 
+                   Foreground="#fff"/>
+
+            <TextBox x:Name="txtJobDesc" 
+                     Grid.Row="3" 
+                     Grid.Column="1" 
+                     Margin="5" />
+
+            <!-- DATA COLUMN TWO -->
+
+            <Label Content="Skill Required : " 
+                   Grid.Row="0" 
+                   Grid.Column="2" 
+                   Foreground="#fff" />
+
+            <TextBox x:Name="txtSkill" 
+                     Grid.Row="0" 
+                     Grid.Column="3" 
+                     Margin="5"/>
+
+            <Label Content="Qouted Hours : " 
+                   Grid.Row="1" 
+                   Grid.Column="2" 
+                   Foreground="#fff" />
+
+            <TextBox x:Name="txtQoutedHours"
+                     Grid.Row="1" 
+                     Grid.Column="3" 
+                     Margin="5"/>
+
+            <Label Content="Requested Completion : " 
+                   Grid.Row="2" 
+                   Grid.Column="2" 
+                   Foreground="#fff"/>
+
+            <DatePicker x:Name="dtpDOB"
+                        Grid.Row="2"
+                        Grid.Column="3"
+                        Margin="5" />
+
+
+
+            <Label Content="Job Priority :  " 
+                   Grid.Row="3" 
+                   Grid.Column="2" 
+                   Foreground="#fff"/>
+
+            <ComboBox x:Name="cmbRegistration" 
+                      Grid.Row="3" 
+                      Grid.Column="3" 
+                      Margin="5">
+
+                <ComboBoxItem Content="Low"/>
+                <ComboBoxItem Content="Medium"/>
+                <ComboBoxItem Content="High"/>
+            </ComboBox>
+        </Grid>
+
+        <StackPanel Orientation="Horizontal" 
+                    HorizontalAlignment="right" 
+                    Grid.Row="3">
+
+            <Button x:Name="btnUpdate" 
+                    Content="UPDATE"
+                    Width="150" 
+                    Margin="10"/>
+
+            <Button x:Name="btnDelete"
+                    Content="DELETE" 
+                    Width="150" 
+                    Margin="10"/>
+
+            <Button x:Name="btnAdd" 
+                    Content="ADD" 
+                    Width="150" 
+                    Margin="10"/>
+
+        </StackPanel>
+    </Grid>
+</Page>

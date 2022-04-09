@@ -1,0 +1,70 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="BIT_WebApplication.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BIT Job Management Syste,</title>
+
+    <!-- BOOTSTRAP -->
+    <link href="Content/bootstrap.min.css" rel="stylesheet"/>
+    <link href="Content/Datatables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="Content/FontAwesome/css/all.css" rel="stylesheet" />
+    <script src="Scripts/bootstrap.min.js" rel="stylesheet"></script>
+    
+    
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form runat="server" >
+        <div class="bg-img Backdrop" >
+            <nav class="navbar navbar-expand-lg navbar-dark p-md-3">
+                <a class="navbar-brand" href="#">
+                    <img src="../Images/Logo.png" width="230" height="70" />
+                </a>
+
+                <!-- NAVIGATION -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto test">
+
+                        <li class="nav-item active">
+                            <a class="nav-link active" href="Homepage.aspx">Home</a>
+                        </li>
+
+                        <li class="nav-item active">
+                            <a class="nav-link" href="ClientView.aspx">Client</a>
+                            <!-- Navigates to View based off account level -->
+                        </li>
+
+                        <li class="nav-item active">
+                            <a class="nav-link" href="ContractorView.aspx">Contractor</a>
+                        </li>
+
+                        <li class="nav-item active">
+                            <a class="nav-link" href="CoordinatorView.aspx">Staff</a>
+                        </li>
+                    </ul>  
+                </div>
+            </nav>
+        </div>
+
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            
+            
+            
+        </asp:ContentPlaceHolder> 
+
+        <!-- JAVASCRIPT -->
+<script src="../Scripts/main.js" ></script>
+        
+             <!-- FOOTER -->
+         <footer class="site-footer">
+            <p class="copyright">&copy;<asp:Label ID="lblCopyrightYear" runat="server" Text="Label" /> BIT Services Pty Ltd</p>
+        </footer>
+    </form>
+</body>
+</html>
