@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BIT_DesktopApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,13 @@ namespace BIT_DesktopApp.Views
     /// </summary>
     public partial class ContractorView : Page
     {
+        static ContractorViewModel vm;
+
         public ContractorView()
         {
             InitializeComponent();
+            vm = new ContractorViewModel();
+            this.DataContext = vm;
         }
     }
 }

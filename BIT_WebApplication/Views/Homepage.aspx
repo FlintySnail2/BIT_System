@@ -8,7 +8,8 @@
 
 
 <section>
-    <div>
+    
+   <div class="bg-img Backdrop">
         <div class="content">
         <header>
             BIT Services <br />
@@ -94,7 +95,9 @@
 	            </div>
 	        </div>
         </div>
+        
 
     </section>
+
 
 </asp:Content>

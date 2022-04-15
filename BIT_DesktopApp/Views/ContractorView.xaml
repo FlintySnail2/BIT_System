@@ -67,7 +67,8 @@
                       Name="dgContractors" 
                       Margin="5" 
                       Grid.RowSpan="2" 
-                      AutoGenerateColumns="False"/>
+                      ItemsSource="{Binding Contractors}"
+                      SelectedItem="{Binding SelectedContractor}"/>
 
 
             <!-- Contractor Skill Go Here -->
@@ -125,113 +126,127 @@
 
             <!--First Two Column data -->
 
-            <Label Content="First Name : " 
+            <Label Content="Contractor Name : " 
                    Grid.Row="0" 
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox  x:Name="txtFirstName" 
-                      Grid.Row="0" 
-                      Grid.Column="1" 
-                      Margin="5" />
+            <TextBox Text="{Binding SelectedContractor.ContractorName}"
+                     x:Name="txtContractorName" 
+                     Grid.Row="0" 
+                     Grid.Column="1" 
+                     Margin="5" />
 
-            <Label Content="Last Name : " 
+            <Label Content="Birth Date : " 
                    Grid.Row="1" 
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox x:Name="txtLastName" 
+            <TextBox Text="{Binding SelectedContractor.Dob}"
+                     x:Name="txtDob" 
                      Grid.Row="1" 
                      Grid.Column="1" 
                      Margin="5" />
 
-            <Label Content="Street : " 
+            <Label Content="Address : " 
                    Grid.Row="2" 
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox x:Name="txtStreey" 
+            <TextBox Text="{Binding SelectedContractor.Address}"
+                     x:Name="txtAddress" 
                      Grid.Row="2" 
                      Grid.Column="1" 
                      Margin="5" />
 
-            <Label Content="Suburb : " 
+            <Label Content="Phone : " 
                    Grid.Row="3" 
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox x:Name="txtSuburb" 
+            <TextBox Text="{Binding SelectedContractor.Phone}"
+                     x:Name="txtPhone"
                      Grid.Row="3" 
                      Grid.Column="1" 
                      Margin="5" />
 
-            <Label Content="State : " 
+            <Label Content="Email : "
                    Grid.Row="4" 
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox x:Name="txtState"
+            <TextBox Text="{Binding SelectedContractor.Email}"
+                     x:Name="txtEmail" 
                      Grid.Row="4" 
                      Grid.Column="1" 
                      Margin="5" />
 
-            <Label Content="Zip : "
+            
+            <Label Content="Password : " 
                    Grid.Row="5" 
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox x:Name="txtZip" 
-                        Grid.Row="5" 
-                        Grid.Column="1" 
-                        Margin="5" />
+            <TextBox  Text="{Binding SelectedContractor.Password}"
+                      x:Name="txtPassword" 
+                      Grid.Row="5" 
+                      Grid.Column="1" 
+                      Margin="5" />
+
 
             <!--Second column of data -->
-            <Label Content="Phone : "
+            
+            <Label Content="Skill : " 
                    Grid.Row="0" 
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-            <TextBox x:Name="txtPhone" 
+            <TextBox Text="{Binding SelectedContractor.Skill}"
+                     x:Name="txtSkill" 
                      Grid.Row="0" 
                      Grid.Column="3" 
                      Margin="5" />
 
-            <Label Content="Birth Date: " 
+            <Label Content="ABN : " 
                    Grid.Row="1" 
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-            <DatePicker x:Name="dpDOB" 
+            <TextBox Text="{Binding SelectedContractor.ABN}"
+                     x:Name="txtABN" 
                      Grid.Row="1" 
                      Grid.Column="3" 
-                     Margin="5,0" />
+                     Margin="5"/>
 
-            <Label Content="Email : " 
+            <Label Content="Licence No#  : " 
                    Grid.Row="2" 
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-            <TextBox x:Name="txtEmail" 
+            <TextBox Text="{Binding SelectedContractor.LicenceNumber}"
+                     x:Name="txtLicenceNum" 
                      Grid.Row="2" 
                      Grid.Column="3" 
                      Margin="5"/>
 
-            <Label Content="Password : " 
+            <Label Content="Licence Type Expiry  : " 
                    Grid.Row="3" 
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-            <TextBox x:Name="txtPassword" 
+            <TextBox x:Name="txtLicenceTypeExp" 
                      Grid.Row="3" 
                      Grid.Column="3" 
                      Margin="5"/>
+
 
             <Label Content="Rate of Pay : " 
                    Grid.Row="4" 
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-            <TextBox x:Name="txtRateofPay" 
+            <TextBox  Text="{Binding SelectedContractor.RateOfPay}"
+                      x:Name="txtRateofPay" 
                       Grid.Row="4" 
                       Grid.Column="3" 
                       Margin="5" />
@@ -241,7 +256,8 @@
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-            <ComboBox x:Name="txtRating" 
+            <ComboBox Text="{Binding SelectedContractor.ContractorRating}"
+                      x:Name="txtRating" 
                       Grid.Row="5" 
                       Grid.Column="3" 
                       Margin="5" >

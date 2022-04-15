@@ -61,18 +61,18 @@
 
             <DataGrid Grid.Column="0" 
                       Name="dgCoordinators" 
-                      Margin="5,5,5,-5" 
+                      Margin="5,5,5,-60" 
                       Grid.RowSpan="2" 
-                      Grid.ColumnSpan="2"/>
-
+                      Grid.ColumnSpan="2"
+                      ItemsSource="{Binding Coordinators}"
+                      SelectedItem="{Binding SelectedCoordinator}"/>
         </Grid>
-        <Grid Grid.Row="2" Margin="0,15,0,0">
+        <Grid Grid.Row="2" Margin="0,70,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
+
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -83,109 +83,74 @@
 
             <!--First Two Column data -->
 
-            <Label Content="First Name : " 
+            <Label Content="Employee Name : " 
                    Grid.Row="0" 
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox  x:Name="txtFirstName" 
+            <TextBox  Text="{Binding SelectedCoordinator.EmployeeName}"
+                      x:Name="txtEmpName" 
                       Grid.Row="0" 
                       Grid.Column="1" 
                       Margin="5" />
 
-            <Label Content="Last Name : " 
+            <Label Content="Birth Date : " 
                    Grid.Row="1" 
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox x:Name="txtLastName" 
+            <TextBox Text="{Binding SelectedCoordinator.Dob}"
+                     x:Name="txtDob" 
                      Grid.Row="1" 
                      Grid.Column="1" 
                      Margin="5" />
 
-            <Label Content="Street : " 
+            <Label Content="Address : " 
                    Grid.Row="2" 
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox x:Name="txtStreet" 
+            <TextBox Text="{Binding SelectedCoordinator.Address}"
+                     x:Name="txtAddress" 
                      Grid.Row="2" 
-                     Grid.Column="1" 
-                     Margin="5" />
-
-            <Label Content="Suburb : " 
-                   Grid.Row="3" 
-                   Grid.Column="0" 
-                   Foreground="#fff"/>
-
-            <TextBox x:Name="txtSuburb" 
-                     Grid.Row="3" 
-                     Grid.Column="1" 
-                     Margin="5" />
-
-            <Label Content="State : " 
-                   Grid.Row="4" 
-                   Grid.Column="0" 
-                   Foreground="#fff"/>
-
-            <TextBox x:Name="txtState" 
-                     Grid.Row="4" 
                      Grid.Column="1" 
                      Margin="5" />
 
             <!--Second column of data -->
 
-            <Label Content="Zip : " 
+            <Label Content="Phone : " 
                    Grid.Row="0" 
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-            <TextBox x:Name="txtZip" 
+            <TextBox    Text="{Binding SelectedCoordinator.Phone}"
+                        x:Name="txtPhone" 
                         Grid.Row="0" 
                         Grid.Column="3" 
                         Margin="5 "/>
 
-            <Label Content="Phone : " 
+            <Label Content="Email : " 
                    Grid.Row="1" 
                    Grid.Column="2"
                    Foreground="#fff"/>
 
-            <TextBox x:Name="txtPhone" 
+            <TextBox Text="{Binding SelectedCoordinator.Email}"
+                     x:Name="txtEmail" 
                      Grid.Row="1" 
                      Grid.Column="3" 
                      Margin="5" />
-
-            <Label Content="Birth Date : " 
+            
+            <Label Content="Password : " 
                    Grid.Row="2" 
-                   Grid.Column="2" 
+                   Grid.Column="2"
                    Foreground="#fff"/>
 
-            <DatePicker x:Name="txtDOB" 
+            <TextBox Text="{Binding SelectedCoordinator.Password}"
+                     x:Name="txtPassword" 
                      Grid.Row="2" 
                      Grid.Column="3" 
                      Margin="5" />
-
-            <Label Content="Email : " 
-                   Grid.Row="3" 
-                   Grid.Column="2" 
-                   Foreground="#fff"/>
-
-            <TextBox x:Name="txtEmail" 
-                     Grid.Row="3" 
-                     Grid.Column="3" 
-                     Margin="5"/>
-
-            <Label Content="Password" 
-                   Grid.Row="4" 
-                   Grid.Column="2" 
-                   Foreground="#fff"/>
-
-            <TextBox x:Name="txtPassword" 
-                     Grid.Row="4" 
-                     Grid.Column="3"
-                     Margin="5"/>
         </Grid>
-        
         <StackPanel Orientation="Horizontal" HorizontalAlignment="right" Grid.Row="3">
             <Button x:Name="btnUpdate" Content="UPDATE" Width="150" Margin="10"/>
             <Button x:Name="btnDelete" Content="DELETE" Width="150" Margin="10"/>

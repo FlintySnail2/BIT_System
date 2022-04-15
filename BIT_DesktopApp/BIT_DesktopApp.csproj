@@ -109,11 +109,25 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DAL\SQLHelper.cs" />
     <Compile Include="Logger\DBLogger.cs" />
     <Compile Include="Logger\EventLogger.cs" />
     <Compile Include="Logger\FileLogger.cs" />
     <Compile Include="Logger\LogBase.cs" />
     <Compile Include="Logger\LogHelper.cs" />
+    <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\Clients.cs" />
+    <Compile Include="Models\Contractor.cs" />
+    <Compile Include="Models\Contractors.cs" />
+    <Compile Include="Models\Coordinator.cs" />
+    <Compile Include="Models\Coordinators.cs" />
+    <Compile Include="Models\Job.cs" />
+    <Compile Include="Models\Jobs.cs" />
+    <Compile Include="RelayCommand.cs" />
+    <Compile Include="ViewModels\ClientViewModel.cs" />
+    <Compile Include="ViewModels\ContractorViewModel.cs" />
+    <Compile Include="ViewModels\CoordinatorViewModel.cs" />
+    <Compile Include="ViewModels\JobViewModel.cs" />
     <Compile Include="Views\ClientView.xaml.cs">
       <DependentUpon>ClientView.xaml</DependentUpon>
     </Compile>

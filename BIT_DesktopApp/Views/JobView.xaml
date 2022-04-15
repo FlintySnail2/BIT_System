@@ -63,24 +63,23 @@
             </Grid.RowDefinitions>
 
             <DataGrid Grid.Column="0" 
-                      Name="dgJOBS" 
-                      Margin="5,5,5,-23" 
+                      Name="dgJobs" 
+                      Margin="5,5,5,5" 
                       Grid.RowSpan="2"
-                      AutoGenerateColumns="False"/>
+                      ItemsSource="{Binding Jobs}"
+                      SelectedItem="{Binding SelectedJob}"/>
 
 
             <!-- JOB STATUS MANAGEMENT -->
             <DataGrid Grid.Row="0" 
                       Grid.Column="1"
-                      x:Name="dgcat" 
-                      Margin="5,5,5,15" 
-                      Grid.RowSpan="2">
-
-            </DataGrid>
-            <StackPanel Grid.Row="1" 
+                      x:Name="dgSkill" 
+                      Margin="5,5,5,15"
+                      />
+            <StackPanel 
                         Grid.Column="1" 
                         Orientation="Horizontal" 
-                        Margin="0,29,0,-29">
+                        Margin="0,131,0,0" Grid.RowSpan="2">
 
                 <ComboBox x:Name="txtAddSuburb" 
                           Width="110" 
@@ -108,12 +107,14 @@
             </StackPanel>
         </Grid>
 
-        <Grid Grid.Row="2" Margin="0,35,0,0">
+        <Grid Grid.Row="2" Margin="0,10,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -124,53 +125,85 @@
 
             <!-- DATA COLUMN ONE -->
 
-            <Label Content="Client : " 
+            <Label 
+                   Content="Client : " 
                    Grid.Row="0" 
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox  x:Name="txtClient"
+            <TextBox  Text="{Binding SelectedJob.OrganisationName}"
+                      x:Name="txtClient"
                       Grid.Row="0" 
                       Grid.Column="1" 
                       Margin="5" />
 
-            <Label Content="First Name : " 
+            <Label Content="Contact Name : " 
                    Grid.Row="1" 
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox x:Name="txtFirstName" 
+            <TextBox Text="{Binding SelectedJob.ContactName}"
+                     x:Name="txtContactName" 
                      Grid.Row="1" 
                      Grid.Column="1" 
                      Margin="5" />
 
-            <Label Content="Last Name : " 
+            <Label Content="Job Description : " 
                    Grid.Row="2" 
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox x:Name="txtLastName"
+            <TextBox Text="{Binding SelectedJob.Description}"
+                     x:Name="txtDescription"
                      Grid.Row="2" 
                      Grid.Column="1" 
                      Margin="5" />
 
-            <Label Content="Job Description "
+            <Label Content="Skill Required :"
                    Grid.Row="3" Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox x:Name="txtJobDesc" 
+            <TextBox Text="{Binding SelectedJob.SkillReq}"
+                     x:Name="txtSKillReq" 
                      Grid.Row="3" 
+                     Grid.Column="1" 
+                     Margin="5" />
+
+            <Label Content="Job Priority : "
+                   Grid.Row="4"
+                   Grid.Column="0"
+                   Foreground="#fff"/>
+
+            <ComboBox Text="{Binding SelectedJob.Priority}" 
+                     x:Name="txtPriority" 
+                     Grid.Row="4" 
+                     Grid.Column="1" 
+                     Margin="5">
+                
+                <ComboBoxItem Content="Low"/>
+                <ComboBoxItem Content="Medium"/>
+                <ComboBoxItem Content="High"/>
+            </ComboBox>
+
+            <Label Content="Contact No# :"
+                   Grid.Row="5" Grid.Column="0" 
+                   Foreground="#fff"/>
+
+            <TextBox Text="{Binding SelectedJob.Phone}"
+                     x:Name="txtPhone" 
+                     Grid.Row="5" 
                      Grid.Column="1" 
                      Margin="5" />
 
             <!-- DATA COLUMN TWO -->
 
-            <Label Content="Skill Required : " 
+            <Label Content="Location : " 
                    Grid.Row="0" 
                    Grid.Column="2" 
                    Foreground="#fff" />
 
-            <TextBox x:Name="txtSkill" 
+            <TextBox Text="{Binding SelectedJob.Location}"
+                     x:Name="txtLocation" 
                      Grid.Row="0" 
                      Grid.Column="3" 
                      Margin="5"/>
@@ -178,39 +211,59 @@
             <Label Content="Qouted Hours : " 
                    Grid.Row="1" 
                    Grid.Column="2" 
+                   Foreground="#fff"/>
+
+            <TextBox Text="{Binding SelectedJob.QuotedHours}"
+                     x:Name="txtQuotedHours"
+                     Grid.Row="1"
+                     Grid.Column="3"
+                     Margin="5" />
+
+            <Label Content="Actual Hours : " 
+                   Grid.Row="2" 
+                   Grid.Column="2" 
                    Foreground="#fff" />
 
-            <TextBox x:Name="txtQoutedHours"
-                     Grid.Row="1" 
+            <TextBox Text="{Binding SelectedJob.ActualHours}"
+                     x:Name="txtActualHours"
+                     Grid.Row="2" 
                      Grid.Column="3" 
                      Margin="5"/>
 
             <Label Content="Requested Completion : " 
-                   Grid.Row="2" 
-                   Grid.Column="2" 
-                   Foreground="#fff"/>
-
-            <DatePicker x:Name="dtpDOB"
-                        Grid.Row="2"
-                        Grid.Column="3"
-                        Margin="5" />
-
-
-
-            <Label Content="Job Priority :  " 
                    Grid.Row="3" 
                    Grid.Column="2" 
-                   Foreground="#fff"/>
+                   Foreground="#fff" />
 
-            <ComboBox x:Name="cmbRegistration" 
-                      Grid.Row="3" 
-                      Grid.Column="3" 
-                      Margin="5">
+            <TextBox Text="{Binding SelectedJob.RequestedCompletion}"
+                     x:Name="txtReqCompletion"
+                     Grid.Row="3" 
+                     Grid.Column="3" 
+                     Margin="5"/>
+            
+            <Label Content="Completion Date : " 
+                   Grid.Row="4" 
+                   Grid.Column="2" 
+                   Foreground="#fff" />
 
-                <ComboBoxItem Content="Low"/>
-                <ComboBoxItem Content="Medium"/>
-                <ComboBoxItem Content="High"/>
-            </ComboBox>
+            <TextBox Text="{Binding SelectedJob.CompletionDate}"
+                     x:Name="txtCompletion"
+                     Grid.Row="4" 
+                     Grid.Column="3" 
+                     Margin="5"/>
+
+            <Label Content="Distance Travelled : " 
+                   Grid.Row="5" 
+                   Grid.Column="2" 
+                   Foreground="#fff" />
+
+            <TextBox Text="{Binding SelectedJob.DistanceTravelled}"
+                     x:Name="txtDistance"
+                     Grid.Row="5" 
+                     Grid.Column="3" 
+                     Margin="5"/>
+
+
         </Grid>
 
         <StackPanel Orientation="Horizontal" 

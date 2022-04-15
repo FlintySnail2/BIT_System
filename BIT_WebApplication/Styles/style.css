@@ -18,6 +18,11 @@
     margin-right: 15px;
 }
 
+.navbar-styling {
+    background: rgba(0,0,0,1.0);
+    opacity: .9;
+}
+
 /****** Background Image Styling ******/
 
 .Backdrop {
@@ -28,7 +33,7 @@
 }
 
 .bg-img {
-    height: 63vh;
+    height: 67vh;
     background-size: cover;
     background-position: center;
 }

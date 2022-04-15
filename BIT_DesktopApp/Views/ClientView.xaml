@@ -60,10 +60,12 @@
             </Grid.RowDefinitions>
 
             <DataGrid Grid.Column="0" 
-                      Name="dgInstructors" 
+                      Name="dgClients" 
                       Margin="5,5,5,-40" 
                       Grid.RowSpan="2" 
-                      Grid.ColumnSpan="2"/>
+                      Grid.ColumnSpan="2"
+                      ItemsSource="{Binding Clients}"
+                      SelectedItem="{Binding SelectedClient}"/>
 
         </Grid>
         <Grid Grid.Row="2" Margin="0,45,0,0">
@@ -87,7 +89,8 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox  x:Name="txtOrgName" 
+            <TextBox  Text="{Binding SelectedClient.OrganisationName}"
+                      x:Name="txtOrgName" 
                       Grid.Row="0" 
                       Grid.Column="1" 
                       Margin="5" />
@@ -97,7 +100,8 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox x:Name="txtFirstName" 
+            <TextBox Text="{Binding SelectedClient.FirstName}" 
+                     x:Name="txtFirstName" 
                      Grid.Row="1" 
                      Grid.Column="1" 
                      Margin="5" />
@@ -107,7 +111,8 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox x:Name="txtLastName" 
+            <TextBox Text="{Binding SelectedClient.LastName}" 
+                     x:Name="txtLastName" 
                      Grid.Row="2" 
                      Grid.Column="1" 
                      Margin="5" />
@@ -118,7 +123,8 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox x:Name="txtPhone" 
+            <TextBox Text="{Binding SelectedClient.Phone}"
+                     x:Name="txtPhone" 
                      Grid.Row="3" 
                      Grid.Column="1" 
                      Margin="5" />
@@ -126,42 +132,48 @@
 
 
             <!--Second column of data -->
-            <Label Content="Birth Date" 
+            <Label Content="Region" 
                    Grid.Row="0" 
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-            <DatePicker x:Name="dpDOB" 
+            <TextBox 
+                     Text="{Binding SelectedClient.RegionName}"
+                     x:Name="txtRegion" 
                      Grid.Row="0" 
                      Grid.Column="3" 
                      Margin="5" />
 
-            <Label Content="Email" 
+            <Label Content="Location" 
                    Grid.Row="1" 
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-            <TextBox x:Name="txtEmail" 
+            <TextBox
+                     Text="{Binding SelectedClient.Location}"
+                     x:Name="txtLocation" 
                      Grid.Row="1" 
                      Grid.Column="3" 
                      Margin="5" />
 
-            <Label Content="Password" 
+            <Label Content="Email" 
                    Grid.Row="2" 
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-            <TextBox x:Name="txtPassword" 
+            <TextBox Text="{Binding SelectedClient.Email}"
+                     x:Name="txtEmail" 
                      Grid.Row="2" 
                      Grid.Column="3" 
                      Margin="5"/>
 
-            <Label Content="" 
+            <Label Content="Password" 
                    Grid.Row="3" 
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-            <TextBox x:Name="txtLicenceExpiry" 
+            <TextBox Text="{Binding SelectedClient.Password}"
+                     x:Name="txtPassword" 
                      Grid.Row="3" 
                      Grid.Column="3" 
                      Margin="5"/>
