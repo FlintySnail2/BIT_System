@@ -19,13 +19,13 @@ namespace BIT_DesktopApp.Models
             string sql = "SELECT " +
                 "           C.Client_Id," +
                 "           C.Oragnisation_Name," +
-                "           C.First_Name," +
-                "           C.Last_Name," +
+                "           C.First_Name + ' ' + C.Last_Name AS ContactName," +
                 "           C.Phone," +
                 "           C.Email," +
                 "           C.Password," +
                 "           R.Region_Name," +
-                "           L.Street + ' ' + L.Suburb + ', ' + L.State + ', ' + CAST(L.Zip AS NVARCHAR) AS Location" +
+                "           L.Street + ' ' + L.Suburb + ', ' + L.State + ', ' + CAST(L.Zip AS NVARCHAR) AS Location," +
+                "           L.Location AS LocationNum" +
                 "       FROM" +
                 "           Client AS C," +
                 "           Location AS L," +

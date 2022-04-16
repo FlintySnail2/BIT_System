@@ -21,13 +21,23 @@ namespace BIT_DesktopApp.Views
     /// </summary>
     public partial class ContractorView : Page
     {
-        static ContractorViewModel vm;
+        //static ContractorViewModel vm;
 
         public ContractorView()
         {
             InitializeComponent();
-            vm = new ContractorViewModel();
-            this.DataContext = vm;
+            new ContractorViewModel();
+            this.DataContext = new ContractorViewModel();
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("Views/AddContractorView.xaml", UriKind.Relative));
+        }
+
+        private void btnAssignJob_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("Views/AssignJobView.xaml", UriKind.Relative));
         }
     }
 }

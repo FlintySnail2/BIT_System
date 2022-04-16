@@ -28,5 +28,11 @@ namespace BIT_DesktopApp.Views
             vm = new ClientViewModel();
             this.DataContext = vm;
         }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("Views/AddClientView.xaml", UriKind.Relative));
+            
+        }
     }
 }

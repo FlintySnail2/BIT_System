@@ -28,5 +28,10 @@ namespace BIT_DesktopApp.Views
             vm = new CoordinatorViewModel();
             this.DataContext = vm;
         }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("Views/AddCoordinatorView.xaml", UriKind.Relative));
+        }
     }
 }

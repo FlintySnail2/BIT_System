@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BIT_DesktopApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="525" Width="1000"
+        Title="MainWindow" Height="625" Width="1200"
         WindowStyle="None"
         
         Background="Transparent"
@@ -90,6 +90,7 @@
             <ContentControl Grid.Row="1"
                             Grid.Column="1"
                             Margin="10"/>
+
             <Frame NavigationUIVisibility="Hidden" x:Name="contentFrame" Grid.Column="1" Grid.Row="1"/>
 
         </Grid>

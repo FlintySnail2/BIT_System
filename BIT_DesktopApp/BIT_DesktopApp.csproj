@@ -51,6 +51,7 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -69,6 +70,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Views\AddClientView.xaml.cs">
+      <DependentUpon>AddClientView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Themes\Button.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -78,6 +82,26 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\Search.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddClientView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddContractorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddCoordinatorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddJobView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AssignJobView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -119,15 +143,31 @@
     <Compile Include="Models\Clients.cs" />
     <Compile Include="Models\Contractor.cs" />
     <Compile Include="Models\Contractors.cs" />
+    <Compile Include="Models\ContractorSkills.cs" />
     <Compile Include="Models\Coordinator.cs" />
     <Compile Include="Models\Coordinators.cs" />
     <Compile Include="Models\Job.cs" />
     <Compile Include="Models\Jobs.cs" />
+    <Compile Include="Models\ContractorSkill.cs" />
+    <Compile Include="Models\JobsStatus.cs" />
+    <Compile Include="Models\JobStatus.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="ViewModels\ClientViewModel.cs" />
     <Compile Include="ViewModels\ContractorViewModel.cs" />
     <Compile Include="ViewModels\CoordinatorViewModel.cs" />
     <Compile Include="ViewModels\JobViewModel.cs" />
+    <Compile Include="Views\AddContractorView.xaml.cs">
+      <DependentUpon>AddContractorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddCoordinatorView.xaml.cs">
+      <DependentUpon>AddCoordinatorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddJobView.xaml.cs">
+      <DependentUpon>AddJobView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AssignJobView.xaml.cs">
+      <DependentUpon>AssignJobView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ClientView.xaml.cs">
       <DependentUpon>ClientView.xaml</DependentUpon>
     </Compile>

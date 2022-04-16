@@ -23,7 +23,7 @@ namespace BIT_DesktopApp.Views
     {
         public static readonly NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
-        public Logon()
+     public Logon()
         {
             InitializeComponent();
         }

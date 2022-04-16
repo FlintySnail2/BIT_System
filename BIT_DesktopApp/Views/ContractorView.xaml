@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BIT_DesktopApp.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="550" d:DesignWidth="1000"
       Title="ContractorView">
     <!--Background="Transparent"-->
 
@@ -74,8 +74,10 @@
             <!-- Contractor Skill Go Here -->
             <DataGrid Grid.Row="0" 
                       Grid.Column="1" 
-                      x:Name="dg" 
-                      Margin="5">
+                      x:Name="dgSkills" 
+                      Margin="5"
+                      ItemsSource="{Binding ContractorSkills}"
+                      SelectedItem="{Binding SelectedContractor}">
 
             </DataGrid>
             <StackPanel Grid.Row="1" 
@@ -273,6 +275,12 @@
                     HorizontalAlignment="right" 
                     Grid.Row="3">
 
+            <Button x:Name="btnAssignJob" 
+                    Content="ASSIGN JOB" 
+                    Width="150" 
+                    Margin="10"
+                    Click="btnAssignJob_Click"/>
+
             <Button x:Name="btnUpdate" 
                     Content="UPDATE" 
                     Width="150" 
@@ -286,7 +294,8 @@
             <Button x:Name="btnAdd" 
                     Content="ADD" 
                     Width="150" 
-                    Margin="10"/>
+                    Margin="10"
+                    Click="btnAdd_Click"/>
         </StackPanel>
     </Grid>
 </Page>

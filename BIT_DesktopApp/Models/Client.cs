@@ -14,13 +14,13 @@ namespace BIT_DesktopApp.Models
         #region Properties
         private int _clientId;
         private string _organisationName;
-        private string _firstName;
-        private string _lastName;
+        private string _contactName;
         private int _phone;
         private string _email;
         private string _password;
         private string _regionName;
         private string _location;
+        private int _locationNum;
         private SQLHelper _db;
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -51,22 +51,12 @@ namespace BIT_DesktopApp.Models
             }
         }
 
-        public string FirstName
+        public string ContactName
         {
-            get { return _firstName;}
-            set { _firstName = value;
-                OnPropertyChanged("First_Name");
+            get { return _contactName;}
+            set { _contactName = value;
+                OnPropertyChanged("Contact Name");
 
-            }
-        }
-
-        public string LastName
-        {
-            get { return _lastName;}
-            set
-            {
-                _lastName = value;
-                OnPropertyChanged("Last_Name");
             }
         }
 
@@ -114,6 +104,14 @@ namespace BIT_DesktopApp.Models
                 OnPropertyChanged("Location");
             }
         }
+
+        public int LocationNumber
+        {
+            get { return _locationNum; }
+            set { _locationNum = value;
+                OnPropertyChanged("Location");
+            }
+        }
         #endregion Properties
 
         #region Constructor
@@ -127,13 +125,13 @@ namespace BIT_DesktopApp.Models
             _db = new SQLHelper();
             ClientId = Convert.ToInt32(dr["Client_Id"].ToString());
             OrganisationName = dr["Oragnisation_Name"].ToString();
-            FirstName = dr["First_Name"].ToString();
-            LastName = dr["Last_Name"].ToString();
+            ContactName = dr["ContactName"].ToString();
             Phone = Convert.ToInt32(dr["Phone"].ToString());
             Email = dr["Email"].ToString();
             Password = dr["Password"].ToString();
             RegionName = dr["Region_Name"].ToString();
             Location = dr["Location"].ToString() ;
+            LocationNumber = Convert.ToInt32(dr["LocationNum"].ToString());
 
         }
 
