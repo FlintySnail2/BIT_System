@@ -64,38 +64,43 @@
 
             <DataGrid Grid.Column="0" 
                       Name="dgJobs" 
-                      Margin="5,5,5,5" 
+                      Margin="5,5,195,5" 
                       Grid.RowSpan="2"
                       ItemsSource="{Binding Jobs}"
-                      SelectedItem="{Binding SelectedJob}"/>
+                      SelectedItem="{Binding SelectedJob}" 
+                      Grid.ColumnSpan="2"/>
 
 
             <!-- JOB STATUS MANAGEMENT -->
-            <DataGrid Grid.Row="0" 
+            <!--<DataGrid Grid.Row="0" 
                       Grid.Column="1"
                       x:Name="dgSkill" 
                       Margin="5,5,5,15"
                       ItemsSource="{Binding JobsStatus}"
                       SelectedItem="{Binding SelectedJobStatus}"
-                      AutoGenerateColumns="False"/>
+                      AutoGenerateColumns="False"/>-->
             <StackPanel 
+                        Grid.Row="1"
                         Grid.Column="1" 
                         Orientation="Horizontal" 
-                        Margin="0,131,0,0" Grid.RowSpan="2">
+                        Margin="55,10,5,9">
 
-                <ComboBox x:Name="txtAddSuburb" 
+                <ComboBox ItemsSource="{Binding JobsStatus}"
+                          SelectedItem="{Binding SelectedJobStatus}"
+                          x:Name="txtAddSuburb" 
                           Width="110" 
                           Height="31" 
                           Margin="5">
+                    
+                    <!--ADD BIND TO JOB STATUS-->
 
                     <ComboBoxItem Content="Verified"/>
                     <ComboBoxItem Content="Send For Payment"/>
                 </ComboBox>
-
                 <Button x:Name="btnRemoveSuburb" 
                         Width="70" Height="30" 
                         Content=" UPDATE" 
-                        Margin="5">
+                        >
                     <Button.RenderTransform>
 
                         <TransformGroup>
@@ -181,7 +186,7 @@
                      Grid.Row="4" 
                      Grid.Column="1" 
                      Margin="5">
-                
+
                 <ComboBoxItem Content="Low"/>
                 <ComboBoxItem Content="Medium"/>
                 <ComboBoxItem Content="High"/>
@@ -242,7 +247,7 @@
                      Grid.Row="3" 
                      Grid.Column="3" 
                      Margin="5"/>
-            
+
             <Label Content="Completion Date : " 
                    Grid.Row="4" 
                    Grid.Column="2" 
@@ -268,9 +273,15 @@
 
         </Grid>
 
+
         <StackPanel Orientation="Horizontal" 
                     HorizontalAlignment="right" 
                     Grid.Row="3">
+
+
+
+
+
 
             <Button x:Name="btnUpdate" 
                     Content="UPDATE"

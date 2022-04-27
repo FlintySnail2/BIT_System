@@ -39,5 +39,10 @@ namespace BIT_DesktopApp.Views
         {
             NavigationService.Navigate(new Uri("Views/AssignJobView.xaml", UriKind.Relative));
         }
+
+        private void dgSkills_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+
+        }
     }
 }
