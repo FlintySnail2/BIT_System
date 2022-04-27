@@ -17,15 +17,16 @@ namespace BIT_DesktopApp.Models
         {
             SQLHelper db = new SQLHelper();
             string sql = "SELECT" +
-                "           Skill_Title," +
+                "         Contractor_Id," +
+                "           Skill_Title" +
                 "         FROM" +
-                "           Job" +
+                "           Contract_Skill" +
                 "         WHERE" +
                 "           Contractor_Id = @ContractorId";
             SqlParameter[] objParams = new SqlParameter[1];
             objParams[0] = new SqlParameter("@ContractorId", DbType.Int32);
             objParams[0].Value = contractorId;
-            DataTable dataTable = db.ExecuteSQL(sql);
+            DataTable dataTable = db.ExecuteSQL(sql, objParams);
             foreach (DataRow dr in dataTable.Rows)
             {
                 ContractorSkill contractorSkill = new ContractorSkill(dr);

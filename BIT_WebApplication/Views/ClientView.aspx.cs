@@ -12,12 +12,12 @@ namespace BIT_WebApplication.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["ClientID"] != null)
+            if (Session["Client_Id"] != null)
             {
                 Client currentClient = new Client();
                 currentClient.ClientId = Convert.ToInt32( Session["ClientId"].ToString());
-                gvBookings.DataSource = currentClient.AllClientJobs().DefaultView;
-                gvBookings.DataBind();
+                gvJobs.DataSource = currentClient.AllClientJobs().DefaultView;
+                gvJobs.DataBind();
 
             }
             else

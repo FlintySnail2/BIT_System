@@ -18,6 +18,14 @@ namespace BIT_WebApplication.DAL
             _conn = ConfigurationManager.ConnectionStrings["BIT"].ConnectionString;
         }
 
+        public void AddParameters(SqlCommand objCommand, SqlParameter[] parameters)
+        {
+            for (int i = 0; i < parameters.Length; i++)
+            {
+                objCommand.Parameters.Add(parameters[i]);
+            }
+        }
+
         public DataTable ExecuteSQL(String sql, SqlParameter[] parameters = null, bool storedProcedure = false)
         {
             DataTable dataTable = new DataTable();

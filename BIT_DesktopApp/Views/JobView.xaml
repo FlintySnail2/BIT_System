@@ -76,7 +76,8 @@
                       x:Name="dgSkill" 
                       Margin="5,5,5,15"
                       ItemsSource="{Binding JobsStatus}"
-                      SelectedItem="{Binding SelectedJobStatus}"/>
+                      SelectedItem="{Binding SelectedJobStatus}"
+                      AutoGenerateColumns="False"/>
             <StackPanel 
                         Grid.Column="1" 
                         Orientation="Horizontal" 

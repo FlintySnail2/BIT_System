@@ -39,8 +39,10 @@ namespace BIT_DesktopApp.ViewModels
             get { return _SelectedJob; }
             set { _SelectedJob = value;
                 OnPropertyChanged("SelectedJobStatus");
-                JobsStatus allStatus = new JobsStatus(SelectedJobStatus.JobId);
-                this.JobsStatus = new ObservableCollection<JobStatus>(allStatus);
+                //BOUND TEXTBOX TO PROPERTY (DROPDOWN) == BOOKING MANAGEMENT TEMPLATE
+
+                //JobsStatus allStatus = new JobsStatus(SelectedJobStatus.JobId);
+                //this.JobsStatus = new ObservableCollection<JobStatus>(allStatus);
             }
         }
 

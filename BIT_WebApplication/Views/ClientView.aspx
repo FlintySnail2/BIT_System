@@ -2,8 +2,14 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-       <link rel="stylesheet" href="../Styles/style.css" >
-    <div class="container-fluid">
+       <%--<link rel="stylesheet" href="../Styles/style.css" >--%>
+   
+    
+    
+    <h2>VIEW PREVIOUS JOBS SUBMITTED</h2>
+    <h2>PERFORM A JOB REQUEST</h2>
+    
+    <%--<div class="container-fluid">
         <div class ="row">
             <div class="col-12">
                 <div class="card">
@@ -27,7 +33,7 @@
                     </div>
                 </div>
             </div>
-         </div>
+         </div>--%>
 
 
 </asp:Content>

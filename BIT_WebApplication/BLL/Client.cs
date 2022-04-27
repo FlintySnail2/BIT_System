@@ -30,7 +30,7 @@ namespace BIT_WebApplication.BLL
                 "         FROM" +
                 "           Client" +
                 "         WHERE" +
-                "           clientId = @ClientId";
+                "           Client_Id = @ClientId";
             SqlParameter[] objParams = new SqlParameter[1];
             objParams[0] = new SqlParameter("@ClientId", DbType.Int32);
             objParams[0].Value = this.ClientId;
