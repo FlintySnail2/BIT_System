@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -56,6 +57,48 @@ namespace BIT_DesktopApp.Models
         }
 
         #endregion Constructor
+
+        #region Public Methods
+
+        public int InsertNewSkill(int contractorId)
+        {
+            int returnValue = 0;
+            string sql = "INSERT INTO" +
+                "               Contract_Skill" +
+                "         VALUES(" +
+                "               @ContractorId, @Skill ";
+            SqlParameter[] objParams = new SqlParameter[2];
+            objParams[0] = new SqlParameter("@ContractorId", DbType.Int32);
+            objParams[0].Value = contractorId;
+            objParams[1] = new SqlParameter("Skill", DbType.String);
+            objParams[1].Value = this.Skill;
+            returnValue = _db.ExecuteNonQuery(sql, objParams);
+            return returnValue;
+
+            
+
+        }
+
+        public int DeleteSkill(int contractorId)
+        {
+            int returnValue = 0;
+            string sql = "DELETE FROM" +
+                "               Contract_Skill" +
+                "         WHERE" +
+                "               ContractorId = @ContractorId" +
+                "         AND   " +
+                "               Skill_Title = @Skill";
+            SqlParameter[] objParams = new SqlParameter[2];
+            objParams[0] = new SqlParameter("@ContractorId", DbType.Int32);
+            objParams[0].Value = contractorId;
+            objParams[1] = new SqlParameter("@Skill", DbType.String);
+            objParams[1].Value= this.Skill;
+            returnValue = _db.ExecuteNonQuery(sql, objParams);
+            return returnValue;
+
+        }
+
+        #endregion Public Methods
 
     }
 }

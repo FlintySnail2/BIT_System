@@ -11,6 +11,16 @@ namespace BIT_WebApplication.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["Staff_Id"] != null)
+            {
+                LinkButton staffNav = (LinkButton)Master.FindControl("lbtnStaff");
+                LinkButton clientNav = (LinkButton)Master.FindControl("lbtnClient");
+                clientNav.Visible = false;
+                staffNav.Visible = true;
+
+               
+
+            }
 
         }
     }

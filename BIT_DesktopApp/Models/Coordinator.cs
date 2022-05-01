@@ -13,14 +13,14 @@ namespace BIT_DesktopApp.Models
     {
         #region Properties
 
-        public int _staffId { get; set; }
-        public string _employeeName { get; set; }
-        public DateTime _dob { get; set; }
-        public string _address { get; set; }
-        public int _phone { get; set; }
-        public string _email { get; set; }
-        public string _password { get; set; }
-        public SQLHelper _db;
+        private int _staffId { get; set; }
+        private string _employeeName { get; set; }
+        private DateTime _dob { get; set; }
+        private string _address { get; set; }
+        private int _phone { get; set; }
+        private string _email { get; set; }
+        private string _password { get; set; }
+        private SQLHelper _db;
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged(string prop)

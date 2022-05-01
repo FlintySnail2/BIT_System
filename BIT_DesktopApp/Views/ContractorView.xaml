@@ -77,11 +77,10 @@
                       Grid.Column="1" 
                       x:Name="dgSkills" 
                       Margin="5"
-                      AutoGeneratingColumn="False"
                       ItemsSource="{Binding ContractorSkills}"
-                      SelectedItem="{Binding SelectedContractor}">
+                      SelectedItem="{Binding SelectedContractor}"/>
 
-            </DataGrid>
+
             <StackPanel Grid.Row="1" 
                         Grid.Column="1" 
                         Orientation="Horizontal">

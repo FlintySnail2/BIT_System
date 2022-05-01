@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BIT_WebApplication.BLL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,30 @@ namespace BIT_WebApplication.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+        }
 
+       
+
+        protected void btnLogin_Click(object sender, EventArgs e)
+        {
+            User user = new User()
+            {
+                Email = txtUserName.Text,
+                Password = txtPassword.Text
+            };
+
+            int clientId = user.CheckCLient();
+
+            if (clientId > 0)
+            {
+                Session.Add("ClientId", clientId);
+                Response.Redirect("ClientView.aspx");
+            }
+            else
+            {
+                Response.Write("<script>alert('Invalid Credentials')</script>");
+            }
         }
     }
 }

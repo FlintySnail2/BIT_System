@@ -1,4 +1,5 @@
 ﻿using BIT_DesktopApp.Logger;
+using BIT_DesktopApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static BIT_DesktopApp.Logger.LogHelper;
 
@@ -23,7 +25,7 @@ namespace BIT_DesktopApp.Views
     {
         public static readonly NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
-     public Logon()
+    public Logon()
         {
             InitializeComponent();
         }
@@ -46,6 +48,24 @@ namespace BIT_DesktopApp.Views
             LogHelper.Log(LogTarget.File, message); //Customised File logger
             logger.Info("Login Information ");
 
+            string userName = txtUsername.Text;
+            string password = txtPassword.TextInput;
+
+            if (LoginHelper.IsCoordinator(userName, password))
+            {
+                var mainWindow = (MainWindow)Window.GetWindow(this);
+                mainWindow.UpdateButtons("Coordinator");
+                NavigationService.Navigate(new JobView());
+            }
+            if (LoginHelper.IsAdmin(userName, password))
+            {
+                var mainWindow = (MainWindow)Window.GetWindow(this);
+                mainWindow.UpdateButtons("admin");
+                NavigationService.Navigate(new JobView());
+                return;
+            }
+            MessageBox.Show("Invalid Login");
+
 
 
 
@@ -54,7 +74,7 @@ namespace BIT_DesktopApp.Views
             this.Close();
         }
 
-        private void btnYeet_Click(object sender, RoutedEventArgs e)
+        private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
 

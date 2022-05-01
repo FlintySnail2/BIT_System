@@ -30,7 +30,53 @@ namespace BIT_DesktopApp
         {
             InitializeComponent();
             contentFrame.Navigate(new JobView());
+            //LOGON VIA VALIDATION BASED OF ROLE
+            //contentFrame.Navigate(new Logon());
+            //btnJob.IsEnabled = false;
+            //btnCoordinators.IsEnabled = false;
+            //btnContractors.IsEnabled = false;
+            //btnClients.IsEnabled = false;
 
+
+        }
+
+        public MainWindow(string userType) //Parameterised Constructo
+        {
+            InitializeComponent();
+            UpdateButtons(userType);
+        }
+
+        public void UpdateButtons(string userType)
+        {
+            if (userType == "Admistrator")
+            {
+                AdminLogon();
+            }
+
+            else if (userType == "Coordinator")
+            {
+                CoordinatorLogin();
+            }
+            else
+            {
+                MessageBox.Show("Invalid Login");
+            }
+        }
+
+        public void CoordinatorLogin()
+        {
+            btnJob.IsEnabled = true;
+            btnCoordinators.IsEnabled = false;
+            btnContractors.IsEnabled = true;
+            btnClients.IsEnabled = true;
+        }
+
+        public void AdminLogon()
+        {
+            btnJob.IsEnabled = true;
+            btnCoordinators.IsEnabled = true;
+            btnContractors.IsEnabled = true;
+            btnClients.IsEnabled = true;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -43,14 +89,20 @@ namespace BIT_DesktopApp
 
         }
 
-        //private void btnLogin_Click(object sender, RoutedEventArgs e)
-        //{
-        //   Window newWindow = new MainWindow();
-        //   newWindow.Show();
-        //    this.Close();
-        //}
+        private void btnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            //StreamWriter CustomLog
+            string message = "Logout Successful " + DateTime.Now;
+            LogHelper.Log(LogTarget.File, message); //Customised File logger
+            logger.Info("Logout Information ");
+            Window newWindow = new Logon();
+            newWindow.Show();
+            this.Close();
+        }
 
-        private void btnDashboard_Click(object sender, RoutedEventArgs e)
+        #region Basic Navigation
+
+        private void btnJob_Click(object sender, RoutedEventArgs e)
         {
             contentFrame.Navigate(new JobView());
         }
@@ -73,15 +125,10 @@ namespace BIT_DesktopApp
 
         }
 
-        private void btnLogout_Click(object sender, RoutedEventArgs e)
-        {
-            //StreamWriter CustomLog
-            string message = "Logout Successful " + DateTime.Now;
-            LogHelper.Log(LogTarget.File, message); //Customised File logger
-            logger.Info("Logout Information ");
-            Window newWindow = new Logon();
-            newWindow.Show();
-            this.Close();
-        }
+        #endregion Basic Navigation
+
+
+
+
     }
 }

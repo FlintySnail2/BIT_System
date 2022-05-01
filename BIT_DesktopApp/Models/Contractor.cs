@@ -13,18 +13,18 @@ namespace BIT_DesktopApp.Models
     {
         #region Properties
 
-        public int _contractorId { get; set; }
-        public string _contractorName { get; set; }
-        public string _address { get; set; }
-        public int _phone { get; set; }
-        public DateTime _dob { get; set; }
-        public string _email { get; set; }
-        public string _password { get; set; }
-        public int _abn { get; set; }
-        public string _skill { get; set; }
-        public string _licenceNumber { get; set; }
-        public decimal _ratOfPay { get; set; }
-        public string _contractorRating { get; set; }
+        private int _contractorId { get; set; }
+        private string _contractorName { get; set; }
+        private string _address { get; set; }
+        private int _phone { get; set; }
+        private DateTime _dob { get; set; }
+        private string _email { get; set; }
+        private string _password { get; set; }
+        private int _abn { get; set; }
+        private string _skill { get; set; }
+        private string _licenceNumber { get; set; }
+        private decimal _ratOfPay { get; set; }
+        private string _contractorRating { get; set; }
         public SQLHelper _db;
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -144,6 +144,9 @@ namespace BIT_DesktopApp.Models
 
             }
         }
+
+      
+
         #endregion Properties
 
         #region Constructor

@@ -13,5 +13,20 @@ namespace BIT_WebApplication
         {
             lblCopyrightYear.Text = DateTime.Today.Year.ToString();
         }
+
+        protected void lbtnClient_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ClientView.aspx");
+        }
+
+        protected void lbtnStaff_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("CoordinatorView.aspx");
+        }
+
+        protected void lbtnLogout_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Homepage.aspx");
+        }
     }
 }

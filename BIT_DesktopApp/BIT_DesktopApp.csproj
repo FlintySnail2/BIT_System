@@ -70,6 +70,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DAL\LoginHelper.cs" />
     <Compile Include="Views\AddClientView.xaml.cs">
       <DependentUpon>AddClientView.xaml</DependentUpon>
     </Compile>

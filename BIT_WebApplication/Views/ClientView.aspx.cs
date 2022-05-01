@@ -14,8 +14,16 @@ namespace BIT_WebApplication.Views
         {
             if (Session["Client_Id"] != null)
             {
+                LinkButton clientNav = (LinkButton)Master.FindControl("lbtnClient");
+                LinkButton staffNav = (LinkButton)Master.FindControl("lbtnStaff");
+                LinkButton logout = (LinkButton)Master.FindControl("lbtnLogout");
+                clientNav.Visible = true;
+                logout.Visible = true;
+                staffNav.Visible = false;
+                
+
                 Client currentClient = new Client();
-                currentClient.ClientId = Convert.ToInt32( Session["ClientId"].ToString());
+                currentClient.ClientId = Convert.ToInt32( Session["Client_Id"].ToString());
                 gvJobs.DataSource = currentClient.AllClientJobs().DefaultView;
                 gvJobs.DataBind();
 

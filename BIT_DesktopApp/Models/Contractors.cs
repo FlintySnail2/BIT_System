@@ -38,7 +38,7 @@ namespace BIT_DesktopApp.Models
             foreach (DataRow dr in datatable.Rows)
             {
                 Contractor newContractor = new Contractor(dr);
-                this .Add(newContractor);
+                this.Add(newContractor);
             }
 
 		}

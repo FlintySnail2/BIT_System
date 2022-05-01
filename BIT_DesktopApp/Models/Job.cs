@@ -14,19 +14,19 @@ namespace BIT_DesktopApp.Models
     public class Job : INotifyPropertyChanged
     {
         #region Properties
-        public int _jobId;
-        public string _organisationName; //As Client Name
-        public string _contactName;  //Client First Name
-        public string _description;
-        public string _skillReq;
-        public string _priority;
-        public int _phone;
-        public string _location;
-        public decimal _quotedHours;
-        public decimal _actualHours;
-        public DateTime _requestedCompletion;
-        public DateTime _completionDate;
-        public string _distanceTravelled;  
+        private int _jobId;
+        private string _organisationName; //As Client Name
+        private string _contactName;  //Client First Name
+        private string _description;
+        private string _skillReq;
+        private string _priority;
+        private int _phone;
+        private string _location;
+        private decimal _quotedHours;
+        private decimal _actualHours;
+        private DateTime _requestedCompletion;
+        private DateTime _completionDate;
+        private string _distanceTravelled;  
         private SQLHelper _db;
         public event PropertyChangedEventHandler PropertyChanged;
 
