@@ -29,7 +29,7 @@ namespace BIT_WebApplication.Views
 
             if (clientId > 0)
             {
-                Session.Add("ClientId", clientId);
+                Session.Add("Client_Id", clientId);
                 Response.Redirect("ClientView.aspx");
             }
             else

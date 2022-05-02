@@ -14,12 +14,12 @@ namespace BIT_WebApplication.Views
         {
             if (Session["Client_Id"] != null)
             {
-                LinkButton clientNav = (LinkButton)Master.FindControl("lbtnClient");
-                LinkButton staffNav = (LinkButton)Master.FindControl("lbtnStaff");
-                LinkButton logout = (LinkButton)Master.FindControl("lbtnLogout");
-                clientNav.Visible = true;
-                logout.Visible = true;
-                staffNav.Visible = false;
+                //LinkButton clientNav = (LinkButton)Master.FindControl("lbtnClient");
+                //LinkButton staffNav = (LinkButton)Master.FindControl("lbtnStaff");
+                //LinkButton logout = (LinkButton)Master.FindControl("lbtnLogout");
+                //clientNav.Visible = true;
+                //logout.Visible = true;
+                //staffNav.Visible = false;
                 
 
                 Client currentClient = new Client();
