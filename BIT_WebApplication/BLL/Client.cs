@@ -11,12 +11,13 @@ namespace BIT_WebApplication.BLL
     public class Client
     {
         public int ClientId { get; set; }
-        public string OrganisationName { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public int Phone { get; set; }
-        public string Email { get; set; }   
-        public string Password { get; set; }
+        private int JobId { get; set; }
+        private string Contractor { get; set; }
+        private int LocationNumber { get; set; }
+        //private DateTime CompletionDate { get; set; }
+        private string Priority { get; set; }
+        private string Description { get; set; }
+        private string  Status { get; set; }
         private SQLHelper _db;
 
         public Client()
@@ -26,14 +27,45 @@ namespace BIT_WebApplication.BLL
 
         public DataTable AllClientJobs()
         {
-            string sql = "SELECT *" +
+            string sql = "SELECT " +
+                "           J.Job_id AS Job," +
+                "           CON.FirstName + LastName AS Contractor," +
+                "           J.CompletionDate," +
+                "           J.Descrription," +
+                "           J.Priority," +
+                "           J.Status" +
                 "         FROM" +
-                "           Client" +
+                "           Client AS C," +
+                "           Job AS J," +
+                "           Location AS L," +
+                "           Contractor AS CON" +
+                "           " +
                 "         WHERE" +
+                "           CON.Contractor_id = C.Contractor_id" +
+                "         AND" +
+                "           C.Client_id = J.Client_id" +
+                "         AND" +
+                "           C.Client_id = L.Client_id" +
+                "         AND" +
                 "           Client_Id = @ClientId";
-            SqlParameter[] objParams = new SqlParameter[1];
+            SqlParameter[] objParams = new SqlParameter[7];
             objParams[0] = new SqlParameter("@ClientId", DbType.Int32);
             objParams[0].Value = this.ClientId;
+            objParams[1] = new SqlParameter("JobId",DbType.Int32);
+            objParams[1].Value = this.JobId;
+            objParams[2] = new SqlParameter("Contractor", DbType.String);
+            objParams[2].Value = this.Contractor;
+            objParams[3] = new SqlParameter("LocationNumber", DbType.Int32);
+            objParams[3].Value = this.LocationNumber;
+            //TRIM TIME WITH TOSHORTDATESTRING();
+            //objParams[4] = new SqlParameter("@CompletionDate", DbType.DateTime);
+            //objParams[4].Value = this.CompletionDate;
+            objParams[4] = new SqlParameter("Priority", DbType.String);
+            objParams[4].Value = this.Priority;
+            objParams[5] = new SqlParameter("Description", DbType.String);
+            objParams[5].Value = this.Description;
+            objParams[6] = new SqlParameter("Status", DbType.String);
+            objParams[6].Value = this.Status;
             DataTable jobs = _db.ExecuteSQL(sql, objParams);
             return jobs;
         }

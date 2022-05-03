@@ -31,9 +31,12 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto test">
 
-                        <li class="nav-item active">
-                            <a class="nav-link active" href="Homepage.aspx">Home</a>
-                        </li>
+                        <%--<li class="nav-item active">
+                            <asp:LinkButton CssClass="nav-Link" ID="lbtnHome"
+                                Visibility="false" runat="server" OnClick="lbtnClient_Click">
+                                Client
+                            </asp:LinkButton>
+                        </li>--%>
 
 
 
@@ -41,23 +44,19 @@
                             <asp:LinkButton CssClass="nav-Link" ID="lbtnClient"
                                 Visibility="false" runat="server" OnClick="lbtnClient_Click">
                                 Client
-                                </asp:LinkButton>
-
-
-                            <%--<a class="nav-link" href="ClientView.aspx">Client</a>--%>
-                            <!-- Navigates to View based off account level -->
+                            </asp:LinkButton>
                         </li>
 
-                        <li class="nav-item active">
-                            <a class="nav-link" href="ContractorView.aspx">Contractor</a>
-                        </li>
-
-                      <%--  <li class="nav-item active">
-                            <asp:LinkButton CssClass="nav-link" ID="lbtnStaff"
-                                Visible="false" runat="server" OnClick="lbtnStaff_Click">
-                                Staff
-                            </asp:LinkButton>                       
+                        <%--<li class="nav-item active">
+                            <asp:LinkButton CssClass="nav-Link" ID="lbtnContractor"
+                                Visibility="false" runat="server" OnClick="lbtnClient_Click">
+                                Client
+                            </asp:LinkButton>
                         </li>--%>
+
+                        
+
+
 
                         <li class="nav-time active">
                         <asp:LinkButton CssClass="nav-link" ID="lbtnLogout" 

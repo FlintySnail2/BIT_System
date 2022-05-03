@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CoordinatorView.aspx.cs" Inherits="BIT_WebApplication.Views.CoordinatorVies" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CompletedJobs.aspx.cs" Inherits="BIT_WebApplication.Views.CoordinatorVies" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
        <link rel="stylesheet" href="../Styles/style.css" >

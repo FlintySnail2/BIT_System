@@ -16,12 +16,12 @@ namespace BIT_WebApplication
 
         protected void lbtnClient_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ClientView.aspx");
+            Response.Redirect("ClientJobView.aspx");
         }
 
         protected void lbtnStaff_Click(object sender, EventArgs e)
         {
-            Response.Redirect("CoordinatorView.aspx");
+            Response.Redirect("StaffJobView.aspx");
         }
 
         protected void lbtnLogout_Click(object sender, EventArgs e)

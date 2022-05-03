@@ -26,16 +26,31 @@ namespace BIT_WebApplication.Views
             };
 
             int clientId = user.CheckCLient();
+            int contractorId = user.CheckContractor();
+            int staffId = user.CheckStaff();
 
             if (clientId > 0)
             {
                 Session.Add("Client_Id", clientId);
-                Response.Redirect("ClientView.aspx");
+                Response.Redirect("ClientJobView.aspx");
+            }
+            else if (contractorId > 0)
+            {
+                Session.Add("Contractor_Id", contractorId);
+                Response.Redirect("ContractorJobView.aspx");
+            }
+            else if (staffId > 0)
+            {
+                Session.Add("Staff_Id", staffId);
+                Response
             }
             else
             {
                 Response.Write("<script>alert('Invalid Credentials')</script>");
             }
+            }
+
+            
         }
     }
 }

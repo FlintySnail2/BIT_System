@@ -524,9 +524,12 @@
     <Content Include="Site.Master" />
     <Content Include="Styles\style.css" />
     <Content Include="ViewSwitcher.ascx" />
-    <Content Include="Views\ClientView.aspx" />
-    <Content Include="Views\ContractorView.aspx" />
-    <Content Include="Views\CoordinatorView.aspx" />
+    <Content Include="Views\AssignJobView.aspx" />
+    <Content Include="Views\ClientJobRequestView.aspx" />
+    <Content Include="Views\ClientJobView.aspx" />
+    <Content Include="Views\ContractorJobView.aspx" />
+    <Content Include="Views\RequestedJobView.aspx" />
+    <Content Include="Views\CompletedJobs.aspx" />
     <Content Include="Views\Homepage.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -546,6 +549,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BLL\Client.cs" />
+    <Compile Include="BLL\CompletedJobs.cs" />
+    <Compile Include="BLL\Contractor.cs" />
+    <Compile Include="BLL\Staff.cs" />
     <Compile Include="BLL\User.cs" />
     <Compile Include="DAL\SQLHelper.cs" />
     <Compile Include="Global.asax.cs">
@@ -573,26 +579,47 @@
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Views\ClientView.aspx.cs">
-      <DependentUpon>ClientView.aspx</DependentUpon>
+    <Compile Include="Views\AssignJobView.aspx.cs">
+      <DependentUpon>AssignJobView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\ClientView.aspx.designer.cs">
-      <DependentUpon>ClientView.aspx</DependentUpon>
+    <Compile Include="Views\AssignJobView.aspx.designer.cs">
+      <DependentUpon>AssignJobView.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\ContractorView.aspx.cs">
-      <DependentUpon>ContractorView.aspx</DependentUpon>
+    <Compile Include="Views\ClientJobRequestView.aspx.cs">
+      <DependentUpon>ClientJobRequestView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\ContractorView.aspx.designer.cs">
-      <DependentUpon>ContractorView.aspx</DependentUpon>
+    <Compile Include="Views\ClientJobRequestView.aspx.designer.cs">
+      <DependentUpon>ClientJobRequestView.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\CoordinatorView.aspx.cs">
-      <DependentUpon>CoordinatorView.aspx</DependentUpon>
+    <Compile Include="Views\ClientJobView.aspx.cs">
+      <DependentUpon>ClientJobView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\CoordinatorView.aspx.designer.cs">
-      <DependentUpon>CoordinatorView.aspx</DependentUpon>
+    <Compile Include="Views\ClientJobView.aspx.designer.cs">
+      <DependentUpon>ClientJobView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ContractorJobView.aspx.cs">
+      <DependentUpon>ContractorJobView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ContractorJobView.aspx.designer.cs">
+      <DependentUpon>ContractorJobView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RequestedJobView.aspx.cs">
+      <DependentUpon>RequestedJobView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\RequestedJobView.aspx.designer.cs">
+      <DependentUpon>RequestedJobView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CompletedJobs.aspx.cs">
+      <DependentUpon>CompletedJobs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\CompletedJobs.aspx.designer.cs">
+      <DependentUpon>CompletedJobs.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Homepage.aspx.cs">
       <DependentUpon>Homepage.aspx</DependentUpon>

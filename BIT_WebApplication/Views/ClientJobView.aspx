@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ClientView.aspx.cs" Inherits="BIT_WebApplication.Views.ClientView" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ClientJobView.aspx.cs" Inherits="BIT_WebApplication.Views.ClientView" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -6,8 +6,7 @@
    
     
     
-    <h2>VIEW PREVIOUS JOBS SUBMITTED</h2>
-    <h2>PERFORM A JOB REQUEST</h2>
+
     
     <div class="container-fluid">
         <div class ="row">
@@ -17,7 +16,7 @@
                         <div class="row">
                             <div class="col">
                                  <center>
-                                    <h3> All your Jobs</h3>
+                                    <h3> All Previous Jobs</h3>
                                 </center>
                             </div>
                         </div>
