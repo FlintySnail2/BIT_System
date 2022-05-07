@@ -27,24 +27,13 @@
                        Width="323" 
                        Margin="10,5,10,5"/>
 
-            <ComboBox x:Name="cmbSearchContractor" 
-                          Width="130" 
-                          Height="40" 
-                          Padding="5" 
-                          Margin="10,5,10,5" 
-                          >
-
-                <ComboBoxItem Content="Skill"/>
-                <ComboBoxItem Content="Availability"/>
-                <ComboBoxItem Content="Location"/>
-                <ComboBoxItem Content="Priority"/>
-            </ComboBox>
-
-            <TextBox x:Name="txtSearchContractor" 
+            <TextBox Text="{Binding SearchText}"
+                     x:Name="txtSearchContractor" 
                      Width="200"
                      Style="{StaticResource SearchTheme}"/>
 
-            <Button Content="SEARCH" 
+            <Button     Command="{Binding SearchCommand}"
+                        Content="SEARCH" 
                         x:Name="btnSearchContractor" 
                         Width="90" 
                         Margin="10,10,10,10" 
@@ -64,7 +53,7 @@
 
             <DataGrid Grid.Column="0" 
                       Name="dgJobs" 
-                      Margin="5,5,195,56" 
+                      Margin="5,5,10,56" 
                       Grid.RowSpan="2"
                       ItemsSource="{Binding Jobs}"
                       SelectedItem="{Binding SelectedJob}" 
@@ -78,14 +67,15 @@
                         Orientation="Horizontal" 
                 
                         Margin="165,9,250,10">
-                <ComboBox ItemsSource="{Binding JobsStatus}"
-                          SelectedItem="{Binding SelectedJobStatus}"
+
+                <!--ADD BIND TO JOB STATUS-->
+                <ComboBox Text="{Binding SelectedJobStatus.JobStatus }"
                           x:Name="txtAddSuburb" 
                           Width="110" 
                           Height="31" 
                           >
 
-                    <!--ADD BIND TO JOB STATUS-->
+                    
 
                     <ComboBoxItem Content="Verified"/>
                     <ComboBoxItem Content="Send For Payment"/>

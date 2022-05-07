@@ -48,24 +48,32 @@ namespace BIT_DesktopApp.Views
             LogHelper.Log(LogTarget.File, message); //Customised File logger
             logger.Info("Login Information ");
 
-            string userName = txtUsername.Text;
-            string password = txtPassword.TextInput;
+            //    string username = txtUsername.Text;
+            //    string password = txtPassword.Text;
 
-            if (LoginHelper.IsCoordinator(userName, password))
-            {
-                var mainWindow = (MainWindow)Window.GetWindow(this);
-                mainWindow.UpdateButtons("Coordinator");
-                NavigationService.Navigate(new JobView());
-            }
-            if (LoginHelper.IsAdmin(userName, password))
-            {
-                var mainWindow = (MainWindow)Window.GetWindow(this);
-                mainWindow.UpdateButtons("admin");
-                NavigationService.Navigate(new JobView());
-                return;
-            }
-            MessageBox.Show("Invalid Login");
+            //    if (LoginHelper.IsCoordinator(username, password))
+            //    {
+            //        var mainwindow = (MainWindow)Window.GetWindow(this);
+            //        mainwindow.UpdateButtons("coordinator");
 
+            //        //CLOSE CURRENT LOGIN WINDOW
+            //        Window newWindow = new MainWindow();
+            //        newWindow.Show();
+            //        this.Close();
+
+            //    }
+            //    if (LoginHelper.IsCoordinator(username, password))
+            //    {
+            //        var mainwindow = (MainWindow)Window.GetWindow(this);
+            //        mainwindow.UpdateButtons("Administrator");
+
+            //        //CLOSE CURRENT LOGIN WINDOW
+            //        Window newWindow = new MainWindow();
+            //        newWindow.Show();
+            //        this.Close();
+
+            //    }
+            //    MessageBox.Show("Invalid Credentials");   
 
 
 

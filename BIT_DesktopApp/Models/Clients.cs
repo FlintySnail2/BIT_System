@@ -41,5 +41,28 @@ namespace BIT_DesktopApp.Models
                 this.Add(newClient);
             }
         }
+
+        public Clients(string searchText)
+        {
+            _db = new SQLHelper();
+            string sql = "SELECT" +
+                "           Oragnisation_Name," +
+                "           First_Name," +
+                "           Last_Name," +
+                "       FROM" +
+                "           CLient" +
+                "       WHERE" +
+                "           Oragnisation_Name LIKE '%" + searchText + "%'" +
+                "       AND" +
+                "           First_Name LIKE '%" + searchText + "%'" +
+                "       AND" +
+                "           Last_Name LIKE '% " + searchText + "%'";
+            DataTable dataTable = _db.ExecuteSQL(sql);
+            foreach (DataRow dr in dataTable.Rows)
+            {
+                Client newClient = new Client(dr);
+                this.Add(newClient);
+            }
+        }
     }
 }

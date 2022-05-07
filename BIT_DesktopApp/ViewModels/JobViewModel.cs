@@ -17,6 +17,8 @@ namespace BIT_DesktopApp.ViewModels
         private ObservableCollection<JobStatus> _jobsStatus;
         private JobStatus _selectedJobStatus;
         private JobStatus _jobStatus;
+        private string _searchText;
+        private RelayCommand _searchCommand;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -41,8 +43,32 @@ namespace BIT_DesktopApp.ViewModels
                 OnPropertyChanged("SelectedJobStatus");
                 //BOUND TEXTBOX TO PROPERTY (DROPDOWN) == BOOKING MANAGEMENT TEMPLATE
 
-                //JobsStatus allStatus = new JobsStatus(SelectedJobStatus.JobId);
+                //JobsStatus allStatus = new JobsStatus(SelectedJobStatus.Status);
                 //this.JobsStatus = new ObservableCollection<JobStatus>(allStatus);
+            }
+        }
+
+        public RelayCommand SearchCommand
+        {
+            get
+            {
+                if (_searchCommand == null)
+                {
+                    _searchCommand = new RelayCommand(this.SearchMethod, true);
+
+                }
+                return _searchCommand;
+            }
+            set { _searchCommand = value; }
+        }
+
+        public string SearchText
+        {
+            get { return _searchText; }
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged("SearchText");
             }
         }
 
@@ -52,6 +78,12 @@ namespace BIT_DesktopApp.ViewModels
             set { _jobsStatus = value;
                 OnPropertyChanged("Status");
             }
+        }
+
+        public void SearchMethod()
+        {
+            Jobs allJobs = new Jobs(SearchText);
+            this.Jobs = new ObservableCollection<Job>(allJobs);
         }
 
         public JobStatus SelectedJobStatus

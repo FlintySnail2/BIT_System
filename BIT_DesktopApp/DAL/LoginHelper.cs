@@ -15,7 +15,7 @@ namespace BIT_DesktopApp.Models
         {
             SQLHelper db = new SQLHelper();
             string sql = "SELECT" +
-                "           StafdType_Role" +
+                "           StaffType_Role" +
                 "       FROM " +
                 "           Staff" +
                 "       WHERE" +

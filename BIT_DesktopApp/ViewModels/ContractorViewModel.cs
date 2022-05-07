@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace BIT_DesktopApp.ViewModels
 {
@@ -16,7 +17,10 @@ namespace BIT_DesktopApp.ViewModels
 
         private ObservableCollection<ContractorSkill> _contractorSkills;
         private ContractorSkill _selectedSkill;
-        private ContractorSkill _ContractorSkill; 
+        private ContractorSkill _ContractorSkill;
+
+        private string _searchText;
+        private RelayCommand _searchCommand;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -28,6 +32,22 @@ namespace BIT_DesktopApp.ViewModels
             }
         }
 
+        public RelayCommand SearchCommand
+        {
+            get
+            {
+                if (_searchCommand == null)
+                {
+                    _searchCommand = new RelayCommand(this.SearchMethod, true);
+
+                }
+                return _searchCommand;
+            }
+            set{ _searchCommand = value;}
+        }
+
+        
+
         #region Contractor Contructors
         public ObservableCollection<Contractor> Contractors
         {
@@ -38,7 +58,9 @@ namespace BIT_DesktopApp.ViewModels
         public Contractor SelectedContractor
         {
             get { return _selectedContractor; } 
-            set { _selectedContractor = value;
+            set 
+            { 
+                _selectedContractor = value;
                 OnPropertyChanged("SelectedContractor");
                 ContractorSkills allSkills = new ContractorSkills(SelectedContractor.ContractorID);
                 this.ContractorSkills = new ObservableCollection<ContractorSkill>(allSkills);
@@ -52,7 +74,9 @@ namespace BIT_DesktopApp.ViewModels
         public ObservableCollection<ContractorSkill> ContractorSkills
         {
             get { return _contractorSkills; }
-            set { _contractorSkills = value;
+            set
+            {
+                _contractorSkills = value;
                 OnPropertyChanged("Skills");
             }
         }
@@ -64,6 +88,7 @@ namespace BIT_DesktopApp.ViewModels
             {
                 _selectedSkill = value;
                 OnPropertyChanged("SelectedSkill");
+                
             }
         }
 
@@ -71,6 +96,22 @@ namespace BIT_DesktopApp.ViewModels
         {
             get { return _ContractorSkill; }
             set { _ContractorSkill = value;}
+        }
+
+        public string SearchText
+        {
+            get { return _searchText; }
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged("SearchText");
+            }
+        }
+
+        public void SearchMethod()
+        {
+            Contractors allContractors = new Contractors(SearchText);
+            this.Contractors = new ObservableCollection<Contractor>(allContractors);
         }
 
         public ContractorViewModel()

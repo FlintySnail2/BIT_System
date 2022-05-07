@@ -29,23 +29,14 @@
                        Width="323" 
                        Margin="10,5,10,5"/>
 
-            <ComboBox x:Name="cmbSearchContractor" 
-                      Width="130" 
-                      Height="40" 
-                      Padding="5" 
-                      Margin="10,5,10,5">
-
-                <ComboBoxItem Content="First Name"/>
-                <ComboBoxItem Content="Last Name"/>
-                <ComboBoxItem Content="Skills"/>
-            </ComboBox>
-
-            <TextBox x:Name="txtSearchContractor" 
+            <TextBox Text="{Binding SearchText}"
+                     x:Name="txtSearchContractor" 
                      Width="200" 
                       Style="{StaticResource SearchTheme}"/>
 
             <Button Content="SEARCH" 
-                    x:Name="btnSearchContractor" 
+                    x:Name="btnSearchContractor"
+                    Command="{Binding SearchCommand}"
                     Width="90" 
                     Margin="10" 
                     FontSize="18"/>
@@ -67,7 +58,6 @@
                       Name="dgContractors" 
                       Margin="5" 
                       Grid.RowSpan="2"
-                      AutoGenerateColumns="False"
                       ItemsSource="{Binding Contractors}"
                       SelectedItem="{Binding SelectedContractor}"/>
 
@@ -75,7 +65,7 @@
             <!-- Contractor Skill Go Here -->
             <DataGrid Grid.Row="0" 
                       Grid.Column="1" 
-                      x:Name="dgSkills" 
+                      x:Name="dgContractorSkills" 
                       Margin="5"
                       ItemsSource="{Binding ContractorSkills}"
                       SelectedItem="{Binding SelectedContractor}"/>
@@ -85,7 +75,8 @@
                         Grid.Column="1" 
                         Orientation="Horizontal">
 
-                <TextBox x:Name="txtAddSuburb" 
+                <TextBox Text="{Binding ContractorSkills.Skills}"
+                         x:Name="txtAddSuburb" 
                          Width="100" 
                          Height="31" 
                          Margin="5"/>
@@ -259,18 +250,12 @@
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-            <ComboBox Text="{Binding SelectedContractor.ContractorRating}"
+            <TextBox  Text="{Binding SelectedContractor.ContractorRating}"
                       x:Name="txtRating" 
                       Grid.Row="5" 
                       Grid.Column="3" 
-                      Margin="5" >
-                <ComboBoxItem Content="1 Star"/>
-                <ComboBoxItem Content="2 Stars"/>
-                <ComboBoxItem Content="3 Stars"/>
-                <ComboBoxItem Content="4 Stars"/>
-                <ComboBoxItem Content="5 Stars"/>
-            </ComboBox>
-
+                      Margin="5" />
+            
         </Grid>
         <StackPanel Orientation="Horizontal" 
                     HorizontalAlignment="right" 

@@ -25,6 +25,7 @@ namespace BIT_WebApplication.Views
                 Password = txtPassword.Text
             };
 
+            //VALIDATE LOGIN LEVEL
             int clientId = user.CheckCLient();
             int contractorId = user.CheckContractor();
             int staffId = user.CheckStaff();
@@ -42,15 +43,15 @@ namespace BIT_WebApplication.Views
             else if (staffId > 0)
             {
                 Session.Add("Staff_Id", staffId);
-                Response
+                Response.Redirect("RequestedJobView.aspx");
             }
             else
             {
                 Response.Write("<script>alert('Invalid Credentials')</script>");
             }
-            }
+        }
 
             
         }
     }
-}
+

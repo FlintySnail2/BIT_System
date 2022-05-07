@@ -11,7 +11,7 @@ namespace BIT_DesktopApp.Models
 {
     public class JobsStatus : List<JobStatus>
     {
-        private SQLHelper _db;
+        
 
         public JobsStatus(int jobId)
         {

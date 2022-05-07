@@ -40,7 +40,7 @@ namespace BIT_DesktopApp
 
         }
 
-        public MainWindow(string userType) //Parameterised Constructo
+        public MainWindow(string userType) //Parameterised Constructor
         {
             InitializeComponent();
             UpdateButtons(userType);

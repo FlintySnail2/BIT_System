@@ -140,44 +140,44 @@ namespace BIT_DesktopApp.Models
 
         #endregion Constructor
 
-        #region Public Methods
+        //#region Public Methods
 
-        public int InsertClient(int clientId)
-        {
-            string sql = "INSERT INTO" +
-                "               Client(" +
-                "               Oragnisation_Name," +
-                "               First_Name," +
-                "               Last_Name," +
-                "               Phone" +
-                "               Email" +
-                "               Password)" +
-                "       VALUES(" +
-                "               @OrganisationName," +
-                "               @ContactName," + //MAY NOT WORK DUE TO THE CONCATINATION
-                "               @Phone," +
-                "               @Email," +
-                "               @Password";
-            //2ND INSERT STATEMENT POSSIBLE ???
-            SqlParameter[] objParams = new SqlParameter[5];
-            objParams[0] = new SqlParameter("@OrganisationName", DbType.String);
-            objParams[0].Value = this.OrganisationName;
-            objParams[1] = new SqlParameter("@FirstName" + "@LastName", DbType.String);
-            objParams[1].Value = this.ContactName;
-            objParams[2] = new SqlParameter("@Phone", DbType.String);
-            objParams[2].Value = this.Phone;
-            objParams[3] = new SqlParameter("@Email", DbType.String);
-            objParams[3].Value = this.Email;
-            objParams[4] = new SqlParameter("@Password", DbType.String);
-            int rowsAffectd = _db.ExecuteNonQuery(sql, objParams);
-            if (rowsAffectd >= 1)
-            {
-                return "New Client Successfully Added";
-            }
-            return "New Client Not Added";
-        }
+        //public int InsertClient(int clientId)
+        //{
+        //    string sql = "INSERT INTO" +
+        //        "               Client(" +
+        //        "               Oragnisation_Name," +
+        //        "               First_Name," +
+        //        "               Last_Name," +
+        //        "               Phone" +
+        //        "               Email" +
+        //        "               Password)" +
+        //        "       VALUES(" +
+        //        "               @OrganisationName," +
+        //        "               @ContactName," + //MAY NOT WORK DUE TO THE CONCATINATION
+        //        "               @Phone," +
+        //        "               @Email," +
+        //        "               @Password";
+        //    //2ND INSERT STATEMENT POSSIBLE ???
+        //    SqlParameter[] objParams = new SqlParameter[5];
+        //    objParams[0] = new SqlParameter("@OrganisationName", DbType.String);
+        //    objParams[0].Value = this.OrganisationName;
+        //    objParams[1] = new SqlParameter("@FirstName" + "@LastName", DbType.String);
+        //    objParams[1].Value = this.ContactName;
+        //    objParams[2] = new SqlParameter("@Phone", DbType.String);
+        //    objParams[2].Value = this.Phone;
+        //    objParams[3] = new SqlParameter("@Email", DbType.String);
+        //    objParams[3].Value = this.Email;
+        //    objParams[4] = new SqlParameter("@Password", DbType.String);
+        //    int rowsAffectd = _db.ExecuteNonQuery(sql, objParams);
+        //    if (rowsAffectd >= 1)
+        //    {
+        //        return "New Client Successfully Added";
+        //    }
+        //    return "New Client Not Added";
+        //}
 
-        #endregion Public Methods
+        //#endregion Public Methods
     }
 }
 

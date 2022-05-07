@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,47 @@ namespace BIT_DesktopApp.ViewModels
     {
         private ObservableCollection<Client> _clients;
         private Client _selectedClient;
+        public event PropertyChangedEventHandler PropertyChanged;
+        private string _searchText;
+        private RelayCommand _searchCommand;
+
+        private void OnPropertyChanged(string prop)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            }
+        }
+
+        public RelayCommand SearchCommand
+        {
+            get
+            {
+                if (_searchCommand == null)
+                {
+                    _searchCommand = new RelayCommand(this.SearchMethod, true);
+
+                }
+                return _searchCommand;
+            }
+            set { _searchCommand = value; }
+        }
+
+        public string SearchText
+        {
+            get { return _searchText; }
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged("SearchText");
+            }
+        }
+
+        public void SearchMethod()
+        {
+            Clients allClients = new Clients(SearchText);
+            this.Clients = new ObservableCollection<Client>(allClients);
+        }
 
         public ObservableCollection<Client> Clients
         {

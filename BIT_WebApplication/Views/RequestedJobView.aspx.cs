@@ -11,6 +11,10 @@ namespace BIT_WebApplication.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["Staff_Id"] != null)
+            {
+
+            }
 
         }
     }

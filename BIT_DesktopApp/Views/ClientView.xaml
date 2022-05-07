@@ -27,22 +27,14 @@
                        Width="323" 
                        Margin="10,5,10,5"/>
 
-            <ComboBox x:Name="cmbSearchContractor" 
-                      Width="130" 
-                      Height="40" 
-                      Padding="5" 
-                      Margin="10,5,10,5">
-
-                <ComboBoxItem Content="First Name"/>
-                <ComboBoxItem Content="Last Name"/>
-            </ComboBox>
-
-            <TextBox x:Name="txtSearchContractor" 
+            <TextBox Text="{Binding SearchText}"
+                     x:Name="txtSearchContractor" 
                      Width="200" 
                      Style="{StaticResource SearchTheme}"/>
 
             <Button Content="SEARCH" 
-                    x:Name="btnSearchContractor" 
+                    x:Name="btnSearchContractor"
+                    Command="{Binding SearchCommand}"
                     Width="90" Margin="10,10,10,10" 
                     FontSize="18"/>
 

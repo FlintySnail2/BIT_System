@@ -553,6 +553,7 @@
     <Compile Include="BLL\Contractor.cs" />
     <Compile Include="BLL\Staff.cs" />
     <Compile Include="BLL\User.cs" />
+    <Compile Include="DAL\AssignedJob.cs" />
     <Compile Include="DAL\SQLHelper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

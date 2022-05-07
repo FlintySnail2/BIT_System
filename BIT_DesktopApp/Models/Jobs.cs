@@ -47,5 +47,28 @@ namespace BIT_DesktopApp.Models
                 this.Add(newJob);
             }        
         }
+
+        public Jobs(string searchText)
+        {
+            _db = new SQLHelper();
+            string sql = "SELECT" +
+                "               Priority," +
+                "               Status," +
+                "               Skill_Title" +
+                "       FROM" +
+                "           Job" +
+                "       WHERE" +
+                "           Priority LIKE '%" + searchText + "%'" +
+                "       AND" +
+                "           Status LIKE '%" + searchText + "%'" +
+                "       AND " +
+                "           Skill_Title '%" + searchText + "%'";
+            DataTable dataTable = _db.ExecuteSQL(sql);
+            foreach (DataRow dr in dataTable.Rows)
+            {
+                Job newJob = new Job(dr);
+                this.Add(newJob);
+            }
+        }
     }
 }

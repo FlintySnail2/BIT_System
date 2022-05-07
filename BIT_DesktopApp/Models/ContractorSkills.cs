@@ -11,7 +11,7 @@ namespace BIT_DesktopApp.Models
 {
     public class ContractorSkills : List<ContractorSkill>
     {
-        private SQLHelper _db;
+        
 
         public ContractorSkills(int contractorId)
         {
@@ -38,7 +38,7 @@ namespace BIT_DesktopApp.Models
         {
             SQLHelper db = new SQLHelper();
             string sql = "SELECT" +             //Pulling Status from job table 
-                "           C.Contractor," +    //Causes a crash  "SAD FACE"
+                "           C.Contractor," +    //Causes a crash "SAD FACE"
                 "           J.Skill_Title" +
                 "         FROM" +
                 "           Job AS J," +

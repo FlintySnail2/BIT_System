@@ -32,5 +32,24 @@ namespace BIT_DesktopApp.Models
                 this.Add(newCoordinator);
             }
         }
+
+        public Coordinators(string searchText)
+        {
+            _db = new SQLHelper();
+            string sql = "SELECT" +
+                "           First_Name," +
+                "           Last_Name," +
+                "        FROM" +
+                "           Staff" +
+                "        WHERE" +
+                "           First_Name LIKE '%" + searchText + "%'" +
+                "           Last_Name LIKE '%" + searchText + "%'";
+            DataTable dataTable = _db.ExecuteSQL(sql);
+            foreach (DataRow dr in dataTable.Rows)
+            {
+                Coordinator newCoordinator = new Coordinator();
+                this.Add(newCoordinator);
+            }
+        }
     }
 }

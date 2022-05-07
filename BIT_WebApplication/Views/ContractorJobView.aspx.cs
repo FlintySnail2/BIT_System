@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BIT_WebApplication.BLL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,12 @@ namespace BIT_WebApplication.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["Contractor_Id"] != null)
+            {
+                //Contractor currentContractor = new Contractor();
+                //currentContractor.ContractorId = Convert.ToInt32(Session["Contractor_Id"].ToString());
 
+            }
         }
     }
 }

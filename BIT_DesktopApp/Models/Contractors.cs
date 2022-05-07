@@ -43,5 +43,36 @@ namespace BIT_DesktopApp.Models
 
 		}
 
+        public Contractors(string searchText)
+        {
+            _db = new SQLHelper();
+            string sql = "SELECT" +
+                "               C.Contractor_Id," +
+                "               C.First_Name," +
+                "               C.Last_Name," +
+                "               C.Contractor_Rating," +
+                "               S.Skill_Title" +
+                "           FROM" +
+                "               Skill AS S," +
+                "               Contractor AS C" +
+                "           WHERE" +
+                "               S.Skill_Title = C.Skill_Title" +
+                "           AND     " +
+                "               C.First_Name LIKE '%" + searchText + "%' " +
+                "           AND" +
+                "               C.Last_Name  LIKE '%" + searchText + "%' " +
+                "           AND" +
+                "               C.Contractor_Rating  LIKE '%" + searchText + "%'" +
+                "           AND " +
+                "               S.Skill_Title  LIKE '%" + searchText + "%' ";
+            DataTable dataTable = _db.ExecuteSQL(sql);
+            foreach (DataRow dr in dataTable.Rows)
+            {
+                Contractor newContractor = new Contractor(dr);
+                this.Add(newContractor);
+            }
+
+        }
+
     }
 }

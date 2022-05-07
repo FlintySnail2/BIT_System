@@ -23,6 +23,8 @@ namespace BIT_DesktopApp.Models
         private int _abn { get; set; }
         private string _skill { get; set; }
         private string _licenceNumber { get; set; }
+        private string _licenceType { get; set; }
+        private DateTime _licenceExpiry { get; set; }
         private decimal _ratOfPay { get; set; }
         private string _contractorRating { get; set; }
         public SQLHelper _db;
@@ -126,6 +128,25 @@ namespace BIT_DesktopApp.Models
             }
         }
 
+        public string LicenceType
+        {
+            get { return _licenceType; }
+            set
+            {
+                _licenceType = value;
+                OnPropertyChanged("Licence Type");
+            }
+        }
+
+        public DateTime LicenceExpiry
+        {
+            get { return _licenceExpiry; }
+            set
+            {
+                _licenceExpiry = value;
+                OnPropertyChanged("Licence Expiry");
+            }
+        }
         public decimal RateOfPay
         {
             get { return _ratOfPay; }
@@ -169,6 +190,11 @@ namespace BIT_DesktopApp.Models
             Skill = dr["Skill_Title"].ToString();
             ABN = Convert.ToInt32(dr["ABN"].ToString());
             LicenceNumber = dr["Licence_Number"].ToString();
+
+            //DROP NEW COLUMNS TO CONTRACTOR TABLE
+
+            //LicenceType = dr["LicenceType"].ToString();
+            //LicenceExpiry = Convert.ToDateTime(dr["LicenceExpiry"].ToString());
             RateOfPay = Convert.ToDecimal(dr["Rateof_Pay"].ToString());
             ContractorRating = dr["Contractor_Rating"].ToString();
         }
