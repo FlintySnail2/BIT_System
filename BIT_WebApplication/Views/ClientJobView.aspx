@@ -3,11 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
        <link rel="stylesheet" href="../Styles/style.css" >
-   
-    
-    
 
-    
     <div class="container-fluid">
         <div class ="row">
             <div class="col-12">

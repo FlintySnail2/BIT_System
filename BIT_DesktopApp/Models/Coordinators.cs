@@ -16,10 +16,9 @@ namespace BIT_DesktopApp.Models
         {
             _db = new SQLHelper();
             string sql = "SELECT" +
-                "           Staff_Id," +
-                "           First_Name + Last_Name AS EmployeeName," +
+                "           StaffId," +
+                "           FirstName + ' ' + LastName AS EmployeeName," +
                 "           Dob," +
-                "           Street + ' ' + Suburb + ', ' + State + ', ' + CAST(Zip AS NVARCHAR) AS Address," +
                 "           Phone," +
                 "           Email," +
                 "           Password" +
@@ -37,13 +36,13 @@ namespace BIT_DesktopApp.Models
         {
             _db = new SQLHelper();
             string sql = "SELECT" +
-                "           First_Name," +
-                "           Last_Name," +
+                "           FirstName," +
+                "           LastName," +
                 "        FROM" +
                 "           Staff" +
                 "        WHERE" +
-                "           First_Name LIKE '%" + searchText + "%'" +
-                "           Last_Name LIKE '%" + searchText + "%'";
+                "           FirstName LIKE '%" + searchText + "%'" +
+                "           LastName LIKE '%" + searchText + "%'";
             DataTable dataTable = _db.ExecuteSQL(sql);
             foreach (DataRow dr in dataTable.Rows)
             {

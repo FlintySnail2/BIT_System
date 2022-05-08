@@ -16,30 +16,28 @@ namespace BIT_DesktopApp.Models
         {
             _db = new SQLHelper();
             string sql = "SELECT DISTINCT" +
-                "           J.Job_Id," +
-                "           C.Oragnisation_Name," +
-                "           C.First_Name + ' ' + C.Last_Name as Contact_Name," +
+                "           J.JobId," +
+                "           C.OrganisationName AS [Organisation Name]," +
+                "           C.FirstName + ' ' + C.LastName as [Contact Name]," +
                 "           J.Description," +
-                "           J.Skill_Title," +
+                "           J.SkillTitle AS [Skill Title]," +
                 "           J.Priority," +
+                "           S.Status," +
                 "           C.Phone," +
-                "           J.QuotedHours," +
-                "           J.ActualHours," +
-                "           FORMAT(J.RequestedCompletionDate, 'dd-MM-yyyy') AS RequestedCompletionDate," +
-                "           FORMAT(J.CompletionDate, 'dd-MM-yyyy') AS CompletionDate," +
+                "           J.HoursOnJob," +
+                "           FORMAT(J.RequestedCompletionDate, 'dd-MM-yyyy') AS [Requested Completion]," +
                 "           J.DistanceTravelled," +
                 "           L.Street + ' ' + L.Suburb + ', ' + L.State + ', ' + CAST(L.Zip AS NVARCHAR) AS Location" +
                 "       FROM" +
                 "           Job AS J," +
                 "           Client AS C," +
                 "           Location AS L," +
-                "           Region AS R" +
+                "           Status AS S" +
                 "       WHERE" +
-                "           J.Client_Id = C.Client_Id" +
+                "           J.ClientId = C.ClientId" +
                 "       AND" +
-                "           C.Client_Id = L.Client_Id" +
-                "       AND " +
-                "           L.Region_Name = R.Region_Name";
+                "           C.ClientId = L.ClientId";
+
             DataTable datatable = _db.ExecuteSQL(sql);
             foreach (DataRow dr in datatable.Rows)
             {
@@ -54,7 +52,7 @@ namespace BIT_DesktopApp.Models
             string sql = "SELECT" +
                 "               Priority," +
                 "               Status," +
-                "               Skill_Title" +
+                "               SkillTitle" +
                 "       FROM" +
                 "           Job" +
                 "       WHERE" +
@@ -62,7 +60,7 @@ namespace BIT_DesktopApp.Models
                 "       AND" +
                 "           Status LIKE '%" + searchText + "%'" +
                 "       AND " +
-                "           Skill_Title '%" + searchText + "%'";
+                "           SkillTitle '%" + searchText + "%'";
             DataTable dataTable = _db.ExecuteSQL(sql);
             foreach (DataRow dr in dataTable.Rows)
             {

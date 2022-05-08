@@ -29,7 +29,7 @@ namespace BIT_DesktopApp
         public MainWindow()
         {
             InitializeComponent();
-            contentFrame.Navigate(new JobView());
+            contentFrame.Navigate(new ClientView());
             //LOGON VIA VALIDATION BASED OF ROLE
             //contentFrame.Navigate(new Logon());
             //btnJob.IsEnabled = false;

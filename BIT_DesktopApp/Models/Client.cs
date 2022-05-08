@@ -18,7 +18,7 @@ namespace BIT_DesktopApp.Models
         private int _clientId;
         private string _organisationName;
         private string _contactName;
-        private int _phone;
+        private string _phone;
         private string _email;
         private string _password;
         private string _regionName;
@@ -63,7 +63,7 @@ namespace BIT_DesktopApp.Models
             }
         }
 
-        public int Phone
+        public string Phone
         {
             get { return _phone; }
             set { _phone = value;
@@ -126,13 +126,13 @@ namespace BIT_DesktopApp.Models
         public Client(DataRow dr)
         {
             _db = new SQLHelper();
-            ClientId = Convert.ToInt32(dr["Client_Id"].ToString());
-            OrganisationName = dr["Oragnisation_Name"].ToString();
+            ClientId = Convert.ToInt32(dr["ClientId"].ToString());
+            OrganisationName = dr["OrganisationName"].ToString();
             ContactName = dr["ContactName"].ToString();
-            Phone = Convert.ToInt32(dr["Phone"].ToString());
+            Phone = dr["Phone"].ToString();
             Email = dr["Email"].ToString();
             Password = dr["Password"].ToString();
-            RegionName = dr["Region_Name"].ToString();
+            RegionName = dr["RegionName"].ToString();
             Location = dr["Location"].ToString() ;
             LocationNumber = Convert.ToInt32(dr["LocationNum"].ToString());
 

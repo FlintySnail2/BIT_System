@@ -13,19 +13,18 @@ namespace BIT_DesktopApp.Models
 
     public class Job : INotifyPropertyChanged
     {
-        #region Properties
+        #region Private Properties
         private int _jobId;
-        private string _organisationName; //As Client Name
-        private string _contactName;  //Client First Name
+        private string _organisationName; 
+        private string _contactName;  
         private string _description;
         private string _skillReq;
         private string _priority;
-        private int _phone;
+        private string _status;
+        private string _phone;
         private string _location;
-        private decimal _quotedHours;
-        private decimal _actualHours;
+        private decimal _hoursOnJob;
         private DateTime _requestedCompletion;
-        private DateTime _completionDate;
         private string _distanceTravelled;  
         private SQLHelper _db;
         public event PropertyChangedEventHandler PropertyChanged;
@@ -37,7 +36,9 @@ namespace BIT_DesktopApp.Models
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
             }
         }
+        #endregion Private Properties
 
+        #region Public Properties
         public int JobId
         {
             get { return _jobId; }
@@ -50,7 +51,7 @@ namespace BIT_DesktopApp.Models
             set
             {
                 _organisationName = value;
-                OnPropertyChanged("OrganisationName");
+                OnPropertyChanged("Organisation Name");
             }
         }
 
@@ -84,6 +85,13 @@ namespace BIT_DesktopApp.Models
             }
         }
 
+        public string Status
+        {
+            get { return _status; }
+            set { _status = value;
+                OnPropertyChanged("Status");
+            }
+        }
         public string Priority
         {
             get { return _priority; }
@@ -94,7 +102,7 @@ namespace BIT_DesktopApp.Models
             }
         }
 
-        public int Phone
+        public string Phone
         {
             get { return _phone; }
             set
@@ -104,22 +112,12 @@ namespace BIT_DesktopApp.Models
             }
         }
 
-        public decimal QuotedHours
+        public decimal HoursOnJob
         {
-            get { return _quotedHours; }
+            get { return _hoursOnJob; }
             set
             {
-                _quotedHours = value;
-                OnPropertyChanged("Quoted Hours");
-            }
-        }
-
-        public decimal ActualHours
-        {
-            get { return _actualHours; }
-            set
-            {
-                _actualHours = value;
+                _hoursOnJob = value;
                 OnPropertyChanged("Actual Hours");
             }
         }
@@ -134,23 +132,13 @@ namespace BIT_DesktopApp.Models
             }
         }
 
-        public DateTime CompletionDate
-        {
-            get { return _completionDate; }
-            set
-            {
-                _completionDate = value;
-                OnPropertyChanged("CompletionDate");
-            }
-        }
-
         public string DistanceTravelled
         {
             get { return _distanceTravelled; }
             set
             {
                 _distanceTravelled = value;
-                OnPropertyChanged("Status");
+                OnPropertyChanged("DistanceTravlled");
             }
         }
 
@@ -163,7 +151,7 @@ namespace BIT_DesktopApp.Models
                 OnPropertyChanged("Location");
             }
         }
-        #endregion Properties
+        #endregion Public Properties
 
         #region Constructor
 
@@ -175,18 +163,17 @@ namespace BIT_DesktopApp.Models
         public Job(DataRow dr)
         {
             _db = new SQLHelper();
-            JobId = Convert.ToInt32(dr["Job_Id"].ToString());
-            OrganisationName = dr["Oragnisation_Name"].ToString();
-            ContactName = dr["Contact_Name"].ToString();
+            JobId = Convert.ToInt32(dr["JobId"].ToString());
+            OrganisationName = dr["Organisation Name"].ToString();
+            ContactName = dr["Contact Name"].ToString();
             Description = dr["Description"].ToString();
-            SkillReq = dr["Skill_Title"].ToString();
+            Status = dr["Status"].ToString();
+            RequestedCompletion = Convert.ToDateTime(dr["Requested Completion"].ToString());
+            SkillReq = dr["Skill Title"].ToString();
             Priority = dr["Priority"].ToString();
-            Phone = Convert.ToInt32(dr["Phone"].ToString());
+            Phone = dr["Phone"].ToString();
             Location = dr["Location"].ToString();
-            QuotedHours = Convert.ToDecimal(dr["QuotedHours"].ToString());
-            ActualHours = Convert.ToDecimal(dr["ActualHours"].ToString());
-            RequestedCompletion = Convert.ToDateTime(dr["RequestedCompletionDate"].ToString());
-            CompletionDate = Convert.ToDateTime(dr["CompletionDate"].ToString());
+            HoursOnJob = Convert.ToDecimal(dr["HoursOnJob"].ToString());
             DistanceTravelled = dr["DistanceTravelled"].ToString();
         }
 

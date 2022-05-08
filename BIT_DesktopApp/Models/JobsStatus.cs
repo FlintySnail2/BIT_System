@@ -12,26 +12,27 @@ namespace BIT_DesktopApp.Models
     public class JobsStatus : List<JobStatus>
     {
         
+//All WRONG SILL FAST DRIVERS
 
-        public JobsStatus(int jobId)
-        {
-            SQLHelper db = new SQLHelper();
-            string sql = "SELECT" +
-                "           Status" +
-                "         FROM" +
-                "           Job" +
-                "         WHERE" +
-                "           Job_Id = @JobId";
-            SqlParameter[] objParams = new SqlParameter[1];
-            objParams[0] = new SqlParameter("@JobId", DbType.Int32);
-            objParams[0].Value = jobId;
-            DataTable jobsStatus = db.ExecuteSQL(sql, objParams);
-            foreach (DataRow dr in jobsStatus.Rows)
-            {
-                JobStatus status = new JobStatus(dr);
-                this.Add(status);
-            }
-        }
+        //public JobsStatus(int jobId)
+        //{
+        //    SQLHelper db = new SQLHelper();
+        //    string sql = "SELECT" +
+        //        "           Status" +
+        //        "         FROM" +
+        //        "           Job" +
+        //        "         WHERE" +
+        //        "           Job_Id = @JobId";
+        //    SqlParameter[] objParams = new SqlParameter[1];
+        //    objParams[0] = new SqlParameter("@JobId", DbType.Int32);
+        //    objParams[0].Value = jobId;
+        //    DataTable jobsStatus = db.ExecuteSQL(sql, objParams);
+        //    foreach (DataRow dr in jobsStatus.Rows)
+        //    {
+        //        JobStatus status = new JobStatus(dr);
+        //        this.Add(status);
+        //    }
+        //}
 
         public JobsStatus()
         {
@@ -39,7 +40,7 @@ namespace BIT_DesktopApp.Models
             string sql = "SELECT" +
                 "           Status" +
                 "          FROM" +
-                "           Job";
+                "           Status";
             DataTable jobsStatus = db.ExecuteSQL(sql);
             foreach (DataRow dr in jobsStatus.Rows)
             {

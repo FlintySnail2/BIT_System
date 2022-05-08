@@ -62,8 +62,12 @@ namespace BIT_DesktopApp.ViewModels
             { 
                 _selectedContractor = value;
                 OnPropertyChanged("SelectedContractor");
-                ContractorSkills allSkills = new ContractorSkills(SelectedContractor.ContractorID);
+                ContractorSkills allSkills = new ContractorSkills(SelectedContractor.ContractorId);
                 this.ContractorSkills = new ObservableCollection<ContractorSkill>(allSkills);
+                //foreach (ContractorSkill CS in allSkills)
+                //{
+                //    MessageBox.Show(CS.Skill);
+                //}
             }
         }
 

@@ -43,7 +43,7 @@
 
         </StackPanel>
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Margin="0,0,0,180" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="*"/>
@@ -56,10 +56,9 @@
 
             <DataGrid Grid.Column="0" 
                       Name="dgContractors" 
-                      Margin="5" 
-                      Grid.RowSpan="2"
+                      Margin="5,5,5,10"
                       ItemsSource="{Binding Contractors}"
-                      SelectedItem="{Binding SelectedContractor}"/>
+                      SelectedItem="{Binding SelectedContractor}" Grid.RowSpan="2"/>
 
 
             <!-- Contractor Skill Go Here -->
@@ -67,8 +66,8 @@
                       Grid.Column="1" 
                       x:Name="dgContractorSkills" 
                       Margin="5"
-                      ItemsSource="{Binding ContractorSkills}"
-                      SelectedItem="{Binding SelectedContractor}"/>
+                      ItemsSource="{Binding ContractorSkill}"
+                      SelectedItem="{Binding SelectedSkill}"/>
 
 
             <StackPanel Grid.Row="1" 
@@ -102,9 +101,8 @@
 
             </StackPanel>
         </Grid>
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="2" Margin="0,50,0,0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
@@ -136,7 +134,7 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox Text="{Binding SelectedContractor.Dob}"
+            <TextBox Text="{Binding SelectedContractor.Dob, StringFormat=dd/MM/yyyy}"
                      x:Name="txtDob" 
                      Grid.Row="1" 
                      Grid.Column="1" 
@@ -175,25 +173,13 @@
                      Grid.Column="1" 
                      Margin="5" />
 
-            
-            <Label Content="Password : " 
-                   Grid.Row="5" 
-                   Grid.Column="0" 
-                   Foreground="#fff"/>
-
-            <TextBox  Text="{Binding SelectedContractor.Password}"
-                      x:Name="txtPassword" 
-                      Grid.Row="5" 
-                      Grid.Column="1" 
-                      Margin="5" />
-
 
             <!--Second column of data -->
-            
+
             <Label Content="Skill : " 
                    Grid.Row="0" 
                    Grid.Column="2" 
-                   Foreground="#fff"/>
+                   Foreground="#fff" Grid.ColumnSpan="2" Margin="0,0,333,0"/>
 
             <TextBox Text="{Binding SelectedContractor.Skill}"
                      x:Name="txtSkill" 
@@ -223,39 +209,28 @@
                      Grid.Column="3" 
                      Margin="5"/>
 
-            <Label Content="Licence Type Expiry  : " 
-                   Grid.Row="3" 
-                   Grid.Column="2" 
-                   Foreground="#fff"/>
-
-            <TextBox x:Name="txtLicenceTypeExp" 
-                     Grid.Row="3" 
-                     Grid.Column="3" 
-                     Margin="5"/>
-
-
             <Label Content="Rate of Pay : " 
-                   Grid.Row="4" 
+                   Grid.Row="3" 
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
             <TextBox  Text="{Binding SelectedContractor.RateOfPay}"
                       x:Name="txtRateofPay" 
-                      Grid.Row="4" 
+                      Grid.Row="3" 
                       Grid.Column="3" 
                       Margin="5" />
 
             <Label Content="Rating : " 
-                   Grid.Row="5" 
+                   Grid.Row="4" 
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
             <TextBox  Text="{Binding SelectedContractor.ContractorRating}"
                       x:Name="txtRating" 
-                      Grid.Row="5" 
+                      Grid.Row="4" 
                       Grid.Column="3" 
                       Margin="5" />
-            
+
         </Grid>
         <StackPanel Orientation="Horizontal" 
                     HorizontalAlignment="right" 

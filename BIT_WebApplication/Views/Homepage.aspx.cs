@@ -26,7 +26,7 @@ namespace BIT_WebApplication.Views
             };
 
             //VALIDATE LOGIN LEVEL
-            int clientId = user.CheckCLient();
+            int clientId = user.CheckClient();
             int contractorId = user.CheckContractor();
             int staffId = user.CheckStaff();
 

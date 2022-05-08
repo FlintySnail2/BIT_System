@@ -64,7 +64,11 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox  
+            <TextBox  Text="{Binding NewContractor.FirstName,
+                             ValidatesOnDataErrors=True,
+                             UpdateSourceTrigger=PropertyChanged,
+                             Mode=TwoWay}"
+                      ToolTip="{Binding NewContractor.ErrorCollection[FirstName]}"
                       x:Name="txtFirstName" 
                       Grid.Row="0" 
                       Grid.Column="1" 
@@ -75,7 +79,11 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox  
+            <TextBox Text="{Binding NewContractor.LastName,
+                             ValidatesOnDataErrors=True,
+                             UpdateSourceTrigger=PropertyChanged,
+                             Mode=TwoWay}"
+                      ToolTip="{Binding NewContractor.ErrorCollection[LastName]}" 
                      x:Name="txtLastName" 
                      Grid.Row="1" 
                      Grid.Column="1" 
@@ -86,7 +94,11 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox Text="{Binding SelectedContractor.Dob}"
+            <TextBox Text="{Binding NewContractor.Dob,
+                             ValidatesOnDataErrors=True,
+                             UpdateSourceTrigger=PropertyChanged,
+                             Mode=TwoWay}"
+                     ToolTip="{Binding NewContractor.ErrorCollection[Dob]}" 
                      x:Name="txtDob" 
                      Grid.Row="2" 
                      Grid.Column="1" 
@@ -97,7 +109,11 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox Text="{Binding SelectedContractor.Phone}"
+            <TextBox Text="{Binding NewContractor.Phone,
+                             ValidatesOnDataErrors=True,
+                             UpdateSourceTrigger=PropertyChanged,
+                             Mode=TwoWay}"
+                      ToolTip="{Binding NewContractor.ErrorCollection[Phone]}" 
                      x:Name="txtPhone" 
                      Grid.Row="3" 
                      Grid.Column="1" 
@@ -108,7 +124,11 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox Text="{Binding SelectedContractor.Email}"
+            <TextBox Text="{Binding NewContractor.Email,
+                             ValidatesOnDataErrors=True,
+                             UpdateSourceTrigger=PropertyChanged,
+                             Mode=TwoWay}"
+                     ToolTip="{Binding NewContractor.ErrorCollection[Email]}" 
                      x:Name="txtEmail" 
                      Grid.Row="4" 
                      Grid.Column="1" 
@@ -119,7 +139,11 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox 
+            <TextBox Text="{Binding NewContractor.LicenceNum,
+                             ValidatesOnDataErrors=True,
+                             UpdateSourceTrigger=PropertyChanged,
+                             Mode=TwoWay}"
+                      ToolTip="{Binding NewContractor.ErrorCollection[LicenceNum]}" 
                      x:Name="txtLicenceNum" 
                      Grid.Row="5" 
                      Grid.Column="1" 
@@ -130,7 +154,11 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox 
+            <TextBox Text="{Binding NewContractor.LicenceType,
+                             ValidatesOnDataErrors=True,
+                             UpdateSourceTrigger=PropertyChanged,
+                             Mode=TwoWay}"
+                      ToolTip="{Binding NewContractor.ErrorCollection[LicenceType]}" 
                      x:Name="txtLicenceType" 
                      Grid.Row="6" 
                      Grid.Column="1" 
@@ -141,7 +169,11 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox 
+            <TextBox Text="{Binding NewContractor.LicenceExpiry,
+                             ValidatesOnDataErrors=True,
+                             UpdateSourceTrigger=PropertyChanged,
+                             Mode=TwoWay}"
+                      ToolTip="{Binding NewContractor.ErrorCollection[LicenceExpiry]}" 
                      x:Name="txtLicenceExpiry" 
                      Grid.Row="7" 
                      Grid.Column="1" 
@@ -154,7 +186,11 @@
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-            <TextBox Text="{Binding SelectedContractor.Password}"
+            <TextBox Text="{Binding NewContractor.Password,
+                             ValidatesOnDataErrors=True,
+                             UpdateSourceTrigger=PropertyChanged,
+                             Mode=TwoWay}"
+                      ToolTip="{Binding NewContractor.ErrorCollection[Password]}" 
                      x:Name="txtPassword" 
                      Grid.Row="0" 
                      Grid.Column="3" 
@@ -165,7 +201,11 @@
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-            <TextBox 
+            <TextBox Text="{Binding NewContractor.Skill,
+                             ValidatesOnDataErrors=True,
+                             UpdateSourceTrigger=PropertyChanged,
+                             Mode=TwoWay}"
+                      ToolTip="{Binding NewContractor.ErrorCollection[Skill]}" 
                      x:Name="txtSkill" 
                      Grid.Row="2" 
                      Grid.Column="3" 
@@ -176,7 +216,11 @@
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-            <TextBox 
+            <TextBox Text="{Binding NewContractor.PayRate,
+                             ValidatesOnDataErrors=True,
+                             UpdateSourceTrigger=PropertyChanged,
+                             Mode=TwoWay}"
+                      ToolTip="{Binding NewContractor.ErrorCollection[PayRate]}" 
                      x:Name="txtPayRate" 
                      Grid.Row="3" 
                      Grid.Column="3" 
@@ -187,7 +231,11 @@
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-            <TextBox 
+            <TextBox Text="{Binding NewContractor.Abn,
+                             ValidatesOnDataErrors=True,
+                             UpdateSourceTrigger=PropertyChanged,
+                             Mode=TwoWay}"
+                      ToolTip="{Binding NewContractor.ErrorCollection[Abn]}" 
                      x:Name="txtAbn" 
                      Grid.Row="1" 
                      Grid.Column="3" 
@@ -199,7 +247,11 @@
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-            <TextBox 
+            <TextBox Text="{Binding NewContractor.Street,
+                             ValidatesOnDataErrors=True,
+                             UpdateSourceTrigger=PropertyChanged,
+                             Mode=TwoWay}"
+                      ToolTip="{Binding NewContractor.ErrorCollection[Street]}" 
                      x:Name="txtStreet" 
                      Grid.Row="4" 
                      Grid.Column="3" 
@@ -210,7 +262,11 @@
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-            <TextBox 
+            <TextBox Text="{Binding NewContractor.Suburb,
+                             ValidatesOnDataErrors=True,
+                             UpdateSourceTrigger=PropertyChanged,
+                             Mode=TwoWay}"
+                      ToolTip="{Binding NewContractor.ErrorCollection[Suburb]}" 
                      x:Name="txtSuburb" 
                      Grid.Row="5" 
                      Grid.Column="3" 
@@ -221,7 +277,11 @@
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-            <TextBox
+            <TextBox Text="{Binding NewContractor.State,
+                             ValidatesOnDataErrors=True,
+                             UpdateSourceTrigger=PropertyChanged,
+                             Mode=TwoWay}"
+                      ToolTip="{Binding NewContractor.ErrorCollection[State]}" 
                      
                      x:Name="txtState" 
                      Grid.Row="6" 
@@ -235,7 +295,11 @@
                    Foreground="#fff"/>
 
             <TextBox 
-                     
+                     Text="{Binding NewContractor.Zip,
+                             ValidatesOnDataErrors=True,
+                             UpdateSourceTrigger=PropertyChanged,
+                             Mode=TwoWay}"
+                      ToolTip="{Binding NewContractor.ErrorCollection[Zip]}" 
                      x:Name="txtZip" 
                      Grid.Row="7" 
                      Grid.Column="3" 
@@ -252,7 +316,8 @@
                     Content="CONFIRM" 
                     Width="150" 
                     Margin="10"
-                    Click="btnConfirm_Click"/>
+                    Click="btnConfirm_Click"
+                    Command="{Binding AddCommand}"/>
 
             <Button x:Name="btnCancel" 
                     Content="CANCEL" 

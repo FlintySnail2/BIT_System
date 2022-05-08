@@ -17,23 +17,27 @@ namespace BIT_DesktopApp.Models
         {
             _db = new SQLHelper();
             string sql = "SELECT" +
-                "           C.Contractor_Id," +
-                "           C.First_Name + ' ' + C.Last_Name AS ContractorName," +
+                "           C.ContractorId," +
+                "           C.FirstName + ' ' + C.LastName AS ContractorName," +
                 "           C.Dob," +
                 "           C.Street + ' ' + C.Suburb + ', ' + C.State + ', ' + CAST(C.Zip AS NVARCHAR) AS Address," +
+                "           A.Weekday AS Availability," +
                 "           C.Phone," +
                 "           C.Email,    " +
                 "           C.Password," +
-                "           J.Skill_Title," +
+                "           J.SkillTitle," +
                 "           C.ABN," +
-                "           C.Licence_Number," +
-                "           C.Rateof_Pay," +
-                "           C.Contractor_Rating" +
+                "           C.LicenceNumber," +
+                "           C.RateofPay," +
+                "           C.ContractorRating" +
                 "       FROM" +
                 "           Contractor AS C," +
-                "           Job AS J" +
+                "           Job AS J," +
+                "           Availability AS A" +
                 "       WHERE" +
-                "           C.Contractor_Id = J.Contractor_Id;";
+                "           C.ContractorId = J.ContractorId" +
+                "       AND" +
+                "           C.ContractorId = A.ContractorId;";
             DataTable datatable = _db.ExecuteSQL(sql);
             foreach (DataRow dr in datatable.Rows)
             {
@@ -47,24 +51,24 @@ namespace BIT_DesktopApp.Models
         {
             _db = new SQLHelper();
             string sql = "SELECT" +
-                "               C.Contractor_Id," +
-                "               C.First_Name," +
-                "               C.Last_Name," +
+                "               C.ContractorId," +
+                "               C.FirstName," +
+                "               C.LastName," +
                 "               C.Contractor_Rating," +
-                "               S.Skill_Title" +
+                "               S.SkillTitle" +
                 "           FROM" +
                 "               Skill AS S," +
                 "               Contractor AS C" +
                 "           WHERE" +
-                "               S.Skill_Title = C.Skill_Title" +
+                "               S.SkillTitle = C.SkillTitle" +
                 "           AND     " +
-                "               C.First_Name LIKE '%" + searchText + "%' " +
+                "               C.FirstName LIKE '%" + searchText + "%' " +
                 "           AND" +
-                "               C.Last_Name  LIKE '%" + searchText + "%' " +
+                "               C.LastName  LIKE '%" + searchText + "%' " +
                 "           AND" +
-                "               C.Contractor_Rating  LIKE '%" + searchText + "%'" +
+                "               C.ContractorRating  LIKE '%" + searchText + "%'" +
                 "           AND " +
-                "               S.Skill_Title  LIKE '%" + searchText + "%' ";
+                "               S.SkillTitle  LIKE '%" + searchText + "%' ";
             DataTable dataTable = _db.ExecuteSQL(sql);
             foreach (DataRow dr in dataTable.Rows)
             {

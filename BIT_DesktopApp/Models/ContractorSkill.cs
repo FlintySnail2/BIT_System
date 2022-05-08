@@ -52,8 +52,8 @@ namespace BIT_DesktopApp.Models
         public ContractorSkill(DataRow dr)
         {
             _db = new SQLHelper();
-            ContractorId = Convert.ToInt32(dr["Contractor_Id"].ToString());
-            Skill = dr["Skill_Title"].ToString();
+            ContractorId = Convert.ToInt32(dr["ContractorId"].ToString());
+            Skill = dr["SkillTitle"].ToString();
         }
 
         #endregion Constructor
@@ -64,7 +64,7 @@ namespace BIT_DesktopApp.Models
         {
             int returnValue = 0;
             string sql = "INSERT INTO" +
-                "               Contract_Skill" +
+                "               ContractSkill" +
                 "         VALUES(" +
                 "               @ContractorId, @Skill ";
             SqlParameter[] objParams = new SqlParameter[2];

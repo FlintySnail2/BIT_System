@@ -11,24 +11,24 @@ namespace BIT_DesktopApp.Models
 {
     public class Contractor : INotifyPropertyChanged
     {
-        #region Properties
+        #region Private Properties
 
         private int _contractorId { get; set; }
         private string _contractorName { get; set; }
         private string _address { get; set; }
-        private int _phone { get; set; }
+        private String _phone { get; set; }
         private DateTime _dob { get; set; }
         private string _email { get; set; }
         private string _password { get; set; }
-        private int _abn { get; set; }
+        private string _abn { get; set; }
         private string _skill { get; set; }
         private string _licenceNumber { get; set; }
-        private string _licenceType { get; set; }
-        private DateTime _licenceExpiry { get; set; }
         private decimal _ratOfPay { get; set; }
         private string _contractorRating { get; set; }
         public SQLHelper _db;
         public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion Private Properties
 
         private void OnPropertyChanged(string prop)
         {
@@ -38,12 +38,14 @@ namespace BIT_DesktopApp.Models
             }
         }
 
-        public int ContractorID
+
+        #region Public Properties
+
+        public int ContractorId
         {
             get { return _contractorId; }
             set { _contractorId = value; }
         }
-
         public string ContractorName
         {
             get { return _contractorName; }
@@ -63,7 +65,7 @@ namespace BIT_DesktopApp.Models
             }
         }
 
-        public int Phone
+        public string Phone
         {
             get { return _phone; }
             set { _phone = value;
@@ -109,7 +111,7 @@ namespace BIT_DesktopApp.Models
                 OnPropertyChanged("Skill");
             }
         }
-        public int ABN
+        public string ABN
         {
             get { return _abn;}
             set { _abn = value;
@@ -128,25 +130,6 @@ namespace BIT_DesktopApp.Models
             }
         }
 
-        public string LicenceType
-        {
-            get { return _licenceType; }
-            set
-            {
-                _licenceType = value;
-                OnPropertyChanged("Licence Type");
-            }
-        }
-
-        public DateTime LicenceExpiry
-        {
-            get { return _licenceExpiry; }
-            set
-            {
-                _licenceExpiry = value;
-                OnPropertyChanged("Licence Expiry");
-            }
-        }
         public decimal RateOfPay
         {
             get { return _ratOfPay; }
@@ -168,7 +151,7 @@ namespace BIT_DesktopApp.Models
 
       
 
-        #endregion Properties
+        #endregion Public Properties
 
         #region Constructor
 
@@ -180,23 +163,18 @@ namespace BIT_DesktopApp.Models
         public Contractor(DataRow dr)
         {
             _db = new SQLHelper();
-            ContractorID = Convert.ToInt32(dr["Contractor_Id"].ToString());
+            ContractorId = Convert.ToInt32(dr["ContractorId"].ToString());
             ContractorName = dr["ContractorName"].ToString(); 
             Address = dr["Address"].ToString();
-            Phone = Convert.ToInt32(dr["Phone"].ToString());
+            Phone = dr["Phone"].ToString();
             Dob = Convert.ToDateTime(dr["Dob"].ToString());
             Email = dr["Email"].ToString();
             Password = dr["Password"].ToString();
-            Skill = dr["Skill_Title"].ToString();
-            ABN = Convert.ToInt32(dr["ABN"].ToString());
-            LicenceNumber = dr["Licence_Number"].ToString();
-
-            //DROP NEW COLUMNS TO CONTRACTOR TABLE
-
-            //LicenceType = dr["LicenceType"].ToString();
-            //LicenceExpiry = Convert.ToDateTime(dr["LicenceExpiry"].ToString());
-            RateOfPay = Convert.ToDecimal(dr["Rateof_Pay"].ToString());
-            ContractorRating = dr["Contractor_Rating"].ToString();
+            Skill = dr["SkillTitle"].ToString();
+            ABN = dr["ABN"].ToString();
+            LicenceNumber = dr["LicenceNumber"].ToString();
+            RateOfPay = Convert.ToDecimal(dr["RateofPay"].ToString());
+            ContractorRating = dr["ContractorRating"].ToString();
         }
 
         #endregion Contructor

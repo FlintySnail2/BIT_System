@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace BIT_DesktopApp.ViewModels
 {
@@ -41,10 +42,6 @@ namespace BIT_DesktopApp.ViewModels
             get { return _SelectedJob; }
             set { _SelectedJob = value;
                 OnPropertyChanged("SelectedJobStatus");
-                //BOUND TEXTBOX TO PROPERTY (DROPDOWN) == BOOKING MANAGEMENT TEMPLATE
-
-                //JobsStatus allStatus = new JobsStatus(SelectedJobStatus.Status);
-                //this.JobsStatus = new ObservableCollection<JobStatus>(allStatus);
             }
         }
 
@@ -71,12 +68,12 @@ namespace BIT_DesktopApp.ViewModels
                 OnPropertyChanged("SearchText");
             }
         }
-
+        //ITEMS SOURCE (FOR REFERENCE)
         public ObservableCollection<JobStatus> JobsStatus
         {
             get { return _jobsStatus; }
             set { _jobsStatus = value;
-                OnPropertyChanged("Status");
+                OnPropertyChanged("JobsStatus");
             }
         }
 
@@ -105,7 +102,12 @@ namespace BIT_DesktopApp.ViewModels
         {
             Jobs allJobs = new Jobs();
             this.Jobs = new ObservableCollection<Job>(allJobs);
-            this.JobStatus = new JobStatus();
+            JobsStatus allStatus = new JobsStatus();
+            //this.JobsStatus = new ObservableCollection<JobStatus>(allStatus);
+            foreach (JobStatus derp in allStatus)
+            {
+                MessageBox.Show(derp.Status);
+            }
         }
     }
 }

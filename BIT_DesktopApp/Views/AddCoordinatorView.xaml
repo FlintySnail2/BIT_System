@@ -62,7 +62,11 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox  
+            <TextBox  Text="{Binding NewCoordinator.FirstName,
+                             ValidatesOnDataErrors=True,
+                             UpdateSourceTrigger=PropertyChanged,
+                             Mode=TwoWay}"
+                      ToolTip="{Binding NewCoordinator.ErrorCollection[FirstName]}"
                       x:Name="txtFirstName" 
                       Grid.Row="0" 
                       Grid.Column="1" 
@@ -73,7 +77,11 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox  
+            <TextBox Text="{Binding NewCoordinator.LastName,
+                             ValidatesOnDataErrors=True,
+                             UpdateSourceTrigger=PropertyChanged,
+                             Mode=TwoWay}"
+                     ToolTip="{Binding NewCoordinator.ErrorCollection[LastName]}" 
                      x:Name="txtLastName" 
                      Grid.Row="1" 
                      Grid.Column="1" 
@@ -84,7 +92,11 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox Text="{Binding SelectedCoordinator.Dob}"
+            <TextBox Text="{Binding NewCoordinator.LastName,
+                             ValidatesOnDataErrors=True,
+                             UpdateSourceTrigger=PropertyChanged,
+                             Mode=TwoWay}"
+                     ToolTip="{Binding NewCoordinator.ErrorCollection[LastName]}" 
                      x:Name="txtDob" 
                      Grid.Row="2" 
                      Grid.Column="1" 
@@ -95,7 +107,11 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox Text="{Binding SelectedClient.Phone}"
+            <TextBox Text="{Binding NewCoordinator.Phone,
+                             ValidatesOnDataErrors=True,
+                             UpdateSourceTrigger=PropertyChanged,
+                             Mode=TwoWay}"
+                     ToolTip="{Binding NewCoordinator.ErrorCollection[Phone]}" 
                      x:Name="txtPhone" 
                      Grid.Row="3" 
                      Grid.Column="1" 
@@ -106,7 +122,11 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox Text="{Binding SelectedClient.Email}"
+            <TextBox Text="{Binding NewCoordinator.Email,
+                             ValidatesOnDataErrors=True,
+                             UpdateSourceTrigger=PropertyChanged,
+                             Mode=TwoWay}"
+                     ToolTip="{Binding NewCoordinator.ErrorCollection[Email]}" 
                      x:Name="txtEmail" 
                      Grid.Row="4" 
                      Grid.Column="1" 
@@ -119,7 +139,11 @@
                    Grid.Column="2" 
                    Foreground="#fff" Grid.ColumnSpan="2"/>
 
-            <TextBox Text="{Binding SelectedClient.Password}"
+            <TextBox Text="{Binding NewCoordinator.Password,
+                             ValidatesOnDataErrors=True,
+                             UpdateSourceTrigger=PropertyChanged,
+                             Mode=TwoWay}"
+                     ToolTip="{Binding NewCoordinator.ErrorCollection[Password]}" 
                      x:Name="txtPassword" 
                      Grid.Row="0" 
                      Grid.Column="4" 
@@ -131,7 +155,11 @@
                    Grid.Column="2" 
                    Foreground="#fff" Grid.ColumnSpan="2"/>
 
-            <TextBox 
+            <TextBox Text="{Binding NewCoordinator.Street,
+                             ValidatesOnDataErrors=True,
+                             UpdateSourceTrigger=PropertyChanged,
+                             Mode=TwoWay}"
+                     ToolTip="{Binding NewCoordinator.ErrorCollection[Street]}" 
                      x:Name="txtStreet" 
                      Grid.Row="1" 
                      Grid.Column="4" 
@@ -142,7 +170,11 @@
                    Grid.Column="2" 
                    Foreground="#fff" Grid.ColumnSpan="2"/>
 
-            <TextBox 
+            <TextBox Text="{Binding NewCoordinator.Suburb,
+                             ValidatesOnDataErrors=True,
+                             UpdateSourceTrigger=PropertyChanged,
+                             Mode=TwoWay}"
+                     ToolTip="{Binding NewCoordinator.ErrorCollection[Suburb]}" 
                      x:Name="txtSuburb" 
                      Grid.Row="2" 
                      Grid.Column="4" 
@@ -154,7 +186,11 @@
                    Foreground="#fff" Grid.ColumnSpan="2"/>
 
             <TextBox
-                     
+                     Text="{Binding NewCoordinator.State,
+                             ValidatesOnDataErrors=True,
+                             UpdateSourceTrigger=PropertyChanged,
+                             Mode=TwoWay}"
+                     ToolTip="{Binding NewCoordinator.ErrorCollection[State]}" 
                      x:Name="txtState" 
                      Grid.Row="3" 
                      Grid.Column="4" 
@@ -167,7 +203,11 @@
                    Foreground="#fff" Grid.ColumnSpan="2"/>
 
             <TextBox 
-                     
+                     Text="{Binding NewCoordinator.Zip,
+                             ValidatesOnDataErrors=True,
+                             UpdateSourceTrigger=PropertyChanged,
+                             Mode=TwoWay}"
+                     ToolTip="{Binding NewCoordinator.ErrorCollection[Zip]}" 
                      x:Name="txtZip" 
                      Grid.Row="4" 
                      Grid.Column="4" 

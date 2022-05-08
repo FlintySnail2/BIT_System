@@ -16,14 +16,14 @@ namespace BIT_DesktopApp.Models
         {
             _db = new SQLHelper();
             
-            string sql = "SELECT " +
-                "           C.Client_Id," +
-                "           C.Oragnisation_Name," +
-                "           C.First_Name + ' ' + C.Last_Name AS ContactName," +
+            string sql = "SELECT" +
+                "           C.ClientId, " +
+                "           C.OrganisationName," +
+                "           C.FirstName + ' ' + C.LastName AS ContactName," +
                 "           C.Phone," +
                 "           C.Email," +
                 "           C.Password," +
-                "           R.Region_Name," +
+                "           R.RegionName," +
                 "           L.Street + ' ' + L.Suburb + ', ' + L.State + ', ' + CAST(L.Zip AS NVARCHAR) AS Location," +
                 "           L.Location AS LocationNum" +
                 "       FROM" +
@@ -31,9 +31,9 @@ namespace BIT_DesktopApp.Models
                 "           Location AS L," +
                 "           Region AS R" +
                 "       WHERE " +
-                "           C.Client_Id = L.Client_Id " +
+                "           C.ClientId = L.ClientId " +
                 "       AND " +
-                "           L.Region_Name = R.Region_Name";
+                "           L.RegionName = R.RegionName";
             DataTable dataTable = _db.ExecuteSQL(sql);
             foreach (DataRow dr in dataTable.Rows)
             {
@@ -46,17 +46,17 @@ namespace BIT_DesktopApp.Models
         {
             _db = new SQLHelper();
             string sql = "SELECT" +
-                "           Oragnisation_Name," +
-                "           First_Name," +
-                "           Last_Name," +
+                "           OrganisationName," +
+                "           FirstName," +
+                "           LastName," +
                 "       FROM" +
                 "           CLient" +
                 "       WHERE" +
-                "           Oragnisation_Name LIKE '%" + searchText + "%'" +
+                "           OrganisationName LIKE '%" + searchText + "%'" +
                 "       AND" +
-                "           First_Name LIKE '%" + searchText + "%'" +
+                "           FirstName LIKE '%" + searchText + "%'" +
                 "       AND" +
-                "           Last_Name LIKE '% " + searchText + "%'";
+                "           LastName LIKE '% " + searchText + "%'";
             DataTable dataTable = _db.ExecuteSQL(sql);
             foreach (DataRow dr in dataTable.Rows)
             {

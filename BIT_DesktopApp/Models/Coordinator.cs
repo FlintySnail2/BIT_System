@@ -11,17 +11,18 @@ namespace BIT_DesktopApp.Models
 {
     public class Coordinator
     {
-        #region Properties
+        #region Private Properties
 
         private int _staffId { get; set; }
         private string _employeeName { get; set; }
         private DateTime _dob { get; set; }
-        private string _address { get; set; }
-        private int _phone { get; set; }
+        private string _phone {  get; set; }
         private string _email { get; set; }
         private string _password { get; set; }
         private SQLHelper _db;
         public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion Private Properties
 
         private void OnPropertyChanged(string prop)
         {
@@ -30,6 +31,8 @@ namespace BIT_DesktopApp.Models
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
             }
         }
+
+        #region Public Properties
 
         public int StaffId
         {
@@ -55,18 +58,8 @@ namespace BIT_DesktopApp.Models
             }
         }
 
-        public string Address
-        {
-            get { return _address; }
-            set
-            {
-                _address = value;
-                OnPropertyChanged("Address");
-            }
 
-        }
-
-        public int Phone
+        public string Phone
         {
             get { return _phone; }
             set
@@ -96,7 +89,7 @@ namespace BIT_DesktopApp.Models
                 OnPropertyChanged("Password");
             }
         }
-        #endregion Properties
+        #endregion Public Properties
 
         #region Constructor
 
@@ -108,11 +101,10 @@ namespace BIT_DesktopApp.Models
         public Coordinator(DataRow dr)
         {
             _db = new SQLHelper();
-            StaffId = Convert.ToInt32(dr["Staff_Id"].ToString());
+            StaffId = Convert.ToInt32(dr["StaffId"].ToString());
             EmployeeName = dr["EmployeeName"].ToString();
             Dob = Convert.ToDateTime(dr["Dob"].ToString());
-            Address = dr["Address"].ToString();
-            Phone = Convert.ToInt32(dr["Phone"].ToString());
+            Phone = dr["Phone"].ToString();
             Email = dr["Email"].ToString();
             Password = dr["Password"].ToString();
         }

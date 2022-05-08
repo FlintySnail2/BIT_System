@@ -54,7 +54,6 @@ namespace BIT_DesktopApp.Models
         public JobStatus(DataRow dr)
         {
             _db = new SQLHelper();
-            JobId = Convert.ToInt32(dr["Job_Id"].ToString());
             Status = dr["Status"].ToString();
         }
 

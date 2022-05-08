@@ -24,10 +24,10 @@ namespace BIT_WebApplication.BLL
             _db = new SQLHelper();
         }
 
-        public int CheckCLient()
+        public int CheckClient()
         {
             string sql = "SELECT" +
-                "           Client_Id" +
+                "           ClientId" +
                 "         FROM" +
                 "           Client" +
                 "         WHERE" +
@@ -52,7 +52,7 @@ namespace BIT_WebApplication.BLL
         public int CheckContractor()
         {
             string sql = "SELECT" +
-                "           Contractor_Id" +
+                "           ContractorId" +
                 "         FROM" +
                 "           Contractor" +
                 "         WHERE" +
@@ -77,7 +77,7 @@ namespace BIT_WebApplication.BLL
         public int CheckStaff()
         {
             string sql = "SELECT" +
-                "           Staff_Id" +
+                "           StaffId" +
                 "         FROM" +
                 "           Staff" +
                 "         WHERE" +

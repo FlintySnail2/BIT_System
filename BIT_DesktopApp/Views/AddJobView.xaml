@@ -64,7 +64,11 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox  
+            <TextBox  Text="{Binding NewJob.CLientName,
+                                     ValidatesOnDataErrors=True,
+                                     UpdateSourceTrigger=PropertyChanged,
+                                     Mode=TwoWay}"
+                      ToolTip="{Binding NewClient.ErrorCollection[CLientName]}"
                       x:Name="txtClientName" 
                       Grid.Row="0" 
                       Grid.Column="1" 
@@ -75,7 +79,11 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox  
+            <TextBox Text="{Binding NewJob.ContactName,
+                                     ValidatesOnDataErrors=True,
+                                     UpdateSourceTrigger=PropertyChanged,
+                                     Mode=TwoWay}"
+                      ToolTip="{Binding NewClient.ErrorCollection[ContactName]}" 
                      x:Name="txtContactName" 
                      Grid.Row="1" 
                      Grid.Column="1" 
@@ -86,7 +94,11 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox Text="{Binding SelectedClient.Phone}"
+            <TextBox Text="{Binding NewJob.Phone,
+                                     ValidatesOnDataErrors=True,
+                                     UpdateSourceTrigger=PropertyChanged,
+                                     Mode=TwoWay}"
+                      ToolTip="{Binding NewClient.ErrorCollection[Phone]}"
                      x:Name="txtPhone" 
                      Grid.Row="2" 
                      Grid.Column="1" 
@@ -97,7 +109,11 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox Text="{Binding SelectedClient.Email}"
+            <TextBox Text="{Binding NewJob.Email,
+                                     ValidatesOnDataErrors=True,
+                                     UpdateSourceTrigger=PropertyChanged,
+                                     Mode=TwoWay}"
+                      ToolTip="{Binding NewClient.ErrorCollection[Email]}"
                      x:Name="txtEmail" 
                      Grid.Row="3" 
                      Grid.Column="1" 
@@ -108,7 +124,11 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox 
+            <TextBox Text="{Binding NewJob.JobDescription,
+                                     ValidatesOnDataErrors=True,
+                                     UpdateSourceTrigger=PropertyChanged,
+                                     Mode=TwoWay}"
+                      ToolTip="{Binding NewClient.ErrorCollection[JobDescription]}"
                      x:Name="txtJobDesc" 
                      Grid.Row="4" 
                      Grid.Column="1" 
@@ -120,6 +140,11 @@
                    Foreground="#fff"/>
 
             <TextBox 
+                Text="{Binding NewJob.Priority,
+                                     ValidatesOnDataErrors=True,
+                                     UpdateSourceTrigger=PropertyChanged,
+                                     Mode=TwoWay}"
+                      ToolTip="{Binding NewClient.ErrorCollection[Priority]}"
                      x:Name="txtPriority" 
                      Grid.Row="5" 
                      Grid.Column="1" 
@@ -130,7 +155,11 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox 
+            <TextBox Text="{Binding NewJob.QoutedHours,
+                                     ValidatesOnDataErrors=True,
+                                     UpdateSourceTrigger=PropertyChanged,
+                                     Mode=TwoWay}"
+                      ToolTip="{Binding NewClient.ErrorCollection[QoutedHours]}"
                      x:Name="txtQoutedHours" 
                      Grid.Row="6" 
                      Grid.Column="1" 
@@ -141,7 +170,11 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox 
+            <TextBox Text="{Binding NewJob.ReqCompletionDate,
+                                     ValidatesOnDataErrors=True,
+                                     UpdateSourceTrigger=PropertyChanged,
+                                     Mode=TwoWay}"
+                      ToolTip="{Binding NewClient.ErrorCollection[ReqCompletionDate]}"
                      x:Name="txtReqCompletionDate" 
                      Grid.Row="7" 
                      Grid.Column="1" 
@@ -154,7 +187,12 @@
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-            <DatePicker 
+            <DatePicker
+                Text="{Binding NewJob.DateCreated,
+                                     ValidatesOnDataErrors=True,
+                                     UpdateSourceTrigger=PropertyChanged,
+                                     Mode=TwoWay}"
+                      ToolTip="{Binding NewClient.ErrorCollection[DateCreated]}"
                      x:Name="txtDateCreated" 
                      Grid.Row="0" 
                      Grid.Column="3" 
@@ -167,6 +205,11 @@
                    Foreground="#fff"/>
 
             <TextBox 
+                    Text="{Binding NewJob.Skill,
+                                     ValidatesOnDataErrors=True,
+                                     UpdateSourceTrigger=PropertyChanged,
+                                     Mode=TwoWay}"
+                      ToolTip="{Binding NewClient.ErrorCollection[Skill]}"
                      x:Name="txtSkill" 
                      Grid.Row="1" 
                      Grid.Column="3" 
@@ -177,7 +220,12 @@
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-            <TextBox 
+
+            <TextBox Text="{Binding NewJob.Region,
+                                     ValidatesOnDataErrors=True,
+                                     UpdateSourceTrigger=PropertyChanged,
+                                     Mode=TwoWay}"
+                      ToolTip="{Binding NewClient.ErrorCollection[Region]}"
                      x:Name="txtRegion" 
                      Grid.Row="2" 
                      Grid.Column="3" 
@@ -189,6 +237,11 @@
                    Foreground="#fff"/>
 
             <TextBox 
+                Text="{Binding NewJob.LocatioNumber,
+                                     ValidatesOnDataErrors=True,
+                                     UpdateSourceTrigger=PropertyChanged,
+                                     Mode=TwoWay}"
+                      ToolTip="{Binding NewClient.ErrorCollection[LocationNumber]}"
                      x:Name="txtLocationNumber" 
                      Grid.Row="3" 
                      Grid.Column="3" 
@@ -200,6 +253,11 @@
                    Foreground="#fff"/>
 
             <TextBox 
+                Text="{Binding NewJob.Street,
+                                     ValidatesOnDataErrors=True,
+                                     UpdateSourceTrigger=PropertyChanged,
+                                     Mode=TwoWay}"
+                      ToolTip="{Binding NewClient.ErrorCollection[Street]}"
                      x:Name="txtStreet" 
                      Grid.Row="4" 
                      Grid.Column="3" 
@@ -211,6 +269,11 @@
                    Foreground="#fff"/>
 
             <TextBox 
+                Text="{Binding NewJob.Suburb,
+                                     ValidatesOnDataErrors=True,
+                                     UpdateSourceTrigger=PropertyChanged,
+                                     Mode=TwoWay}"
+                      ToolTip="{Binding NewClient.ErrorCollection[Suburb]}"
                      x:Name="txtSuburb" 
                      Grid.Row="5" 
                      Grid.Column="3" 
@@ -222,7 +285,11 @@
                    Foreground="#fff"/>
 
             <TextBox
-                     
+                     Text="{Binding NewJob.State,
+                                     ValidatesOnDataErrors=True,
+                                     UpdateSourceTrigger=PropertyChanged,
+                                     Mode=TwoWay}"
+                      ToolTip="{Binding NewClient.ErrorCollection[State]}"
                      x:Name="txtState" 
                      Grid.Row="6" 
                      Grid.Column="3" 
@@ -234,7 +301,11 @@
                    Foreground="#fff"/>
 
             <TextBox
-                     
+                     Text="{Binding NewJob.Zip,
+                                     ValidatesOnDataErrors=True,
+                                     UpdateSourceTrigger=PropertyChanged,
+                                     Mode=TwoWay}"
+                      ToolTip="{Binding NewClient.ErrorCollection[Zip]}"
                      x:Name="txtZip" 
                      Grid.Row="7" 
                      Grid.Column="3" 
@@ -249,7 +320,8 @@
                     Content="CONFIRM" 
                     Width="150" 
                     Margin="10"
-                    Click="btnConfirm_Click"/>
+                    Click="btnConfirm_Click"
+                    Command="{Binding AddCommand}"/>
 
             <Button x:Name="btnCancel" 
                     Content="CANCEL" 

@@ -25,47 +25,34 @@ namespace BIT_WebApplication.BLL
             _db = new SQLHelper();
         }
         //STILL BROKEN 2ND WEEKEND IN A ROW WASTED ON A QUERY THAT SHOULD NOT HAVE AN ISSUE
+
+
         public DataTable AllClientJobs()
         {
-            string sql = "SELECT" +
-                "           J.Job_id AS Job," +
-//                "           CON.FirstName + CON.LastName AS Contractor," +
-//                "           J.CompletionDate," +
-                "           J.Description," +
-                "           J.Priority," +
+            string sql = "SELECT " +
+                "           J.JobId AS Job, " +
+                "           CON.FirstName + ' ' + CON.LastName AS Contractor, " +
+                "           J.RequestedCompletionDate, " +
+                "           J.Description, " +
+                "           J.Priority, " +
                 "           J.Status" +
-                "         FROM" +
-                "           Client AS C," +
-                "           Job AS J," +
-                "           Location AS L" +
-                //"           Contractor AS CON" +
-                "         WHERE" +
-//                "           CON.Contractor_id = C.Contractor_id" +
-//                "         AND" +
-                "           C.Client_id = J.Client_id" +
-                "         AND" +
-                "           C.Client_id = L.Client_id" +
-                "         AND" +
-                "           J.Client_Id = @ClientId";
+                    " FROM  " +
+                    "       Client AS C, " +
+                    "       Job AS J,  " +
+                    "       Location AS L, " +
+                    "       Contractor AS CON" +
+                    " WHERE " +
+                    "       CON.ContractorId = J.ContractorId" +
+                    " AND " +
+                    "       C.ClientId = J.ClientId" +
+                    " AND " +
+                    "       C.ClientId = L.ClientId" +
+                    " AND " +
+                    "       C.ClientId = @Client_Id";
 
-            SqlParameter[] objParams = new SqlParameter[6];
-            objParams[0] = new SqlParameter("@ClientId", DbType.Int32);
+            SqlParameter[] objParams = new SqlParameter[1];
+            objParams[0] = new SqlParameter("@Client_Id", DbType.Int32);
             objParams[0].Value = this.ClientId;
-            objParams[1] = new SqlParameter("@JobId", DbType.Int32);
-            objParams[1].Value = this.JobId;
-            //objParams[2] = new SqlParameter("@Contractor", DbType.String);
-            //objParams[2].Value = this.FirstName;
-            objParams[2] = new SqlParameter("@LocationNumber", DbType.Int32);
-            objParams[2].Value = this.LocationNumber;
-            //TRIM TIME WITH TOSHORTDATESTRING();
-            //objParams[4] = new SqlParameter("@CompletionDate", DbType.DateTime);
-            //objParams[4].Value = this.CompletionDate;
-            objParams[3] = new SqlParameter("@Priority", DbType.String);
-            objParams[3].Value = this.Priority;
-            objParams[4] = new SqlParameter("@Description", DbType.String);
-            objParams[4].Value = this.Description;
-            objParams[5] = new SqlParameter("@Status", DbType.String);
-            objParams[5].Value = this.Status;
             DataTable jobs = _db.ExecuteSQL(sql, objParams);
             return jobs;
         }

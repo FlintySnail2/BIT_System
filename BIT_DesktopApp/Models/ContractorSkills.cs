@@ -17,12 +17,12 @@ namespace BIT_DesktopApp.Models
         {
             SQLHelper db = new SQLHelper();
             string sql = "SELECT" +
-                "         Contractor_Id," +
-                "           Skill_Title" +
+                "         ContractorId," +
+                "           SkillTitle" +
                 "         FROM" +
-                "           Contract_Skill" +
+                "           ContractSkill" +
                 "         WHERE" +
-                "           Contractor_Id = @ContractorId";
+                "           ContractorId = @ContractorId";
             SqlParameter[] objParams = new SqlParameter[1];
             objParams[0] = new SqlParameter("@ContractorId", DbType.Int32);
             objParams[0].Value = contractorId;
@@ -39,12 +39,12 @@ namespace BIT_DesktopApp.Models
             SQLHelper db = new SQLHelper();
             string sql = "SELECT" +             //Pulling Status from job table 
                 "           C.Contractor," +    //Causes a crash "SAD FACE"
-                "           J.Skill_Title" +
+                "           J.SkillTitle" +
                 "         FROM" +
                 "           Job AS J," +
                 "           Contractor AS C" +
                 "         WHERE " +
-                "            C.Contractor_Id = J.Contractor_Id";
+                "            C.ContractorId = J.ContractorId";
             DataTable contractorSkills = db.ExecuteSQL(sql);
             foreach (DataRow dr in contractorSkills.Rows)
             {
