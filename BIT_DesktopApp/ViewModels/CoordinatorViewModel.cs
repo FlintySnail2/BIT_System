@@ -58,11 +58,6 @@ namespace BIT_DesktopApp.ViewModels
 
         }
 
-
-
-
-
-
         public ObservableCollection<Coordinator> Coordinators
         {
             get { return _coordinators; }

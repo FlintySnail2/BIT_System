@@ -103,11 +103,8 @@ namespace BIT_DesktopApp.ViewModels
             Jobs allJobs = new Jobs();
             this.Jobs = new ObservableCollection<Job>(allJobs);
             JobsStatus allStatus = new JobsStatus();
-            //this.JobsStatus = new ObservableCollection<JobStatus>(allStatus);
-            foreach (JobStatus derp in allStatus)
-            {
-                MessageBox.Show(derp.Status);
-            }
+            this.JobsStatus = new ObservableCollection<JobStatus>(allStatus);
+            
         }
     }
 }
