@@ -71,9 +71,7 @@
                 <!--ADD BIND TO JOB STATUS-->
                 <ComboBox Text="{Binding SelectedJob.Status}"
                                  DisplayMemberPath="Status"
-                          
-                         
-                          
+
                           ItemsSource="{Binding JobsStatus, 
                                         Mode=TwoWay, 
                                         UpdateSourceTrigger=PropertyChanged}"

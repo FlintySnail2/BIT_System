@@ -5,6 +5,8 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+//Added by Peter P
+using System.Diagnostics;
 
 namespace BIT_DesktopApp.Models
 {
@@ -25,7 +27,7 @@ namespace BIT_DesktopApp.Models
                 "           C.Phone," +
                 "           C.Email,    " +
                 "           C.Password," +
-                "           J.SkillTitle," +
+             //   "           J.  ," +
                 "           C.ABN," +
                 "           C.LicenceNumber," +
                 "           C.RateofPay," +
@@ -38,6 +40,8 @@ namespace BIT_DesktopApp.Models
                 "           C.ContractorId = J.ContractorId" +
                 "       AND" +
                 "           C.ContractorId = A.ContractorId;";
+            Debug.Print(sql);
+
             DataTable datatable = _db.ExecuteSQL(sql);
             foreach (DataRow dr in datatable.Rows)
             {

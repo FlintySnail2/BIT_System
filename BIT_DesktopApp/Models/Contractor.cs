@@ -21,7 +21,8 @@ namespace BIT_DesktopApp.Models
         private string _email { get; set; }
         private string _password { get; set; }
         private string _abn { get; set; }
-        private string _skill { get; set; }
+        //private string _skill { get; set; } //THIS IS ASSUMING THE CANTRACTOR ONLY HAS ONE SKILL(WHICH THEY DONT)
+                                            //IMPLEMENT INTO THE CONTRACTOR SKILLS.
         private string _licenceNumber { get; set; }
         private decimal _ratOfPay { get; set; }
         private string _contractorRating { get; set; }
@@ -102,15 +103,15 @@ namespace BIT_DesktopApp.Models
             }
         }
 
-        public string Skill
-        {
-            get { return _skill; }
-            set
-            {
-                _skill = value;
-                OnPropertyChanged("Skill");
-            }
-        }
+        //public string Skill
+        //{
+        //    get { return _skill; }
+        //    set
+        //    {
+        //        _skill = value;
+        //        OnPropertyChanged("Skill");
+        //    }
+        //}
         public string ABN
         {
             get { return _abn;}
@@ -170,7 +171,7 @@ namespace BIT_DesktopApp.Models
             Dob = Convert.ToDateTime(dr["Dob"].ToString());
             Email = dr["Email"].ToString();
             Password = dr["Password"].ToString();
-            Skill = dr["SkillTitle"].ToString();
+            //Skill = dr["SkillTitle"].ToString();
             ABN = dr["ABN"].ToString();
             LicenceNumber = dr["LicenceNumber"].ToString();
             RateOfPay = Convert.ToDecimal(dr["RateofPay"].ToString());
