@@ -12,6 +12,8 @@ namespace BitTest
         {
             Client newClient = new Client();
 
+            newClient.ContactName = " " //Hard coded names are fine 
+ 
         }
 
         public void TestRegion()

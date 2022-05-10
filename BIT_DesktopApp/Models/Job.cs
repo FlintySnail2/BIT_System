@@ -88,7 +88,9 @@ namespace BIT_DesktopApp.Models
         public string Status
         {
             get { return _status; }
-            set { _status = value;
+            set
+            {
+                _status = value;
                 OnPropertyChanged("Status");
             }
         }
@@ -162,6 +164,7 @@ namespace BIT_DesktopApp.Models
 
         public Job(DataRow dr)
         {
+            //TEMP VARIABLE FOR TOSHORTDATESTTRING
             _db = new SQLHelper();
             JobId = Convert.ToInt32(dr["JobId"].ToString());
             OrganisationName = dr["Organisation Name"].ToString();

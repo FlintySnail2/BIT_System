@@ -68,7 +68,7 @@
                       Grid.Column="1" 
                       x:Name="dgContractorSkills" 
                       Margin="5"
-                      ItemsSource="{Binding ContractorSkills}" 
+                      ItemsSource="{Binding ContractorSkill}"
                       SelectedItem="{Binding SelectedSkill}"/>
 
 
@@ -183,7 +183,7 @@
                    Grid.Column="2" 
                    Foreground="#fff" Grid.ColumnSpan="2" Margin="0,0,333,0"/>
 
-            <!--<TextBox Text="{Binding SelectedContractor.Skill}"
+            <TextBox Text="{Binding SelectedContractor.Skill}"
                      x:Name="txtSkill" 
                      Grid.Row="0" 
                      Grid.Column="3" 

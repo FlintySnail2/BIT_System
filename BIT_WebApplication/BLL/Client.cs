@@ -28,7 +28,7 @@ namespace BIT_WebApplication.BLL
 
 
         public DataTable AllClientJobs()
-        {
+        {//REMOVE LOCATION FROM QUERY
             string sql = "SELECT " +
                 "           J.JobId AS Job, " +
                 "           CON.FirstName + ' ' + CON.LastName AS Contractor, " +
