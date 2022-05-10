@@ -16,28 +16,28 @@
             Login
         </header>
             <div class="row">
-                           <div class="col">
-                               <label> UserName</label>
-                               <div class="form-group">
-                                   <asp:TextBox CssClass="form-control" ID="txtUserName"
-                                       runat="server" placeholder="Username">
-                                   </asp:TextBox>
-                               </div>
-                               <label> Password</label>
-                               <div class="form-group">
-                                   <asp:TextBox CssClass="form-control" ID="txtPassword"
-                                       runat="server" placeholder="Password" 
-                                       TextMode="Password">
-                                   </asp:TextBox>
-                               </div>
-                               <div class="form-group">
-                                   <asp:Button CssClass="btn btn-success btn-block btn-lg"
-                                       runat="server" Text="Login" ID="btnLogin"
-                                       OnClick="btnLogin_Click"
-                                      />
-                               </div>
-                           </div>
-                       </div>
+                <div class="col">
+                   
+                    <div class="form-group txt-field-user">
+                        <asp:TextBox CssClass="form-control " ID="txtUserName"
+                            runat="server" placeholder="Username">
+                        </asp:TextBox>
+                    </div>
+                   
+                    <div class="form-group txt-field-pass">
+                        <asp:TextBox CssClass="form-control" ID="txtPassword"
+                            runat="server" placeholder="Password" 
+                            TextMode="Password">
+                        </asp:TextBox>
+                    </div>
+                    <div class="form-group">
+                        <asp:Button CssClass="btn btn-success btn-block btn-lg login-btn"
+                            runat="server" Text="Login" ID="btnLogin"
+                            OnClick="btnLogin_Click"
+                            />
+                    </div>
+                </div>
+            </div>
 
             <%--<div class="field">
                 <span class="fa fa-user"></span>

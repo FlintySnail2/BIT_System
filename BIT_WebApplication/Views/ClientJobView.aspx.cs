@@ -16,9 +16,9 @@ namespace BIT_WebApplication.Views
             {
                 //LinkButton clientNav = (LinkButton)Master.FindControl("lbtnClient");
                 //LinkButton staffNav = (LinkButton)Master.FindControl("lbtnStaff");
-                //LinkButton logout = (LinkButton)Master.FindControl("lbtnLogout");
+                LinkButton logout = (LinkButton)Master.FindControl("lbtnLogout");
                 //clientNav.Visible = true;
-                //logout.Visible = true;
+                logout.Visible = true;
                 //staffNav.Visible = false;
                 
 

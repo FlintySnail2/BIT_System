@@ -27,19 +27,16 @@ namespace BIT_DesktopApp.Models
                 "           C.Phone," +
                 "           C.Email,    " +
                 "           C.Password," +
-             //   "           J.  ," +
                 "           C.ABN," +
                 "           C.LicenceNumber," +
                 "           C.RateofPay," +
                 "           C.ContractorRating" +
                 "       FROM" +
                 "           Contractor AS C," +
-                "           Job AS J," +
                 "           Availability AS A" +
                 "       WHERE" +
-                "           C.ContractorId = J.ContractorId" +
-                "       AND" +
-                "           C.ContractorId = A.ContractorId;";
+                "           C.ContractorId = A.ContractorId";
+
             Debug.Print(sql);
 
             DataTable datatable = _db.ExecuteSQL(sql);

@@ -22,8 +22,7 @@ namespace BIT_DesktopApp.Models
         private string _email;
         private string _password;
         private string _regionName;
-        private string _location;
-        private int _locationNum;
+        private string _address;
         private SQLHelper _db;
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -94,25 +93,15 @@ namespace BIT_DesktopApp.Models
             set
             {
                 _regionName = value;
-                OnPropertyChanged("Region_Name");
+                OnPropertyChanged("Region");
             }
         }
 
-        public string Location
+        public string Address
         {
-            get { return _location;}
-            set
-            {
-                _location = value;
-                OnPropertyChanged("Location");
-            }
-        }
-
-        public int LocationNumber
-        {
-            get { return _locationNum; }
-            set { _locationNum = value;
-                OnPropertyChanged("Location");
+            get { return _address;}
+            set { _address = value;
+                OnPropertyChanged("Address");
             }
         }
         #endregion Properties
@@ -132,10 +121,7 @@ namespace BIT_DesktopApp.Models
             Phone = dr["Phone"].ToString();
             Email = dr["Email"].ToString();
             Password = dr["Password"].ToString();
-            RegionName = dr["RegionName"].ToString();
-            Location = dr["Location"].ToString() ;
-            LocationNumber = Convert.ToInt32(dr["LocationNum"].ToString());
-
+            RegionName = dr["Region"].ToString();
         }
 
         #endregion Constructor

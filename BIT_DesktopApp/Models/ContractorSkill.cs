@@ -26,13 +26,6 @@ namespace BIT_DesktopApp.Models
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
             }
         }
-
-        public int ContractorId
-        {
-            get { return _contractorId; }
-            set { _contractorId = value; }
-        }
-
         public string Skill
         {
             get { return _skill; }
@@ -52,7 +45,7 @@ namespace BIT_DesktopApp.Models
         public ContractorSkill(DataRow dr)
         {
             _db = new SQLHelper();
-            ContractorId = Convert.ToInt32(dr["ContractorId"].ToString());
+            //ContractorId = Convert.ToInt32(dr["ContractorId"].ToString());
             Skill = dr["SkillTitle"].ToString();
         }
 
@@ -64,7 +57,7 @@ namespace BIT_DesktopApp.Models
         {
             int returnValue = 0;
             string sql = "INSERT INTO" +
-                "               ContractSkill" +
+                "               Skill" +
                 "         VALUES(" +
                 "               @ContractorId, @Skill ";
             SqlParameter[] objParams = new SqlParameter[2];

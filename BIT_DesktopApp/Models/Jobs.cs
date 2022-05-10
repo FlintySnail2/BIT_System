@@ -35,10 +35,8 @@ namespace BIT_DesktopApp.Models
                 "           Status AS S" +
                 "       WHERE" +
                 "           J.ClientId = C.ClientId" +
-                "       AND c.ClientId = L.ClientId" +
-                " AND J.Status = S.status" +
-                "       AND" +
-                "           C.ClientId = L.ClientId";
+                "       AND J.Region = L.Region" +
+                "       AND J.Status = S.status";
 
             DataTable datatable = _db.ExecuteSQL(sql);
             foreach (DataRow dr in datatable.Rows)

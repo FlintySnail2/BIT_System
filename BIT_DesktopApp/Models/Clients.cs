@@ -15,7 +15,7 @@ namespace BIT_DesktopApp.Models
         public Clients()
         {
             _db = new SQLHelper();
-            
+
             string sql = "SELECT" +
                 "           C.ClientId, " +
                 "           C.OrganisationName," +
@@ -23,17 +23,14 @@ namespace BIT_DesktopApp.Models
                 "           C.Phone," +
                 "           C.Email," +
                 "           C.Password," +
-                "           R.RegionName," +
-                "           L.Street + ' ' + L.Suburb + ', ' + L.State + ', ' + CAST(L.Zip AS NVARCHAR) AS Location," +
-                "           L.Location AS LocationNum" +
+                "           L.Region," +
+                "           L.Street + ' ' + L.Suburb + ', ' + L.State + ', ' + CAST(L.Zip AS NVARCHAR) AS Location" +
                 "       FROM" +
                 "           Client AS C," +
-                "           Location AS L," +
-                "           Region AS R" +
+                "           Location AS L" +
                 "       WHERE " +
-                "           C.ClientId = L.ClientId " +
-                "       AND " +
-                "           L.RegionName = R.RegionName";
+                "           C.ClientId = L.ClientId ";
+
             DataTable dataTable = _db.ExecuteSQL(sql);
             foreach (DataRow dr in dataTable.Rows)
             {

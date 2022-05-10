@@ -26,6 +26,7 @@ namespace BIT_WebApplication
 
         protected void lbtnLogout_Click(object sender, EventArgs e)
         {
+            Session.RemoveAll();
             Response.Redirect("Homepage.aspx");
         }
     }

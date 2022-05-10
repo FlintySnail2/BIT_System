@@ -22,48 +22,23 @@
 <body>
     <form runat="server" >
         <div class="navbar-styling">
-            <nav class="navbar navbar-expand-lg  navbar-dark p-md-3">
+            <nav class="navbar navbar-expand-lg  navbar-dark p-md-3 ">
                 <a class="navbar-brand" href="#">
                     <img src="../Images/Logo.png" width="230" height="70" />
                 </a>
 
                 <!-- NAVIGATION -->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto test">
-
-                        <%--<li class="nav-item active">
-                            <asp:LinkButton CssClass="nav-Link" ID="lbtnHome"
-                                Visibility="false" runat="server" OnClick="lbtnClient_Click">
-                                Client
-                            </asp:LinkButton>
-                        </li>--%>
-
-
-
-                        <li class="nav-item active">
-                            <asp:LinkButton CssClass="nav-Link" ID="lbtnClient"
-                                Visibility="false" runat="server" OnClick="lbtnClient_Click">
-                                Client
+                      <ul class="navbar-nav ml-auto">
+                 
+                         <li class="nav-link">
+                            <asp:LinkButton CssClass="nav-link navbar-nav ml-auto" ID="lbtnLogout" 
+                               Visible="false" runat="server" OnClick="lbtnLogout_Click">
+                                Logout
                             </asp:LinkButton>
                         </li>
 
-                        <%--<li class="nav-item active">
-                            <asp:LinkButton CssClass="nav-Link" ID="lbtnContractor"
-                                Visibility="false" runat="server" OnClick="lbtnClient_Click">
-                                Client
-                            </asp:LinkButton>
-                        </li>--%>
-
-                        
-
-
-
-                        <li class="nav-time active">
-                        <asp:LinkButton CssClass="nav-link" ID="lbtnLogout" 
-                           Visible="false" runat="server" OnClick="lbtnLogout_Click">
-                            Logout
-                        </asp:LinkButton>
-                    </ul>  
+                </ul>
                 </div>
             </nav>
         </div>

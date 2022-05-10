@@ -46,10 +46,12 @@
         background: rgba(0,0,0,1);
     }
 
+/******** LOGON FORM STYLING *******/
+
 .content {
     position: absolute;
-    top: 32%;
-    height: 35%;
+    top: 42%;
+    height: 45%;
     left: 50%;
     z-index: 999;
     text-align: center;
@@ -67,6 +69,24 @@
         font-size: 30px;
         font-weight: bold;
     }
+.txt-field-user{
+    padding-top: 30px;
+}
+
+.txt-field-pass{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.login-btn {
+    background-color: #009eff;
+}
+
+.login-btn:hover{
+    background-color:rgba(0,158,255,.75);
+}
+
+
 
 /*****  Client Form *******/
 
@@ -76,22 +96,26 @@
     height: 50px;
     width: 200px;
     border-radius: 10px;
-    background: darkgrey;
+    background: rgb(#36454f);
+    
 }
+
+    .button hover{
+        background: purple;
+    }
+
+.form-background{
+    background-color: rgb(59,69,79)
+}
+
+
 
 
 /***** Tables *****/
 
-.table {
-    position: center;
-    border-collapse: collapse;
+.align-nav{
+    margin-left: auto;
 }
-
-    .table tr td {
-        border: 1px solid white;
-        height: auto;
-        padding: 10px;
-    }
 
 
 /*--- --- TEXT FIELDS -------*/

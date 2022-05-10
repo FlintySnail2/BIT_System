@@ -11,13 +11,12 @@ namespace BIT_DesktopApp.Models
 {
     public class ContractorSkills : List<ContractorSkill>
     {
-        
+
 
         public ContractorSkills(int contractorId)
         {
             SQLHelper db = new SQLHelper();
             string sql = "SELECT" +
-                "         ContractorId," +
                 "           SkillTitle" +
                 "         FROM" +
                 "           ContractSkill" +
@@ -37,14 +36,10 @@ namespace BIT_DesktopApp.Models
         public ContractorSkills()
         {
             SQLHelper db = new SQLHelper();
-            string sql = "SELECT" +             //Pulling Status from job table 
-                "           C.Contractor," +    //Causes a crash "SAD FACE"
-                "           J.SkillTitle" +
+            string sql = "SELECT" +
+                "           SkillTitle" +
                 "         FROM" +
-                "           Job AS J," +
-                "           Contractor AS C" +
-                "         WHERE " +
-                "            C.ContractorId = J.ContractorId";
+                "           SKill";
             DataTable contractorSkills = db.ExecuteSQL(sql);
             foreach (DataRow dr in contractorSkills.Rows)
             {
