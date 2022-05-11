@@ -3,11 +3,7 @@
 
     <link rel="stylesheet" href="../Styles/style.css" >
     <%--<link href="~/Content/Site.css?version=2.5" rel="stylesheet" type="text/css" />--%>
-
-<h2>Contractor View</h2>
-<h2>View all assigned jobs, accept or reject</h2>
-
-<%--      <div class="container-fluid">
+      <div class="container-fluid">
         <div class ="row">
             <div class="col-12">
                 <div class="card">
@@ -15,15 +11,15 @@
                         <div class="row">
                             <div class="col">
                                  <center>
-                                    <h3> All your Jobs</h3>
+                                    <h3>Active Jobs</h3>
                                 </center>
                             </div>
                         </div>
                           <div class="row">
                             <div class="col-12 mx-auto">
-                                <asp:GridView ID="gvJobs" 
+                                <asp:GridView ID="gvContractorJobs" 
                                     CssClass="table table-striped table-bordered"
-                                    runat="server" OnRowCommand="gvJobs_RowCommand">
+                                    runat="server" OnRowCommand="gvContractorJobs_RowCommand">
                                     <Columns>
                                         <asp:TemplateField HeaderText ="Accept Action">
                                             <ItemTemplate>
@@ -47,5 +43,5 @@
                     </div>
                 </div>
             </div>
-         </div>--%>
+         </div>
 </asp:Content>

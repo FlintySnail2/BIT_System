@@ -14,10 +14,33 @@ namespace BIT_WebApplication.Views
         {
             if (Session["Contractor_Id"] != null)
             {
-                //Contractor currentContractor = new Contractor();
-                //currentContractor.ContractorId = Convert.ToInt32(Session["Contractor_Id"].ToString());
+                LinkButton logout = (LinkButton)Master.FindControl("lbtnLogout");
+                logout.Visible = true;
+
+                Contractor currentContractor = new Contractor();
+                currentContractor._contractorId = Convert.ToInt32(Session["Contractor_Id"].ToString());
+                gvContractorJobs.DataSource = currentContractor.AllAssignedJobs().DefaultView;
+                gvContractorJobs.DataBind();
 
             }
+            else
+            {
+                Response.Redirect("Homepage.aspx");
+            }
         }
+
+        protected void gvContractorJobs_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            Job currentJob = new Job();
+            currentJob._contractorId = Convert.ToInt32(Session["InstructorId"].ToString());
+            int rowIndex = Convert.ToInt32(e.CommandArgument);
+            GridViewRow row = gvContractorJobs.Rows[rowIndex];
+          
+            gvContractorJobs.DataSource = currentJob.AllClientJobs().DefaultView;
+            gvContractorJobs.DataBind();
+
+        }
+
+        
     }
 }

@@ -26,16 +26,19 @@ namespace BIT_DesktopApp.Models
                 "           A.Weekday AS Availability," +
                 "           C.Phone," +
                 "           C.Email,    " +
-                "           C.Password," +
+                "           CS.SkillTitle," +         
                 "           C.ABN," +
                 "           C.LicenceNumber," +
                 "           C.RateofPay," +
                 "           C.ContractorRating" +
                 "       FROM" +
                 "           Contractor AS C," +
-                "           Availability AS A" +
+                "           Availability AS A," +
+                "           ContractSkill AS CS" +
                 "       WHERE" +
-                "           C.ContractorId = A.ContractorId";
+                "           C.ContractorId = A.ContractorId" +
+                "       AND" +
+                "           C.ContractorId =  CS.ContractorId";
 
             Debug.Print(sql);
 

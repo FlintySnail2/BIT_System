@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace BIT_DesktopApp.ViewModels
 {
@@ -16,14 +17,22 @@ namespace BIT_DesktopApp.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
         private string _searchText;
         private RelayCommand _searchCommand;
+        private RelayCommand _updateCommand;
 
-        private void OnPropertyChanged(string prop)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-            }
-        }
+        #region Constructors
+
+        //public RelayCommand UpdateCommand
+        //{
+        //    get
+        //    {
+        //        if (_updateCommand == null)
+        //        {
+        //            _updateCommand = new RelayCommand(this.UpdateMethod, true);
+        //        }
+        //        return _updateCommand;
+        //    }
+        //    set { _updateCommand = value; }
+        //}
 
         public RelayCommand SearchCommand
         {
@@ -39,21 +48,6 @@ namespace BIT_DesktopApp.ViewModels
             set { _searchCommand = value; }
         }
 
-        public string SearchText
-        {
-            get { return _searchText; }
-            set
-            {
-                _searchText = value;
-                OnPropertyChanged("SearchText");
-            }
-        }
-
-        public void SearchMethod()
-        {
-            Clients allClients = new Clients(SearchText);
-            this.Clients = new ObservableCollection<Client>(allClients);
-        }
 
         public ObservableCollection<Client> Clients
         {
@@ -72,5 +66,51 @@ namespace BIT_DesktopApp.ViewModels
             Clients allClients = new Clients();
             this.Clients = new ObservableCollection<Client>(allClients);
         }
+        #endregion Constructors
+
+        #region Methods
+
+        private void OnPropertyChanged(string prop)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            }
+        }
+
+      
+
+        public string SearchText
+        {
+            get { return _searchText; }
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged("SearchText");
+            }
+        }
+
+        public void SearchMethod()
+        {
+            Clients allClients = new Clients(SearchText);
+            this.Clients = new ObservableCollection<Client>(allClients);
+        }
+
+        //public void UpdateMethod()
+        //{
+        //    int returnValue = SelectedClient.ChangePaymentStatus(SelectedPayment.PaymentStatusId);
+        //    if (returnValue > 0)
+        //    {
+        //        MessageBox.Show("Clients Details Successfully Updated");
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Client details could not be updated, please try again");
+        //    }
+        //    UpdateCompletedBookings();
+        //    UpdatePaymentRejectedBookings();
+        //}
+
+        #endregion Methods
     }
 }

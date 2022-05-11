@@ -56,11 +56,11 @@ namespace BIT_DesktopApp.Models
                 "       FROM" +
                 "           Job" +
                 "       WHERE" +
-                "           Priority LIKE '%" + searchText + "%'" +
-                "       AND" +
-                "           Status LIKE '%" + searchText + "%'" +
-                "       AND " +
-                "           SkillTitle '%" + searchText + "%'";
+                "           Priority LIKE '%" + searchText + "%'";
+                //"       OR" +
+                //"           Status LIKE '%" + searchText + "%'" +
+                //"       OR " +
+                //"           SkillTitle LIKE '%" + searchText + "%'";
             DataTable dataTable = _db.ExecuteSQL(sql);
             foreach (DataRow dr in dataTable.Rows)
             {

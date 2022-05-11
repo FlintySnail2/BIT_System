@@ -10,8 +10,9 @@ using System.Windows;
 
 namespace BIT_DesktopApp.ViewModels
 {
-    public class ContractorViewModel
+    public class ContractorViewModel : INotifyPropertyChanged
     {
+        
         private ObservableCollection<Contractor> _contractors;
         private Contractor _selectedContractor;
 
@@ -23,6 +24,8 @@ namespace BIT_DesktopApp.ViewModels
         private RelayCommand _searchCommand;
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        //INOTIFY PROPERTY CHANGED 
 
         private void OnPropertyChanged(string prop)
         {
@@ -54,7 +57,7 @@ namespace BIT_DesktopApp.ViewModels
             get { return _contractors; }
             set { _contractors = value; }
         }
-
+        // ==============================================
         public Contractor SelectedContractor
         {
             get { return _selectedContractor; } 
@@ -64,10 +67,12 @@ namespace BIT_DesktopApp.ViewModels
                 OnPropertyChanged("SelectedContractor");
                 ContractorSkills allSkills = new ContractorSkills(SelectedContractor.ContractorId);
                 this.ContractorSkills = new ObservableCollection<ContractorSkill>(allSkills);
-                //foreach (ContractorSkill CS in allSkills)
-                //{
-                //    MessageBox.Show(CS.Skill);
-                //}
+
+        //TEST CASE FOR CONSTRACT_SKILL DATAGRID
+            //    foreach (ContractorSkill CS in allSkills)
+            //    {
+            //        MessageBox.Show(CS.Skill);
+            //    }
             }
         }
 
@@ -81,7 +86,7 @@ namespace BIT_DesktopApp.ViewModels
             set
             {
                 _contractorSkills = value;
-                OnPropertyChanged("Skills");
+                OnPropertyChanged("ContractorSkills");
             }
         }
 

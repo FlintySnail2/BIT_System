@@ -58,7 +58,9 @@
                       Name="dgContractors" 
                       Margin="5,5,5,10"
                       ItemsSource="{Binding Contractors}"
-                      SelectedItem="{Binding SelectedContractor}" Grid.RowSpan="2"/>
+                      SelectedItem="{Binding SelectedContractor,
+                                     UpdateSourceTrigger=PropertyChanged}"
+                      Grid.RowSpan="2"/>
 
 
             <!-- Contractor Skill Go Here -->
@@ -76,7 +78,7 @@
                         Grid.Column="1" 
                         Orientation="Horizontal">
 
-                <TextBox Text="{Binding ContractorSkills.SkillTitle}"
+                <TextBox Text="{Binding ContractorSkill.Skill}"
                          x:Name="txtSkill" 
                          Width="100" 
                          Height="31" 
@@ -178,13 +180,13 @@
 
             <!--Second column of data -->
 
-            <Label Content="Region : " 
+            <Label Content="Skills : " 
                    Grid.Row="0" 
                    Grid.Column="2" 
                    Foreground="#fff" Grid.ColumnSpan="2" Margin="0,0,333,0"/>
 
-            <TextBox 
-                     x:Name="txtRegion" 
+            <TextBox Text="{Binding SelectedContractor.Availibility}"
+                     x:Name="txtSkills" 
                      Grid.Row="0" 
                      Grid.Column="3" 
                      Margin="5"/>

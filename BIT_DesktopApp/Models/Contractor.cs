@@ -19,7 +19,7 @@ namespace BIT_DesktopApp.Models
         private String _phone { get; set; }
         private DateTime _dob { get; set; }
         private string _email { get; set; }
-        private string _password { get; set; }
+        private string _availabilty {get; set;}
         private string _abn { get; set; }
         //private string _skill { get; set; } //THIS IS ASSUMING THE CANTRACTOR ONLY HAS ONE SKILL(WHICH THEY DONT)
                                             //IMPLEMENT INTO THE CONTRACTOR SKILLS.
@@ -93,25 +93,6 @@ namespace BIT_DesktopApp.Models
             }
         }
 
-        public string Password
-        {
-            get { return _password; }
-            set
-            {
-                _password = value;
-                OnPropertyChanged("Password");
-            }
-        }
-
-        //public string Skill
-        //{
-        //    get { return _skill; }
-        //    set
-        //    {
-        //        _skill = value;
-        //        OnPropertyChanged("Skill");
-        //    }
-        //}
         public string ABN
         {
             get { return _abn;}
@@ -121,6 +102,15 @@ namespace BIT_DesktopApp.Models
             }
         }
 
+        public string Availibility
+        {
+            get { return _availabilty; }
+            set
+            {
+                _availabilty = value;
+                OnPropertyChanged("Availibility");
+            }
+        }
         public string LicenceNumber
         {
             get { return _licenceNumber; }
@@ -146,11 +136,8 @@ namespace BIT_DesktopApp.Models
             get { return _contractorRating; }
             set { _contractorRating = value;
                 OnPropertyChanged("Contractor Rating");
-
             }
         }
-
-      
 
         #endregion Public Properties
 
@@ -170,15 +157,12 @@ namespace BIT_DesktopApp.Models
             Phone = dr["Phone"].ToString();
             Dob = Convert.ToDateTime(dr["Dob"].ToString());
             Email = dr["Email"].ToString();
-            Password = dr["Password"].ToString();
-            //Skill = dr["SkillTitle"].ToString();
+            Availibility = dr["Availability"].ToString();
             ABN = dr["ABN"].ToString();
             LicenceNumber = dr["LicenceNumber"].ToString();
             RateOfPay = Convert.ToDecimal(dr["RateofPay"].ToString());
             ContractorRating = dr["ContractorRating"].ToString();
         }
-
         #endregion Contructor
-
     }
 }

@@ -22,8 +22,8 @@ namespace BIT_WebApplication.Views
                 //staffNav.Visible = false;
                 
 
-                Client currentClient = new Client();
-                currentClient.ClientId = Convert.ToInt32( Session["Client_Id"].ToString());
+                Job currentClient = new Job();
+                currentClient._clientId = Convert.ToInt32( Session["Client_Id"].ToString());
                 gvJobs.DataSource = currentClient.AllClientJobs().DefaultView;
                 gvJobs.DataBind();
 
@@ -32,6 +32,23 @@ namespace BIT_WebApplication.Views
             {
                 Response.Redirect("Homepage.aspx");
             }
+
+        }
+
+        protected void btnSubmitJob_Click(object sender, EventArgs e)
+        {
+            DateTime jobStart = DateTime.ParseExact(txtReqStartDate.Text.Trim(), "yyyy-mm-dd", null);
+            DateTime jobComp = DateTime.ParseExact(txtReqCompDate.Text.Trim(), "yyyy-mm-dd", null);
+            Job newClientJob = new Job()
+            {
+                _priority = txtPriority.Text,
+                _skillReq = txtSkillReq.Text,
+                _description = txtDesc.Text,
+                _startDate = Convert.ToDateTime(jobStart.ToString()),
+                _completionDate = Convert.ToDateTime(jobComp.ToString())
+            };
+            string message = newClientJob.InsertJob();
+            Response.Write(message);
 
         }
     }

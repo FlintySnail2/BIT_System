@@ -24,31 +24,31 @@ namespace BIT_WebApplication.Views
         protected global::System.Web.UI.WebControls.GridView gvJobs;
 
         /// <summary>
-        /// txtAddress control.
+        /// txtCName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAddress;
+        protected global::System.Web.UI.WebControls.TextBox txtCName;
 
         /// <summary>
-        /// DropDownList1 control.
+        /// txtPriority control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList txtPriority;
 
         /// <summary>
-        /// DropDownList2 control.
+        /// txtSkillReq control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList2;
+        protected global::System.Web.UI.WebControls.DropDownList txtSkillReq;
 
         /// <summary>
         /// txtPhone control.
@@ -60,48 +60,39 @@ namespace BIT_WebApplication.Views
         protected global::System.Web.UI.WebControls.TextBox txtPhone;
 
         /// <summary>
-        /// TextBox1 control.
+        /// txtDesc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox txtDesc;
 
         /// <summary>
-        /// calBookingDate control.
+        /// txtReqStartDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar calBookingDate;
+        protected global::System.Web.UI.WebControls.TextBox txtReqStartDate;
 
         /// <summary>
-        /// Calendar1 control.
+        /// txtReqCompDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar Calendar1;
+        protected global::System.Web.UI.WebControls.TextBox txtReqCompDate;
 
         /// <summary>
-        /// Calendar2 control.
+        /// btnSubmitJob control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar Calendar2;
-
-        /// <summary>
-        /// Calendar3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar Calendar3;
+        protected global::System.Web.UI.WebControls.Button btnSubmitJob;
     }
 }

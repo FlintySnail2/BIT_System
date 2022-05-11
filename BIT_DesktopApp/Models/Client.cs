@@ -20,13 +20,12 @@ namespace BIT_DesktopApp.Models
         private string _contactName;
         private string _phone;
         private string _email;
-        private string _password;
-        private string _regionName;
         private string _address;
+        private string _region;
         private SQLHelper _db;
         public event PropertyChangedEventHandler PropertyChanged;
 
-        
+        #endregion Private Properties
 
         private void OnPropertyChanged(string prop)
         {
@@ -35,6 +34,8 @@ namespace BIT_DesktopApp.Models
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
             }
         }
+
+        #region Public Properties
 
         public int ClientId
         {
@@ -77,34 +78,26 @@ namespace BIT_DesktopApp.Models
                 OnPropertyChanged("Email");
             }
         }
-        public string Password
-        {
-            get { return _password;}
-            set
-            {
-                _password = value;
-                OnPropertyChanged("Password");
-            }
-        }
-
-        public string RegionName
-        {
-            get { return _regionName;}
-            set
-            {
-                _regionName = value;
-                OnPropertyChanged("Region");
-            }
-        }
-
         public string Address
         {
-            get { return _address;}
-            set { _address = value;
+            get { return _address; }
+            set
+            {
+                _address = value;
                 OnPropertyChanged("Address");
             }
         }
-        #endregion Properties
+
+        public string Region
+        {
+            get { return _region;}
+            set
+            {
+                _region = value;
+                OnPropertyChanged("Region");
+            }
+        }
+        #endregion Public Properties
 
         #region Constructor
         public Client()
@@ -120,8 +113,8 @@ namespace BIT_DesktopApp.Models
             ContactName = dr["ContactName"].ToString();
             Phone = dr["Phone"].ToString();
             Email = dr["Email"].ToString();
-            Password = dr["Password"].ToString();
-            RegionName = dr["Region"].ToString();
+            Address = dr["Address"].ToString();
+            Region = dr["Region"].ToString();
         }
 
         #endregion Constructor

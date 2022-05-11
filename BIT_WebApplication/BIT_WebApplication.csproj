@@ -556,10 +556,8 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="BLL\Client.cs" />
-    <Compile Include="BLL\CompletedJobs.cs" />
+    <Compile Include="BLL\Job.cs" />
     <Compile Include="BLL\Contractor.cs" />
-    <Compile Include="BLL\Staff.cs" />
     <Compile Include="BLL\User.cs" />
     <Compile Include="DAL\AssignedJob.cs" />
     <Compile Include="DAL\SQLHelper.cs" />

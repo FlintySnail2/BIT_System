@@ -27,7 +27,8 @@
                        Width="323" 
                        Margin="10,5,10,5"/>
 
-            <TextBox Text="{Binding SearchText}"
+            <TextBox Text="{Binding SearchText,
+                            UpdateSourceTrigger=PropertyChanged}"
                      x:Name="txtSearchContractor" 
                      Width="200"
                      Style="{StaticResource SearchTheme}"/>

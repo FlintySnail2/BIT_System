@@ -22,15 +22,14 @@ namespace BIT_DesktopApp.Models
                 "           C.FirstName + ' ' + C.LastName AS ContactName," +
                 "           C.Phone," +
                 "           C.Email," +
-                "           C.Password," +
-                "           L.Region," +
-                "           L.Street + ' ' + L.Suburb + ', ' + L.State + ', ' + CAST(L.Zip AS NVARCHAR) AS Location" +
+                "           L.Street + ' ' + L.Suburb + ', ' + L.State + ', ' + CAST(L.Zip AS NVARCHAR) AS Address," +
+                "           L.Region" +
                 "       FROM" +
                 "           Client AS C," +
                 "           Location AS L" +
                 "       WHERE " +
-                "           C.ClientId = L.ClientId ";
-
+                "           C.ClientId = L.ClientId " +
+                "       ORDER BY C.ClientId ASC";
             DataTable dataTable = _db.ExecuteSQL(sql);
             foreach (DataRow dr in dataTable.Rows)
             {

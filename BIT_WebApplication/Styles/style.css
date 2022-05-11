@@ -51,7 +51,7 @@
 .content {
     position: absolute;
     top: 42%;
-    height: 45%;
+    height: 50%;
     left: 50%;
     z-index: 999;
     text-align: center;
@@ -69,6 +69,8 @@
         font-size: 30px;
         font-weight: bold;
     }
+
+
 .txt-field-user{
     padding-top: 30px;
 }
@@ -90,22 +92,16 @@
 
 /*****  Client Form *******/
 
-.button {
-    margin: auto;
-    padding: 10px;
-    height: 50px;
-    width: 200px;
-    border-radius: 10px;
-    background: rgb(#36454f);
-    
+.login-clbtn {
+    background-color: #009eff;
 }
 
-    .button hover{
-        background: purple;
+    .login-clbtn:hover {
+        background-color: rgba(0,158,255,.75);
     }
 
-.form-background{
-    background-color: rgb(59,69,79)
+.btn-pad{
+    padding:15px;
 }
 
 

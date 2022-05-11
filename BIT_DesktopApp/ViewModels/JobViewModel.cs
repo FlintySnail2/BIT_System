@@ -34,7 +34,9 @@ namespace BIT_DesktopApp.ViewModels
         public ObservableCollection<Job> Jobs
         {
             get { return _jobs; }
-            set { _jobs = value; }
+            set { _jobs = value;
+                OnPropertyChanged("Jobs");
+            }
         }
 
         public Job SelectedJob
@@ -68,6 +70,15 @@ namespace BIT_DesktopApp.ViewModels
                 OnPropertyChanged("SearchText");
             }
         }
+        //************ SEARCH METHOD **********
+        public void SearchMethod()
+        {
+            Jobs allJobs = new Jobs(SearchText);
+            this.Jobs = new ObservableCollection<Job>(allJobs);
+        }
+
+
+
         //ITEMS SOURCE (FOR REFERENCE)
         public ObservableCollection<JobStatus> JobsStatus
         {
@@ -77,12 +88,7 @@ namespace BIT_DesktopApp.ViewModels
             }
         }
 
-        public void SearchMethod()
-        {
-            Jobs allJobs = new Jobs(SearchText);
-            this.Jobs = new ObservableCollection<Job>(allJobs);
-        }
-
+        
         public JobStatus SelectedJobStatus
         {
             get { return _selectedJobStatus; }

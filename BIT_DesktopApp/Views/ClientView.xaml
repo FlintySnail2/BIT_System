@@ -53,16 +53,15 @@
 
             <DataGrid Grid.Column="0" 
                       Name="dgClients" 
-                      Margin="5,5,5,-40" 
+                      Margin="5,5,5,-75" 
                       Grid.RowSpan="2" 
                       Grid.ColumnSpan="2"
                       ItemsSource="{Binding Clients}"
                       SelectedItem="{Binding SelectedClient}"/>
 
         </Grid>
-        <Grid Grid.Row="2" Margin="0,45,0,0">
+        <Grid Grid.Row="2" Margin="0,90,0,0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
@@ -109,73 +108,41 @@
                      Grid.Column="1" 
                      Margin="5" />
 
-
-            <Label Content="Email"
-                   Grid.Row="3" 
-                   Grid.Column="0" 
-                   Foreground="#fff"/>
-
-            <TextBox Text="{Binding SelectedClient.Email}"
-                     x:Name="txtEmail" 
-                     Grid.Row="3" 
-                     Grid.Column="1" 
-                     Margin="5" />
-
-
-
             <!--Second column of data -->
 
-            <Label Content="Password" 
+            <Label Content="Email" 
                    Grid.Row="0" 
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-            <TextBox Text="{Binding SelectedClient.Password}"
-                     x:Name="txtPassword" 
+            <TextBox Text="{Binding SelectedClient.Email}"
+                     x:Name="txtEamil" 
                      Grid.Row="0" 
                      Grid.Column="3" 
                      Margin="5"/>
 
-            
-
-            <Label Content="Location No#" 
+            <Label Content="Address" 
                    Grid.Row="1" 
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-            <TextBox Text="{Binding SelectedClient.LocationNumber}"
-                     x:Name="txtLocNum" 
+            <TextBox Text="{Binding SelectedClient.Address}"
+                     x:Name="txtAddress" 
                      Grid.Row="1" 
                      Grid.Column="3" 
                      Margin="5"/>
 
-            <Label Content="Location" 
+            <Label Content="Region" 
                    Grid.Row="2" 
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
             <TextBox
-                     Text="{Binding SelectedClient.Location}"
-                     x:Name="txtLocation" 
+                     Text="{Binding SelectedClient.Region}"
+                     x:Name="txtRegion" 
                      Grid.Row="2" 
                      Grid.Column="3" 
                      Margin="5" />
-
-            <Label Content="Region" 
-                   Grid.Row="3" 
-                   Grid.Column="2" 
-                   Foreground="#fff"/>
-
-            <TextBox 
-                     Text="{Binding SelectedClient.RegionName}"
-                     x:Name="txtRegion" 
-                     Grid.Row="3" 
-                     Grid.Column="3" 
-                     Margin="5" />
-
-            
-
-            
 
         </Grid>
         <StackPanel Orientation="Horizontal" 
@@ -192,7 +159,8 @@
                     Width="150" 
                     Margin="10"/>
 
-            <Button x:Name="btnAdd" 
+            <Button x:Name="btnAdd"
+                    Command="{Binding UpdateCommand}"
                     Content="ADD" 
                     Width="150" 
                     Margin="10"
