@@ -532,16 +532,12 @@
     <Content Include="Site.Master" />
     <Content Include="Styles\style.css" />
     <Content Include="ViewSwitcher.ascx" />
-    <Content Include="Views\AssignJobView.aspx" />
-    <Content Include="Views\ClientJobRequestView.aspx" />
     <Content Include="Views\ClientJobView.aspx" />
-    <Content Include="Views\ContractorJobView.aspx" />
-    <Content Include="Views\RequestedJobView.aspx" />
     <Content Include="Views\CompletedJobs.aspx" />
+    <Content Include="Views\ContractorJobView.aspx" />
     <Content Include="Views\Homepage.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
-    <Content Include="Site.Mobile.Master" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper.js.flow" />
@@ -559,7 +555,6 @@
     <Compile Include="BLL\Job.cs" />
     <Compile Include="BLL\Contractor.cs" />
     <Compile Include="BLL\User.cs" />
-    <Compile Include="DAL\AssignedJob.cs" />
     <Compile Include="DAL\SQLHelper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -572,33 +567,12 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
-    <Compile Include="Site.Mobile.Master.cs">
-      <DependentUpon>Site.Mobile.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Site.Mobile.Master.designer.cs">
-      <DependentUpon>Site.Mobile.Master</DependentUpon>
-    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\AssignJobView.aspx.cs">
-      <DependentUpon>AssignJobView.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\AssignJobView.aspx.designer.cs">
-      <DependentUpon>AssignJobView.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ClientJobRequestView.aspx.cs">
-      <DependentUpon>ClientJobRequestView.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\ClientJobRequestView.aspx.designer.cs">
-      <DependentUpon>ClientJobRequestView.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\ClientJobView.aspx.cs">
       <DependentUpon>ClientJobView.aspx</DependentUpon>
@@ -607,26 +581,19 @@
     <Compile Include="Views\ClientJobView.aspx.designer.cs">
       <DependentUpon>ClientJobView.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\ContractorJobView.aspx.cs">
-      <DependentUpon>ContractorJobView.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\ContractorJobView.aspx.designer.cs">
-      <DependentUpon>ContractorJobView.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\RequestedJobView.aspx.cs">
-      <DependentUpon>RequestedJobView.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\RequestedJobView.aspx.designer.cs">
-      <DependentUpon>RequestedJobView.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Views\CompletedJobs.aspx.cs">
       <DependentUpon>CompletedJobs.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\CompletedJobs.aspx.designer.cs">
       <DependentUpon>CompletedJobs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ContractorJobView.aspx.cs">
+      <DependentUpon>ContractorJobView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ContractorJobView.aspx.designer.cs">
+      <DependentUpon>ContractorJobView.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Homepage.aspx.cs">
       <DependentUpon>Homepage.aspx</DependentUpon>

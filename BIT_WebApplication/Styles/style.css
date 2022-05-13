@@ -19,8 +19,8 @@
 }
 
 .navbar-styling {
-    background: rgba(0,0,0,1.0);
-    opacity: .9;
+    background: rgba(0,0,0,0.75);
+    opacity: .75;
 }
 
 /****** Background Image Styling ******/
@@ -82,16 +82,41 @@
 
 .login-btn {
     background-color: #009eff;
+    border: #009eff;
+    border-radius: 3px;
 }
 
-.login-btn:hover{
-    background-color:rgba(0,158,255,.75);
+.login-btn:hover {
+    background-color: rgba(0,158,255,.75);
 }
+
+/******* Contractor page styling **********/
+
+.login-btn-accept {
+    background-color: #009eff;
+    border: #009eff;
+    border-radius: 3px;
+}
+
+.login-btn:hover {
+    background-color: rgba(0,158,255,.75);
+}
+
+.login-btn-reject {
+    background-color: rgb(115,115,115);
+    border: red;
+    border-radius: 3px;
+}
+
+.login-btn-reject:hover {
+    background-color: rgba(115,115,115,.57);
+}
+
+
 
 
 
 /*****  Client Form *******/
-
 .login-clbtn {
     background-color: #009eff;
 }

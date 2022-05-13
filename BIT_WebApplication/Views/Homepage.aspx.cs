@@ -43,7 +43,7 @@ namespace BIT_WebApplication.Views
             else if (staffId > 0)
             {
                 Session.Add("Staff_Id", staffId);
-                Response.Redirect("RequestedJobView.aspx");
+                Response.Redirect("CompletedJobs.aspx");
             }
             else
             {

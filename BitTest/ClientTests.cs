@@ -6,26 +6,27 @@ using System;
 namespace BitTest
 {
     [TestClass]
-    public class CLientTests
+    public class ClientTests
     {
-        //[TestMethod]
-        //public void TestNames()
-        //{
-        //    Client newClient = new Client();
+        [TestMethod]
+        public void TestNames1()
+        {
+            Client newClient = new Client();
 
-        //    newClient.ContactName = " " //Hard coded names are fine 
- 
-        //}
+            newClient.ContactName = " "; //Hard coded names are fine 
 
-        //public void TestRegion()
-        //{
 
-        //}
+        }
 
-        //public void TestSomething()
-        //{
+        public void TestRegion()
+        {
 
-        //}
+        }
+
+        public void TestSomething()
+        {
+
+        }
 
         //INTEGRATION TESTING MOQ
         [TestMethod]

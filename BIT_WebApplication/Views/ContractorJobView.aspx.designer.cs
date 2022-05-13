@@ -15,12 +15,21 @@ namespace BIT_WebApplication.Views
     {
 
         /// <summary>
-        /// gvContractorJobs control.
+        /// gvAssignedJobs control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvContractorJobs;
+        protected global::System.Web.UI.WebControls.GridView gvAssignedJobs;
+
+        /// <summary>
+        /// gvActiveJobs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvActiveJobs;
     }
 }

@@ -13,7 +13,11 @@ namespace BIT_WebApplication.BLL
         #region Private Properties
 
         public int _clientId { get; set; }
-        public int _jobId { get; set; }
+        public string _region { get; set; } //PULL INTO A SESSION LIKE CLIENT_ID....
+        public string WeekDay { get; set; }
+        public string Skill { get; set; }
+        public int _staffId { get; set; }
+        public int Rating { get; set; }
         public int _contractorId { get; set; }
         public string _priority { get; set; }
         public string _skillReq { get; set; }
@@ -38,7 +42,7 @@ namespace BIT_WebApplication.BLL
         {
             string sql = "SELECT " +
                 "           J.JobId AS Job, " +
-                "           CON.FirstName" +
+                "           CON.FirstName + ' ' + CON.LastName AS [Technician] ," +
                 "           J.RequestedStartDate AS [Service Day], " +
                 "           J.Description, " +
                 "           J.Priority, " +
@@ -63,21 +67,84 @@ namespace BIT_WebApplication.BLL
             DataTable jobs = _db.ExecuteSQL(sql, objParams);
             return jobs;
         }
+
+        public DataTable AllCompletedJobs()
+        {
+            string sql = "SELECT" +
+        "                   JobId, " +
+        "                   C.OrganisationName AS Client," +
+        "                   C.FirstName + ' ' + C.LastName AS [Contact Name]," +
+        "                   CON.FirstName + ' ' + CON.LastName AS Technician," +
+        "                   J.RequestedStartDate AS [Service Day]," +
+        "                   J.RequestedCompletionDate AS [Requested Completion]," +
+        "                   J.Description" +
+        "               FROM" +
+        "                   Job AS J," +
+        "                   Client AS C," +
+        "                   Contractor AS CON" +
+        "               WHERE" +
+        "                  C.ClientId = J.ClientId" +
+        "               AND" +
+        "                  J.ContractorId = CON.ContractorId" +
+        "               AND" +
+        "                  J.Status = 'Completed'" +
+        "               AND" +
+        "                  CON.ContractorId = @Contractor_Id";
+            SqlParameter[] objParams = new SqlParameter[1];
+            objParams[0] = new SqlParameter("@Contractor_Id", DbType.Int32);
+            objParams[0].Value = this._clientId;
+            DataTable completedJobs = _db.ExecuteSQL(sql, objParams);
+            return completedJobs;
+        }
+
+        public DataTable AllRejectedJobs()
+        {
+            string sql = "SELECT" +
+        "                   JobId, " +
+        "                   C.OrganisationName AS Client," +
+        "                   C.FirstName + ' ' + C.LastName AS [Contact Name]," +
+        "                   CON.FirstName + ' ' + CON.LastName AS Technician," +
+        "                   J.RequestedStartDate AS [Service Day]," +
+        "                   J.RequestedCompletionDate AS [Requested Completion]," +
+        "                   J.Description" +
+        "               FROM" +
+        "                   Job AS J," +
+        "                   Client AS C," +
+        "                   Contractor AS CON" +
+        "               WHERE" +
+        "                  C.ClientId = J.ClientId" +
+        "               AND" +
+        "                  J.ContractorId = CON.ContractorId" +
+        "               AND" +
+        "                  J.Status = 'Completed'" +
+        "               AND" +
+        "                  CON.ContractorId = @Contractor_Id";
+            SqlParameter[] objParams = new SqlParameter[1];
+            objParams[0] = new SqlParameter("@Contractor_Id", DbType.Int32);
+            objParams[0].Value = this._clientId;
+            DataTable completedJobs = _db.ExecuteSQL(sql, objParams);
+            return completedJobs;
+        }
+
         public string InsertJob()
         {//SESSION ID ALREADY PASSES CLIENT ID?
             string sql = "INSERT INTO JOB(" +
-                "       Priority," +
-                "       SkillTitle," +
-                "       Description," +
-                "       RequestedStartDate," +
-                "       RequestedCompletionDate)" +
+                    "       ClientId," +
+                    "       Priority," +
+                    "       SkillTitle," +
+                    "       Description," +
+                    "       RequestedStartDate," +
+                    "       RequestedCompletionDate," +
+                    "       Staus)" +
                 "     VALUES(" +
-                "       @Priority," +
-                "       @SkillTitle," +
-                "       @Description," +
-                "       @StartDate," +
-                "       @CompletionDate)";
-            SqlParameter[] objParams = new SqlParameter[7];
+                    "       @Client_Id,    "        +
+                    "       @Priority," +
+                    "       @SkillTitle," +
+                    "       @Description," +
+                    "       @StartDate," +
+                    "       @CompletionDate," +
+                    "       'Requested')";
+            SqlParameter[] objParams = new SqlParameter[6];
             objParams[0] = new SqlParameter("@Priority", DbType.String);
             objParams[0].Value = this._priority;
             objParams[1] = new SqlParameter("@SkillTitle", DbType.String);
@@ -88,27 +155,15 @@ namespace BIT_WebApplication.BLL
             objParams[3].Value = this._startDate;
             objParams[4] = new SqlParameter("@CompletionDate", DbType.String);
             objParams[4].Value = this._completionDate;
+            objParams[5] = new SqlParameter("@Client_Id", DbType.String);
+            objParams[5].Value = this._clientId;
             int rowsAffected = _db.ExecuteNonQuery(sql, objParams);
             if (rowsAffected >= -1)
             {
-                return "New Job Request Has been submitted" ;
+                return "<script>alert('New Job Request Has been submitted')</script>";
             }
-            return "Some went wrong please try again ";
+            return "<script>('Some went wrong please try again')</script> ";
         }
-
-
-
-
-        public int ApproveBooking()
-        {
-           return 0;
-        }
-        public int RejectBooking()
-        {
-            
-            return 0;
-        }
-
         #endregion Public Methodds
     }
 }
