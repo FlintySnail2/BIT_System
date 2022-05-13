@@ -106,11 +106,18 @@ namespace BIT_DesktopApp.ViewModels
 
         public JobViewModel()
         {
-            Jobs allJobs = new Jobs();
-            this.Jobs = new ObservableCollection<Job>(allJobs);
+            //Jobs allJobs = new Jobs();
+            //this.Jobs = new ObservableCollection<Job>(allJobs);
             JobsStatus allStatus = new JobsStatus();
             this.JobsStatus = new ObservableCollection<JobStatus>(allStatus);
+            GetJobs();
             
+        }
+
+        public virtual ObservableCollection<Job> GetJobs()
+        {
+            Jobs allJobs = new Jobs();
+            return new ObservableCollection<Job>(allJobs);
         }
     }
 }

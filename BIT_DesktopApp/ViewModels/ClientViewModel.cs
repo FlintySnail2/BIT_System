@@ -62,13 +62,21 @@ namespace BIT_DesktopApp.ViewModels
         }
 
         public ClientViewModel()
-        {
-            Clients allClients = new Clients();
-            this.Clients = new ObservableCollection<Client>(allClients);
+        {   
+            //COMMENTED OUT AS USING MOQ
+            //Clients allClients = new Clients();
+            //this.Clients = new ObservableCollection<Client>(allClients);
+            GetClients();
         }
         #endregion Constructors
 
         #region Methods
+
+        public virtual ObservableCollection<Client> GetClients()
+        {
+            Clients allClients = new Clients();
+            return new ObservableCollection<Client>(allClients);
+        }
 
         private void OnPropertyChanged(string prop)
         {

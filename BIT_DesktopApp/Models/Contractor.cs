@@ -21,8 +21,6 @@ namespace BIT_DesktopApp.Models
         private string _email { get; set; }
         private string _availabilty {get; set;}
         private string _abn { get; set; }
-        //private string _skill { get; set; } //THIS IS ASSUMING THE CANTRACTOR ONLY HAS ONE SKILL(WHICH THEY DONT)
-                                            //IMPLEMENT INTO THE CONTRACTOR SKILLS.
         private string _licenceNumber { get; set; }
         private decimal _ratOfPay { get; set; }
         private string _contractorRating { get; set; }
