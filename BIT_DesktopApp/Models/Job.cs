@@ -11,7 +11,7 @@ namespace BIT_DesktopApp.Models
 {
 
 
-    public class Job : INotifyPropertyChanged
+    public class Job : INotifyPropertyChanged, IDataErrorInfo
     {
         #region Private Properties
         private int _jobId;
@@ -24,10 +24,90 @@ namespace BIT_DesktopApp.Models
         private string _phone;
         private string _location;
         private decimal _hoursOnJob;
+        private DateTime _requestedStartDate;
         private DateTime _requestedCompletion;
         private string _distanceTravelled;  
         private SQLHelper _db;
         public event PropertyChangedEventHandler PropertyChanged;
+        public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
+        public string Error { get { return null; } }
+        public string this[string propertyName]
+        {
+            get
+            {
+                string result = null;
+                switch (propertyName)
+                {
+                    case "OrganisationName":
+                        if (string.IsNullOrEmpty(OrganisationName))
+                        {
+                            result = "Field cannot be empty";
+                        }
+                        break;
+                    case ("ContactName"):
+                        if (string.IsNullOrEmpty(ContactName))
+                        {
+                            result = "Field cannot be empty";
+                        }
+                        break;
+                    case "Description":
+                        if (string.IsNullOrEmpty(Description))
+                        {
+                            result = "Field cannot be empty";
+                        }
+                        break;
+                    case "SkillReq":
+                        if (string.IsNullOrEmpty(SkillReq))
+                        {
+                            result = "Field cannot be empty";
+                        }
+                        break;
+                    case "Priority":
+                        if (string.IsNullOrEmpty(Priority))
+                        {
+                            result = "Field cannot be empty";
+                        }
+                        break;
+                    case "Status":
+                        if (string.IsNullOrEmpty(Status))
+                        {
+                            result = "Field cannot be empty";
+                        }
+                        break;
+                    case "Phone":
+                        if (string.IsNullOrEmpty(Status))
+                        {
+                            result = "Field cannot be empty";
+                        }
+                        break;
+                    case "Location":
+                        if (string.IsNullOrEmpty(Status))
+                        {
+                            result = "Field cannot be empty";
+                        }
+                        break;
+                    case "RequestedStartDate":
+                        if (RequestedStartDate.Date < DateTime.Today)
+                        {
+                            result = "Service date must be booked a day in advance ";
+                        }
+                        break;
+                    case "CompletedDate":
+                        if (RequestedCompletion.Date < DateTime.Today && RequestedCompletion <= RequestedStartDate)
+                        {
+                            result = "Completion date cannot be prior to service day";
+                        }
+                        break;
+                }
+                if (result != null && !ErrorCollection.ContainsKey(propertyName))
+                {
+                    ErrorCollection.Add(propertyName, result);
+                }
+                OnPropertyChanged("ErrorCollection");
+                return result;
+
+            }
+        }
 
         private void OnPropertyChanged(string prop)
         {
@@ -124,6 +204,14 @@ namespace BIT_DesktopApp.Models
             }
         }
 
+        public DateTime RequestedStartDate
+        {
+            get { return _requestedStartDate; }
+            set {
+                _requestedStartDate = value;
+                OnPropertyChanged("RequestedStartDate");
+            }
+        }
         public DateTime RequestedCompletion
         {
             get { return _requestedCompletion; }

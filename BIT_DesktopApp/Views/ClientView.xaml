@@ -155,6 +155,7 @@
                     Margin="10"/>
 
             <Button x:Name="btnDelete" 
+                    Command="{Binding DeleteCommand}"
                     Content="DELETE" 
                     Width="150" 
                     Margin="10"/>

@@ -60,5 +60,23 @@ namespace BIT_DesktopApp.Models
                 this.Add(newClient);
             }
         }
+        
+        public Client(string deleteClient)
+        {
+            string sql = " UPDATE" +
+                         "      Client" +
+                         " SET" +
+                         "      AccountStatus = 'Inactive'" +
+                         " WHERE" +
+                         "      ClientId = 1";
+            DataTable dataTable = _db.ExecuteSQL(sql);
+            foreach (DataRow dr in dataTable.Rows)
+            {
+                Client newClient = new Client(dr);
+                this.Add(newClient);
+            }
+
+        }
+
     }
 }

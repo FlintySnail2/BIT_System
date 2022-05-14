@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BIT_DesktopApp.Models
 {
-    public class ContractorSkill : INotifyPropertyChanged
+    public class ContractorSkill : INotifyPropertyChanged, IDataErrorInfo
     {
         #region Properties
 
@@ -18,7 +18,32 @@ namespace BIT_DesktopApp.Models
         private string _skill;
         private SQLHelper _db;
         public event PropertyChangedEventHandler PropertyChanged;
+        public Dictionary<string,string> ErrorCollection { get; private set; } = new Dictionary<string,string>();
+        public string Error { get { return null; } }
+        public string this[string propertyName]
+        {
+            get
+            {
 
+                //SILLY USE SWITCH FOR ONE CASE ???
+                string result = null;
+                switch (propertyName)
+                {
+                    case "Skill":
+                        if (string.IsNullOrEmpty(_skill))
+                        {
+                            result = "cannot be empty";
+                        }
+                        break;
+                }
+                if (result == null && !ErrorCollection.ContainsKey(propertyName))
+                {
+                    ErrorCollection.Add(propertyName, result);
+                }
+                OnPropertyChanged("ErrorCollection");
+                return result;
+            }
+        }
         private void OnPropertyChanged(string prop)
         {
             if (PropertyChanged != null)

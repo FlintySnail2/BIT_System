@@ -63,7 +63,7 @@
                    Grid.Row="0"
                    Grid.Column="0" 
                    Foreground="#fff"/>
-
+            <!--DO NOT TAKE UN-NEEDED INFO (REFER WEB APP CLIENT VIEW)-->
             <TextBox  Text="{Binding NewJob.CLientName,
                                      ValidatesOnDataErrors=True,
                                      UpdateSourceTrigger=PropertyChanged,
@@ -150,20 +150,7 @@
                      Grid.Column="1" 
                      Margin="5" />
 
-            <Label Content="Qouted Hours : "
-                   Grid.Row="6" 
-                   Grid.Column="0" 
-                   Foreground="#fff"/>
-
-            <TextBox Text="{Binding NewJob.QoutedHours,
-                                     ValidatesOnDataErrors=True,
-                                     UpdateSourceTrigger=PropertyChanged,
-                                     Mode=TwoWay}"
-                      ToolTip="{Binding NewClient.ErrorCollection[QoutedHours]}"
-                     x:Name="txtQoutedHours" 
-                     Grid.Row="6" 
-                     Grid.Column="1" 
-                     Margin="5" />
+           
 
             <Label Content="Requested Completion : "
                    Grid.Row="67" 
@@ -182,7 +169,7 @@
 
             <!--Second column of data -->
 
-            <Label Content="Date Created : "
+            <Label Content="Service Date : "
                    Grid.Row="0" 
                    Grid.Column="2" 
                    Foreground="#fff"/>
@@ -231,21 +218,7 @@
                      Grid.Column="3" 
                      Margin="5" />
 
-            <Label Content="Location No# : "
-                   Grid.Row="3" 
-                   Grid.Column="2" 
-                   Foreground="#fff"/>
-
-            <TextBox 
-                Text="{Binding NewJob.LocatioNumber,
-                                     ValidatesOnDataErrors=True,
-                                     UpdateSourceTrigger=PropertyChanged,
-                                     Mode=TwoWay}"
-                      ToolTip="{Binding NewClient.ErrorCollection[LocationNumber]}"
-                     x:Name="txtLocationNumber" 
-                     Grid.Row="3" 
-                     Grid.Column="3" 
-                     Margin="5" />
+          
 
             <Label Content="Street : " 
                    Grid.Row="4" 

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BIT_DesktopApp.Models
 {
-    public class Client : INotifyPropertyChanged
+    public class Client : INotifyPropertyChanged, IDataErrorInfo
     {
 
         
@@ -24,6 +24,60 @@ namespace BIT_DesktopApp.Models
         private string _region;
         private SQLHelper _db;
         public event PropertyChangedEventHandler PropertyChanged;
+        public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
+        public string Error { get { return null; } }
+        public string this[string propertyName]
+        {
+            get
+            {
+                string result = null;
+                switch (propertyName)
+                {
+                    case "OrganisationName":
+                        if (string.IsNullOrEmpty(OrganisationName))
+                        {
+                            result = "Field cannot be empty ";
+                        }
+                        break;
+                    case "ContantName":
+                        if (string.IsNullOrEmpty(this.ContactName))
+                        {
+                            result = "Field cannot be empty ";
+                        }
+                        break;
+                    case "Phone":
+                        if (string.IsNullOrEmpty(this.Phone))
+                        {
+                            result = "Field cannot be empty ";
+                        }
+                        break;
+                    case "Email":
+                        if (string.IsNullOrEmpty(this.Email))
+                        {
+                            result = "Field cannot be empty ";
+                        }
+                        break;
+                    case "Address":
+                        if (string.IsNullOrEmpty(this.Address))
+                        {
+                            result = "Field cannot be empty ";
+                        }
+                        break;
+                    case "Region":
+                        if (string.IsNullOrEmpty(this.Region))
+                        {
+                            result = "Field cannot be empty";
+                        }
+                        break;
+                }
+                if (result == null && !ErrorCollection.ContainsKey(propertyName))
+                {
+                    ErrorCollection.Add(propertyName, result);
+                }
+                OnPropertyChanged("ErrorCollection");
+                return result;
+            }
+        }
 
         #endregion Private Properties
 

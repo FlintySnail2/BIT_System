@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BIT_DesktopApp.Models
 {
-    public class Coordinator
+    public class Coordinator : INotifyPropertyChanged, IDataErrorInfo
     {
         #region Private Properties
 
@@ -21,6 +21,55 @@ namespace BIT_DesktopApp.Models
         private string _password { get; set; }
         private SQLHelper _db;
         public event PropertyChangedEventHandler PropertyChanged;
+        public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
+        public string Error { get { return null; } }
+        public string this[string propertyName]
+        {
+            get
+            {
+                string result = null;
+                switch (propertyName)
+                {
+                    case "EmployeeName":
+                        if (string.IsNullOrEmpty(EmployeeName))
+                        {
+                            result = "Field cannot be empty";
+                        }
+                        break;
+                    case "Dob":
+                        if (Dob.Year > 1945)
+                        {
+                            result = "You are too old to work here";
+                        }
+                        break ;
+                    case "Phone":
+                        if (string.IsNullOrEmpty(Phone))
+                        {
+                            result = "Field cannot be left empty ";
+                        }
+                        break;
+                    case "Email":
+                        if (string.IsNullOrEmpty(Email))
+                        {
+                            result = "Field cannot be left empty";
+                        }
+                        break;
+                    case "Password":
+                        if (string.IsNullOrEmpty(Password))
+                        {
+                            result = "Field cannot be lleft empty";
+                        }
+                        break;
+                }
+                if (result == null && !ErrorCollection.ContainsKey(propertyName))
+                {
+                    ErrorCollection.Add(propertyName, result);
+                }
+                OnPropertyChanged("ErrorCollection");
+                return result;
+
+            }
+        }
 
         #endregion Private Properties
 

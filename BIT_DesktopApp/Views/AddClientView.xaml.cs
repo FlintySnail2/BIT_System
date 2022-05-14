@@ -27,7 +27,7 @@ namespace BIT_DesktopApp.Views
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Are you sure you'd like to cancel ",
+            if (MessageBox.Show("Are you sure you wnat like to cancel ",
                      "Cancel? ",
                      MessageBoxButton.YesNo,
                      MessageBoxImage.Question) == MessageBoxResult.Yes)

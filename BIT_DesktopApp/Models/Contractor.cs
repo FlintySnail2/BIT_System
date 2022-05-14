@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BIT_DesktopApp.Models
 {
-    public class Contractor : INotifyPropertyChanged
+    public class Contractor : INotifyPropertyChanged, IDataErrorInfo
     {
         #region Private Properties
 
@@ -26,6 +26,85 @@ namespace BIT_DesktopApp.Models
         private string _contractorRating { get; set; }
         public SQLHelper _db;
         public event PropertyChangedEventHandler PropertyChanged;
+        public Dictionary<string,string> ErrorCollection { get; private set; }
+        public string Error { get { return null; } }
+        public string this[string propertyName]
+        {
+            get
+            {
+                string result = null;
+                switch (propertyName)
+                {
+                    case "ContractorName":
+                        if (string.IsNullOrEmpty(ContractorName))
+                        {
+                            result = "Field cannot be left empty";
+                        }
+                        break;
+                    case "Address":
+                        if (string.IsNullOrEmpty(Address))
+                        {
+                            result = "Field cannot be left empty";
+                        }
+                        break;
+                    case "Phone":
+                        if (string.IsNullOrEmpty(Phone))
+                        {
+                            result = "Field cannot be empty";
+                        }
+                        break;
+                    case "Dob":
+                        if (Dob.Year > 1945)
+                        {
+                            result = "You are to old to work here";
+                        }
+                        break;
+                    case "Email":
+                        if (string.IsNullOrEmpty(Email))
+                        {
+                            result = "Field cannot be empty";
+                        }
+                        break;
+                    case "Availability":
+                        if (string.IsNullOrEmpty(Availibility))
+                        {
+                            result = "Field cannot be left empty";
+                        }
+                        break;
+                    case "ABN":
+                        if (string.IsNullOrEmpty(ABN))
+                        {
+                            result = "Field cannot be left empty";
+                        }
+                        break;
+                    case "LicenceNumber":
+                        if (string.IsNullOrEmpty(ABN))
+                        {
+                            result = "Field cannot be empty";
+                        }
+                        break;
+                    case "RateOfPay":
+                        if (int.TryParse(ABN, out int test))
+                        {
+                            result = "field cannot be empty";
+                        }
+                        break;
+                    case "ContractorRating":
+                        if (string.IsNullOrEmpty(ContractorRating))
+                        {
+                            result = "Field cannot be empty";
+                        }
+                        break;
+                }
+                if (result != null && !ErrorCollection.ContainsKey(propertyName))
+                {
+                    ErrorCollection.Add(propertyName, result);
+                }
+                OnPropertyChanged("ErrorCollection");
+                return result;
+            }
+        }
+
 
         #endregion Private Properties
 
