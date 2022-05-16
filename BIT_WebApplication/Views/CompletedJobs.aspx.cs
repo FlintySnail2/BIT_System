@@ -1,6 +1,7 @@
 ﻿using BIT_WebApplication.BLL;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -40,18 +41,31 @@ namespace BIT_WebApplication.Views
         }
         protected void gvSearchContractor_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "Select")
-            {
-                int rowIndex = Convert.ToInt32(e.CommandArgument);
-                //will retrieve the row for which the button has been clicked
-                GridViewRow row = gvSearchContractor.Rows[rowIndex];
-                Job newQuery = new Job();
-                newQuery.Skill = txtSkill.Text;
-                newQuery.WeekDay = ddlAvailable.Text;
-                newQuery.Rating = Convert.ToInt32(txtRating.Text.ToString());
-                newQuery._contractorId = Convert.ToInt32(Session["ContractorId"].ToString());
+            if (e.CommandName == "Search")
+           {
+             int rowIndex = Convert.ToInt32(e.CommandArgument);
+             //will retrieve the row for which the button has been clicked
+             GridViewRow row = gvSearchContractor.Rows[rowIndex];
+             Job newQuery = new Job();
+             newQuery.Skill = txtSkill.Text;
+             newQuery.WeekDay = ddlAvailable.Text;
+             newQuery.Rating = Convert.ToInt32(txtRating.Text.ToString());
+             newQuery._contractorId = Convert.ToInt32(Session["ContractorId"].ToString());
             }
 
+        }
+
+        protected void btnSearchContractor_Click(object sender, EventArgs e)
+        {
+            string contractSkill = txtSkill.Text;
+            string availability = ddlAvailable.Text;
+            Contractor newContractor = new Contractor();
+
+            //CHECK QUERY AND LOOK AT FAST DRIVERS SESSIONS
+            newContractor.Skill = txtSkill.Text;
+            newContractor.Availability = ddlAvailable.Text;
+            DataTable show = newContractor.QueryContractors(txtSkill.Text,ddlAvailable.Text );
+            Response.Write(show);
         }
     }
 }

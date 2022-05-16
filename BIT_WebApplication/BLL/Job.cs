@@ -40,6 +40,7 @@ namespace BIT_WebApplication.BLL
         #region Public Methods
         public DataTable AllClientJobs()
         {
+            string sqlex = @"SELECT * FROM ";
             string sql = "SELECT " +
                 "           J.JobId AS Job, " +
                 "           CON.FirstName + ' ' + CON.LastName AS [Technician] ," +
@@ -71,63 +72,63 @@ namespace BIT_WebApplication.BLL
         public DataTable AllCompletedJobs()
         {
             string sql = "SELECT" +
-        "                   JobId, " +
-        "                   C.OrganisationName AS Client," +
-        "                   C.FirstName + ' ' + C.LastName AS [Contact Name]," +
-        "                   CON.FirstName + ' ' + CON.LastName AS Technician," +
-        "                   J.RequestedStartDate AS [Service Day]," +
-        "                   J.RequestedCompletionDate AS [Requested Completion]," +
-        "                   J.Description" +
-        "               FROM" +
-        "                   Job AS J," +
-        "                   Client AS C," +
-        "                   Contractor AS CON" +
-        "               WHERE" +
-        "                  C.ClientId = J.ClientId" +
-        "               AND" +
-        "                  J.ContractorId = CON.ContractorId" +
-        "               AND" +
-        "                  J.Status = 'Completed'" +
-        "               AND" +
-        "                  CON.ContractorId = @Contractor_Id";
-            SqlParameter[] objParams = new SqlParameter[1];
-            objParams[0] = new SqlParameter("@Contractor_Id", DbType.Int32);
-            objParams[0].Value = this._clientId;
-            DataTable completedJobs = _db.ExecuteSQL(sql, objParams);
+                         "                   JobId, " +
+                         "                   C.OrganisationName AS Client," +
+                         "                   C.FirstName + ' ' + C.LastName AS [Contact Name]," +
+                         "                   CON.FirstName + ' ' + CON.LastName AS Technician," +
+                         "                   J.RequestedStartDate AS [Service Day]," +
+                         "                   J.RequestedCompletionDate AS [Requested Completion]," +
+                         "                   J.Description" +
+                         "               FROM" +
+                         "                   Job AS J," +
+                         "                   Client AS C," +
+                         "                   Contractor AS CON" +
+                         "               WHERE" +
+                         "                  C.ClientId = J.ClientId" +
+                         "               AND" +
+                         "                  J.ContractorId = CON.ContractorId" +
+                         "               AND" +
+                         "                  J.Status = 'Completed'";
+        //SqlParameter[] objParams = new SqlParameter[1];
+        //    objParams[0] = new SqlParameter("@Contractor_Id", DbType.Int32);
+        //    objParams[0].Value = contractorId;
+            DataTable completedJobs = _db.ExecuteSQL(sql);
             return completedJobs;
         }
 
         public DataTable AllRejectedJobs()
         {
             string sql = "SELECT" +
-        "                   JobId, " +
+        "                   J.JobId, " +
         "                   C.OrganisationName AS Client," +
         "                   C.FirstName + ' ' + C.LastName AS [Contact Name]," +
         "                   CON.FirstName + ' ' + CON.LastName AS Technician," +
+        "                   R.Comment AS Reason," +
         "                   J.RequestedStartDate AS [Service Day]," +
         "                   J.RequestedCompletionDate AS [Requested Completion]," +
         "                   J.Description" +
         "               FROM" +
         "                   Job AS J," +
         "                   Client AS C," +
-        "                   Contractor AS CON" +
+        "                   Contractor AS CON," +
+        "                   RejectedJob AS R" +
         "               WHERE" +
         "                  C.ClientId = J.ClientId" +
         "               AND" +
         "                  J.ContractorId = CON.ContractorId" +
         "               AND" +
-        "                  J.Status = 'Completed'" +
+        "                  R.JobId = J.JobId" +
         "               AND" +
-        "                  CON.ContractorId = @Contractor_Id";
-            SqlParameter[] objParams = new SqlParameter[1];
-            objParams[0] = new SqlParameter("@Contractor_Id", DbType.Int32);
-            objParams[0].Value = this._clientId;
-            DataTable completedJobs = _db.ExecuteSQL(sql, objParams);
+        "                  J.Status = 'Rejected'";
+            //SqlParameter[] objParams = new SqlParameter[1];
+            //objParams[0] = new SqlParameter("@Contractor_Id", DbType.Int32);
+            //objParams[0].Value = this._clientId;
+            DataTable completedJobs = _db.ExecuteSQL(sql);
             return completedJobs;
         }
 
         public string InsertJob()
-        {//SESSION ID ALREADY PASSES CLIENT ID?
+        {
             string sql = "INSERT INTO JOB(" +
                     "       ClientId," +
                     "       Priority," +
@@ -135,7 +136,7 @@ namespace BIT_WebApplication.BLL
                     "       Description," +
                     "       RequestedStartDate," +
                     "       RequestedCompletionDate," +
-                    "       Staus)" +
+                    "       Status)" +
                 "     VALUES(" +
                     "       @Client_Id,    "        +
                     "       @Priority," +
@@ -164,6 +165,8 @@ namespace BIT_WebApplication.BLL
             }
             return "<script>('Some went wrong please try again')</script> ";
         }
+
+      
         #endregion Public Methodds
     }
 }
