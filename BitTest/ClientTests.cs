@@ -1,7 +1,7 @@
 ﻿using BIT_DesktopApp.Models;
 using BIT_DesktopApp.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
+
 using System;
 using System.Collections.ObjectModel;
 
@@ -78,6 +78,7 @@ namespace BitTest
                 Phone = "0477777777",
                 Email = "TimSecure@Cyber.com"
             });
+
             Mock<ClientViewModel> mockClientVM = new Mock<ClientViewModel>();
             mockClientVM.Setup(mc => mc.GetClients()).Returns(mockClients);
             int count = mockClientVM.Object.GetClients().Count;

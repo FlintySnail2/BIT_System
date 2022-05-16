@@ -36,10 +36,10 @@
                                                     CommandArgument ="<%#Container.DataItemIndex %>"/>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText ="Comment">
+                                        <asp:TemplateField HeaderText ="Update Status">
                                             <ItemTemplate>
                                                 <asp:DropDownList
-                                                    ID="txtComment" 
+                                                    ID="txtUpdateStatus" 
                                                     runat="server" 
                                                     Height="40px" 
                                                     Width="120px"
@@ -86,7 +86,7 @@
                                                         runat="server" 
                                                         Height="40px" 
                                                         Width="80px"
-                                                        Text="Complete" 
+                                                        Text="Reassign" 
                                                         CommandName="Reassign" 
                                                         />
                                                 </ItemTemplate>
@@ -158,7 +158,8 @@
                                     <asp:Button 
                                             CssClass="btn btn-success btn-block btn-lg login-btn"
                                             runat="server" 
-                                            Text="Submit"/>
+                                            Text="Submit"
+                                            OnClick="btnSearchContractor_Click"/>
                                 </center>
                             </div>
                         </div>
@@ -169,30 +170,19 @@
                                 </center>
                             </div>
                         </div>
-                    </div>
+                   
                         <div class="row">
                             <div class="col-12 mx-auto">
                                 <asp:GridView ID="gvSearchContractor" 
                                     CssClass="table table-striped table-bordered"
                                     runat="server"
-                                    OnRowCommand="gvAvailableSessions_RowCommand">
-                                    <Columns>
-                                        <asp:TemplateField HeaderText="Confirm">
-                                            <ItemTemplate>
-                                                <asp:Button 
-                                                    ID="btnConfirm" 
-                                                    runat="server" 
-                                                    Text="Confirm"
-                                                    CommandName="Select" 
-                                                    CommandArgument="<%#Container.DataItemIndex %>"/>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                    </Columns>
+                                    >
                                 </asp:GridView>
                             </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-  
+     </div>
 
 </asp:Content>

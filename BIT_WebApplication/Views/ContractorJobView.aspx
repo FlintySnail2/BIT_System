@@ -83,7 +83,7 @@
                             <div class="col-12 mx-auto">
                                 <asp:GridView ID="gvActiveJobs" 
                                     CssClass="table table-striped table-bordered"
-                                    runat="server" OnRowCommand="gvCompleteJob_RowCommand">
+                                    runat="server" />
                                     <Columns>
                                         <asp:TemplateField HeaderText ="Complete">
                                             <ItemTemplate>
@@ -94,19 +94,18 @@
                                                     Width="80px"
                                                     Text="Complete" 
                                                     CommandName="Complete" 
-                                                    CommandArgument ="<%#Container.DataItemIndex %>"/>
+                                                    />
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText ="Kilometres">
                                             <ItemTemplate>
-                                                <asp:TextBox 
+                                                <asp:TextBox
                                                     ID="txtKilometres" 
                                                     runat="server" 
                                                     Height="40px" 
                                                     Width="80px"
                                                     Text="" 
-                                                    CommandName="Kilometres"                                                     
-                                                    CommandArgument ="<%#Container.DataItemIndex %>"/>
+                                                    />
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText ="Comment">
@@ -122,7 +121,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>
-                                </asp:GridView>
+                                
                             </div>
                         </div>
                         </div>

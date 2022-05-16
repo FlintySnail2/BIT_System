@@ -11,6 +11,8 @@ namespace BIT_WebApplication.BLL
     public class Contractor
     {
         public int _contractorId { get; set; }
+        public string Skill { get; set; }
+        public string Availability { get; set; }
         
         private SQLHelper _db;
 
@@ -42,9 +44,9 @@ namespace BIT_WebApplication.BLL
                 "         AND" +
                 "           J.ContractorId = CON.ContractorId" +
                 "         AND" +
-                "           CON.ContractorId = @Contractor_Id" + //WORKS IN SQL WHEN THIS LINE IS REMOVED
+                "           CON.ContractorId = @Contractor_Id" + 
                 "         AND" +
-                "          J.Status LIKE '%Assigned%'"; //NOT EXECTUING CORRECTLY ???
+                "          J.Status LIKE '%Assigned%'"; 
             SqlParameter[] objParams = new SqlParameter[1];
             objParams[0] = new SqlParameter("@Contractor_Id", DbType.Int32);
             objParams[0].Value = this._contractorId;
@@ -81,6 +83,34 @@ namespace BIT_WebApplication.BLL
             objParams[0].Value = this._contractorId;
             DataTable contractorJobs = _db.ExecuteSQL(sql, objParams);
             return contractorJobs;
+        }
+
+        public DataTable QueryContractors(string skill, string availability)
+        {
+            string sql = "Select" +
+                         "           con.FirstName + ' ' + con.LastName As Technician," +
+                         "           a.Weekday as available," +
+                         "           cs.SkillTitle," +
+                         "           con.ContractorRating" +
+                         "          FROM" +
+                         "              Availability as a," +
+                         "               Contractor as con, " +
+                         "               ContractSkill as cs" +
+                         "          WHERE " +
+                         "             con.ContractorId = a.ContractorId" +
+                         "          and " +
+                         "              con.ContractorId = cs.ContractorId " +
+                         "          and " +
+                         "              con.AccountStatus = 'Active' " +
+                         "          ORDER BY" +
+                         "              con.ContractorRating Desc";
+            SqlParameter[] objParams = new SqlParameter[2];
+            objParams[0] = new SqlParameter("@ContractSkill", DbType.Int32);
+            objParams[0].Value = skill;
+            objParams[1] = new SqlParameter("@Availability", DbType.Int32);
+            objParams[1].Value = availability;
+            DataTable dt = _db.ExecuteSQL(sql, objParams);
+            return dt;
         }
 
         public int AcceptJob(int jobId)

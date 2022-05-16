@@ -4,7 +4,7 @@
 
        <link rel="stylesheet" href="../Styles/style.css" >
 
-       <script type="text/javascript">$(document).ready(function () { $('txtReqStartDate').datepicker(); });</script>
+       <%--<script type="text/javascript">$(document).ready(function () { $('txtReqStartDate').datepicker(); });</script>--%>
 
 <div class="container-fluid ">
     <div class ="row">
