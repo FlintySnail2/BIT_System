@@ -1,7 +1,7 @@
 ﻿using BIT_DesktopApp.Models;
 using BIT_DesktopApp.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+using Moq;
 using System;
 using System.Collections.ObjectModel;
 

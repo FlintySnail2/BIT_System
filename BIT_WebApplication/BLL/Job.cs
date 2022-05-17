@@ -43,24 +43,30 @@ namespace BIT_WebApplication.BLL
         {
             string sql = "SELECT " +
                 "           J.JobId AS Job, " +
-                "           CON.FirstName + ' ' + CON.LastName AS [Technician] ," +
+                "           CON.FirstName + ' ' + CON.LastName AS [Technician], " +
+                "           J.RequestedStartDate AS [Service Date]," +
                 "           CONVERT(NVARCHAR, J.RequestedStartDate, 6)  AS [Service Date], " + //Not applying convert
                 "           J.Description, " +
+                "           F.Comment AS Feedback," +
                 "           J.Priority, " +
-                "           J.Status" +
-                    " FROM  " +
-                    "       Client AS C, " +
-                    "       Job AS J,  " +
-                    "       Location AS L, " +
-                    "       Contractor AS CON" +
-                    " WHERE " +
-                    "       CON.ContractorId = J.ContractorId" +
-                    " AND " +
-                    "       C.ClientId = J.ClientId" +
-                    " AND " +
-                    "       C.ClientId = L.ClientId" +
-                    " AND " +
-                    "       C.ClientId = @Client_Id";
+                "             J.Status" +
+                "       FROM  " +
+                "             Client AS C, " +
+                "             Job AS J,  " +
+                "             Location AS L, " +
+                "             Contractor AS CON," +
+                "             Feedback AS F" +
+                "       WHERE " +
+                "             CON.ContractorId = J.ContractorId" +
+                "       AND " +
+                "             C.ClientId = J.ClientId" +
+                "       AND " +
+                "             C.ClientId = L.ClientId" +
+                "       AND" +
+                "             J.JobId = F.JobId " +
+                "       AND " +
+                "           C.ClientId = @Client_Id";
+
 
             SqlParameter[] objParams = new SqlParameter[1];
             objParams[0] = new SqlParameter("@Client_Id", DbType.Int32);
@@ -121,11 +127,10 @@ namespace BIT_WebApplication.BLL
                     "         AND" +
                     "           J.JobId = R.JobId" +
                     "         AND" +
-                    "           J.Status = 'Rejected'";
-            SqlParameter[] objParams = new SqlParameter[1];
-            objParams[0] = new SqlParameter("@Contractor_Id", DbType.Int32);
-            objParams[0].Value = this.ContractorId;
-            DataTable contractorJobs = _db.ExecuteSQL(sql, objParams);
+                    "           J.Status = 'Rejected'" +
+                    "         ORDER BY " +
+                    "           J.JobId ASC";
+            DataTable contractorJobs = _db.ExecuteSQL(sql);
             return contractorJobs;
         }
 

@@ -124,9 +124,9 @@ using System.Web;
                 "           Comment = @Comment" +
                 "         WHERE" +
                 "           JobId = @JobId";
-            SqlParameter[] objParams = new SqlParameter[1];
-            objParams[0] = new SqlParameter("@JobId", DbType.Int32);
-            objParams[0].Value = jobId;
+        SqlParameter[] objParams = new SqlParameter[1];
+        objParams[0] = new SqlParameter("@JobId", DbType.Int32);
+        objParams[0].Value = jobId;
         //objParams[1] = new SqlParameter("@Comment", DbType.Int32);
         //objParams[1].Value = comment;
         returnValue = _db.ExecuteNonQuery(sql, objParams);

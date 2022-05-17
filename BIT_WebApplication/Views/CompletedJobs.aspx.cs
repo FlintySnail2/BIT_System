@@ -92,7 +92,7 @@ namespace BIT_WebApplication.Views
                 AvailableContractor availableContract = new AvailableContractor();
                 availableContract.Availability = ddlAvailable.Text;
                 availableContract.Skill = ddlSkill.Text;
-                int returnValue = availableContract.GetAllAvailableContractors();
+               // int returnValue = availableContract.GetAllAvailableContractors();
             }
         }
 
