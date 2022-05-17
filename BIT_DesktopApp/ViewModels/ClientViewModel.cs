@@ -17,7 +17,7 @@ namespace BIT_DesktopApp.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
         private string _searchText;
         private RelayCommand _searchCommand;
-        private RelayCommand _updateCommand;
+        //private RelayCommand _updateCommand;
 
         #region Constructors
 
@@ -106,17 +106,16 @@ namespace BIT_DesktopApp.ViewModels
 
         //public void UpdateMethod()
         //{
-        //    int returnValue = SelectedClient.ChangePaymentStatus(SelectedPayment.PaymentStatusId);
+        //    int returnValue = SelectedClient.ChangeClientDetails(SelectedPayment.PaymentStatusId);
         //    if (returnValue > 0)
         //    {
         //        MessageBox.Show("Clients Details Successfully Updated");
         //    }
         //    else
         //    {
-        //        MessageBox.Show("Client details could not be updated, please try again");
+        //        MessageBox.Show("Client details could not be updated, please try again later");
         //    }
-        //    UpdateCompletedBookings();
-        //    UpdatePaymentRejectedBookings();
+      
         //}
 
         #endregion Methods

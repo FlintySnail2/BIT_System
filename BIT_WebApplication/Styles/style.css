@@ -13,14 +13,15 @@
 }
 
 /****** NAVBAR STYLING LOGO POSITION ******/
+
 .navbar-brand {
     margin-top: -10px;
     margin-right: 15px;
 }
 
 .navbar-styling {
-    background: rgba(0,0,0,0.75);
-    opacity: .75;
+    background: rgba(0,0,0,0.95);
+    opacity: .90;
 }
 
 /****** Background Image Styling ******/
@@ -70,78 +71,7 @@
         font-weight: bold;
     }
 
-
-.txt-field-user{
-    padding-top: 30px;
-}
-
-.txt-field-pass{
-    padding-top: 15px;
-    padding-bottom: 15px;
-}
-
-.login-btn {
-    background-color: #009eff;
-    border: #009eff;
-    border-radius: 3px;
-}
-
-.login-btn:hover {
-    background-color: rgba(0,158,255,.75);
-}
-
-/******* Contractor page styling **********/
-
-.login-btn-accept {
-    background-color: #009eff;
-    border: #009eff;
-    border-radius: 3px;
-}
-
-.login-btn:hover {
-    background-color: rgba(0,158,255,.75);
-}
-
-.login-btn-reject {
-    background-color: rgb(115,115,115);
-    border: red;
-    border-radius: 3px;
-}
-
-.login-btn-reject:hover {
-    background-color: rgba(115,115,115,.57);
-}
-
-
-
-
-
-/*****  Client Form *******/
-.login-clbtn {
-    background-color: #009eff;
-}
-
-    .login-clbtn:hover {
-        background-color: rgba(0,158,255,.75);
-    }
-
-.btn-pad{
-    padding:15px;
-}
-
-
-
-
-/***** Tables *****/
-
-.align-nav{
-    margin-left: auto;
-}
-
-
 /*--- --- TEXT FIELDS -------*/
-
-
 
 .field {
     position: relative;
@@ -169,77 +99,63 @@
     }
 
 .space {
-    margin-top: 16px;
+    
+    margin-top:30px;
 }
 
-.show {
-    position: absolute;
-    right: 13px;
-    font-size: 13px;
-    font-weight: 700;
-    color: #222;
-    display: none;
-    cursor: pointer;
-    font-family: 'Montserrat',sans-serif;
+.login-btn {
+    background-color: #009eff;
+    border: #009eff;
+    border-radius: 3px;
 }
 
-.pass-key:valid ~ .show {
-    display: block;
-}
-
-/* ------ BUTTON + PASSWORD FUNCTIONALITY --------*/
-
-.pass {
-    text-align: right;
-    margin: 10px 0;
-}
-
-    .pass a {
-        color: white;
-        text-decoration: none;
-        font-family: 'Poppins',sans-serif;
+    .login-btn:hover {
+        background-color: rgba(0,158,255,.75);
     }
 
-    .pass:hover a {
-        text-decoration: underline;
+/******* Contractor page styling **********/
+
+.login-btn-accept {
+    background-color: #009eff;
+    border: #009eff;
+    border-radius: 3px;
+}
+
+.login-btn:hover {
+    background-color: rgba(0,158,255,.75);
+}
+
+.login-btn-reject {
+    background-color: rgb(115,115,115);
+    border: red;
+    border-radius: 3px;
+}
+
+.login-btn-reject:hover {
+    background-color: rgba(115,115,115,.57);
+}
+
+/***************************/
+/*****  CLIENT FORM *******/
+/*************************/
+
+.submit-btn {
+    background-color: #009eff;
+    color:#fff;
+}
+
+    .submit-btn:hover {
+        background-color: rgba(0,158,255,.75);
     }
 
-.field input[type="submit"] {
-    background: #3498db;
-    border: 1px solid #2691d9;
-    color: white;
-    font-size: 18px;
-    letter-spacing: 1px;
-    font-weight: 600;
-    cursor: pointer;
-    font-family: 'Montserrat',sans-serif;
+.btn-pad{
+    padding:15px;
+    
 }
 
-    .field input[type="submit"]:hover {
-        background: #2691d9;
-    }
-
-.login {
-    color: white;
-    margin: 20px 0;
-    font-family: 'Poppins',sans-serif;
-}
-
-.links i {
-    font-size: 17px;
-}
-
-i span {
-    margin-left: 8px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    font-size: 16px;
-    font-family: 'Poppins',sans-serif;
-}
-
-
-/*--- HOME INFORMATION */
-
+/******************************/
+/***** HOME INFORMATION ******/
+/****************************/
 
 
 .Services-Container {

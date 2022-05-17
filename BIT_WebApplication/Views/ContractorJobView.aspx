@@ -16,9 +16,11 @@
                         </div>
                           <div class="row">
                             <div class="col-12 mx-auto">
-                                <asp:GridView ID="gvAssignedJobs" 
+                                <asp:GridView 
+                                    ID="gvAssignedJobs" 
                                     CssClass="table table-striped table-bordered"
-                                    runat="server" >
+                                    runat="server" 
+                                    OnRowCommand="gvAssignedJobs_RowCommand">
                                     <Columns>
                                         <asp:TemplateField HeaderText ="Accept Action">
                                             <ItemTemplate>
@@ -46,7 +48,7 @@
                                                     CommandArgument ="<%#Container.DataItemIndex %>"/>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText ="Comment">
+                                      <%--  <asp:TemplateField HeaderText ="Comment">
                                             <ItemTemplate>
                                                 <asp:TextBox 
                                                     ID="txtComment" 
@@ -57,7 +59,7 @@
                                                     CommandName="Comment"                                                     
                                                     CommandArgument ="<%#Container.DataItemIndex %>"/>
                                             </ItemTemplate>
-                                        </asp:TemplateField>
+                                        </asp:TemplateField>--%>
                                     </Columns>
                                 </asp:GridView>
                             </div>
@@ -67,66 +69,57 @@
                 </div>
             </div>
          </div>
-      <div class="container-fluid">
-        <div class ="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">                      
-                        <div class="row">
-                            <div class="col">
-                                 <center>
-                                    <h3> Active Jobs</h3>
-                                </center>
+         <div class="container-fluid">
+            <div class ="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">                      
+                            <div class="row">
+                                <div class="col">
+                                     <center>
+                                        <h3>Accepted Jobs</h3>
+                                    </center>
+                                </div>
                             </div>
-                        </div>
-                          <div class="row">
-                            <div class="col-12 mx-auto">
-                                <asp:GridView ID="gvActiveJobs" 
-                                    CssClass="table table-striped table-bordered"
-                                    runat="server" />
-                                    <Columns>
-                                        <asp:TemplateField HeaderText ="Complete">
-                                            <ItemTemplate>
-                                                <asp:Button 
-                                                    ID="btnComplete" 
-                                                    runat="server" 
-                                                    Height="40px" 
-                                                    Width="80px"
-                                                    Text="Complete" 
-                                                    CommandName="Complete" 
-                                                    />
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText ="Kilometres">
-                                            <ItemTemplate>
-                                                <asp:TextBox
-                                                    ID="txtKilometres" 
-                                                    runat="server" 
-                                                    Height="40px" 
-                                                    Width="80px"
-                                                    Text="" 
-                                                    />
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText ="Comment">
-                                            <ItemTemplate>
-                                                <asp:TextBox 
-                                                    ID="txtComment" 
-                                                    runat="server" 
-                                                    Height="40px" 
-                                                    Width="120px"
-                                                    Text=" " 
-                                                    CommandName="Comment"                                                     
-                                                    CommandArgument ="<%#Container.DataItemIndex %>"/>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                    </Columns>
-                                
+                              <div class="row">
+                                <div class="col-12 mx-auto">
+                                    <asp:GridView ID="gvAcceptedJobs" 
+                                        CssClass="table table-striped table-bordered"
+                                        runat="server" >
+                                        <Columns>
+                                            <asp:TemplateField HeaderText ="Accept Action">
+                                                <ItemTemplate>
+                                                    <asp:Button 
+                                                        ID="btnComplete" 
+                                                        runat="server" 
+                                                        Height="40px" 
+                                                        Width="80px"
+                                                        Text="Accept" 
+                                                        CommandName="Complete" 
+                                                        CssClass="login-btn-accept"                                                     
+                                                        CommandArgument ="<%#Container.DataItemIndex %>"/>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText ="Kilometres">
+                                                <ItemTemplate>
+                                                    <asp:TextBox 
+                                                        ID="txtKilometres" 
+                                                        runat="server" 
+                                                        Height="40px" 
+                                                        Width="120px"
+                                                        Text=" " 
+                                                        CommandName="Comment"                                                     
+                                                        CommandArgument ="<%#Container.DataItemIndex %>"/>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                    </asp:GridView>
+                                </div>
                             </div>
-                        </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-         </div>
+             </div>
+
 </asp:Content>

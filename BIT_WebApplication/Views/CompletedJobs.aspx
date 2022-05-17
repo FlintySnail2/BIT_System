@@ -22,33 +22,32 @@
                         <div class="col-12 mx-auto">
                             <asp:GridView ID="gvCompletedJobs" 
                                 CssClass="table thead thead-dark table-striped table-bordered table-embed-responsive"
-                                runat="server">
+                                runat="server"
+                                OnRowCommand="gvCompletedJobs_RowCommand">
                                 <Columns>
-                                        <asp:TemplateField HeaderText ="Complete">
+                                        <asp:TemplateField>
                                             <ItemTemplate>
                                                 <asp:Button 
-                                                    ID="btnComplete" 
+                                                    ID="btnVerified" 
                                                     runat="server" 
                                                     Height="40px" 
                                                     Width="80px"
-                                                    Text="Complete" 
-                                                    CommandName="Complete" 
+                                                    Text="Verfied" 
+                                                    CommandName="Verified" 
                                                     CommandArgument ="<%#Container.DataItemIndex %>"/>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText ="Update Status">
+                                          <asp:TemplateField>
                                             <ItemTemplate>
-                                                <asp:DropDownList
-                                                    ID="txtUpdateStatus" 
+                                                <asp:Button 
+                                                    ID="btnSendForPayment"
+                                                    CssClass="login-btn-reject"
                                                     runat="server" 
                                                     Height="40px" 
-                                                    Width="120px"
-                                                    CommandName="Comment"                                                     
-                                                    CommandArgument ="<%#Container.DataItemIndex %>">
-                                                        <asp:ListItem Value="Selected"/> 
-                                                        <asp:ListItem Value="Verfied"/>
-                                                        <asp:ListItem Value="Send For Payment"/>
-                                                    </asp:DropDownList>
+                                                    Width="150px"
+                                                    Text="Send For Payment" 
+                                                    CommandName="SendForPayment" 
+                                                    CommandArgument ="<%#Container.DataItemIndex %>"/>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>
@@ -78,20 +77,7 @@
                                     ID="gvRejectedJobs" 
                                     CssClass="table thead thead-dark table-striped table-bordered table-embed-responsive"
                                     runat="server">
-                                    <Columns>
-                                            <asp:TemplateField HeaderText ="Rejected Jobs">
-                                                <ItemTemplate>
-                                                    <asp:Button 
-                                                        ID="btnReAssign" 
-                                                        runat="server" 
-                                                        Height="40px" 
-                                                        Width="80px"
-                                                        Text="Reassign" 
-                                                        CommandName="Reassign" 
-                                                        />
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                        </Columns>
+
                                 </asp:GridView>
                             </div>
                         </div>
@@ -117,30 +103,26 @@
                             <div class="col-3">
                                 <label>Contractor Skills</label>
                                 <div class="form-group">
-                                    <asp:TextBox 
+                                    <asp:DropDownList 
                                         CssClass="form-control" 
-                                        ID="txtSkill" 
-                                        runat="server"
-                                        placeholder="<Placeholder>" />
+                                        ID="ddlSkill" 
+                                        runat="server">
+                                        <asp:ListItem Text="Select" Value="select" />
+                                        <asp:ListItem Text="C# Programmer" Value="C# Programmer" />
+                                         <asp:ListItem Text="Network Engineer" Value="Network Engineer" />
+                                         <asp:ListItem Text="System Analyst" Value="System Analyst" />
+                                         <asp:ListItem Text="UI Designer" Value="UI Designer" />
+                                         <asp:ListItem Text="UX Designer" Value="UX Designer" />
+                                         <asp:ListItem Text="Web Developer" Value="Web Developer" />
+                                    </asp:DropDownList>
                                 </div>
                             </div>
-                            </div>
-                        </div>
-                         <div class="row">
                             <div class="col-3">
-                                <label>Rating</label>
-                                <div class="form-group">
-                                    <asp:TextBox 
-                                        CssClass="form-control" 
-                                        ID="txtRating" 
-                                        runat="server"
-                                        placeholder="<Placeholder>" />
-                                </div>
-                            </div>
-                             <div class="col-3">
                                 <label>Availability</label>
                                 <div class="form-group">
-                                    <asp:DropDownList CssClass="form-control" ID="ddlAvailable" 
+                                    <asp:DropDownList 
+                                        CssClass="form-control" 
+                                        ID="ddlAvailable" 
                                         runat="server">
                                         <asp:ListItem Text="Select" Value="select" />
                                         <asp:ListItem Text="Monday" Value="Monday" />
@@ -151,26 +133,21 @@
                                     </asp:DropDownList>
                                 </div>
                             </div>
+                          </div>
                         </div>
+
                          <div class="row">
                             <div class="col-3 mr-auto ">
                                 <center>
                                     <asp:Button 
-                                            CssClass="btn btn-success btn-block btn-lg login-btn"
+                                            CssClass="btn btn-success btn-block btn-lg login-btn btn-pad"
                                             runat="server" 
                                             Text="Submit"
-                                            OnClick="btnSearchContractor_Click"/>
+                                            CommandName="Click"
+                                            OnRowCommand="gvAvailableContractor_RowCommand"/>
                                 </center>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-3 mx-auto">
-                                <center>
-                                    <h3>Query Appropriate Contractor</h3>
-                                </center>
-                            </div>
-                        </div>
-                   
                         <div class="row">
                             <div class="col-12 mx-auto">
                                 <asp:GridView ID="gvSearchContractor" 

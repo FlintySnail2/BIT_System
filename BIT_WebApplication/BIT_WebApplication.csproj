@@ -564,8 +564,10 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BLL\AvailableContractor.cs" />
     <Compile Include="BLL\Job.cs" />
     <Compile Include="BLL\Contractor.cs" />
+    <Compile Include="BLL\RejectedJobs.cs" />
     <Compile Include="BLL\User.cs" />
     <Compile Include="DAL\SQLHelper.cs" />
     <Compile Include="Global.asax.cs">

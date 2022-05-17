@@ -4,8 +4,6 @@
 
        <link rel="stylesheet" href="../Styles/style.css" >
 
-       <%--<script type="text/javascript">$(document).ready(function () { $('txtReqStartDate').datepicker(); });</script>--%>
-
 <div class="container-fluid ">
     <div class ="row">
         <div class="col-md-12 ">
@@ -82,16 +80,16 @@
                                                  ID="txtSkillReq" 
                                                  runat="server"
                                                  placeholder="<Placeholder>">
-
                                          <asp:ListItem Text="Select" Value="select" />
+                                        <asp:ListItem Text="C# Programmer" Value="C# Programmer" />
                                          <asp:ListItem Text="Network Engineer" Value="Network Engineer" />
-                                         <asp:ListItem Text="C# Programmer" Value="C# Programmer" />
+                                         <asp:ListItem Text="System Analyst" Value="System Analyst" />
+                                         <asp:ListItem Text="UI Designer" Value="UI Designer" />
+                                         <asp:ListItem Text="UX Designer" Value="UX Designer" />
                                          <asp:ListItem Text="Web Developer" Value="Web Developer" />
                                     </asp:DropDownList>
                            
-                        </div>
-                        
-                            
+                        </div>  
                         </div>
                         <div class="row">
                                 <div class="col-3">
@@ -136,7 +134,7 @@
                              <div class="row">
                             <div class="col-3 mr-auto btn-pad">
                                 <center>
-                                    <asp:Button CssClass="btn btn-success btn-block btn-lg login-clbtn"
+                                    <asp:Button CssClass="btn btn-block btn-lg submit-btn"
                                          runat="server" Text="Submit Request" ID="btnSubmitJob" OnClick="btnSubmitJob_Click" 
                                         />
                                 </center>

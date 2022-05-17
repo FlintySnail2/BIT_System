@@ -33,22 +33,13 @@ namespace BIT_WebApplication.Views
         protected global::System.Web.UI.WebControls.GridView gvRejectedJobs;
 
         /// <summary>
-        /// txtSkill control.
+        /// ddlSkill control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSkill;
-
-        /// <summary>
-        /// txtRating control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRating;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSkill;
 
         /// <summary>
         /// ddlAvailable control.

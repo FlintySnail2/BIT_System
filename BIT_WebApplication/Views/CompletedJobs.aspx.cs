@@ -24,7 +24,7 @@ namespace BIT_WebApplication.Views
                     logout.Visible = true;
 
                     Job allCompletedJobs = new Job();
-                    allCompletedJobs._staffId = Convert.ToInt32(Session["Staff_Id"].ToString());
+                    allCompletedJobs.StaffId = Convert.ToInt32(Session["Staff_Id"].ToString());
                     gvCompletedJobs.DataSource = allCompletedJobs.AllCompletedJobs().DefaultView;
                     gvRejectedJobs.DataSource = allCompletedJobs.AllRejectedJobs().DefaultView;
                     gvRejectedJobs.DataBind();
@@ -39,33 +39,62 @@ namespace BIT_WebApplication.Views
             }
 
         }
-        protected void gvSearchContractor_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            if (e.CommandName == "Search")
-           {
-             int rowIndex = Convert.ToInt32(e.CommandArgument);
-             //will retrieve the row for which the button has been clicked
-             GridViewRow row = gvSearchContractor.Rows[rowIndex];
-             Job newQuery = new Job();
-             newQuery.Skill = txtSkill.Text;
-             newQuery.WeekDay = ddlAvailable.Text;
-             newQuery.Rating = Convert.ToInt32(txtRating.Text.ToString());
-             newQuery._contractorId = Convert.ToInt32(Session["ContractorId"].ToString());
-            }
 
-        }
+            protected void gvCompletedJobs_RowCommand(object sender, GridViewCommandEventArgs e)
+            {
+                Job updateJobStatus = new Job();
+                updateJobStatus.JobId = Convert.ToInt32(Session["Staff_Id"].ToString());
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = gvCompletedJobs.Rows[rowIndex];
+                if (e.CommandName == "Verified")
+                {
+                    updateJobStatus.Verified(Convert.ToInt32(row.Cells[2].Text));    
+                }
+                else if (e.CommandName == "SendForPayment")
+                {
+                    updateJobStatus.SendForPayment(Convert.ToInt32(row.Cells[2].Text));
+                }
+                gvCompletedJobs.DataSource = updateJobStatus.AllCompletedJobs();
+                gvCompletedJobs.DataBind();
+            }
 
         protected void btnSearchContractor_Click(object sender, EventArgs e)
         {
-            string contractSkill = txtSkill.Text;
-            string availability = ddlAvailable.Text;
-            Contractor newContractor = new Contractor();
 
-            //CHECK QUERY AND LOOK AT FAST DRIVERS SESSIONS
-            newContractor.Skill = txtSkill.Text;
-            newContractor.Availability = ddlAvailable.Text;
-            DataTable show = newContractor.QueryContractors(txtSkill.Text,ddlAvailable.Text );
-            Response.Write(show);
+            if (ddlSkill.Text  == "" || ddlAvailable.Text == "")
+            {
+                Response.Write("<script>('There are no contractors available with these search parameters')<script>");
+            }
+            else
+            {
+                LoadGrid();
+            }
         }
+
+        private void LoadGrid()
+        {
+            AvailableContractor availableContractor = new AvailableContractor();
+            gvSearchContractor.DataSource = availableContractor.GetAllAvailableContractors(ddlAvailable.Text, ddlSkill.Text);
+            gvSearchContractor.DataBind();
+        }
+
+
+        protected void gvAvailableContractor_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            //AvailableContractor availableContractor = new AvailableContractor();
+            //availableContractor.ContractorId = Convert.ToInt32(Session["Staff_Id"].ToString());
+            //int rowIndex = Convert.ToInt32(e.CommandArgument);
+            //GridViewRow row = gvSearchContractor.Rows[rowIndex];
+            if (e.CommandName == "Click")
+            {
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = gvSearchContractor.Rows[rowIndex];
+                AvailableContractor availableContract = new AvailableContractor();
+                availableContract.Availability = ddlAvailable.Text;
+                availableContract.Skill = ddlSkill.Text;
+                int returnValue = availableContract.GetAllAvailableContractors();
+            }
+        }
+
     }
 }

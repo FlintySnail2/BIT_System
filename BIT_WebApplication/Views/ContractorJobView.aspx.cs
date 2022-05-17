@@ -21,55 +21,39 @@ namespace BIT_WebApplication.Views
                     logout.Visible = true;
 
                     Contractor currentContractor = new Contractor();
-                    currentContractor._contractorId = Convert.ToInt32(Session["Contractor_Id"].ToString());
-                    gvActiveJobs.DataSource = currentContractor.AllAcceptedJobs().DefaultView;
+                    currentContractor.ContractorId = Convert.ToInt32(Session["Contractor_Id"].ToString()); 
                     gvAssignedJobs.DataSource = currentContractor.AllAssignedJobs().DefaultView;
+                    gvAcceptedJobs.DataSource = currentContractor.AllAcceptedJobs().DefaultView;
                     gvAssignedJobs.DataBind();
-                    gvActiveJobs.DataBind();
+                    gvAcceptedJobs.DataBind();
                 }
                 else
                 {
                     Response.Redirect("Homepage.aspx");
                 }
             }
+
+
         }
 
-        //protected void gvAssignedJobs_RowCommand(object sender, GridViewCommandEventArgs e)
-        //{
-        //    Contractor currentContractor = new Contractor();
-        //    currentContractor._contractorId = Convert.ToInt32(Session["ContractorId"].ToString());
-        //    int rowIndex = Convert.ToInt32(e.CommandArgument);
-        //    GridViewRow row = gvAssignedJobs.Rows[rowIndex];
-        //    if (e.CommandName == "Accept")
-        //    {
-        //        currentContractor.AcceptJob(Convert.ToInt32(row.Cells[2].Text));
-        //    }
-        //    else if (e.CommandName == "Reject")
-        //    {
-        //        currentContractor.RejectJob(Convert.ToInt32(row.Cells[2].Text));
-        //    }
-        //    gvActiveJobs.DataSource = currentContractor.AllAcceptedJobs().DefaultView;
-        //    gvActiveJobs.DataBind();
+        protected void gvAssignedJobs_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            Contractor currentContractor = new Contractor();
+            currentContractor.ContractorId = Convert.ToInt32(Session["Contractor_Id"].ToString());
+            int rowIndex = Convert.ToInt32(e.CommandArgument);
+            GridViewRow row = gvAssignedJobs.Rows[rowIndex];
+            if (e.CommandName == "Accept")
+            {
+                currentContractor.AcceptJob(Convert.ToInt32(row.Cells[2].Text));
+            }
+            else if (e.CommandName == "Reject")
+            {
+                currentContractor.RejectJob(Convert.ToInt32(row.Cells[2].Text));
+            }
+            gvAssignedJobs.DataSource = currentContractor.AllAssignedJobs();
+            gvAssignedJobs.DataBind();
+        }
 
-
-        //}
-
-        //protected void gvCompleteJob_RowCommand(object sender, GridViewCommandEventArgs e)
-        //{
-        //    Contractor currentInstructor = new Contractor();
-        //    currentInstructor._contractorId = Convert.ToInt32(Session["InstructorId"].ToString());
-        //    int rowIndex = Convert.ToInt32(e.CommandArgument);
-        //    GridViewRow row = gvActiveJobs.Rows[rowIndex];
-        //    if (e.CommandName == "Complete")
-        //    {
-        //        int kilometres = Convert.ToInt32(((TextBox)row.FindControl("txtKilometres")).Text.Trim());
-        //        currentInstructor.CompleteJob(Convert.ToInt32(row.Cells[2].Text), kilometres);
-        //        gvActiveJobs.DataSource = currentInstructor.AllAcceptedJobs().DefaultView;
-        //        gvActiveJobs.DataBind();
-
-        //    }
-
-
-        //}
+  
     }
 }

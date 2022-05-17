@@ -26,7 +26,7 @@ namespace BIT_WebApplication.Views
 
 
                     Job currentClient = new Job();
-                    currentClient._clientId = Convert.ToInt32(Session["Client_Id"].ToString());
+                    currentClient.ClientId = Convert.ToInt32(Session["Client_Id"].ToString());
                     gvJobs.DataSource = currentClient.AllClientJobs().DefaultView;
                     gvJobs.DataBind();
 
@@ -45,12 +45,12 @@ namespace BIT_WebApplication.Views
             DateTime jobComp = DateTime.ParseExact(txtReqCompDate.Text.Trim(), "yyyy-mm-dd", null);
             Job newClientJob = new Job();
 
-            newClientJob._clientId = Convert.ToInt32(Session["Client_Id"].ToString());
-            newClientJob._priority = txtPriority.Text;
-            newClientJob._skillReq = txtSkillReq.Text;
-            newClientJob._description = txtDesc.Text;
-            newClientJob._startDate = Convert.ToDateTime(jobStart.ToString());
-            newClientJob._completionDate = Convert.ToDateTime(jobComp.ToString());
+            newClientJob.ClientId = Convert.ToInt32(Session["Client_Id"].ToString());
+            newClientJob.Priority = txtPriority.Text;
+            newClientJob.SkillReq = txtSkillReq.Text;
+            newClientJob.Description = txtDesc.Text;
+            newClientJob.StartDate = Convert.ToDateTime(jobStart.ToString());
+            newClientJob.CompletionDate = Convert.ToDateTime(jobComp.ToString());
                 
             string message = newClientJob.InsertJob();
             Response.Write(message);
