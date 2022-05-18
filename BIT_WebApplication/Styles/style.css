@@ -112,28 +112,31 @@
     .login-btn:hover {
         background-color: rgba(0,158,255,.75);
     }
+/*******************************************/
+/******* CONTRACTOR PAGE STYLING **********/
+/*****************************************/
 
-/******* Contractor page styling **********/
-
-.login-btn-accept {
+.accept-btn {
     background-color: #009eff;
     border: #009eff;
     border-radius: 3px;
+    color:#fff;
 }
 
-.login-btn:hover {
+.accept-btn:hover {
     background-color: rgba(0,158,255,.75);
 }
 
-.login-btn-reject {
-    background-color: rgb(115,115,115);
+.reject-btn {
+    background-color: rgb(255,0,0);
     border: red;
     border-radius: 3px;
+    color:#fff;
 }
 
-.login-btn-reject:hover {
-    background-color: rgba(115,115,115,.57);
-}
+    .reject-btn:hover {
+        background-color: rgba(255,0,0,.57);
+    }
 
 /***************************/
 /*****  CLIENT FORM *******/
@@ -152,6 +155,31 @@
     padding:15px;
     
 }
+
+/***************************/
+/*****  STAFF FORM *******/
+/*************************/
+
+.verified-btn {
+    background-color: #009eff;
+    border: #009eff;
+    color: #fff;
+}
+
+    .verified-btn:hover {
+        background-color: rgba(0,158,255,.75);
+    }
+
+.payment-btn {
+    background-color: #339933;
+    border: #339933;
+    border-radius: 3px;
+    color: #fff;
+}
+
+    .payment-btn:hover {
+        background-color: rgba(51,153,51,.75);
+    }
 
 /******************************/
 /***** HOME INFORMATION ******/

@@ -44,16 +44,32 @@ namespace BIT_WebApplication.Views
             GridViewRow row = gvAssignedJobs.Rows[rowIndex];
             if (e.CommandName == "Accept")
             {
-                currentContractor.AcceptJob(Convert.ToInt32(row.Cells[2].Text));
+                currentContractor.AcceptJob(Convert.ToInt32(row.Cells[3].Text));
             }
             else if (e.CommandName == "Reject")
             {
-                currentContractor.RejectJob(Convert.ToInt32(row.Cells[2].Text));
+                currentContractor.RejectJob(Convert.ToInt32(row.Cells[3].Text),row.Cells[2].Text);
             }
             gvAssignedJobs.DataSource = currentContractor.AllAssignedJobs();
             gvAssignedJobs.DataBind();
         }
 
-  
+
+
+        protected void gvAcceptedJobs_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            Contractor currentContractor = new Contractor();
+            currentContractor.ContractorId = Convert.ToInt32(Session["Contractor_Id"].ToString());
+            int rowIndex = Convert.ToInt32(e.CommandArgument);
+            GridViewRow row = gvAcceptedJobs.Rows[rowIndex];
+            if (e.CommandName == "Complete")
+            {
+                currentContractor.CompleteJob(Convert.ToInt32(row.Cells[2].Text), row.Cells[3].ToString());
+            }
+           
+        }
+
+
+
     }
 }

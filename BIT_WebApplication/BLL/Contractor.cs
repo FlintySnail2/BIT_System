@@ -34,8 +34,8 @@ using System.Web;
                 "            C.OrganisationName AS Client," +
                 "            C.FirstName + ' ' + C.LastName AS [Contact Name]," +
                 "            C.Phone," +
-                "            J.RequestedStartDate AS [Service Day]," +
-                "            J.RequestedCompletionDate AS [Requested Completion]," +
+                "            CONVERT(NVARCHAR, J.RequestedStartDate, 6)  AS [Service Date]," +
+                "            CONVERT(NVARCHAR, J.RequestedCompletionDate, 6) AS [Requested Completion]," +
                 "            J.Priority," +
                 "            J.Description" +
                 "         FROM" +
@@ -68,9 +68,8 @@ using System.Web;
                     "            J.JobId," +
                     "            C.OrganisationName AS Client," +
                     "            C.FirstName + ' ' + C.LastName AS [Contact Name]," +
-                    "            CON.FirstName + ' ' + CON.LastName AS Contractor," +
-                    "            J.RequestedStartDate AS [Service Day]," +
-                    "            J.RequestedCompletionDate AS [Requested Completion]," +
+                    "            CONVERT(NVARCHAR, J.RequestedStartDate, 6)  AS [Service Date]," +
+                    "            CONVERT(NVARCHAR, J.RequestedCompletionDate, 6) AS [Requested Completion]," +
                     "            J.Status," +
                     "            J.Description" +
                     "         FROM" +
@@ -108,27 +107,31 @@ using System.Web;
             return returnValue;
         }
 
-        public int RejectJob(int jobId)
+        public int RejectJob(int jobId, string comment)
         {
             int returnValue = 0;
-            string sql = "UPDATE" +
-                "               Job" +
-                "         SET" +
-                "           Status = 'Rejected'" +
-                "         WHERE" +
-                "           JobId = @JobId" +
-                "       " +
-                "         UPDATE" +
-                "               RejectedJob" +
-                "         SET" +
-                "           Comment = @Comment" +
-                "         WHERE" +
-                "           JobId = @JobId";
-        SqlParameter[] objParams = new SqlParameter[1];
+        string sql = "UPDATE" +
+            "               Job" +
+            "         SET" +
+            "           Status = 'Rejected'" +
+            "         WHERE" +
+            "           JobId = @JobId" +
+            "       " +
+            "         INSERT INTO  RejectedJob(" +
+            "              JobId," +
+            "              ContractorId, " +
+            "              Comment)" +
+            "         VALUES(" +
+            "           @JobId," +
+            "           @ContractorId," +
+            "           @Comment)";
+        SqlParameter[] objParams = new SqlParameter[3];
         objParams[0] = new SqlParameter("@JobId", DbType.Int32);
         objParams[0].Value = jobId;
-        //objParams[1] = new SqlParameter("@Comment", DbType.Int32);
-        //objParams[1].Value = comment;
+        objParams[1] = new SqlParameter("@ContractorId",DbType.Int32);
+        objParams[1].Value = ContractorId;
+        objParams[2] = new SqlParameter("@Comment", DbType.String);
+        objParams[2].Value = comment;
         returnValue = _db.ExecuteNonQuery(sql, objParams);
         return returnValue;
 

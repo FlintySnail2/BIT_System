@@ -15,13 +15,22 @@ namespace BIT_WebApplication.Views
     {
 
         /// <summary>
-        /// gvCompletedJobs control.
+        /// gvRequestedJobs control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvCompletedJobs;
+        protected global::System.Web.UI.WebControls.GridView gvRequestedJobs;
+
+        /// <summary>
+        /// gvAvailableContractors control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvAvailableContractors;
 
         /// <summary>
         /// gvRejectedJobs control.
@@ -33,30 +42,12 @@ namespace BIT_WebApplication.Views
         protected global::System.Web.UI.WebControls.GridView gvRejectedJobs;
 
         /// <summary>
-        /// ddlSkill control.
+        /// gvCompletedJobs control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSkill;
-
-        /// <summary>
-        /// ddlAvailable control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlAvailable;
-
-        /// <summary>
-        /// gvSearchContractor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvSearchContractor;
+        protected global::System.Web.UI.WebControls.GridView gvCompletedJobs;
     }
 }

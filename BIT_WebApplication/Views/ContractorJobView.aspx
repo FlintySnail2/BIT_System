@@ -22,7 +22,7 @@
                                     runat="server" 
                                     OnRowCommand="gvAssignedJobs_RowCommand">
                                     <Columns>
-                                        <asp:TemplateField HeaderText ="Accept Action">
+                                        <asp:TemplateField HeaderText ="Accept">
                                             <ItemTemplate>
                                                 <asp:Button 
                                                     ID="btnAccept" 
@@ -31,7 +31,7 @@
                                                     Width="80px"
                                                     Text="Accept" 
                                                     CommandName="Accept" 
-                                                    CssClass="login-btn-accept"                                                     
+                                                    CssClass="accept-btn"                                                     
                                                     CommandArgument ="<%#Container.DataItemIndex %>"/>
                                             </ItemTemplate>
                                         </asp:TemplateField>
@@ -39,7 +39,7 @@
                                             <ItemTemplate>
                                                 <asp:Button 
                                                     ID="btnReject"
-                                                    CssClass="login-btn-reject"
+                                                    CssClass="reject-btn"
                                                     runat="server" 
                                                     Height="40px" 
                                                     Width="80px"
@@ -48,7 +48,7 @@
                                                     CommandArgument ="<%#Container.DataItemIndex %>"/>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                      <%--  <asp:TemplateField HeaderText ="Comment">
+                                        <asp:TemplateField HeaderText ="Comment">
                                             <ItemTemplate>
                                                 <asp:TextBox 
                                                     ID="txtComment" 
@@ -59,7 +59,7 @@
                                                     CommandName="Comment"                                                     
                                                     CommandArgument ="<%#Container.DataItemIndex %>"/>
                                             </ItemTemplate>
-                                        </asp:TemplateField>--%>
+                                        </asp:TemplateField>
                                     </Columns>
                                 </asp:GridView>
                             </div>
@@ -87,16 +87,16 @@
                                         CssClass="table table-striped table-bordered"
                                         runat="server" >
                                         <Columns>
-                                            <asp:TemplateField HeaderText ="Accept Action">
+                                            <asp:TemplateField HeaderText ="Complete">
                                                 <ItemTemplate>
                                                     <asp:Button 
                                                         ID="btnComplete" 
                                                         runat="server" 
                                                         Height="40px" 
                                                         Width="80px"
-                                                        Text="Accept" 
+                                                        Text="Complete" 
                                                         CommandName="Complete" 
-                                                        CssClass="login-btn-accept"                                                     
+                                                        CssClass="accept-btn"                                                     
                                                         CommandArgument ="<%#Container.DataItemIndex %>"/>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
@@ -104,6 +104,18 @@
                                                 <ItemTemplate>
                                                     <asp:TextBox 
                                                         ID="txtKilometres" 
+                                                        runat="server" 
+                                                        Height="40px" 
+                                                        Width="120px"
+                                                        Text=" " 
+                                                        CommandName="Comment"                                                     
+                                                        CommandArgument ="<%#Container.DataItemIndex %>"/>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                             <asp:TemplateField HeaderText ="Comment">
+                                                <ItemTemplate>
+                                                    <asp:TextBox 
+                                                        ID="txtComment" 
                                                         runat="server" 
                                                         Height="40px" 
                                                         Width="120px"

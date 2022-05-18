@@ -27,10 +27,12 @@ namespace BIT_WebApplication.Views
                     allCompletedJobs.StaffId = Convert.ToInt32(Session["Staff_Id"].ToString());
                     gvCompletedJobs.DataSource = allCompletedJobs.AllCompletedJobs().DefaultView;
                     gvRejectedJobs.DataSource = allCompletedJobs.AllRejectedJobs().DefaultView;
+                    gvAvailableContractors.DataSource = allCompletedJobs.AvailableContractors().DefaultView;
+                    gvRequestedJobs.DataSource = allCompletedJobs.AllRequestedJobs().DefaultView; 
                     gvRejectedJobs.DataBind();
                     gvCompletedJobs.DataBind();
-
-
+                    gvAvailableContractors.DataBind();
+                    gvRequestedJobs.DataBind();
                 }
                 else
                 {
@@ -58,43 +60,10 @@ namespace BIT_WebApplication.Views
                 gvCompletedJobs.DataBind();
             }
 
-        protected void btnSearchContractor_Click(object sender, EventArgs e)
-        {
-
-            if (ddlSkill.Text  == "" || ddlAvailable.Text == "")
-            {
-                Response.Write("<script>('There are no contractors available with these search parameters')<script>");
-            }
-            else
-            {
-                LoadGrid();
-            }
-        }
-
-        private void LoadGrid()
-        {
-            AvailableContractor availableContractor = new AvailableContractor();
-            gvSearchContractor.DataSource = availableContractor.GetAllAvailableContractors(ddlAvailable.Text, ddlSkill.Text);
-            gvSearchContractor.DataBind();
-        }
+ 
 
 
-        protected void gvAvailableContractor_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            //AvailableContractor availableContractor = new AvailableContractor();
-            //availableContractor.ContractorId = Convert.ToInt32(Session["Staff_Id"].ToString());
-            //int rowIndex = Convert.ToInt32(e.CommandArgument);
-            //GridViewRow row = gvSearchContractor.Rows[rowIndex];
-            if (e.CommandName == "Click")
-            {
-                int rowIndex = Convert.ToInt32(e.CommandArgument);
-                GridViewRow row = gvSearchContractor.Rows[rowIndex];
-                AvailableContractor availableContract = new AvailableContractor();
-                availableContract.Availability = ddlAvailable.Text;
-                availableContract.Skill = ddlSkill.Text;
-               // int returnValue = availableContract.GetAllAvailableContractors();
-            }
-        }
+     
 
     }
 }

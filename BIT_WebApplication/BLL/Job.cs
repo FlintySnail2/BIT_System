@@ -41,11 +41,11 @@ namespace BIT_WebApplication.BLL
         #region Public Methods
         public DataTable AllClientJobs()
         {
+            //CALL CONCAT WITH REGION FOR SELECTED VALUE
             string sql = "SELECT " +
                 "           J.JobId AS Job, " +
                 "           CON.FirstName + ' ' + CON.LastName AS [Technician], " +
-                "           J.RequestedStartDate AS [Service Date]," +
-                "           CONVERT(NVARCHAR, J.RequestedStartDate, 6)  AS [Service Date], " + //Not applying convert
+                "           CONVERT(NVARCHAR, J.RequestedStartDate, 6)  AS [Service Date], " + 
                 "           J.Description, " +
                 "           F.Comment AS Feedback," +
                 "           J.Priority, " +
@@ -75,6 +75,51 @@ namespace BIT_WebApplication.BLL
             return jobs;
         }
 
+        public DataTable AllRequestedJobs()
+        {
+            string sql = "SELECT" +
+                    "            JobId," +
+                    "            C.OrganisationName AS Client," +
+                    "            C.FirstName + ' ' + C.LastName AS [Contact Name]," +
+                    "            CONVERT(NVARCHAR, J.RequestedStartDate, 6) AS [Service Day]," +
+                    "            CONVERT(NVARCHAR, J.RequestedCompletionDate, 6) AS [Requested Completion]," +
+                    "            J.Status," +
+                    "            J.Description" +
+                    "         FROM" +
+                    "           Job AS J," +
+                    "           Client AS C" +      
+                    "         WHERE" +
+                    "           C.ClientId = J.ClientId" +
+                    "         AND" +
+                    "           J.Status = 'Pending'";
+            DataTable dt = _db.ExecuteSQL(sql);
+            return dt;
+        }
+        
+
+        public DataTable AvailableContractors()
+        {
+            string sql = "SELECT" +
+                     "       CON.FirstName + ' ' + CON.LastName AS Contractor," +
+                     "       CS.SkillTitle AS Skill," +
+                     "       A.Weekday AS Availability," +
+                     "       CON.ContractorRating " +
+                     "   FROM " +
+                     "       Contractor AS CON," +
+                     "       Availability AS A," +
+                     "       ContractSkill AS CS" +
+                     "   WHERE" +
+                     "       CON.ContractorId = CS.ContractorId" +
+                     "   AND" +
+                     "       CON.ContractorId = A.ContractorId" +
+                     "   AND" +
+                     "       A.Weekday IS NOT NULL" +
+                     "   ORDER BY" +
+                     "       CON.ContractorRating DESC";
+            DataTable dt = _db.ExecuteSQL(sql);
+            return dt;
+        }
+
         public DataTable AllCompletedJobs()
         {
             string sql = "SELECT" +
@@ -82,8 +127,8 @@ namespace BIT_WebApplication.BLL
                     "            C.OrganisationName AS Client," +
                     "            C.FirstName + ' ' + C.LastName AS [Contact Name]," +
                     "            CON.FirstName + ' ' + CON.LastName AS Contractor," +
-                    "            J.RequestedStartDate AS [Service Day]," +
-                    "            J.RequestedCompletionDate AS [Requested Completion]," +
+                    "            CONVERT(NVARCHAR, J.RequestedStartDate, 6) AS [Service Day]," +
+                    "            CONVERT(NVARCHAR, J.RequestedCompletionDate, 6) AS [Requested Completion]," +
                     "            J.Status," +
                     "            J.Description" +
                     "         FROM" +
@@ -111,8 +156,8 @@ namespace BIT_WebApplication.BLL
                     "            C.FirstName + ' ' + C.LastName AS [Contact Name]," +
                     "            CON.FirstName + ' ' + CON.LastName AS Contractor," +
                     "            R.Comment AS Reason," +
-                    "            J.RequestedStartDate AS [Service Day]," +
-                    "            J.RequestedCompletionDate AS [Requested Completion]," +
+                    "            CONVERT(NVARCHAR ,J.RequestedStartDate, 6) AS [Service Day]," +
+                    "            CONVERT(NVARCHAR, J.RequestedCompletionDate, 6) AS [Requested Completion]," +
                     "            J.Status," +
                     "            J.Description" +
                     "         FROM" +
@@ -135,9 +180,12 @@ namespace BIT_WebApplication.BLL
         }
 
         public string InsertJob()
-        {
-            string sql = "INSERT INTO JOB(" +
+        {      
+            //
+            string sql =
+                    "       INSERT INTO JOB(" +
                     "       ClientId," +
+                    "       Region," +
                     "       Priority," +
                     "       SkillTitle," +
                     "       Description," +
@@ -145,28 +193,31 @@ namespace BIT_WebApplication.BLL
                     "       RequestedCompletionDate," +
                     "       Status)" +
                 "     VALUES(" +
-                    "       @Client_Id,    " +
+                    "       @Client_Id," +
+                    "       @Region,    " +
                     "       @Priority," +
                     "       @SkillTitle," +
                     "       @Description," +
                     "       @StartDate," +
                     "       @CompletionDate," +
-                    "       'Requested')";
+                    "       'Pending')";
                     
             //INSERT REGION NAME INTO ABOVE QUERY (ANOTHER TABLE)
-            SqlParameter[] objParams = new SqlParameter[6];
-            objParams[0] = new SqlParameter("@Priority", DbType.String);
-            objParams[0].Value = this.Priority;
-            objParams[1] = new SqlParameter("@SkillTitle", DbType.String);
-            objParams[1].Value = this.SkillReq;
-            objParams[2] = new SqlParameter("@Description", DbType.String);
-            objParams[2].Value = this.Description;
-            objParams[3] = new SqlParameter("@StartDate", DbType.String);
-            objParams[3].Value = this.StartDate;
-            objParams[4] = new SqlParameter("@CompletionDate", DbType.String);
-            objParams[4].Value = this.CompletionDate;
-            objParams[5] = new SqlParameter("@Client_Id", DbType.String);
-            objParams[5].Value = this.ClientId;
+            SqlParameter[] objParams = new SqlParameter[7];
+            objParams[0] = new SqlParameter("@Region",DbType.String);
+            objParams[0].Value = Region;
+            objParams[1] = new SqlParameter("@Priority", DbType.String);
+            objParams[1].Value = this.Priority;
+            objParams[2] = new SqlParameter("@SkillTitle", DbType.String);
+            objParams[2].Value = this.SkillReq;
+            objParams[3] = new SqlParameter("@Description", DbType.String);
+            objParams[3].Value = this.Description;
+            objParams[4] = new SqlParameter("@StartDate", DbType.String);
+            objParams[4].Value = this.StartDate;
+            objParams[5] = new SqlParameter("@CompletionDate", DbType.String);
+            objParams[5].Value = this.CompletionDate;
+            objParams[6] = new SqlParameter("@Client_Id", DbType.Int32);
+            objParams[6].Value = this.ClientId;
             int rowsAffected = _db.ExecuteNonQuery(sql, objParams);
             if (rowsAffected >= -1)
             {

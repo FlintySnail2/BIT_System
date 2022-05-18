@@ -48,7 +48,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-3">
                                 <label> Contact Name</label>
                                 <div class="form-group">
                                     <asp:TextBox CssClass="form-control" 
@@ -57,6 +57,20 @@
                                                  placeholder="<Place Holder>" />
                                 </div>
                             </div>
+                             <div class="col-3">
+                                    <label>Location</label>
+                                 <asp:DropDownList CssClass="form-control" 
+                                                 ID="ddlRegion" 
+                                                 runat="server"
+                                                 placeholder="<Placeholder>">
+                                         <asp:ListItem Text="Select" Value="select" />
+                                         <asp:ListItem Text="North Sydney" Value="North Sydney" /> 
+                                         <asp:ListItem Text="Eastern Sydney" Value="Eastern Sydney" />
+                                         <asp:ListItem Text="Western Sydney" Value="Western Sydney" />
+                                         <asp:ListItem Text="South Sydney" Value="South Sydney" />
+                                </asp:DropDownList>
+                           
+                        </div>  
                         </div>
                         <div class="row">
                             <div class="col-3">
@@ -65,8 +79,7 @@
                                     <asp:DropDownList CssClass="form-control" 
                                                  ID="txtPriority" 
                                                  runat="server"
-                                                 placeholder="<Placeholder>" 
-                                                 >
+                                                 placeholder="<Placeholder>">
                                          <asp:ListItem Text="Select" Value="select" />
                                          <asp:ListItem Text="High" Value="High" />
                                          <asp:ListItem Text="Medium" Value="Medium" />

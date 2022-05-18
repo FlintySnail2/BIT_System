@@ -28,7 +28,9 @@ namespace BIT_WebApplication.Views
                     Job currentClient = new Job();
                     currentClient.ClientId = Convert.ToInt32(Session["Client_Id"].ToString());
                     gvJobs.DataSource = currentClient.AllClientJobs().DefaultView;
+                    //DDL = SELECTED BLAH BLAH
                     gvJobs.DataBind();
+                    //REGIONS NEEDS TO BE DISPLAYED
 
                 }
                 else
@@ -46,6 +48,7 @@ namespace BIT_WebApplication.Views
             Job newClientJob = new Job();
 
             newClientJob.ClientId = Convert.ToInt32(Session["Client_Id"].ToString());
+            newClientJob.Region = ddlRegion.Text; //THINK ABOUT HARDCODING VS FULL ADDRESS
             newClientJob.Priority = txtPriority.Text;
             newClientJob.SkillReq = txtSkillReq.Text;
             newClientJob.Description = txtDesc.Text;
