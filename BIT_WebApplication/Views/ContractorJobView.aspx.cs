@@ -19,13 +19,10 @@ namespace BIT_WebApplication.Views
                 {
                     LinkButton logout = (LinkButton)Master.FindControl("lbtnLogout");
                     logout.Visible = true;
-
                     Contractor currentContractor = new Contractor();
-                    currentContractor.ContractorId = Convert.ToInt32(Session["Contractor_Id"].ToString()); 
-                    gvAssignedJobs.DataSource = currentContractor.AllAssignedJobs().DefaultView;
-                    gvAcceptedJobs.DataSource = currentContractor.AllAcceptedJobs().DefaultView;
-                    gvAssignedJobs.DataBind();
-                    gvAcceptedJobs.DataBind();
+                    currentContractor.ContractorId = Convert.ToInt32(Session["Contractor_Id"].ToString());
+                    RefreshGrid(currentContractor);
+                    
                 }
                 else
                 {
@@ -36,22 +33,30 @@ namespace BIT_WebApplication.Views
 
         }
 
+        private void RefreshGrid(Contractor currentContractor)
+        {
+            gvAssignedJobs.DataSource = currentContractor.AllAssignedJobs().DefaultView;
+            gvAcceptedJobs.DataSource = currentContractor.AllAcceptedJobs().DefaultView;
+            gvAssignedJobs.DataBind();
+            gvAcceptedJobs.DataBind();
+        }
+
         protected void gvAssignedJobs_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             Contractor currentContractor = new Contractor();
             currentContractor.ContractorId = Convert.ToInt32(Session["Contractor_Id"].ToString());
             int rowIndex = Convert.ToInt32(e.CommandArgument);
             GridViewRow row = gvAssignedJobs.Rows[rowIndex];
+            TextBox textbox = (TextBox)(row.Cells[2].FindControl("txtComment"));
             if (e.CommandName == "Accept")
             {
                 currentContractor.AcceptJob(Convert.ToInt32(row.Cells[3].Text));
             }
             else if (e.CommandName == "Reject")
             {
-                currentContractor.RejectJob(Convert.ToInt32(row.Cells[3].Text),row.Cells[2].Text);
+                currentContractor.RejectJob(Convert.ToInt32(row.Cells[3].Text),textbox.Text);
             }
-            gvAssignedJobs.DataSource = currentContractor.AllAssignedJobs();
-            gvAssignedJobs.DataBind();
+            RefreshGrid(currentContractor);
         }
 
 
@@ -62,14 +67,19 @@ namespace BIT_WebApplication.Views
             currentContractor.ContractorId = Convert.ToInt32(Session["Contractor_Id"].ToString());
             int rowIndex = Convert.ToInt32(e.CommandArgument);
             GridViewRow row = gvAcceptedJobs.Rows[rowIndex];
+            TextBox txtKilometres = (TextBox)(row.Cells[1].FindControl(("txtKilometres")));
+            TextBox txtHours = (TextBox)(row.Cells[2].FindControl(("txtHours")));
+            TextBox txtFeedBack = (TextBox)(row.Cells[3].FindControl("txtFeedBack"));
             if (e.CommandName == "Complete")
             {
-                currentContractor.CompleteJob(Convert.ToInt32(row.Cells[2].Text), row.Cells[3].ToString());
+             currentContractor.CompleteJob(Convert.ToInt32(Convert.ToInt32(row.Cells[4].Text)),Convert.ToInt32(txtKilometres.Text),Convert.ToDecimal(txtHours.Text), txtFeedBack.Text);
             }
-           
+            RefreshGrid(currentContractor);
+
         }
 
 
 
     }
+
 }

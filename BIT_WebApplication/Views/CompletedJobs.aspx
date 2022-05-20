@@ -48,6 +48,9 @@
             </div>
         </div>
     </div>  
+    
+    
+
 <div class="container-fluid ">
     <div class ="row">
         <div class="col-md-12 ">
@@ -74,7 +77,7 @@
                                                     CssClass="verified-btn"
                                                     Height="40px" 
                                                     Width="150px"
-                                                    Text="FindContractor" 
+                                                    Text="Assign" 
                                                     CommandName="Verified" 
                                                     CommandArgument ="<%#Container.DataItemIndex %>"/>
                                             </ItemTemplate>
@@ -88,6 +91,9 @@
             </div>
         </div>
     </div>
+    
+    
+
       <div class="container-fluid ">
         <div class ="row">
             <div class="col-md-12 ">
@@ -101,26 +107,12 @@
                             </div>
                         </div>
                             <div class="row">
-                            <div class="col-12 mx-auto">
+                            <div class="col-12 mx-auto thead-dark">
                                 <asp:GridView 
                                     ID="gvRejectedJobs" 
-                                    CssClass="table thead thead-dark table-striped table-bordered table-embed-responsive"
-                                    runat="server">
-                                    <Columns>
-                                         <asp:TemplateField>
-                                                <ItemTemplate>
-                                                    <asp:Button 
-                                                        ID="btnVerified" 
-                                                        runat="server"
-                                                        CssClass="verified-btn"
-                                                        Height="40px" 
-                                                        Width="80px"
-                                                        Text="Re-Assign" 
-                                                        CommandName="Verified" 
-                                                        CommandArgument ="<%#Container.DataItemIndex %>"/>
-                                                </ItemTemplate>
-                                        </asp:TemplateField>
-                                    </Columns>
+                                    CssClass="table  table-striped table-bordered table-embed-responsive"
+                                    runat="server" OnRowCommand="gvRejectedJobs_OnRowCommand">
+                                    
                                 </asp:GridView>
                             </div>
                         </div>

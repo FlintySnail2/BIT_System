@@ -27,7 +27,7 @@ namespace BIT_WebApplication.Views
                     allCompletedJobs.StaffId = Convert.ToInt32(Session["Staff_Id"].ToString());
                     gvCompletedJobs.DataSource = allCompletedJobs.AllCompletedJobs().DefaultView;
                     gvRejectedJobs.DataSource = allCompletedJobs.AllRejectedJobs().DefaultView;
-                    gvAvailableContractors.DataSource = allCompletedJobs.AvailableContractors().DefaultView;
+                  //  gvAvailableContractors.DataSource = allCompletedJobs.AvailableContractors().DefaultView;
                     gvRequestedJobs.DataSource = allCompletedJobs.AllRequestedJobs().DefaultView; 
                     gvRejectedJobs.DataBind();
                     gvCompletedJobs.DataBind();
@@ -55,15 +55,26 @@ namespace BIT_WebApplication.Views
                 else if (e.CommandName == "SendForPayment")
                 {
                     updateJobStatus.SendForPayment(Convert.ToInt32(row.Cells[2].Text));
+                    //
                 }
                 gvCompletedJobs.DataSource = updateJobStatus.AllCompletedJobs();
                 gvCompletedJobs.DataBind();
             }
 
- 
 
+            protected void gvRejectedJobs_OnRowCommand(object sender, GridViewCommandEventArgs e)
+            {
+                Job reassignJob = new Job();
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = gvRejectedJobs.Rows[rowIndex];
+                int JobId = Convert.ToInt32(row.Cells[1].Text);
+                string skill = row.Cells[2].Text;
+                DateTime completionDate = Convert.ToDateTime(row.Cells[7].Text);
+                if (e.CommandName == "ReAssign")
+                {
+                     reassignJob.AvailableContractors(JobId, skill, completionDate);
 
-     
-
+                }
+            }
     }
 }

@@ -85,7 +85,8 @@
                                 <div class="col-12 mx-auto">
                                     <asp:GridView ID="gvAcceptedJobs" 
                                         CssClass="table table-striped table-bordered"
-                                        runat="server" >
+                                        runat="server"
+                                        OnRowCommand="gvAcceptedJobs_RowCommand">
                                         <Columns>
                                             <asp:TemplateField HeaderText ="Complete">
                                                 <ItemTemplate>
@@ -107,20 +108,29 @@
                                                         runat="server" 
                                                         Height="40px" 
                                                         Width="120px"
-                                                        Text=" " 
-                                                        CommandName="Comment"                                                     
+                                                        Text=" "
+                                                        CommandArgument ="<%#Container.DataItemIndex %>"/>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText ="Hours On Job">
+                                                <ItemTemplate>
+                                                    <asp:TextBox 
+                                                        ID="txtHours" 
+                                                        runat="server" 
+                                                        Height="40px" 
+                                                        Width="120px"
+                                                        Text=" "
                                                         CommandArgument ="<%#Container.DataItemIndex %>"/>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                              <asp:TemplateField HeaderText ="Comment">
                                                 <ItemTemplate>
                                                     <asp:TextBox 
-                                                        ID="txtComment" 
+                                                        ID="txtFeedBack" 
                                                         runat="server" 
                                                         Height="40px" 
                                                         Width="120px"
-                                                        Text=" " 
-                                                        CommandName="Comment"                                                     
+                                                        Text=" "
                                                         CommandArgument ="<%#Container.DataItemIndex %>"/>
                                                 </ItemTemplate>
                                             </asp:TemplateField>

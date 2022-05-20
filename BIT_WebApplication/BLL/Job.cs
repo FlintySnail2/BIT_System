@@ -97,27 +97,36 @@ namespace BIT_WebApplication.BLL
         }
         
 
-        public DataTable AvailableContractors()
+        public DataTable AvailableContractors(int jobId,string skill,DateTime completionDate)
         {
             string sql = "SELECT" +
-                     "       CON.FirstName + ' ' + CON.LastName AS Contractor," +
-                     "       CS.SkillTitle AS Skill," +
-                     "       A.Weekday AS Availability," +
-                     "       CON.ContractorRating " +
-                     "   FROM " +
-                     "       Contractor AS CON," +
-                     "       Availability AS A," +
-                     "       ContractSkill AS CS" +
-                     "   WHERE" +
-                     "       CON.ContractorId = CS.ContractorId" +
-                     "   AND" +
-                     "       CON.ContractorId = A.ContractorId" +
-                     "   AND" +
-                     "       A.Weekday IS NOT NULL" +
-                     "   ORDER BY" +
-                     "       CON.ContractorRating DESC";
-            DataTable dt = _db.ExecuteSQL(sql);
-            return dt;
+                           " C.FirstName,"+
+                           " CS.SkillTitle,"+
+                           " J.RequestedCompletionDate,"+
+                           " C.ContractorRating"+
+                    "     FROM"+
+                            " Contractor AS C," +
+                        "     ContractSkill AS CS," +
+                        "     Availability AS A," +
+                        "     Job AS J" +
+                        " WHERE" +
+                            " C.ContractorId = CS.ContractorId" +
+                        " AND" +
+                            " C.ContractorId = A.ContractorId" +
+                      
+                "         AND" +
+                            " CS.SkillTitle = @skill" +
+                        " AND" +
+                        "    J.RequestedCompletionDate = @CompletionDate   ";
+            SqlParameter[] objParams = new SqlParameter[3];
+            objParams[0] = new SqlParameter("@JobId", DbType.Int32);
+            objParams[0].Value = jobId;
+            objParams[1] = new SqlParameter("@SkillTitle", DbType.String);
+            objParams[1].Value = skill;
+            objParams[2] = new SqlParameter("@CompletionDate", DbType.DateTime);
+            objParams[2].Value = completionDate;
+            DataTable availableContractors = _db.ExecuteSQL(sql);
+            return availableContractors;
         }
 
         public DataTable AllCompletedJobs()
@@ -158,15 +167,18 @@ namespace BIT_WebApplication.BLL
                     "            R.Comment AS Reason," +
                     "            CONVERT(NVARCHAR ,J.RequestedStartDate, 6) AS [Service Day]," +
                     "            CONVERT(NVARCHAR, J.RequestedCompletionDate, 6) AS [Requested Completion]," +
-                    "            J.Status," +
+                    "            CS.SkillTitle," +
                     "            J.Description" +
                     "         FROM" +
                     "           Job AS J," +
                     "           Client AS C," +
                     "           Contractor AS CON," +
+                    "           ContractSkill AS CS," +
                     "           RejectedJob AS R" +
                     "         WHERE" +
                     "           C.ClientId = J.ClientId" +
+                    "         AND" +
+                    "           CON.ContractorId = CS.ContractorId" +
                     "         AND" +
                     "           J.ContractorId = CON.ContractorId" +
                     "         AND" +
