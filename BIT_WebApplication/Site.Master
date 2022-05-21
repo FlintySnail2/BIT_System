@@ -30,10 +30,34 @@
                 <!-- NAVIGATION -->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                       <ul class="navbar-nav ml-auto">
+                          <li class="nav-time active">
+                            <asp:LinkButton 
+                                CssClass="nav-link navbar-nav ml-auto" 
+                                ID="lbtnAllCompletedJobs" 
+                                Visible="false" runat="server" 
+                                OnClick="lbtnAllCompletedJobs_Click">
+                                Completed Jobs
+                            </asp:LinkButton>
+                        </li>
+
+                          <li class="nav-time active">
+                            <asp:LinkButton 
+                                CssClass="nav-link navbar-nav ml-auto-auto" 
+                                ID="lbtnAllRejectedJobs" 
+                                Visible="false" 
+                                runat="server" 
+                                OnClick="lbtnAllRejectedJobs_Click">
+                                Rejected Jobs
+                            </asp:LinkButton>
+                        </li>
                  
                          <li class="nav-link">
-                            <asp:LinkButton CssClass="nav-link navbar-nav ml-auto" ID="lbtnLogout" 
-                               Visible="false" runat="server" OnClick="lbtnLogout_Click">
+                            <asp:LinkButton 
+                                CssClass="nav-link navbar-nav ml-auto" 
+                                ID="lbtnLogout" 
+                                Visible="false" 
+                                runat="server" 
+                                OnClick="lbtnLogout_Click">
                                 Logout
                             </asp:LinkButton>
                         </li>

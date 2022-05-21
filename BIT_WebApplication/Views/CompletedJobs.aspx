@@ -29,13 +29,13 @@
                                         <asp:TemplateField>
                                             <ItemTemplate>
                                                 <asp:Button 
-                                                    ID="btnVerified" 
+                                                    ID="btnAssign" 
                                                     runat="server"
                                                     CssClass="payment-btn"
                                                     Height="40px" 
                                                     Width="80px"
                                                     Text="Assign" 
-                                                    CommandName="Verified" 
+                                                    CommandName="Assign" 
                                                     CommandArgument ="<%#Container.DataItemIndex %>"/>
                                             </ItemTemplate>
                                         </asp:TemplateField>
@@ -48,9 +48,6 @@
             </div>
         </div>
     </div>  
-    
-    
-
 <div class="container-fluid ">
     <div class ="row">
         <div class="col-md-12 ">
@@ -91,36 +88,6 @@
             </div>
         </div>
     </div>
-    
-    
-
-      <div class="container-fluid ">
-        <div class ="row">
-            <div class="col-md-12 ">
-                <div class="card ">
-                    <div class="card-body">                      
-                        <div class="row">
-                            <div class="col">
-                                    <center>
-                                    <h3>Rejected Jobs</h3>
-                                </center>
-                            </div>
-                        </div>
-                            <div class="row">
-                            <div class="col-12 mx-auto thead-dark">
-                                <asp:GridView 
-                                    ID="gvRejectedJobs" 
-                                    CssClass="table  table-striped table-bordered table-embed-responsive"
-                                    runat="server" OnRowCommand="gvRejectedJobs_OnRowCommand">
-                                    
-                                </asp:GridView>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
      <div class="container-fluid ">
     <div class ="row">
         <div class="col-md-12 ">
@@ -148,7 +115,7 @@
                                                     CssClass="verified-btn"
                                                     Height="40px" 
                                                     Width="80px"
-                                                    Text="Verfied" 
+                                                    Text="Verified" 
                                                     CommandName="Verified" 
                                                     CommandArgument ="<%#Container.DataItemIndex %>"/>
                                             </ItemTemplate>

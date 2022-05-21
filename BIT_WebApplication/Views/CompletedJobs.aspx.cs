@@ -21,17 +21,15 @@ namespace BIT_WebApplication.Views
                 {
 
                     LinkButton logout = (LinkButton)Master.FindControl("lbtnLogout");
+                    LinkButton rejectedJobs = (LinkButton)Master.FindControl("lbtnAllRejectedJobs");
                     logout.Visible = true;
+                    rejectedJobs.Visible = true;
 
                     Job allCompletedJobs = new Job();
                     allCompletedJobs.StaffId = Convert.ToInt32(Session["Staff_Id"].ToString());
-                    gvCompletedJobs.DataSource = allCompletedJobs.AllCompletedJobs().DefaultView;
-                    gvRejectedJobs.DataSource = allCompletedJobs.AllRejectedJobs().DefaultView;
-                  //  gvAvailableContractors.DataSource = allCompletedJobs.AvailableContractors().DefaultView;
+                    gvCompletedJobs.DataSource = allCompletedJobs.AllCompletedJobs().DefaultView; 
                     gvRequestedJobs.DataSource = allCompletedJobs.AllRequestedJobs().DefaultView; 
-                    gvRejectedJobs.DataBind();
                     gvCompletedJobs.DataBind();
-                    gvAvailableContractors.DataBind();
                     gvRequestedJobs.DataBind();
                 }
                 else
@@ -42,39 +40,28 @@ namespace BIT_WebApplication.Views
 
         }
 
-            protected void gvCompletedJobs_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected void gvCompletedJobs_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            Job updateJobStatus = new Job();
+            updateJobStatus.JobId = Convert.ToInt32(Session["Staff_Id"].ToString());
+            int rowIndex = Convert.ToInt32(e.CommandArgument);
+            GridViewRow row = gvCompletedJobs.Rows[rowIndex];
+            if (e.CommandName == "Verified")
             {
-                Job updateJobStatus = new Job();
-                updateJobStatus.JobId = Convert.ToInt32(Session["Staff_Id"].ToString());
-                int rowIndex = Convert.ToInt32(e.CommandArgument);
-                GridViewRow row = gvCompletedJobs.Rows[rowIndex];
-                if (e.CommandName == "Verified")
-                {
-                    updateJobStatus.Verified(Convert.ToInt32(row.Cells[2].Text));    
-                }
-                else if (e.CommandName == "SendForPayment")
-                {
-                    updateJobStatus.SendForPayment(Convert.ToInt32(row.Cells[2].Text));
-                    //
-                }
-                gvCompletedJobs.DataSource = updateJobStatus.AllCompletedJobs();
-                gvCompletedJobs.DataBind();
+                updateJobStatus.Verified(Convert.ToInt32(row.Cells[2].Text));    
             }
-
-
-            protected void gvRejectedJobs_OnRowCommand(object sender, GridViewCommandEventArgs e)
+            else if (e.CommandName == "SendForPayment")
             {
-                Job reassignJob = new Job();
-                int rowIndex = Convert.ToInt32(e.CommandArgument);
-                GridViewRow row = gvRejectedJobs.Rows[rowIndex];
-                int JobId = Convert.ToInt32(row.Cells[1].Text);
-                string skill = row.Cells[2].Text;
-                DateTime completionDate = Convert.ToDateTime(row.Cells[7].Text);
-                if (e.CommandName == "ReAssign")
-                {
-                     reassignJob.AvailableContractors(JobId, skill, completionDate);
-
-                }
+                updateJobStatus.SendForPayment(Convert.ToInt32(row.Cells[2].Text));
+                   
             }
+            gvCompletedJobs.DataSource = updateJobStatus.AllCompletedJobs();
+            gvCompletedJobs.DataBind();
+        }
+
+
+
+
+         
     }
 }

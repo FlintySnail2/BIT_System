@@ -41,11 +41,11 @@
                              Foreground="White"
                              Background="Transparent"
                              BorderThickness="0"
-                             Width="235"
+                             Width="225"
                              HorizontalContentAlignment="Left"
                              Opacity="0.5"
                              Height="25"
-                             Margin="63,0,0,0"/>
+                             Margin="80,0,0,0"/>
                     
                     <iconPacks:PackIconMaterial Kind="AccountBox"
                                                 HorizontalAlignment="Center"
@@ -68,11 +68,11 @@
                              Foreground="White"
                              Background="Transparent"
                              BorderThickness="0"
-                             Width="235"
+                             Width="225"
                              HorizontalContentAlignment="Left"
                              Opacity="0.5"
                              Height="25"
-                             Margin="63,0,0,0"/>
+                             Margin="80,0,0,0"/>
                     
                     <iconPacks:PackIconMaterial Kind="FormTextboxPassword" 
                                                 VerticalAlignment="Center" 

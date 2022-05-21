@@ -11,17 +11,17 @@ namespace BIT_WebApplication.Views
 {
 
 
-    public partial class CompletedJobs
+    public partial class RejectedJobs
     {
 
         /// <summary>
-        /// gvRequestedJobs control.
+        /// gvRejectedJobs control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvRequestedJobs;
+        protected global::System.Web.UI.WebControls.GridView gvRejectedJobs;
 
         /// <summary>
         /// gvAvailableContractors control.
@@ -31,14 +31,5 @@ namespace BIT_WebApplication.Views
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvAvailableContractors;
-
-        /// <summary>
-        /// gvCompletedJobs control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvCompletedJobs;
     }
 }

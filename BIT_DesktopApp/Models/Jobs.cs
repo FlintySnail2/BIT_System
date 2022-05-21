@@ -36,7 +36,8 @@ namespace BIT_DesktopApp.Models
                 "       WHERE" +
                 "           J.ClientId = C.ClientId" +
                 "       AND J.Region = L.Region" +
-                "       AND J.Status = S.status";
+                "       AND J.Status = S.status" +
+                "       AND J.Status = 'Completed'";
 
             DataTable datatable = _db.ExecuteSQL(sql);
             foreach (DataRow dr in datatable.Rows)

@@ -547,6 +547,7 @@
     <Content Include="Views\CompletedJobs.aspx" />
     <Content Include="Views\ContractorJobView.aspx" />
     <Content Include="Views\Homepage.aspx" />
+    <Content Include="Views\RejectedJobs.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Scripts\umd\popper.min.js.map" />
@@ -563,7 +564,6 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="BLL\AvailableContractor.cs" />
     <Compile Include="BLL\Job.cs" />
     <Compile Include="BLL\Contractor.cs" />
     <Compile Include="BLL\RejectedJobs.cs" />
@@ -614,6 +614,13 @@
     </Compile>
     <Compile Include="Views\Homepage.aspx.designer.cs">
       <DependentUpon>Homepage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RejectedJobs.aspx.cs">
+      <DependentUpon>RejectedJobs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\RejectedJobs.aspx.designer.cs">
+      <DependentUpon>RejectedJobs.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

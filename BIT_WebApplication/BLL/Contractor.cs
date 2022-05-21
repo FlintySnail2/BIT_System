@@ -34,8 +34,8 @@ using System.Web;
                 "            C.OrganisationName AS Client," +
                 "            C.FirstName + ' ' + C.LastName AS [Contact Name]," +
                 "            C.Phone," +
-                "            CONVERT(NVARCHAR, J.RequestedStartDate, 6)  AS [Service Date]," +
                 "            CONVERT(NVARCHAR, J.RequestedCompletionDate, 6) AS [Requested Completion]," +
+                "            J.SkillTitle AS [Skill Required]," +
                 "            J.Priority," +
                 "            J.Description" +
                 "         FROM" +
@@ -68,8 +68,8 @@ using System.Web;
                     "            J.JobId," +
                     "            C.OrganisationName AS Client," +
                     "            C.FirstName + ' ' + C.LastName AS [Contact Name]," +
-                    "            CONVERT(NVARCHAR, J.RequestedStartDate, 6)  AS [Service Date]," +
                     "            CONVERT(NVARCHAR, J.RequestedCompletionDate, 6) AS [Requested Completion]," +
+                    "            J.SkillTitle AS [Skill Required]," +
                     "            J.Status," +
                     "            J.Description" +
                     "         FROM" +
@@ -81,7 +81,9 @@ using System.Web;
                     "         AND" +
                     "           J.ContractorId = CON.ContractorId" +
                     "         AND" +
-                    "           J.Status = 'Accepted'";
+                    "           J.Status = 'Accepted'" +
+                    "         AND" +
+                    "           CON.ContractorId = @Contractor_Id";
             SqlParameter[] objParams = new SqlParameter[1];
             objParams[0] = new SqlParameter("@Contractor_Id", DbType.Int32);
             objParams[0].Value = this.ContractorId;
@@ -178,27 +180,8 @@ using System.Web;
         returnValue = _db.ExecuteNonQuery(insertSql, objParams2);
         return returnValue;
     }
-
-        public int FinaliseJob(int jobId, string updateStatus)
-        {
-            int returnValue = 0;
-            string sql = "UPDATE" +
-                "               Job" +
-                "           SET" +
-                "               Status = @UpdateStatus" +
-                "           WHERE" +
-                "               JobId = @JobId";
-            SqlParameter[] objParmas = new SqlParameter[2];
-            objParmas[0] = new SqlParameter("@JobId",DbType.Int32);
-            objParmas [0].Value = jobId;
-            objParmas[1] = new SqlParameter("@UpdateStatus",DbType.String);
-            objParmas [1].Value = updateStatus;
-            returnValue = _db.ExecuteNonQuery(sql, objParmas);
-            return returnValue;
-        }
-
         #endregion Public Methods
-    }
+}
 
    
 

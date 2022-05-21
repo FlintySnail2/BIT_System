@@ -14,15 +14,15 @@ namespace BIT_WebApplication
             lblCopyrightYear.Text = DateTime.Today.Year.ToString();
         }
 
-        //protected void lbtnClient_Click(object sender, EventArgs e)
-        //{
-        //    Response.Redirect("ClientJobView.aspx");
-        //}
+        protected void lbtnAllCompletedJobs_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("CompletedJobs.aspx");
+        }
 
-        //protected void lbtnStaff_Click(object sender, EventArgs e)
-        //{
-        //    Response.Redirect("StaffJobView.aspx");
-        //}
+        protected void lbtnAllRejectedJobs_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("RejectedJobs.aspx");
+        }
 
         protected void lbtnLogout_Click(object sender, EventArgs e)
         {

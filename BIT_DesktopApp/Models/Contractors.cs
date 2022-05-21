@@ -18,12 +18,12 @@ namespace BIT_DesktopApp.Models
         public Contractors()
         {
             _db = new SQLHelper();
-            string sql = "SELECT" +
+            string sql = "SELECT DISTINCT" +
                 "           C.ContractorId," +
                 "           C.FirstName + ' ' + C.LastName AS ContractorName," +
                 "           C.Dob," +
                 "           C.Street + ' ' + C.Suburb + ', ' + C.State + ', ' + CAST(C.Zip AS NVARCHAR) AS Address," +
-                "           A.Weekday AS Availability," +
+                "           A.AvailabilityDate AS Availability," +
                 "           C.Phone," +
                 "           C.Email,    " +
                 "           CS.SkillTitle," +         
@@ -39,9 +39,6 @@ namespace BIT_DesktopApp.Models
                 "           C.ContractorId = A.ContractorId" +
                 "       AND" +
                 "           C.ContractorId =  CS.ContractorId";
-
-            Debug.Print(sql);
-
             DataTable datatable = _db.ExecuteSQL(sql);
             foreach (DataRow dr in datatable.Rows)
             {
@@ -61,10 +58,10 @@ namespace BIT_DesktopApp.Models
                 "               C.Contractor_Rating," +
                 "               S.SkillTitle" +
                 "           FROM" +
-                "               Skill AS S," +
+                "               ContractSkill AS S," +
                 "               Contractor AS C" +
                 "           WHERE" +
-                "               S.SkillTitle = C.SkillTitle" +
+                "               S.ContractorId = C.ContractorId" +
                 "           AND     " +
                 "               C.FirstName LIKE '%" + searchText + "%' " +
                 "           AND" +

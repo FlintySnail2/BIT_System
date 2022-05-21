@@ -67,12 +67,6 @@ namespace BIT_DesktopApp.ViewModels
                 OnPropertyChanged("SelectedContractor");
                 ContractorSkills allSkills = new ContractorSkills(SelectedContractor.ContractorId);
                 this.ContractorSkills = new ObservableCollection<ContractorSkill>(allSkills);
-
-        //TEST CASE FOR CONSTRACT_SKILL DATAGRID
-            //    foreach (ContractorSkill CS in allSkills)
-            //    {
-            //        MessageBox.Show(CS.Skill);
-            //    }
             }
         }
 
@@ -125,18 +119,18 @@ namespace BIT_DesktopApp.ViewModels
 
         public ContractorViewModel()
         {
-            //Contractors allContractors = new Contractors();
-            //this.Contractors = new ObservableCollection<Contractor>(allContractors);
-            this.ContractorSkill = new ContractorSkill();
-            GetContractors();
-
-        }
-
-        public virtual ObservableCollection<Contractor> GetContractors()
-        {
             Contractors allContractors = new Contractors();
-            return new ObservableCollection<Contractor>(allContractors);
+            this.Contractors = new ObservableCollection<Contractor>(allContractors);
+            this.ContractorSkill = new ContractorSkill();
+            //GetContractors();
+
         }
+
+        //public virtual ObservableCollection<Contractor> GetContractors()
+        //{
+        //    Contractors allContractors = new Contractors();
+        //    return new ObservableCollection<Contractor>(allContractors);
+        //}
 
     }
 }

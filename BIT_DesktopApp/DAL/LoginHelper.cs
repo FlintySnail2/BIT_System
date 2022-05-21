@@ -11,11 +11,11 @@ namespace BIT_DesktopApp.Models
 {
     public class LoginHelper
     {
-        public static bool IsCoordinator(string userName, string password)
+        public static bool IsCoordinator(string email, string password)
         {
             SQLHelper db = new SQLHelper();
             string sql = "SELECT" +
-                "           StaffType_Role" +
+                "           StaffType" +
                 "       FROM " +
                 "           Staff" +
                 "       WHERE" +
@@ -24,11 +24,11 @@ namespace BIT_DesktopApp.Models
                 "           Password = @Password";
             SqlParameter[] objParams = new SqlParameter[2];
             objParams[0] = new SqlParameter("@username", DbType.String);
-            objParams[0].Value = userName;
+            objParams[0].Value = email;
             objParams[1] = new SqlParameter("@Password", DbType.String);
             objParams[1].Value = password;
             DataTable dt = db.ExecuteSQL(sql, objParams);
-            string userType = dt.Rows[0][0].ToString();
+            string userType = dt.Rows[0][0].ToString();  //What if null
             if (userType == "Coordinator")
             {
                 return true;
@@ -36,13 +36,20 @@ namespace BIT_DesktopApp.Models
             return false;
         }
 
-        public static bool IsAdmin(string userName, string password)
+        public static bool IsAdmin(string email, string password)
         {
-            string sql = " select staffType from Staff where username = @Username and password = @Password ";
+            string sql = "SELECT " +
+                "               StaffType " +
+                "        FROM " +
+                "           Staff " +
+                "        WHERE " +
+                "           Email = @Username " +
+                "        AND" +
+                "           Password = @Password ";
             SQLHelper db = new SQLHelper();
             SqlParameter[] objParams = new SqlParameter[2];
             objParams[0] = new SqlParameter("@username", DbType.String);
-            objParams[0].Value = userName;
+            objParams[0].Value = email;
             objParams[1] = new SqlParameter("@Password", DbType.String);
             objParams[1].Value = password;
             DataTable dt = db.ExecuteSQL(sql, objParams);

@@ -78,10 +78,9 @@ namespace BIT_WebApplication.BLL
         public DataTable AllRequestedJobs()
         {
             string sql = "SELECT" +
-                    "            JobId," +
+                    "            J.JobId," +
                     "            C.OrganisationName AS Client," +
                     "            C.FirstName + ' ' + C.LastName AS [Contact Name]," +
-                    "            CONVERT(NVARCHAR, J.RequestedStartDate, 6) AS [Service Day]," +
                     "            CONVERT(NVARCHAR, J.RequestedCompletionDate, 6) AS [Requested Completion]," +
                     "            J.Status," +
                     "            J.Description" +
@@ -100,6 +99,7 @@ namespace BIT_WebApplication.BLL
         public DataTable AvailableContractors(int jobId,string skill,DateTime completionDate)
         {
             string sql = "SELECT" +
+                           " J.JobId," +
                            " C.FirstName,"+
                            " CS.SkillTitle,"+
                            " J.RequestedCompletionDate,"+
@@ -107,13 +107,13 @@ namespace BIT_WebApplication.BLL
                     "     FROM"+
                             " Contractor AS C," +
                         "     ContractSkill AS CS," +
-                        "     Availability AS A," +
                         "     Job AS J" +
                         " WHERE" +
                             " C.ContractorId = CS.ContractorId" +
                         " AND" +
-                            " C.ContractorId = A.ContractorId" +
-                      
+                        "     C.ContractorId = J.ContractorId" +
+                        " AND" +
+                        "     J.JobId = @JobId" +
                 "         AND" +
                             " CS.SkillTitle = @skill" +
                         " AND" +
@@ -121,18 +121,18 @@ namespace BIT_WebApplication.BLL
             SqlParameter[] objParams = new SqlParameter[3];
             objParams[0] = new SqlParameter("@JobId", DbType.Int32);
             objParams[0].Value = jobId;
-            objParams[1] = new SqlParameter("@SkillTitle", DbType.String);
+            objParams[1] = new SqlParameter("@Skill", DbType.String);
             objParams[1].Value = skill;
             objParams[2] = new SqlParameter("@CompletionDate", DbType.DateTime);
             objParams[2].Value = completionDate;
-            DataTable availableContractors = _db.ExecuteSQL(sql);
+            DataTable availableContractors = _db.ExecuteSQL(sql, objParams);
             return availableContractors;
         }
 
         public DataTable AllCompletedJobs()
         {
             string sql = "SELECT" +
-                    "            JobId," +
+                    "            J.JobId," +
                     "            C.OrganisationName AS Client," +
                     "            C.FirstName + ' ' + C.LastName AS [Contact Name]," +
                     "            CON.FirstName + ' ' + CON.LastName AS Contractor," +
@@ -165,20 +165,17 @@ namespace BIT_WebApplication.BLL
                     "            C.FirstName + ' ' + C.LastName AS [Contact Name]," +
                     "            CON.FirstName + ' ' + CON.LastName AS Contractor," +
                     "            R.Comment AS Reason," +
-                    "            CONVERT(NVARCHAR ,J.RequestedStartDate, 6) AS [Service Day]," +
+                    "            J.SkillTitle AS [Skill Required]," +
+                    "            CONVERT(NVARCHAR, J.RequestedStartDate, 6) AS [Requested Start]," +
                     "            CONVERT(NVARCHAR, J.RequestedCompletionDate, 6) AS [Requested Completion]," +
-                    "            CS.SkillTitle," +
                     "            J.Description" +
                     "         FROM" +
                     "           Job AS J," +
                     "           Client AS C," +
                     "           Contractor AS CON," +
-                    "           ContractSkill AS CS," +
                     "           RejectedJob AS R" +
                     "         WHERE" +
                     "           C.ClientId = J.ClientId" +
-                    "         AND" +
-                    "           CON.ContractorId = CS.ContractorId" +
                     "         AND" +
                     "           J.ContractorId = CON.ContractorId" +
                     "         AND" +
