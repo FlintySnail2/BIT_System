@@ -33,12 +33,12 @@ namespace BIT_WebApplication.Views
             if (clientId > 0)
             {
                 Session.Add("Client_Id", clientId);
-                Response.Redirect("ClientJobView.aspx");
+                Response.Redirect("NewJobRequest.aspx");
             }
             else if (contractorId > 0)
             {
                 Session.Add("Contractor_Id", contractorId);
-                Response.Redirect("ContractorJobView.aspx");
+                Response.Redirect("AssignedJobs.aspx");
             }
             else if (staffId > 0)
             {

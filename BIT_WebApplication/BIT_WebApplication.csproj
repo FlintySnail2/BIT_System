@@ -543,11 +543,15 @@
     <Content Include="Site.Master" />
     <Content Include="Styles\style.css" />
     <Content Include="ViewSwitcher.ascx" />
-    <Content Include="Views\ClientJobView.aspx" />
+    <Content Include="Views\AssignedJobs.aspx" />
+    <Content Include="Views\ClientJobHistory.aspx" />
+    <Content Include="Views\NewJobRequest.aspx" />
     <Content Include="Views\CompletedJobs.aspx" />
-    <Content Include="Views\ContractorJobView.aspx" />
+    <Content Include="Views\AcceptedJobs.aspx" />
     <Content Include="Views\Homepage.aspx" />
+    <Content Include="Views\RejectedJobHistory.aspx" />
     <Content Include="Views\RejectedJobs.aspx" />
+    <Content Include="Views\RequestedJobs.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Scripts\umd\popper.min.js.map" />
@@ -589,12 +593,26 @@
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Views\ClientJobView.aspx.cs">
-      <DependentUpon>ClientJobView.aspx</DependentUpon>
+    <Compile Include="Views\AssignedJobs.aspx.cs">
+      <DependentUpon>AssignedJobs.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\ClientJobView.aspx.designer.cs">
-      <DependentUpon>ClientJobView.aspx</DependentUpon>
+    <Compile Include="Views\AssignedJobs.aspx.designer.cs">
+      <DependentUpon>AssignedJobs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClientJobHistory.aspx.cs">
+      <DependentUpon>ClientJobHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ClientJobHistory.aspx.designer.cs">
+      <DependentUpon>ClientJobHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewJobRequest.aspx.cs">
+      <DependentUpon>NewJobRequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\NewJobRequest.aspx.designer.cs">
+      <DependentUpon>NewJobRequest.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\CompletedJobs.aspx.cs">
       <DependentUpon>CompletedJobs.aspx</DependentUpon>
@@ -603,12 +621,12 @@
     <Compile Include="Views\CompletedJobs.aspx.designer.cs">
       <DependentUpon>CompletedJobs.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\ContractorJobView.aspx.cs">
-      <DependentUpon>ContractorJobView.aspx</DependentUpon>
+    <Compile Include="Views\AcceptedJobs.aspx.cs">
+      <DependentUpon>AcceptedJobs.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\ContractorJobView.aspx.designer.cs">
-      <DependentUpon>ContractorJobView.aspx</DependentUpon>
+    <Compile Include="Views\AcceptedJobs.aspx.designer.cs">
+      <DependentUpon>AcceptedJobs.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Homepage.aspx.cs">
       <DependentUpon>Homepage.aspx</DependentUpon>
@@ -617,12 +635,26 @@
     <Compile Include="Views\Homepage.aspx.designer.cs">
       <DependentUpon>Homepage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\RejectedJobHistory.aspx.cs">
+      <DependentUpon>RejectedJobHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\RejectedJobHistory.aspx.designer.cs">
+      <DependentUpon>RejectedJobHistory.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\RejectedJobs.aspx.cs">
       <DependentUpon>RejectedJobs.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\RejectedJobs.aspx.designer.cs">
       <DependentUpon>RejectedJobs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RequestedJobs.aspx.cs">
+      <DependentUpon>RequestedJobs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\RequestedJobs.aspx.designer.cs">
+      <DependentUpon>RequestedJobs.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

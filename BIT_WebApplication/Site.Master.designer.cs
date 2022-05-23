@@ -24,6 +24,51 @@ namespace BIT_WebApplication
         protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
 
         /// <summary>
+        /// lbtnRejectedJobHistory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnRejectedJobHistory;
+
+        /// <summary>
+        /// lbtnAssignedJobs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnAssignedJobs;
+
+        /// <summary>
+        /// lbtnAcceptedJobs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnAcceptedJobs;
+
+        /// <summary>
+        /// lbtnNewJobRequest control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnNewJobRequest;
+
+        /// <summary>
+        /// lbtnClientJobHistory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnClientJobHistory;
+
+        /// <summary>
         /// lbtnAllCompletedJobs control.
         /// </summary>
         /// <remarks>
@@ -31,6 +76,15 @@ namespace BIT_WebApplication
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbtnAllCompletedJobs;
+
+        /// <summary>
+        /// lbtnAllRequestedJobs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnAllRequestedJobs;
 
         /// <summary>
         /// lbtnAllRejectedJobs control.

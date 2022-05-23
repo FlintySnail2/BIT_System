@@ -9,49 +9,45 @@ using System.Web.UI.WebControls;
 
 namespace BIT_WebApplication.Views
 {
-    public partial class RejectedJobs : System.Web.UI.Page
+    public partial class RequestedJobs : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (!IsPostBack)
             {
-
-
                 if (Session["Staff_Id"] != null)
                 {
-
                     LinkButton logout = (LinkButton)Master.FindControl("lbtnLogout");
+                    LinkButton rejectedJobs = (LinkButton)Master.FindControl("lbtnAllRejectedJobs");
                     LinkButton completedJobs = (LinkButton)Master.FindControl("lbtnAllCompletedJobs");
-                    LinkButton requestedJobs = (LinkButton)Master.FindControl("lbtnAllRequestedJobs");
                     logout.Visible = true;
+                    rejectedJobs.Visible = true;
                     completedJobs.Visible = true;
-                    requestedJobs.Visible = true;
-
                     Job allCompletedJobs = new Job();
                     allCompletedJobs.StaffId = Convert.ToInt32(Session["Staff_Id"].ToString());
-                    gvRejectedJobs.DataSource = allCompletedJobs.AllRejectedJobs().DefaultView;
-                    gvRejectedJobs.DataBind();
-
+                    gvRequestedJobs.DataSource = allCompletedJobs.AllRequestedJobs().DefaultView;
+                    gvRequestedJobs.DataBind();
                 }
                 else
                 {
                     Response.Redirect("Homepage.aspx");
                 }
             }
-
         }
 
-        protected void gvRejectedJobs_OnRowCommand(object sender, GridViewCommandEventArgs e)
+
+        protected void gvRequestedJobs_OnRowCommand(object sender, GridViewCommandEventArgs e)
         {
 
-            if (e.CommandName == "ReAssign")
+            if (e.CommandName == "Assign")
             {
                 Job reassignJob = new Job();
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
-                GridViewRow row = gvRejectedJobs.Rows[rowIndex];
+                GridViewRow row = gvRequestedJobs.Rows[rowIndex];
                 int jobId = Convert.ToInt32(row.Cells[1].Text);
-                string skill = row.Cells[6].Text;  
-                DateTime completionDate = Convert.ToDateTime(row.Cells[8].Text); 
+                string skill = row.Cells[4].Text;
+                DateTime completionDate = Convert.ToDateTime(row.Cells[5].Text);
                 reassignJob.AvailableContractors(jobId, skill, completionDate);
                 DataTable dt = reassignJob.AvailableContractors(jobId, skill, completionDate);
                 if (dt.Rows.Count == 0)
@@ -67,7 +63,7 @@ namespace BIT_WebApplication.Views
             }
             else
             {
-                Response.Write("<script>alert('No Contractors are available at thi time')</script>");
+                Response.Write("<script>alert('No Contractors are available at this time')</script>");
             }
         }
 
@@ -87,5 +83,6 @@ namespace BIT_WebApplication.Views
             }
 
         }
+
     }
 }

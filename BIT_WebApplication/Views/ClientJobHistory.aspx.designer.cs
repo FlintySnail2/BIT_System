@@ -11,25 +11,16 @@ namespace BIT_WebApplication.Views
 {
 
 
-    public partial class ContractorView
+    public partial class ClientJobHistory
     {
 
         /// <summary>
-        /// gvAssignedJobs control.
+        /// gvJobHistory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvAssignedJobs;
-
-        /// <summary>
-        /// gvAcceptedJobs control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvAcceptedJobs;
+        protected global::System.Web.UI.WebControls.GridView gvJobHistory;
     }
 }

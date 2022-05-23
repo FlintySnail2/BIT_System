@@ -14,6 +14,34 @@ namespace BIT_WebApplication
             lblCopyrightYear.Text = DateTime.Today.Year.ToString();
         }
 
+        protected void lbtnRejectedJobHistory_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("RejectedJobHistory.aspx");
+        }
+
+        protected void lbtnAssignedJobs_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AssignedJobs.aspx");
+        }
+        protected void lbtnAcceptedJobs_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AcceptedJobs.aspx");
+        }
+
+        protected void lbtnClientJobHistory_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ClientJobHistory.aspx");
+        }
+
+        protected void lbtnNewJobRequest_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("NewJobRequest.aspx");
+        }
+        protected void lbtnAllRequestedJobs_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("RequestedJobs.aspx");
+        }
+
         protected void lbtnAllCompletedJobs_Click(object sender, EventArgs e)
         {
             Response.Redirect("CompletedJobs.aspx");

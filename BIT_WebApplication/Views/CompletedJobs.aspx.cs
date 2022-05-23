@@ -22,15 +22,17 @@ namespace BIT_WebApplication.Views
 
                     LinkButton logout = (LinkButton)Master.FindControl("lbtnLogout");
                     LinkButton rejectedJobs = (LinkButton)Master.FindControl("lbtnAllRejectedJobs");
+                    LinkButton requestedJobs = (LinkButton)Master.FindControl("lbtnAllRequestedJobs");
                     logout.Visible = true;
                     rejectedJobs.Visible = true;
+                    requestedJobs.Visible = true;
 
                     Job allCompletedJobs = new Job();
                     allCompletedJobs.StaffId = Convert.ToInt32(Session["Staff_Id"].ToString());
                     gvCompletedJobs.DataSource = allCompletedJobs.AllCompletedJobs().DefaultView; 
-                    gvRequestedJobs.DataSource = allCompletedJobs.AllRequestedJobs().DefaultView; 
+                    
                     gvCompletedJobs.DataBind();
-                    gvRequestedJobs.DataBind();
+                    
                 }
                 else
                 {

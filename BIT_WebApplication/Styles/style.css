@@ -1,6 +1,10 @@
 ﻿@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700|Poppins:400,500&display=swap');
 
 
+.test {
+    background-color:#181818 ;
+}
+
 .h3 {
     text-align: center;
 }
@@ -160,9 +164,10 @@
 /*****  STAFF FORM *******/
 /*************************/
 
-.verified-btn {
+.blue-btn {
     background-color: #009eff;
     border: #009eff;
+    border-radius:3px;
     color: #fff;
 }
 
@@ -170,7 +175,7 @@
         background-color: rgba(0,158,255,.75);
     }
 
-.payment-btn {
+.green-btn {
     background-color: #339933;
     border: #339933;
     border-radius: 3px;

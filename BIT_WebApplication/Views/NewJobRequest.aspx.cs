@@ -17,18 +17,14 @@ namespace BIT_WebApplication.Views
             {
                 if (Session["Client_Id"] != null)
                 {
-                    //LinkButton clientNav = (LinkButton)Master.FindControl("lbtnClient");
-                    //LinkButton staffNav = (LinkButton)Master.FindControl("lbtnStaff");
+                 
                     LinkButton logout = (LinkButton)Master.FindControl("lbtnLogout");
-                    //clientNav.Visible = true;
+                    LinkButton jobHistory = (LinkButton)Master.FindControl("lbtnClientJobHistory"); 
                     logout.Visible = true;
-                    //staffNav.Visible = false;
-
+                    jobHistory.Visible = true;
 
                     Job currentClient = new Job();
                     currentClient.ClientId = Convert.ToInt32(Session["Client_Id"].ToString());
-                    gvJobs.DataSource = currentClient.AllClientJobs().DefaultView;
-                    gvJobs.DataBind();
                     ddlRegion.DataSource = Region.GetAllRegion().DefaultView;
                     ddlSkills.DataSource = Skills.GetAllSkills().DefaultView;
                     ddlRegion.DataTextField = "Region";
@@ -53,10 +49,10 @@ namespace BIT_WebApplication.Views
             Job newClientJob = new Job();
 
             newClientJob.ClientId = Convert.ToInt32(Session["Client_Id"].ToString());
-            newClientJob.Region = ddlRegion.Text; 
+       //     newClientJob.Region = ddlRegion.Text; 
             newClientJob.Priority = ddlPriority.Text;
             newClientJob.SkillReq = ddlSkills.SelectedValue;
-            newClientJob.Region = ddlSkills.SelectedValue;
+            newClientJob.Region = ddlRegion.SelectedValue;
             newClientJob.Description = txtDesc.Text;
             newClientJob.StartDate = Convert.ToDateTime(jobStart.ToString());
             newClientJob.CompletionDate = Convert.ToDateTime(jobComp.ToString());

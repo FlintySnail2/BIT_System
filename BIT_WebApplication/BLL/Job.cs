@@ -43,13 +43,13 @@ namespace BIT_WebApplication.BLL
         {
             //CALL CONCAT WITH REGION FOR SELECTED VALUE
             string sql = "SELECT " +
-                "           J.JobId AS Job, " +
-                "           CON.FirstName + ' ' + CON.LastName AS [Technician], " +
-                "           CONVERT(NVARCHAR, J.RequestedStartDate, 6)  AS [Service Date], " + 
-                "           J.Description, " +
-                "           F.Comment AS Feedback," +
-                "           J.Priority, " +
-                "             J.Status" +
+                "           J.JobId AS [Job Number], " +
+                "           CON.FirstName + ' ' + CON.LastName AS [Contractor], " +
+                "           CONVERT(NVARCHAR, J.RequestedCompletionDate, 6)  AS [Service Date], " + 
+                "           J.Description AS [Job Description], " +
+                "           F.Comment AS [Job Feedback]," +
+                "           J.Priority AS [Job Priority], " +
+                "           J.Status AS [Job Status]" +
                 "       FROM  " +
                 "             Client AS C, " +
                 "             Job AS J,  " +
@@ -66,8 +66,6 @@ namespace BIT_WebApplication.BLL
                 "             J.JobId = F.JobId " +
                 "       AND " +
                 "           C.ClientId = @Client_Id";
-
-
             SqlParameter[] objParams = new SqlParameter[1];
             objParams[0] = new SqlParameter("@Client_Id", DbType.Int32);
             objParams[0].Value = this.ClientId;
@@ -78,17 +76,21 @@ namespace BIT_WebApplication.BLL
         public DataTable AllRequestedJobs()
         {
             string sql = "SELECT" +
-                    "            J.JobId," +
+                    "            J.JobId AS [Job Number]," +
                     "            C.OrganisationName AS Client," +
                     "            C.FirstName + ' ' + C.LastName AS [Contact Name]," +
+                    "            S.SkillTitle AS [Skill Required]," +
                     "            CONVERT(NVARCHAR, J.RequestedCompletionDate, 6) AS [Requested Completion]," +
-                    "            J.Status," +
-                    "            J.Description" +
+                    "            J.Status AS [Job Status]," +
+                    "            J.Description AS [Job Description]" +
                     "         FROM" +
                     "           Job AS J," +
-                    "           Client AS C" +      
+                    "           Client AS C," +
+                    "           Skill AS S" +      
                     "         WHERE" +
                     "           C.ClientId = J.ClientId" +
+                    "         AND" +
+                    "           J.SkillTitle = S.SkillTitle" +
                     "         AND" +
                     "           J.Status = 'Pending'";
             DataTable dt = _db.ExecuteSQL(sql);
@@ -99,16 +101,16 @@ namespace BIT_WebApplication.BLL
         public DataTable AvailableContractors(int jobId,string skill,DateTime completionDate)
         {
             string sql = "SELECT" +
-                           " J.JobId," +
-                           " C.ContractorId," +
-                           " C.FirstName,"+
-                           " CS.SkillTitle,"+
-                           " J.RequestedCompletionDate,"+
-                           " C.ContractorRating"+
-                    "     FROM"+
-                            " Contractor AS C," +
-                        "     ContractSkill AS CS," +
-                        "     Job AS J" +
+                   "         J.JobId AS [Job Number]," +
+                   "         C.ContractorId AS [Contractor Id]," +
+                   "         C.FirstName + ' ' + C.LastName AS Contractor,"+
+                   "         CS.SkillTitle AS [Skill Required],"+
+                   "         CONVERT(NVARCHAR, J.RequestedCompletionDate, 6) AS [Requested Completion]," +
+                   "         C.ContractorRating AS Rating"+
+                   "     FROM"+
+                    "       Contractor AS C," +
+                   "        ContractSkill AS CS," +
+                   "        Job AS J" +
                         " WHERE" +
                             " C.ContractorId = CS.ContractorId" +
                         " AND" +
@@ -117,8 +119,8 @@ namespace BIT_WebApplication.BLL
                         "     J.JobId = @JobId" +
                 "         AND" +
                             " CS.SkillTitle = @skill" +
-                        " AND" +
-                        "    J.RequestedCompletionDate = @CompletionDate   ";
+                    " AND" +
+                    "    J.RequestedCompletionDate = @CompletionDate   ";
             SqlParameter[] objParams = new SqlParameter[3];
             objParams[0] = new SqlParameter("@JobId", DbType.Int32);
             objParams[0].Value = jobId;
@@ -133,14 +135,14 @@ namespace BIT_WebApplication.BLL
         public DataTable AllCompletedJobs()
         {
             string sql = "SELECT" +
-                    "            J.JobId," +
+                    "            J.JobId AS [Job Number]," +
                     "            C.OrganisationName AS Client," +
                     "            C.FirstName + ' ' + C.LastName AS [Contact Name]," +
                     "            CON.FirstName + ' ' + CON.LastName AS Contractor," +
                     "            CONVERT(NVARCHAR, J.RequestedStartDate, 6) AS [Service Day]," +
                     "            CONVERT(NVARCHAR, J.RequestedCompletionDate, 6) AS [Requested Completion]," +
-                    "            J.Status," +
-                    "            J.Description" +
+                    "            J.Status AS [Job Status]," +
+                    "            J.Description AS [Job Description]" +
                     "         FROM" +
                     "           Job AS J," +
                     "           Client AS C," +
@@ -161,7 +163,7 @@ namespace BIT_WebApplication.BLL
         public DataTable AllRejectedJobs()
         {
             string sql = "SET dateformat DMY; SELECT " +
-                    "            J.JobId," +
+                    "            J.JobId AS [Job Number]," +
                     "            C.OrganisationName AS Client," +
                     "            C.FirstName + ' ' + C.LastName AS [Contact Name]," +
                     "            CON.FirstName + ' ' + CON.LastName AS Contractor," +
@@ -169,7 +171,7 @@ namespace BIT_WebApplication.BLL
                     "            J.SkillTitle AS [Skill Required]," +
                     "            CONVERT(NVARCHAR, J.RequestedStartDate, 6) AS [Requested Start]," +
                     "            CONVERT(NVARCHAR, J.RequestedCompletionDate, 6) AS [Requested Completion]," +
-                    "            J.Description" +
+                    "            J.Description AS [Job Description]" +
                     "         FROM" +
                     "           Job AS J," +
                     "           Client AS C," +
@@ -211,8 +213,6 @@ namespace BIT_WebApplication.BLL
                     "       @StartDate," +
                     "       @CompletionDate," +
                     "       'Pending')";
-                    
-            //INSERT REGION NAME INTO ABOVE QUERY (ANOTHER TABLE)
             SqlParameter[] objParams = new SqlParameter[7];
             objParams[0] = new SqlParameter("@Region",DbType.String);
             objParams[0].Value = Region;
@@ -274,7 +274,7 @@ namespace BIT_WebApplication.BLL
             string sql = "UPDATE" +
                          "   Job" +
                          " SET" +
-                         " Status = 'Rejected'" +
+                         " Status = 'Assigned'" +
                          " WHERE" +
                          "   JobId = @JobId" +
                          " AND" +

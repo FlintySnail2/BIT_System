@@ -30,14 +30,14 @@ using System.Web;
         public DataTable AllAssignedJobs()
         {
             string sql = "SELECT" +
-                "            J.JobId," +
+                "            J.JobId AS [Job Number]," +
                 "            C.OrganisationName AS Client," +
                 "            C.FirstName + ' ' + C.LastName AS [Contact Name]," +
-                "            C.Phone," +
+                "            C.Phone AS [Contact Number] ," +
                 "            CONVERT(NVARCHAR, J.RequestedCompletionDate, 6) AS [Requested Completion]," +
                 "            J.SkillTitle AS [Skill Required]," +
-                "            J.Priority," +
-                "            J.Description" +
+                "            J.Priority AS [Job Priority]," +
+                "            J.Description AS [Job Description]" +
                 "         FROM" +
                 "           Job AS J," +
                 "           Client AS C," +
@@ -65,13 +65,13 @@ using System.Web;
         public DataTable AllAcceptedJobs()
         {
             string sql = "SELECT" +
-                    "            J.JobId," +
+                    "            J.JobId AS [Job Number]," +
                     "            C.OrganisationName AS Client," +
                     "            C.FirstName + ' ' + C.LastName AS [Contact Name]," +
                     "            CONVERT(NVARCHAR, J.RequestedCompletionDate, 6) AS [Requested Completion]," +
                     "            J.SkillTitle AS [Skill Required]," +
-                    "            J.Status," +
-                    "            J.Description" +
+                    "            J.Status AS [Job Status]," +
+                    "            J.Description AS [Job Description]" +
                     "         FROM" +
                     "           Job AS J," +
                     "           Client AS C," +

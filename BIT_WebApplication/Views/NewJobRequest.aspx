@@ -1,35 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ClientJobView.aspx.cs" Inherits="BIT_WebApplication.Views.ClientView" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="NewJobRequest.aspx.cs" Inherits="BIT_WebApplication.Views.ClientView" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-       <link rel="stylesheet" href="../Styles/style.css" >
-
-<div class="container-fluid ">
-    <div class ="row">
-        <div class="col-md-12 ">
-            <div class="card ">
-                <div class="card-body">                      
-                    <div class="row">
-                        <div class="col">
-                                <center>
-                                <h3>Job History</h3>
-                            </center>
-                        </div>
-                    </div>
-                        <div class="row">
-                        <div class="col-12 mx-auto">
-                            <asp:GridView ID="gvJobs" 
-                                CssClass="table thead thead-dark table-striped table-bordered table-embed-responsive"
-                                runat="server">                                    
-                            </asp:GridView>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <link rel="stylesheet" href="../Styles/style.css" >
     <div class="container-fluid">
         <div class ="row">
             <div class="col-12">
@@ -51,7 +24,7 @@
                             <div class="col-3">
                                 <label> Contact Name</label>
                                 <div class="form-group">
-                                    <asp:TextBox CssClass="form-control" 
+                                    <asp:TextBox CssClass="form-control alert-" 
                                                  ID="txtCName" 
                                                  runat="server"
                                                  placeholder="<Place Holder>" />
@@ -88,8 +61,7 @@
                                                  ID="ddlSkills" 
                                                  runat="server"
                                                  placeholder="<Placeholder>">
-                                         
-                                    </asp:DropDownList>
+                                 </asp:DropDownList>
                            
                         </div>  
                         </div>
