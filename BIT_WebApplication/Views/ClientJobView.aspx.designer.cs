@@ -42,22 +42,22 @@ namespace BIT_WebApplication.Views
         protected global::System.Web.UI.WebControls.DropDownList ddlRegion;
 
         /// <summary>
-        /// txtPriority control.
+        /// ddlPriority control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList txtPriority;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPriority;
 
         /// <summary>
-        /// txtSkillReq control.
+        /// ddlSkills control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList txtSkillReq;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSkills;
 
         /// <summary>
         /// txtPhone control.

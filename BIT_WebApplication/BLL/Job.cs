@@ -100,6 +100,7 @@ namespace BIT_WebApplication.BLL
         {
             string sql = "SELECT" +
                            " J.JobId," +
+                           " C.ContractorId," +
                            " C.FirstName,"+
                            " CS.SkillTitle,"+
                            " J.RequestedCompletionDate,"+
@@ -159,7 +160,7 @@ namespace BIT_WebApplication.BLL
 
         public DataTable AllRejectedJobs()
         {
-            string sql = "SELECT" +
+            string sql = "SET dateformat DMY; SELECT " +
                     "            J.JobId," +
                     "            C.OrganisationName AS Client," +
                     "            C.FirstName + ' ' + C.LastName AS [Contact Name]," +
@@ -267,8 +268,25 @@ namespace BIT_WebApplication.BLL
             return returnValue;
         }
 
-
-
+        public int AssignJob(int jobId, int contractorId)
+        {
+            int returnValue = 0;
+            string sql = "UPDATE" +
+                         "   Job" +
+                         " SET" +
+                         " Status = 'Rejected'" +
+                         " WHERE" +
+                         "   JobId = @JobId" +
+                         " AND" +
+                         "   ContractorId = @ContractorId";
+            SqlParameter[] objParams = new SqlParameter[2];
+            objParams[0] = new SqlParameter("@JobId", DbType.Int32);
+            objParams[0].Value =jobId;
+            objParams[1] = new SqlParameter("@ContractorId", DbType.Int32);
+            objParams[1].Value = contractorId;
+            returnValue = _db.ExecuteNonQuery(sql, objParams);
+            return returnValue;
+        }
 
         #endregion Public Methods
     }

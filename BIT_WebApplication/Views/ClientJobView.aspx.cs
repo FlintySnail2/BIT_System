@@ -28,10 +28,15 @@ namespace BIT_WebApplication.Views
                     Job currentClient = new Job();
                     currentClient.ClientId = Convert.ToInt32(Session["Client_Id"].ToString());
                     gvJobs.DataSource = currentClient.AllClientJobs().DefaultView;
-                    //DDL = SELECTED BLAH BLAH
                     gvJobs.DataBind();
-                    //REGIONS NEEDS TO BE DISPLAYED
-
+                    ddlRegion.DataSource = Region.GetAllRegion().DefaultView;
+                    ddlSkills.DataSource = Skills.GetAllSkills().DefaultView;
+                    ddlRegion.DataTextField = "Region";
+                    ddlSkills.DataTextField = "SkillTitle";
+                    ddlRegion.DataValueField = "Region";
+                    ddlSkills.DataValueField = "SkillTitle";
+                    ddlSkills.DataBind();
+                    ddlRegion.DataBind();
                 }
                 else
                 {
@@ -48,9 +53,10 @@ namespace BIT_WebApplication.Views
             Job newClientJob = new Job();
 
             newClientJob.ClientId = Convert.ToInt32(Session["Client_Id"].ToString());
-            newClientJob.Region = ddlRegion.Text; //THINK ABOUT HARDCODING VS FULL ADDRESS
-            newClientJob.Priority = txtPriority.Text;
-            newClientJob.SkillReq = txtSkillReq.Text;
+            newClientJob.Region = ddlRegion.Text; 
+            newClientJob.Priority = ddlPriority.Text;
+            newClientJob.SkillReq = ddlSkills.SelectedValue;
+            newClientJob.Region = ddlSkills.SelectedValue;
             newClientJob.Description = txtDesc.Text;
             newClientJob.StartDate = Convert.ToDateTime(jobStart.ToString());
             newClientJob.CompletionDate = Convert.ToDateTime(jobComp.ToString());

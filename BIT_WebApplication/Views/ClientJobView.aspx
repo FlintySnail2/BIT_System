@@ -63,12 +63,7 @@
                                                  ID="ddlRegion" 
                                                  runat="server"
                                                  placeholder="<Placeholder>">
-                                         <asp:ListItem Text="Select" Value="select" />
-                                         <asp:ListItem Text="North Sydney" Value="North Sydney" /> 
-                                         <asp:ListItem Text="Eastern Sydney" Value="Eastern Sydney" />
-                                         <asp:ListItem Text="Western Sydney" Value="Western Sydney" />
-                                         <asp:ListItem Text="South Sydney" Value="South Sydney" />
-                                </asp:DropDownList>
+                                 </asp:DropDownList>
                            
                         </div>  
                         </div>
@@ -77,7 +72,7 @@
                                 <label> Priority</label>
                                 <div class="form-group">
                                     <asp:DropDownList CssClass="form-control" 
-                                                 ID="txtPriority" 
+                                                 ID="ddlPriority" 
                                                  runat="server"
                                                  placeholder="<Placeholder>">
                                          <asp:ListItem Text="Select" Value="select" />
@@ -90,16 +85,10 @@
                             <div class="col-3">
                                     <label>Skill Required</label>
                                  <asp:DropDownList CssClass="form-control" 
-                                                 ID="txtSkillReq" 
+                                                 ID="ddlSkills" 
                                                  runat="server"
                                                  placeholder="<Placeholder>">
-                                         <asp:ListItem Text="Select" Value="select" />
-                                        <asp:ListItem Text="C# Programmer" Value="C# Programmer" />
-                                         <asp:ListItem Text="Network Engineer" Value="Network Engineer" />
-                                         <asp:ListItem Text="System Analyst" Value="System Analyst" />
-                                         <asp:ListItem Text="UI Designer" Value="UI Designer" />
-                                         <asp:ListItem Text="UX Designer" Value="UX Designer" />
-                                         <asp:ListItem Text="Web Developer" Value="Web Developer" />
+                                         
                                     </asp:DropDownList>
                            
                         </div>  

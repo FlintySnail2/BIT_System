@@ -64,7 +64,8 @@
                             <asp:GridView 
                                 ID="gvAvailableContractors" 
                                 CssClass="table thead thead-dark table-striped table-bordered table-embed-responsive"
-                                runat="server">
+                                runat="server"
+                                OnRowCommand="gvAvailableContractors_OnRowCommand">
                                 <Columns>
                                         <asp:TemplateField>
                                             <ItemTemplate>
@@ -75,7 +76,7 @@
                                                     Height="40px" 
                                                     Width="150px"
                                                     Text="Assign" 
-                                                    CommandName="Verified" 
+                                                    CommandName="Assign" 
                                                     CommandArgument ="<%#Container.DataItemIndex %>"/>
                                             </ItemTemplate>
                                         </asp:TemplateField>
