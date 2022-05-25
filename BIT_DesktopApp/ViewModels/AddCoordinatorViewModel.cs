@@ -1,6 +1,7 @@
 ﻿using BIT_DesktopApp.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,9 +9,9 @@ using System.Windows;
 
 namespace BIT_DesktopApp.ViewModels
 {
-    internal class AddCoordinatorViewModel
+    public class AddCoordinatorViewModel
     {
-        #region Properties
+        
         private Coordinator _newCoordinator;
         private RelayCommand _addCommand;
 
@@ -35,13 +36,10 @@ namespace BIT_DesktopApp.ViewModels
             set { _newCoordinator = value; }
         }
 
-        #endregion Properties
+
 
         #region Constructor
-        public AddCoordinatorViewModel()
-        {
-            NewCoordinator = new Coordinator();
-        }
+
 
         #endregion
 
@@ -49,10 +47,15 @@ namespace BIT_DesktopApp.ViewModels
 
         public void AddMethod()
         {
-            //string message = NewClient.InsertClient();
-            MessageBox.Show("Derp");
+            string message = NewCoordinator.InsertCoordinator();
+            MessageBox.Show(message);
         }
 
         #endregion Public Method
+
+        public AddCoordinatorViewModel()
+        {
+            NewCoordinator = new Coordinator();
+        }
     }
 }

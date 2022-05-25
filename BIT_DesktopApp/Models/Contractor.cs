@@ -16,7 +16,7 @@ namespace BIT_DesktopApp.Models
         private int _contractorId { get; set; }
         private string _contractorName { get; set; }
         private string _address { get; set; }
-        private String _phone { get; set; }
+        private string _phone { get; set; }
         private DateTime _dob { get; set; }
         private string _email { get; set; }
         private string _availabilty {get; set;}
@@ -240,6 +240,8 @@ namespace BIT_DesktopApp.Models
             RateOfPay = Convert.ToDecimal(dr["RateofPay"].ToString());
             ContractorRating = dr["ContractorRating"].ToString();
         }
+
+
         #endregion Contructor
     }
 }

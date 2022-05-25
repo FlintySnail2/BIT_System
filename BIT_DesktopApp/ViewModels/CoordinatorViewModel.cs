@@ -4,18 +4,21 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace BIT_DesktopApp.ViewModels
 {
-    public class CoordinatorViewModel
+    public class CoordinatorViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<Coordinator> _coordinators;
         private Coordinator _selectedCoordinator;
 
         private string _searchText;
         private RelayCommand _searchCommand;
+        private RelayCommand _updateCommand;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -27,6 +30,18 @@ namespace BIT_DesktopApp.ViewModels
             }
         }
 
+        public RelayCommand UpdateCommand
+        {
+            get
+            {
+                if (_updateCommand == null)
+                {
+                    _updateCommand = new RelayCommand(this.UpdateMethod, true);
+                }
+                return _updateCommand;
+            }
+            set { _updateCommand = value; }
+        }
         public RelayCommand SearchCommand
         {
             get
@@ -39,6 +54,19 @@ namespace BIT_DesktopApp.ViewModels
                 return _searchCommand;
             }
             set{ _searchCommand = value;}
+        }
+
+        public void UpdateMethod()
+        {
+            int returnValue = SelectedCoordinator.StaffId;
+            if (returnValue > 0)
+            {
+                MessageBox.Show("She works boys");
+            }
+            else
+            {
+                MessageBox.Show("error");
+            }
         }
 
         public string SearchText

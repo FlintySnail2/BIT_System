@@ -15,18 +15,18 @@ namespace BIT_DesktopApp.Models
         public Jobs()
         {
             _db = new SQLHelper();
-            string sql = "SELECT DISTINCT" +
+            string sql = "SELECT" +
                 "           J.JobId," +
                 "           C.OrganisationName AS [Organisation Name]," +
                 "           C.FirstName + ' ' + C.LastName as [Contact Name]," +
                 "           J.Description," +
-                "           J.SkillTitle AS [Skill Title]," +
+                "           J.SkillTitle AS [Skill Required]," +
                 "           J.Priority," +
                 "           S.Status," +
                 "           C.Phone," +
-                "           J.HoursOnJob," +
-                "           FORMAT(J.RequestedCompletionDate, 'dd-MM-yyyy') AS [Requested Completion]," +
-                "           J.DistanceTravelled," +
+                "           J.HoursOnJob AS [Hours On Job]," +
+                "           CONVERT(NVARCHAR, J.RequestedCompletionDate, 6) AS [Requested Completion]," +
+                "           J.DistanceTravelled AS [Distance Travelled]," +
                 "           L.Street + ' ' + L.Suburb + ', ' + L.State + ', ' + CAST(L.Zip AS NVARCHAR) AS Location" +
                 "       FROM" +
                 "           Job AS J," +
@@ -35,8 +35,8 @@ namespace BIT_DesktopApp.Models
                 "           Status AS S" +
                 "       WHERE" +
                 "           J.ClientId = C.ClientId" +
-                "       AND J.Region = L.Region" +
-                "       AND J.Status = S.status" +
+                "       AND J.ClientId = L.ClientId" +
+                "       AND J.Status = S.Status" +
                 "       AND J.Status = 'Completed'";
 
             DataTable datatable = _db.ExecuteSQL(sql);

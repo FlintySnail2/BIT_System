@@ -62,10 +62,6 @@
                                      UpdateSourceTrigger=PropertyChanged}"
                       Grid.RowSpan="2"/>
 
-
-            <!-- Contractor Skill Go Here -->
-            <!-- WHEN CHANGING ITEM SOURCE TO PLURAL A WILD SKILL APPEARS -->
-
             <DataGrid Grid.Row="0" 
                       Grid.Column="1" 
                       x:Name="dgContractorSkills" 
@@ -79,6 +75,7 @@
                         Orientation="Horizontal">
 
                 <TextBox Text="{Binding ContractorSkill.Skill}"
+                        
                          x:Name="txtSkill" 
                          Width="100" 
                          Height="31" 

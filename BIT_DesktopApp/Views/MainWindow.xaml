@@ -7,14 +7,13 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="625" Width="1200"
         WindowStyle="None"
-        
         Background="Transparent"
         AllowsTransparency="True" 
         MouseDown="Window_MouseDown">
-       
-   
-   
-    <Border Background="#272537"
+
+
+
+    <Border Background="#202326"
             CornerRadius="20">
 
         <Grid>
@@ -32,7 +31,7 @@
 
             </Image>
 
-            <StackPanel Grid.Row="1">
+            <StackPanel Grid.Column="0" Grid.Row="1">
 
                 <RadioButton Content="Jobs"
                              x:Name="btnJob"
@@ -71,15 +70,7 @@
                              />
             </StackPanel>
 
-            <!--<TextBox Grid.Column="1"
-                     Width="250"
-                     Height="40"
-                     VerticalContentAlignment="Center"
-                     HorizontalAlignment="Left"
-                     Margin="5"
-                     Style="{StaticResource SearchTheme}"/>-->
-
-            <RadioButton     Grid.Column="1"
+            <RadioButton Grid.Row="0"     Grid.Column="1"
                              Margin="10,0,10,0"
                              Width="80"
                              Content="Logout"
@@ -89,7 +80,7 @@
                              HorizontalAlignment="Right"
                              Style="{StaticResource MenuButton}"
                              Click="btnLogout_Click"
-                             />
+            />
 
             <ContentControl Grid.Row="1"
                             Grid.Column="1"

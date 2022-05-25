@@ -7,8 +7,12 @@
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="1000"
       Title="ClientView">
+    <Border
+        Background="#2D3136"
+        CornerRadius="20">
+    <Grid
+        >
 
-    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50px"/>
             <RowDefinition Height="*"/>
@@ -149,7 +153,8 @@
                     HorizontalAlignment="right" 
                     Grid.Row="3">
 
-            <Button x:Name="btnUpdate" 
+            <Button x:Name="btnUpdate"
+                    Command="{Binding UpdateCommand}"
                     Content="UPDATE" 
                     Width="150" 
                     Margin="10"/>
@@ -161,7 +166,7 @@
                     Margin="10"/>
 
             <Button x:Name="btnAdd"
-                    Command="{Binding UpdateCommand}"
+                   
                     Content="ADD" 
                     Width="150" 
                     Margin="10"
@@ -169,4 +174,5 @@
 
         </StackPanel>
     </Grid>
+    </Border>
 </Page>

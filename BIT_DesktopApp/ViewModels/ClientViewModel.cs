@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace BIT_DesktopApp.ViewModels
 {
-    public class ClientViewModel
+    public class ClientViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<Client> _clients;
         private Client _selectedClient;
@@ -62,9 +62,9 @@ namespace BIT_DesktopApp.ViewModels
         }
 
         public ClientViewModel()
-        {   
+        {
             //COMMENTED OUT AS USING MOQ
-            //Clients allClients = new Clients();
+           // Clients allClients = new Clients();
             //this.Clients = new ObservableCollection<Client>(allClients);
             GetClients();
         }
@@ -104,19 +104,19 @@ namespace BIT_DesktopApp.ViewModels
             this.Clients = new ObservableCollection<Client>(allClients);
         }
 
-        //public void UpdateMethod()
-        //{
-        //    int returnValue = SelectedClient.ChangeClientDetails(SelectedPayment.PaymentStatusId);
-        //    if (returnValue > 0)
-        //    {
-        //        MessageBox.Show("Clients Details Successfully Updated");
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Client details could not be updated, please try again later");
-        //    }
-      
-        //}
+        public void UpdateMethod()
+        {
+            int returnValue = SelectedClient.ClientId;
+            if (returnValue > 0)
+            {
+                MessageBox.Show("Clients Details Successfully Updated");
+            }
+            else
+            {
+                MessageBox.Show("Client details could not be updated, please try again later");
+            }
+
+        }
 
         #endregion Methods
     }

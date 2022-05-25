@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,7 +16,8 @@ namespace BIT_DesktopApp.Models
         #region Private Properties
 
         private int _staffId { get; set; }
-        private string _employeeName { get; set; }
+        private string _firstName { get; set; }
+        private string _lastName { get; set; }
         private DateTime _dob { get; set; }
         private string _phone {  get; set; }
         private string _email { get; set; }
@@ -30,8 +33,14 @@ namespace BIT_DesktopApp.Models
                 string result = null;
                 switch (propertyName)
                 {
-                    case "EmployeeName":
-                        if (string.IsNullOrEmpty(EmployeeName))
+                    case "FirstName":
+                        if (string.IsNullOrEmpty(FirstName))
+                        {
+                            result = "Field cannot be empty";
+                        }
+                        break;
+                    case "LastName":
+                        if (string.IsNullOrEmpty(LastName))
                         {
                             result = "Field cannot be empty";
                         }
@@ -57,7 +66,7 @@ namespace BIT_DesktopApp.Models
                     case "Password":
                         if (string.IsNullOrEmpty(Password))
                         {
-                            result = "Field cannot be lleft empty";
+                            result = "Field cannot be left empty";
                         }
                         break;
                 }
@@ -89,21 +98,32 @@ namespace BIT_DesktopApp.Models
             set { _staffId = value; }
         }
 
-        public string EmployeeName
+        public string FirstName
         {
-            get { return _employeeName; }
-            set { _employeeName = value;
-                OnPropertyChanged("Employee Name");
+            get { return _firstName; }
+            set { _firstName = value;
+                OnPropertyChanged("FirstName");
 
             }
         }
+
+        public string LastName
+        {
+            get { return _lastName;}
+            set
+            {
+                _lastName = value;
+                OnPropertyChanged("LastName");
+            }
+        }
+
         public DateTime Dob
         {
             get { return _dob; }
             set
             {
                 _dob = value;
-                OnPropertyChanged("DOB");
+                OnPropertyChanged("Dob");
             }
         }
 
@@ -151,7 +171,8 @@ namespace BIT_DesktopApp.Models
         {
             _db = new SQLHelper();
             StaffId = Convert.ToInt32(dr["StaffId"].ToString());
-            EmployeeName = dr["EmployeeName"].ToString();
+            FirstName = dr["FirstName"].ToString();
+            LastName = dr["LastName"].ToString();
             Dob = Convert.ToDateTime(dr["Dob"].ToString());
             Phone = dr["Phone"].ToString();
             Email = dr["Email"].ToString();
@@ -159,6 +180,61 @@ namespace BIT_DesktopApp.Models
         }
 
         #endregion Constructor
+
+        #region Public Methods
+
+        //public int UpdateStaffDetails(int coordinatorId)
+        //{
+        //    string updateSql = "UPDATE" +
+        //                       "    Staff" +
+        //                    "       SET" +
+        //                       "    FirsName = @FirstName," +
+        //                       "    LastName = @" +
+        //                       " " +
+        //                "       WHERE" +
+        //                       "    "
+        //}
+
+        public string InsertCoordinator()
+        {
+            string insertSql = "INSERT INTO Staff(" +
+                               "            FirstName," +
+                               "            LastName," +
+                               "            Phone," +
+                               "            Dob," +
+                               "            Email," +
+                               "            Password" +
+                               "            StaffType" +
+                               "            AccountStatus)" +
+                            "            VALUES(" +
+                               "            @FirstName," +
+                               "            @LastName," +
+                               "            @Phone," +
+                               "            @Dob," +
+                               "            @Password," +
+                               "            'Coordinator'," +
+                               "            'Active'";
+            SqlParameter[] objParams = new SqlParameter[8];
+            objParams[0] = new SqlParameter("@FirstName", DbType.String);
+            objParams[0].Value = this.FirstName;
+            objParams[1] = new SqlParameter("@LastName", DbType.String);
+            objParams[1].Value = this.LastName;
+            objParams[2] = new SqlParameter("@Phone", DbType.String);
+            objParams[3] = new SqlParameter("@Email", DbType.DateTime);
+            objParams[3].Value = this.Dob;
+            objParams[4] = new SqlParameter("@Password", DbType.String);
+            objParams[4].Value = this.Password;
+            int rowsAffected = _db.ExecuteNonQuery(insertSql, objParams);
+            if (rowsAffected >= 1)
+            {
+                return "Coordinator Successfully Added";
+            }
+
+            return "Unable to add coordinator, please try again later"; 
+
+        }
+
+        #endregion Public  Methods
 
 
     }

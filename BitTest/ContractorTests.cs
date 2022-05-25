@@ -14,7 +14,7 @@ namespace BitTest
     
     public class ContractorTests
     {
-       // [TestMethod]
+        //[TestMethod]
         //public void TestContractor()
         //{
         //    Contractor newContractor = new Contractor()
@@ -46,7 +46,7 @@ namespace BitTest
         //public void TestContractorViewModel()
         //{
         //    ContractorViewModel contractorVM = new ContractorViewModel();
-        //    int count =contractorVM.Contractors.Count;
+        //    int count = contractorVM.Contractors.Count;
         //    Assert.AreEqual(4, count);
         //}
 
@@ -55,7 +55,7 @@ namespace BitTest
         //{
         //    ObservableCollection<Contractor> mockContractors = new ObservableCollection<Contractor>();
         //    mockContractors.Add(new Contractor
-        //        {
+        //    {
         //        ContractorId = 1,
         //        ContractorName = "Steven Good",
         //        Phone = "0400987654",

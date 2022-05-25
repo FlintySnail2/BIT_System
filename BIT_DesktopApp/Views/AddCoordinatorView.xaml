@@ -7,62 +7,52 @@
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="1000"
       Title="AddCoordinatorView">
+    <Border
+        Background="#2D3136"
+        CornerRadius="20">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50px"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50px"/>
+            </Grid.RowDefinitions>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50px"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="50px"/>
-        </Grid.RowDefinitions>
-
-        <StackPanel Orientation="Horizontal" 
+            <StackPanel Orientation="Horizontal" 
                     HorizontalAlignment="Center" 
                     Width="800">
 
-            <TextBlock Text="New Coordinator Form" 
+                <TextBlock Text="New Coordinator Form" 
                        FontSize="28px" 
                        FontWeight="bold" 
                        Foreground="#fff" 
                        Width="323" 
                        Margin="10,5,10,5"/>
-        </StackPanel>
+            </StackPanel>
 
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" Margin="0,30,0,10" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="3*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-        </Grid>
-        <Grid Grid.RowSpan="3" Margin="0,45,0,150">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="133*" />
-                <ColumnDefinition Width="267*" />
-                <ColumnDefinition Width="20*" />
-                <ColumnDefinition Width="113*"/>
-                <ColumnDefinition Width="267*" />
-            </Grid.ColumnDefinitions>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*"/>
 
-            <!--First Two Column data -->
+                </Grid.ColumnDefinitions>
 
-            <Label Content="First Name : " 
+                <!--First Two Column data -->
+
+                <Label Content="First Name : " 
                    Grid.Row="0"
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox  Text="{Binding NewCoordinator.FirstName,
+                <TextBox  Text="{Binding NewCoordinator.FirstName,
                              ValidatesOnDataErrors=True,
                              UpdateSourceTrigger=PropertyChanged,
                              Mode=TwoWay}"
@@ -70,14 +60,14 @@
                       x:Name="txtFirstName" 
                       Grid.Row="0" 
                       Grid.Column="1" 
-                      Margin="5,5,5,5" />
+                      Margin="5,5,5,20" />
 
-            <Label Content="Last Name : " 
+                <Label Content="Last Name : " 
                    Grid.Row="1"
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox Text="{Binding NewCoordinator.LastName,
+                <TextBox Text="{Binding NewCoordinator.LastName,
                              ValidatesOnDataErrors=True,
                              UpdateSourceTrigger=PropertyChanged,
                              Mode=TwoWay}"
@@ -85,14 +75,14 @@
                      x:Name="txtLastName" 
                      Grid.Row="1" 
                      Grid.Column="1" 
-                     Margin="5,5,5,5" />
+                     Margin="5,10,5,20" />
 
-            <Label Content="Birth Date : " 
-                   Grid.Row="2" 
+                <Label Content="Birth Date : " 
+                   Grid.Row="3" 
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox Text="{Binding NewCoordinator.LastName,
+                <TextBox Text="{Binding NewCoordinator.Dob,
                              ValidatesOnDataErrors=True,
                              UpdateSourceTrigger=PropertyChanged,
                              Mode=TwoWay}"
@@ -100,139 +90,82 @@
                      x:Name="txtDob" 
                      Grid.Row="2" 
                      Grid.Column="1" 
-                     Margin="5,5,5,5" />
+                     Margin="5,10,5,20" />
 
-            <Label Content="Phone : "
-                   Grid.Row="3" 
-                   Grid.Column="0" 
+                <!--Second column of data -->
+
+                <Label Content="Phone : "
+                   Grid.Row="0" 
+                   Grid.Column="2" 
                    Foreground="#fff"/>
 
-            <TextBox Text="{Binding NewCoordinator.Phone,
-                             ValidatesOnDataErrors=True,
-                             UpdateSourceTrigger=PropertyChanged,
+                <TextBox Text="{Binding NewCoordinator.Phone,
+                                                               ValidatesOnDataErrors=True,
+                                                        UpdateSourceTrigger=PropertyChanged,
                              Mode=TwoWay}"
                      ToolTip="{Binding NewCoordinator.ErrorCollection[Phone]}" 
                      x:Name="txtPhone" 
-                     Grid.Row="3" 
-                     Grid.Column="1" 
-                     Margin="5,5,5,5" />
+                     Grid.Row="0" 
+                     Grid.Column="3" 
+                     Margin="5,5,5,20" />
 
-            <Label Content="Email : "
-                   Grid.Row="4" 
-                   Grid.Column="0" 
+                <Label Content="Email : "
+                   Grid.Row="1" 
+                   Grid.Column="2" 
                    Foreground="#fff"/>
 
-            <TextBox Text="{Binding NewCoordinator.Email,
+                <TextBox Text="{Binding NewCoordinator.Email,
                              ValidatesOnDataErrors=True,
                              UpdateSourceTrigger=PropertyChanged,
                              Mode=TwoWay}"
                      ToolTip="{Binding NewCoordinator.ErrorCollection[Email]}" 
                      x:Name="txtEmail" 
-                     Grid.Row="4" 
-                     Grid.Column="1" 
-                     Margin="5,5,5,5" />
+                     Grid.Row="1" 
+                     Grid.Column="4" 
+                     Margin="5,5,5,20" />
 
-            <!--Second column of data -->
 
-            <Label Content="Password : "
-                   Grid.Row="0" 
+
+                <Label Content="Password : "
+                   Grid.Row="3" 
                    Grid.Column="2" 
                    Foreground="#fff" Grid.ColumnSpan="2"/>
 
-            <TextBox Text="{Binding NewCoordinator.Password,
+                <TextBox Text="{Binding NewCoordinator.Password,
                              ValidatesOnDataErrors=True,
                              UpdateSourceTrigger=PropertyChanged,
                              Mode=TwoWay}"
                      ToolTip="{Binding NewCoordinator.ErrorCollection[Password]}" 
                      x:Name="txtPassword" 
-                     Grid.Row="0" 
-                     Grid.Column="4" 
-                     Margin="5,5,5,5" />
-
-
-            <Label Content="Street : " 
-                   Grid.Row="1" 
-                   Grid.Column="2" 
-                   Foreground="#fff" Grid.ColumnSpan="2"/>
-
-            <TextBox Text="{Binding NewCoordinator.Street,
-                             ValidatesOnDataErrors=True,
-                             UpdateSourceTrigger=PropertyChanged,
-                             Mode=TwoWay}"
-                     ToolTip="{Binding NewCoordinator.ErrorCollection[Street]}" 
-                     x:Name="txtStreet" 
-                     Grid.Row="1" 
-                     Grid.Column="4" 
-                     Margin="5,5,5,5"/>
-
-            <Label Content="Suburb : " 
-                   Grid.Row="2" 
-                   Grid.Column="2" 
-                   Foreground="#fff" Grid.ColumnSpan="2"/>
-
-            <TextBox Text="{Binding NewCoordinator.Suburb,
-                             ValidatesOnDataErrors=True,
-                             UpdateSourceTrigger=PropertyChanged,
-                             Mode=TwoWay}"
-                     ToolTip="{Binding NewCoordinator.ErrorCollection[Suburb]}" 
-                     x:Name="txtSuburb" 
-                     Grid.Row="2" 
-                     Grid.Column="4" 
-                     Margin="5,5,5,5"/>
-
-            <Label Content="State : " 
-                   Grid.Row="3" 
-                   Grid.Column="2" 
-                   Foreground="#fff" Grid.ColumnSpan="2"/>
-
-            <TextBox
-                     Text="{Binding NewCoordinator.State,
-                             ValidatesOnDataErrors=True,
-                             UpdateSourceTrigger=PropertyChanged,
-                             Mode=TwoWay}"
-                     ToolTip="{Binding NewCoordinator.ErrorCollection[State]}" 
-                     x:Name="txtState" 
                      Grid.Row="3" 
                      Grid.Column="4" 
-                     Margin="5,5,5,5" />
-
-            <Label 
-                   Content="Zip : " 
-                   Grid.Row="4" 
-                   Grid.Column="2" 
-                   Foreground="#fff" Grid.ColumnSpan="2"/>
-
-            <TextBox 
-                     Text="{Binding NewCoordinator.Zip,
-                             ValidatesOnDataErrors=True,
-                             UpdateSourceTrigger=PropertyChanged,
-                             Mode=TwoWay}"
-                     ToolTip="{Binding NewCoordinator.ErrorCollection[Zip]}" 
-                     x:Name="txtZip" 
-                     Grid.Row="4" 
-                     Grid.Column="4" 
-                     Margin="5,5,5,5" />
+                     Margin="5,5,5,20" />
 
 
 
-        </Grid>
-        <StackPanel Orientation="Horizontal" 
+            </Grid>
+
+
+            <Button 
+                Command="{Binding AddCommand}"
+                x:Name="btnConfirm"
+                Content="CONFIRM" 
+                Width="150" 
+                Margin="10"
+            />
+            <StackPanel Orientation="Horizontal" 
                     HorizontalAlignment="right" 
                     Grid.Row="3">
 
-            <Button x:Name="btnConfirm" 
-                    Content="CONFIRM" 
-                    Width="150" 
-                    Margin="10"
-                    Click="btnConfirm_Click"/>
 
-            <Button x:Name="btnCancel" 
+                <Button x:Name="btnCancel" 
                     Content="CANCEL" 
                     Width="150" 
                     Margin="10"
                     Click="btnCancel_Click"/>
 
-        </StackPanel>
+            </StackPanel>
 
-    </Grid>
+        </Grid>
+    </Border>
 </Page>

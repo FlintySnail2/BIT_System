@@ -7,8 +7,10 @@
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="1000"
       Title="JobView">
-
-    <Grid>
+    <Border
+        Background="#2D3136"
+        CornerRadius="20">
+        <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50px"/>
             <RowDefinition Height="*"/>
@@ -54,8 +56,7 @@
 
             <DataGrid Grid.Column="0" 
                       Name="dgJobs" 
-                      Margin="5,5,10,56" 
-                      Grid.RowSpan="2"
+                      Margin="10,5,10,10"
                       ItemsSource="{Binding Jobs}"
                       SelectedItem="{Binding SelectedJob}" 
                       Grid.ColumnSpan="2"/>
@@ -63,7 +64,7 @@
 
             <!-- JOB STATUS MANAGEMENT -->
 
-            <StackPanel 
+            <StackPanel Grid.Column="0" 
                         Grid.Row="1" 
                         Orientation="Horizontal" 
                 
@@ -101,7 +102,7 @@
             </StackPanel>
         </Grid>
 
-        <Grid Grid.Row="2" Margin="0,45,0,0">
+        <Grid Grid.Row="2" Margin="10,45,10,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
@@ -256,4 +257,5 @@
 
         </StackPanel>
     </Grid>
+        </Border>
 </Page>

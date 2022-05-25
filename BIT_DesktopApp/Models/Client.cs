@@ -173,24 +173,42 @@ namespace BIT_DesktopApp.Models
 
         #endregion Constructor
 
-        //#region Public Methods
+        #region Public Methods
 
-        //public int InsertClient(int clientId)
+        //public int InsertClient()
         //{
-        //    string sql = "INSERT INTO" +
+        //    string sql1 = "INSERT INTO" +
         //        "               Client(" +
-        //        "               Oragnisation_Name," +
-        //        "               First_Name," +
-        //        "               Last_Name," +
+        //        "               OrganisationName," +
+        //        "               FirstName," +
+        //        "               LastName," +
         //        "               Phone" +
         //        "               Email" +
-        //        "               Password)" +
+        //        "               Password," +
+        //        "               AccountStatus)" +
         //        "       VALUES(" +
         //        "               @OrganisationName," +
-        //        "               @ContactName," + //MAY NOT WORK DUE TO THE CONCATINATION
+        //        "               @FirstName," +
+        //        "               @LastName" +
         //        "               @Phone," +
         //        "               @Email," +
-        //        "               @Password";
+        //        "               @Password," +
+        //        "               'Active'";
+
+        //    string sql2 = "INSERT INTO" +
+        //                  "         Location(" +
+        //                  "         Region," +
+        //                  "         Street," +
+        //                  "         Suburb," +
+        //                  "         State," +
+        //                  "         Zip)" +
+        //                  "          VALUES(" +
+        //                  "        @Location," +
+        //                  "        @Region," +
+        //                  "        @Street," +
+        //                  "        @Suburb," +
+        //                  "        @State," +
+        //                  "        @Zip";
         //    //2ND INSERT STATEMENT POSSIBLE ???
         //    SqlParameter[] objParams = new SqlParameter[5];
         //    objParams[0] = new SqlParameter("@OrganisationName", DbType.String);
@@ -202,7 +220,8 @@ namespace BIT_DesktopApp.Models
         //    objParams[3] = new SqlParameter("@Email", DbType.String);
         //    objParams[3].Value = this.Email;
         //    objParams[4] = new SqlParameter("@Password", DbType.String);
-        //    int rowsAffectd = _db.ExecuteNonQuery(sql, objParams);
+        //    int rowsAffectd = _db.ExecuteNonQuery(sql1, objParams);
+        //   // int rowsAffectd = _db.ExecuteNonQuery(sql2, objParams);
         //    if (rowsAffectd >= 1)
         //    {
         //        return "New Client Successfully Added";
@@ -210,7 +229,12 @@ namespace BIT_DesktopApp.Models
         //    return "New Client Not Added";
         //}
 
-        //#endregion Public Methods
+        #endregion Public Methods
+        //public int UpdateClient(int clientId)
+        //{
+
+        //}
+
     }
 }
 

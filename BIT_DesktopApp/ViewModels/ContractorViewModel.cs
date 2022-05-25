@@ -14,6 +14,7 @@ namespace BIT_DesktopApp.ViewModels
     {
         
         private ObservableCollection<Contractor> _contractors;
+
         private Contractor _selectedContractor;
 
         private ObservableCollection<ContractorSkill> _contractorSkills;
@@ -55,7 +56,11 @@ namespace BIT_DesktopApp.ViewModels
         public ObservableCollection<Contractor> Contractors
         {
             get { return _contractors; }
-            set { _contractors = value; }
+            set
+            {
+                _contractors = value; 
+                OnPropertyChanged("Contractors");
+            }
         }
        
         public Contractor SelectedContractor
@@ -119,7 +124,7 @@ namespace BIT_DesktopApp.ViewModels
 
         public ContractorViewModel()
         {
-            Contractors allContractors = new Contractors();
+           Contractors allContractors = new Contractors();
             this.Contractors = new ObservableCollection<Contractor>(allContractors);
             this.ContractorSkill = new ContractorSkill();
             //GetContractors();

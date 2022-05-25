@@ -152,7 +152,7 @@
 
             <!--Second column of data -->
 
-            <Label Content="Region : " 
+            <Label Content="Region Name : " 
                    Grid.Row="0" 
                    Grid.Column="2" 
                    Foreground="#fff"/>
@@ -164,23 +164,6 @@
                       ToolTip="{Binding NewClient.ErrorCollection[Region]}" 
                      x:Name="txtRegion" 
                      Grid.Row="0" 
-                     Grid.Column="3" 
-                     Margin="5"/>
-
-
-
-            <Label Content="Location No#" 
-                   Grid.Row="1" 
-                   Grid.Column="2" 
-                   Foreground="#fff"/>
-
-            <TextBox Text="{Binding NewClient.LocationNum,
-                                     ValidatesOnDataErrors=True,
-                                     UpdateSourceTrigger=PropertyChanged,
-                                     Mode=TwoWay}"
-                      ToolTip="{Binding NewClient.ErrorCollection[LocationNum]}" 
-                     x:Name="txtLocNum" 
-                     Grid.Row="1" 
                      Grid.Column="3" 
                      Margin="5"/>
 

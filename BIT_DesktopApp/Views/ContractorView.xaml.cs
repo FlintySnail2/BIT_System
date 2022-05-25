@@ -26,7 +26,7 @@ namespace BIT_DesktopApp.Views
         public ContractorView()
         {
             InitializeComponent();
-            new ContractorViewModel();
+            //this.DataContext = new ContractorViewModel();
             this.DataContext = new ContractorViewModel();
         }
 

@@ -252,7 +252,6 @@ namespace BIT_DesktopApp.Models
 
         public Job(DataRow dr)
         {
-            //TEMP VARIABLE FOR TOSHORTDATESTTRING
             _db = new SQLHelper();
             JobId = Convert.ToInt32(dr["JobId"].ToString());
             OrganisationName = dr["Organisation Name"].ToString();
@@ -260,12 +259,12 @@ namespace BIT_DesktopApp.Models
             Description = dr["Description"].ToString();
             Status = dr["Status"].ToString();
             RequestedCompletion = Convert.ToDateTime(dr["Requested Completion"].ToString());
-            SkillReq = dr["Skill Title"].ToString();
+            SkillReq = dr["Skill Required"].ToString();
             Priority = dr["Priority"].ToString();
             Phone = dr["Phone"].ToString();
             Location = dr["Location"].ToString();
-            HoursOnJob = Convert.ToDecimal(dr["HoursOnJob"].ToString());
-            DistanceTravelled = dr["DistanceTravelled"].ToString();
+            HoursOnJob = Convert.ToDecimal(dr["Hours On Job"].ToString());
+            DistanceTravelled = dr["Distance Travelled"].ToString();
         }
 
         #endregion Constructor

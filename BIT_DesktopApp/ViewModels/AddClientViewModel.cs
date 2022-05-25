@@ -12,7 +12,7 @@ namespace BIT_DesktopApp.ViewModels
     public class AddClientViewModel 
     {
 
-        #region Properties
+      
         private Client _newClient;
         private RelayCommand _addCommand;
 
@@ -31,23 +31,7 @@ namespace BIT_DesktopApp.ViewModels
 
     
 
-        public Client NewClient
-        {
-            get { return _newClient; }
-            set { _newClient = value; }
-        }
 
-        #endregion Properties
-
-        #region Constructor
-        public AddClientViewModel()
-        {
-            NewClient = new Client();
-        }
-
-        #endregion
-
-        #region Publc Method
 
         public void AddMethod()
         {
@@ -55,6 +39,17 @@ namespace BIT_DesktopApp.ViewModels
             MessageBox.Show("Derp");
         }
 
-        #endregion Public Method
+        public Client NewClient
+        {
+            get { return _newClient; }
+            set { _newClient = value; }
+        }
+
+
+        public AddClientViewModel()
+        {
+            NewClient = new Client();
+        }
+
     }
 }

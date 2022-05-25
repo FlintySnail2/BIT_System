@@ -39,16 +39,14 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
         </Grid>
-        <Grid Grid.RowSpan="3" Margin="0,45,0,10">
+        <Grid Margin="0,40,0,0" Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
+
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -74,68 +72,27 @@
                       Grid.Column="1" 
                       Margin="5" />
 
-            <Label Content="Contact Name : " 
-                   Grid.Row="1"
+
+
+            <Label Content="Skill Required: "
+                   Grid.Row="1" 
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox Text="{Binding NewJob.ContactName,
+            <TextBox 
+                Text="{Binding NewJob.Skill,
                                      ValidatesOnDataErrors=True,
                                      UpdateSourceTrigger=PropertyChanged,
                                      Mode=TwoWay}"
-                      ToolTip="{Binding NewClient.ErrorCollection[ContactName]}" 
-                     x:Name="txtContactName" 
-                     Grid.Row="1" 
-                     Grid.Column="1" 
-                     Margin="5" />
+                ToolTip="{Binding NewClient.ErrorCollection[Skill]}"
+                x:Name="txtSkill" 
+                Grid.Row="1" 
+                Grid.Column="1" 
+                Margin="5" />
 
-            <Label Content="Phone : " 
-                   Grid.Row="2" 
-                   Grid.Column="0" 
-                   Foreground="#fff"/>
-
-            <TextBox Text="{Binding NewJob.Phone,
-                                     ValidatesOnDataErrors=True,
-                                     UpdateSourceTrigger=PropertyChanged,
-                                     Mode=TwoWay}"
-                      ToolTip="{Binding NewClient.ErrorCollection[Phone]}"
-                     x:Name="txtPhone" 
-                     Grid.Row="2" 
-                     Grid.Column="1" 
-                     Margin="5" />
-
-            <Label Content="Email : "
-                   Grid.Row="3" 
-                   Grid.Column="0" 
-                   Foreground="#fff"/>
-
-            <TextBox Text="{Binding NewJob.Email,
-                                     ValidatesOnDataErrors=True,
-                                     UpdateSourceTrigger=PropertyChanged,
-                                     Mode=TwoWay}"
-                      ToolTip="{Binding NewClient.ErrorCollection[Email]}"
-                     x:Name="txtEmail" 
-                     Grid.Row="3" 
-                     Grid.Column="1" 
-                     Margin="5" />
-
-            <Label Content="Job Description : "
-                   Grid.Row="4" 
-                   Grid.Column="0" 
-                   Foreground="#fff"/>
-
-            <TextBox Text="{Binding NewJob.JobDescription,
-                                     ValidatesOnDataErrors=True,
-                                     UpdateSourceTrigger=PropertyChanged,
-                                     Mode=TwoWay}"
-                      ToolTip="{Binding NewClient.ErrorCollection[JobDescription]}"
-                     x:Name="txtJobDesc" 
-                     Grid.Row="4" 
-                     Grid.Column="1" 
-                     Margin="5" />
 
             <Label Content="Priority : "
-                   Grid.Row="5" 
+                   Grid.Row="2" 
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
@@ -146,32 +103,13 @@
                                      Mode=TwoWay}"
                       ToolTip="{Binding NewClient.ErrorCollection[Priority]}"
                      x:Name="txtPriority" 
-                     Grid.Row="5" 
+                     Grid.Row="2" 
                      Grid.Column="1" 
-                     Margin="5" />
+                     Margin="5,5,5,5" />
 
-           
-
-            <Label Content="Requested Completion : "
-                   Grid.Row="67" 
+            <Label Content="Requested Completion Date : "
+                   Grid.Row="3" 
                    Grid.Column="0" 
-                   Foreground="#fff"/>
-
-            <TextBox Text="{Binding NewJob.ReqCompletionDate,
-                                     ValidatesOnDataErrors=True,
-                                     UpdateSourceTrigger=PropertyChanged,
-                                     Mode=TwoWay}"
-                      ToolTip="{Binding NewClient.ErrorCollection[ReqCompletionDate]}"
-                     x:Name="txtReqCompletionDate" 
-                     Grid.Row="7" 
-                     Grid.Column="1" 
-                     Margin="5" />
-
-            <!--Second column of data -->
-
-            <Label Content="Service Date : "
-                   Grid.Row="0" 
-                   Grid.Column="2" 
                    Foreground="#fff"/>
 
             <DatePicker
@@ -179,49 +117,26 @@
                                      ValidatesOnDataErrors=True,
                                      UpdateSourceTrigger=PropertyChanged,
                                      Mode=TwoWay}"
-                      ToolTip="{Binding NewClient.ErrorCollection[DateCreated]}"
-                     x:Name="txtDateCreated" 
-                     Grid.Row="0" 
-                     Grid.Column="3" 
-                     Margin="5,15"/>
+                ToolTip="{Binding NewClient.ErrorCollection[DateCreated]}"
+                x:Name="txtDateCreated" 
+                Grid.Row="3" 
+                Grid.Column="1" 
+                Margin="5,5,5,5"/>
 
-
-            <Label Content="Skill Required: "
-                   Grid.Row="1" 
-                   Grid.Column="2" 
-                   Foreground="#fff"/>
-
-            <TextBox 
-                    Text="{Binding NewJob.Skill,
+            <TextBox Text="{Binding NewJob.JobDescription,
                                      ValidatesOnDataErrors=True,
                                      UpdateSourceTrigger=PropertyChanged,
                                      Mode=TwoWay}"
-                      ToolTip="{Binding NewClient.ErrorCollection[Skill]}"
-                     x:Name="txtSkill" 
-                     Grid.Row="1" 
-                     Grid.Column="3" 
-                     Margin="5" />
-            
-            <Label Content="Region : "
-                   Grid.Row="2" 
-                   Grid.Column="2" 
-                   Foreground="#fff"/>
-
-
-            <TextBox Text="{Binding NewJob.Region,
-                                     ValidatesOnDataErrors=True,
-                                     UpdateSourceTrigger=PropertyChanged,
-                                     Mode=TwoWay}"
-                      ToolTip="{Binding NewClient.ErrorCollection[Region]}"
-                     x:Name="txtRegion" 
-                     Grid.Row="2" 
-                     Grid.Column="3" 
+                     ToolTip="{Binding NewClient.ErrorCollection[JobDescription]}"
+                     x:Name="txtJobDesc" 
+                     Grid.Row="4" 
+                     Grid.Column="1" 
                      Margin="5" />
 
-          
+            <!--Second column of data -->
 
             <Label Content="Street : " 
-                   Grid.Row="4" 
+                   Grid.Row="0" 
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
@@ -232,12 +147,12 @@
                                      Mode=TwoWay}"
                       ToolTip="{Binding NewClient.ErrorCollection[Street]}"
                      x:Name="txtStreet" 
-                     Grid.Row="4" 
+                     Grid.Row="0" 
                      Grid.Column="3" 
                      Margin="5"/>
 
             <Label Content="Suburb : " 
-                   Grid.Row="5" 
+                   Grid.Row="1" 
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
@@ -248,12 +163,12 @@
                                      Mode=TwoWay}"
                       ToolTip="{Binding NewClient.ErrorCollection[Suburb]}"
                      x:Name="txtSuburb" 
-                     Grid.Row="5" 
+                     Grid.Row="1" 
                      Grid.Column="3" 
                      Margin="5"/>
 
             <Label Content="State : " 
-                   Grid.Row="6" 
+                   Grid.Row="2" 
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
@@ -264,13 +179,18 @@
                                      Mode=TwoWay}"
                       ToolTip="{Binding NewClient.ErrorCollection[State]}"
                      x:Name="txtState" 
-                     Grid.Row="6" 
+                     Grid.Row="2" 
                      Grid.Column="3" 
                      Margin="5" />
 
             <Label Content="Zip : " 
-                   Grid.Row="7" 
+                   Grid.Row="3" 
                    Grid.Column="2" 
+                   Foreground="#fff"/>
+
+            <Label Content="Job Description : "
+                   Grid.Row="4" 
+                   Grid.Column="0" 
                    Foreground="#fff"/>
 
             <TextBox
@@ -280,9 +200,10 @@
                                      Mode=TwoWay}"
                       ToolTip="{Binding NewClient.ErrorCollection[Zip]}"
                      x:Name="txtZip" 
-                     Grid.Row="7" 
+                     Grid.Row="3" 
                      Grid.Column="3" 
                      Margin="5" />
+
 
         </Grid>
         <StackPanel Orientation="Horizontal" 

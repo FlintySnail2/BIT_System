@@ -110,7 +110,7 @@ namespace BIT_DesktopApp.ViewModels
             this.Jobs = new ObservableCollection<Job>(allJobs);
             JobsStatus allStatus = new JobsStatus();
             this.JobsStatus = new ObservableCollection<JobStatus>(allStatus);
-           // GetJobs();
+           //GetJobs();
             
         }
 

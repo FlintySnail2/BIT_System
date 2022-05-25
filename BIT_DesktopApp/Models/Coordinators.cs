@@ -17,7 +17,8 @@ namespace BIT_DesktopApp.Models
             _db = new SQLHelper();
             string sql = "SELECT" +
                 "           StaffId," +
-                "           FirstName + ' ' + LastName AS EmployeeName," +
+                "           FirstName,"+
+                "           LastName," +
                 "           Dob," +
                 "           Phone," +
                 "           Email," +
