@@ -78,10 +78,13 @@
                       x:Name="dgContractorSkills" 
                       Margin="5"
                       ItemsSource="{Binding ContractorSkills}" 
-                      SelectedItem="{Binding SelectedSkill}"/>
+                      SelectedItem="{Binding SelectedSkill}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Contractor Skill" Binding="{Binding Skill}"/>
+                    </DataGrid.Columns>
+            </DataGrid>
 
-
-            <StackPanel Grid.Row="1" 
+                <StackPanel Grid.Row="1" 
                         Grid.Column="1" 
                         Orientation="Horizontal">
 

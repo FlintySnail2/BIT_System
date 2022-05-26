@@ -76,7 +76,7 @@ namespace BIT_DesktopApp.Models
                         }
                         break;
                     case "Availability":
-                        if (string.IsNullOrEmpty(Availibility))
+                        if (string.IsNullOrEmpty(Availability))
                         {
                             result = "Field cannot be left empty";
                         }
