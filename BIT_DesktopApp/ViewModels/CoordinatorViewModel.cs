@@ -61,7 +61,7 @@ namespace BIT_DesktopApp.ViewModels
             int returnValue = SelectedCoordinator.StaffId;
             if (returnValue > 0)
             {
-                MessageBox.Show("She works boys");
+                MessageBox.Show("She works boys, she actually doesn't shes clapped harder than dads dome" );
             }
             else
             {
