@@ -68,7 +68,7 @@
                         <DataGridTextColumn Header="Staff Id" Binding="{Binding StaffId}"/>
                         <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}"/>
                         <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}"/>
-                        <DataGridTextColumn Header="Birth Date" Binding="{Binding Dob}"/>
+                        <DataGridTextColumn Header="Birth Date" Binding="{Binding DobFormat}"/>
                         <DataGridTextColumn Header="Phone" Binding="{Binding Phone}"/>
                         <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
                         <DataGridTextColumn Header="Password" Binding="{Binding Password}"/>
@@ -135,7 +135,7 @@
                             x:Name="txtDob" 
                             Grid.Row="0" 
                             Grid.Column="3" 
-                            Margin="5,10,5,10" RenderTransformOrigin="0.5,0.556"/>
+                            Margin="5,10,5,10" RenderTransformOrigin="0.5,0.556" SelectedDateFormat="Short"/>
 
                 <Label Content="Email : " 
                        Grid.Row="1" 

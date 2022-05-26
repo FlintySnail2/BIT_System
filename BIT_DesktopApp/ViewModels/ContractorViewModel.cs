@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.ServiceModel.Description;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,10 +24,12 @@ namespace BIT_DesktopApp.ViewModels
 
         private string _searchText;
         private RelayCommand _searchCommand;
+        private RelayCommand _updateCommand;
+        private RelayCommand _deleteCommand;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        //INOTIFY PROPERTY CHANGED 
+        
 
         private void OnPropertyChanged(string prop)
         {
@@ -35,6 +38,8 @@ namespace BIT_DesktopApp.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
             }
         }
+
+        #region Search Command
 
         public RelayCommand SearchCommand
         {
@@ -47,37 +52,95 @@ namespace BIT_DesktopApp.ViewModels
                 }
                 return _searchCommand;
             }
-            set{ _searchCommand = value;}
+            set { _searchCommand = value; }
         }
 
-        
-
-        #region Contractor Contructors
-        public ObservableCollection<Contractor> Contractors
+        public void SearchMethod()
         {
-            get { return _contractors; }
+            Contractors allContractors = new Contractors(SearchText);
+            this.Contractors = new ObservableCollection<Contractor>(allContractors);
+        }
+
+        public string SearchText
+        {
+            get { return _searchText; }
             set
             {
-                _contractors = value; 
-                OnPropertyChanged("Contractors");
+                _searchText = value;
+                OnPropertyChanged("SearchText");
             }
         }
-       
-        public Contractor SelectedContractor
+
+
+
+        #endregion Search Command
+
+        #region Delete Method
+
+        public RelayCommand DeleteCommand
         {
-            get { return _selectedContractor; } 
-            set 
-            { 
-                _selectedContractor = value;
-                OnPropertyChanged("SelectedContractor");
-                ContractorSkills allSkills = new ContractorSkills(SelectedContractor.ContractorId);
-                this.ContractorSkills = new ObservableCollection<ContractorSkill>(allSkills);
+            get
+            {
+                if (_deleteCommand == null)
+                {
+                    _deleteCommand = new RelayCommand(this.DeleteMethod, true);
+                }
+
+                return _deleteCommand;
+            }
+            set { _deleteCommand = value; }
+        }
+
+        public void DeleteMethod()
+        {
+            int returnValue = SelectedContractor.ContractorId;
+            if (returnValue > 0)
+            {
+                MessageBox.Show("Contractor has been deleted. ");
+            }
+            else
+            {
+                MessageBox.Show("Error");
             }
         }
 
-        #endregion Contractor Constructor 
+        #endregion Delete Mthod
 
-        
+        #region Update Method
+
+        public RelayCommand UpdateCommand
+        {
+            get
+            {
+                if (_updateCommand == null)
+                {
+                    _updateCommand = new RelayCommand(this.UpdateMethod, true);
+                }
+
+                return _updateCommand;
+
+            }
+            set { _updateCommand = value; }
+        }
+
+        public void UpdateMethod()
+        {
+            int returnValue = SelectedContractor.ContractorId;
+            if (returnValue > 0)
+            {
+                MessageBox.Show("Contractor has been updated");
+            }
+            else
+            {
+                MessageBox.Show("Error");
+            }
+            
+        }
+
+
+        #endregion Update Method
+
+        #region Contractor Skills
 
         public ObservableCollection<ContractorSkill> ContractorSkills
         {
@@ -96,31 +159,41 @@ namespace BIT_DesktopApp.ViewModels
             {
                 _selectedSkill = value;
                 OnPropertyChanged("SelectedSkill");
-                
+
             }
         }
 
         public ContractorSkill ContractorSkill
         {
             get { return _ContractorSkill; }
-            set { _ContractorSkill = value;}
+            set { _ContractorSkill = value; }
         }
 
-        public string SearchText
+        #endregion contractor Skills
+
+        public ObservableCollection<Contractor> Contractors
         {
-            get { return _searchText; }
+            get { return _contractors; }
             set
             {
-                _searchText = value;
-                OnPropertyChanged("SearchText");
+                _contractors = value;
+                OnPropertyChanged("Contractors");
             }
         }
 
-        public void SearchMethod()
+        public Contractor SelectedContractor
         {
-            Contractors allContractors = new Contractors(SearchText);
-            this.Contractors = new ObservableCollection<Contractor>(allContractors);
+            get { return _selectedContractor; }
+            set
+            {
+                _selectedContractor = value;
+                OnPropertyChanged("SelectedContractor");
+                ContractorSkills allSkills = new ContractorSkills(SelectedContractor.ContractorId);
+                this.ContractorSkills = new ObservableCollection<ContractorSkill>(allSkills);
+            }
         }
+
+
 
         public ContractorViewModel()
         {

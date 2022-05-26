@@ -30,23 +30,7 @@ namespace BIT_DesktopApp.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
             }
         }
-
-        public ObservableCollection<Job> Jobs
-        {
-            get { return _jobs; }
-            set { _jobs = value;
-                OnPropertyChanged("Jobs");
-            }
-        }
-
-        public Job SelectedJob
-        {
-            get { return _SelectedJob; }
-            set { _SelectedJob = value;
-                OnPropertyChanged("SelectedJobStatus");
-            }
-        }
-
+        #region Search Method
         public RelayCommand SearchCommand
         {
             get
@@ -70,12 +54,39 @@ namespace BIT_DesktopApp.ViewModels
                 OnPropertyChanged("SearchText");
             }
         }
-        //************ SEARCH METHOD **********
+
         public void SearchMethod()
         {
             Jobs allJobs = new Jobs(SearchText);
             this.Jobs = new ObservableCollection<Job>(allJobs);
         }
+
+
+        #endregion Search Method
+
+        #region Assign Job
+        #endregion Assign Job
+
+        #region Reassign Job
+#endregion Reassign Job
+
+        public ObservableCollection<Job> Jobs
+        {
+            get { return _jobs; }
+            set { _jobs = value;
+                OnPropertyChanged("Jobs");
+            }
+        }
+
+        public Job SelectedJob
+        {
+            get { return _SelectedJob; }
+            set { _SelectedJob = value;
+                OnPropertyChanged("SelectedJobStatus");
+            }
+        }
+
+        
 
 
 

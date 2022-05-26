@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -17,22 +18,51 @@ namespace BIT_DesktopApp.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
         private string _searchText;
         private RelayCommand _searchCommand;
-        //private RelayCommand _updateCommand;
+        private RelayCommand _updateCommand;
+        private RelayCommand _deleteCommand;
 
-        #region Constructors
+        private void OnPropertyChanged(string prop)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            }
+        }
 
-        //public RelayCommand UpdateCommand
-        //{
-        //    get
-        //    {
-        //        if (_updateCommand == null)
-        //        {
-        //            _updateCommand = new RelayCommand(this.UpdateMethod, true);
-        //        }
-        //        return _updateCommand;
-        //    }
-        //    set { _updateCommand = value; }
-        //}
+        #region Update Command
+
+        public RelayCommand UpdateCommand
+        {
+            get
+            {
+                if (_updateCommand == null)
+                {
+                    _updateCommand = new RelayCommand(this.UpdateMethod, true);
+                }
+
+                return _updateCommand;
+            }
+            set { _updateCommand = value; }
+        }
+
+        public void UpdateMethod()
+        {
+            int returnValue = SelectedClient.ClientId;
+            if (returnValue > 0)
+            {
+                MessageBox.Show("Client has been upodated");
+            }
+            else
+            {
+                MessageBox.Show("Error");
+            }
+
+        }
+
+
+        #endregion Update Command
+
+        #region Search Command
 
         public RelayCommand SearchCommand
         {
@@ -43,11 +73,66 @@ namespace BIT_DesktopApp.ViewModels
                     _searchCommand = new RelayCommand(this.SearchMethod, true);
 
                 }
+
                 return _searchCommand;
             }
             set { _searchCommand = value; }
         }
 
+
+        
+
+
+        public void SearchMethod()
+        {
+            Clients allClients = new Clients(SearchText);
+            this.Clients = new ObservableCollection<Client>(allClients);
+        }
+
+
+
+        
+
+        public string SearchText
+        {
+            get { return _searchText; }
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged("SearchText");
+            }
+        }
+        #endregion Search Command
+
+        #region Delete Command
+
+        public RelayCommand DeleteCommand
+        {
+            get
+            {
+                if (_deleteCommand == null)
+                {
+                    _deleteCommand = new RelayCommand(this.DeleteMethod, true);
+                }
+
+                return _deleteCommand;
+            }
+            set { _deleteCommand = value; }
+        }
+
+        public void DeleteMethod()
+        {
+            int returnValue = SelectedClient.ClientId;
+            if (returnValue > 0)
+            {
+                MessageBox.Show("Client has been deleted ");
+            }
+            else
+            {
+                MessageBox.Show("Error");
+            }
+        }
+        #endregion Delete Command 
 
         public ObservableCollection<Client> Clients
         {
@@ -64,13 +149,10 @@ namespace BIT_DesktopApp.ViewModels
         public ClientViewModel()
         {
             //COMMENTED OUT AS USING MOQ
-           // Clients allClients = new Clients();
+            // Clients allClients = new Clients();
             //this.Clients = new ObservableCollection<Client>(allClients);
             GetClients();
         }
-        #endregion Constructors
-
-        #region Methods
 
         public virtual ObservableCollection<Client> GetClients()
         {
@@ -78,46 +160,12 @@ namespace BIT_DesktopApp.ViewModels
             return new ObservableCollection<Client>(allClients);
         }
 
-        private void OnPropertyChanged(string prop)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-            }
-        }
 
-      
-
-        public string SearchText
-        {
-            get { return _searchText; }
-            set
-            {
-                _searchText = value;
-                OnPropertyChanged("SearchText");
-            }
-        }
-
-        public void SearchMethod()
-        {
-            Clients allClients = new Clients(SearchText);
-            this.Clients = new ObservableCollection<Client>(allClients);
-        }
-
-        public void UpdateMethod()
-        {
-            int returnValue = SelectedClient.ClientId;
-            if (returnValue > 0)
-            {
-                MessageBox.Show("Clients Details Successfully Updated");
-            }
-            else
-            {
-                MessageBox.Show("Client details could not be updated, please try again later");
-            }
-
-        }
-
-        #endregion Methods
     }
+
+    
+
+
+
+
 }
