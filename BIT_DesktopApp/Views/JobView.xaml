@@ -11,50 +11,53 @@
         Background="#2D3136"
         CornerRadius="20">
         <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50px"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="50px"/>
-        </Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50px"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50px"/>
+            </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" 
+            <StackPanel Orientation="Horizontal" 
                     HorizontalAlignment="Center" 
                     Width="800">
 
-            <TextBlock Text="Jobs" 
+                <TextBlock Text="Jobs" 
                        FontSize="28px" 
                        FontWeight="bold" 
                        Foreground="#fff" 
                        Width="323" 
                        Margin="10,5,10,5"/>
 
-            <TextBox Text="{Binding SearchText,
+                <TextBox Text="{Binding SearchText,
                             UpdateSourceTrigger=PropertyChanged}"
                      x:Name="txtSearchContractor" 
                      Width="200"
                      Style="{StaticResource SearchTheme}"/>
 
-            <Button     Command="{Binding SearchCommand}"
+                <Button     Command="{Binding SearchCommand}"
                         Content="SEARCH" 
                         x:Name="btnSearchContractor" 
                         Width="90" 
                         Margin="10,10,10,10" 
                         FontSize="18"/>
-        </StackPanel>
+            </StackPanel>
 
-        <Grid Grid.Row="1" Margin="0,0,0,185" Grid.RowSpan="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+            <TabItem
+                    Header="Completed Jobs" Margin="185,25,715,5">
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="3*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+                <Grid Grid.Row="1" Margin="0,0,0,185" Grid.RowSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-            <DataGrid Grid.Column="0" 
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <DataGrid Grid.Column="0" 
                       Name="dgJobs" 
                       Margin="10,5,10,10"
                       ItemsSource="{Binding Jobs}"
@@ -62,16 +65,16 @@
                       Grid.ColumnSpan="2"/>
 
 
-            <!-- JOB STATUS MANAGEMENT -->
+                    <!-- JOB STATUS MANAGEMENT -->
 
-            <StackPanel Grid.Column="0" 
+                    <StackPanel Grid.Column="0" 
                         Grid.Row="1" 
                         Orientation="Horizontal" 
                 
                         Margin="165,9,250,10">
 
-                <!--ADD BIND TO JOB STATUS-->
-                <ComboBox Text="{Binding SelectedJob.Status}"
+                        <!--ADD BIND TO JOB STATUS-->
+                        <ComboBox Text="{Binding SelectedJob.Status}"
                                  DisplayMemberPath="Status"
 
                           ItemsSource="{Binding JobsStatus, 
@@ -81,156 +84,30 @@
                           Width="110" 
                           Height="31" 
                           />
-                <!--<ComboBoxItem Content="Verified"/>
+                        <!--<ComboBoxItem Content="Verified"/>
                     <ComboBoxItem Content="Send For Payment"/>-->
-                <!--</ComboBox>-->
-                <Button x:Name="btnUpdateStatus" 
+                        <!--</ComboBox>-->
+                        <Button x:Name="btnUpdateStatus" 
                         Width="70" Height="30" 
                         Content=" UPDATE" 
                         Margin="55,0"
                         >
-                    <Button.RenderTransform>
+                            <Button.RenderTransform>
 
-                        <TransformGroup>
-                            <ScaleTransform/>
-                            <SkewTransform AngleY="0"/>
-                            <RotateTransform/>
-                            <TranslateTransform Y="0"/>
-                        </TransformGroup>
-                    </Button.RenderTransform>
-                </Button>
-            </StackPanel>
-        </Grid>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform AngleY="0"/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="0"/>
+                                </TransformGroup>
+                            </Button.RenderTransform>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Assign Jobs" Margin="750,25,150,5"/>
 
-        <Grid Grid.Row="2" Margin="10,45,10,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*"/>
-                
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="2*" />
-            </Grid.ColumnDefinitions>
-
-            <!-- DATA COLUMN ONE -->
-
-            <Label 
-                   Content="Client : " 
-                   Grid.Row="0" 
-                   Grid.Column="0" 
-                   Foreground="#fff"/>
-
-            <TextBox  Text="{Binding SelectedJob.OrganisationName}"
-                      x:Name="txtClient"
-                      Grid.Row="0" 
-                      Grid.Column="1" 
-                      Margin="5" />
-
-            <Label Content="Contact Name : " 
-                   Grid.Row="1" 
-                   Grid.Column="0" 
-                   Foreground="#fff"/>
-
-            <TextBox Text="{Binding SelectedJob.ContactName}"
-                     x:Name="txtContactName" 
-                     Grid.Row="1" 
-                     Grid.Column="1" 
-                     Margin="5" />
-
-            <Label Content="Skill Required :"
-                   Grid.Row="3" Grid.Column="0" 
-                   Foreground="#fff"/>
-
-            <TextBox Text="{Binding SelectedJob.SkillReq}"
-                     x:Name="txtSKillReq" 
-                     Grid.Row="2" 
-                     Grid.Column="1" 
-                     Margin="5" />
-
-            <Label Content="Job Priority : "
-                   Grid.Row="2"
-                   Grid.Column="0"
-                   Foreground="#fff"/>
-
-            <ComboBox Text="{Binding SelectedJob.Priority}" 
-                     x:Name="txtPriority" 
-                     Grid.Row="3" 
-                     Grid.Column="1" 
-                     Margin="5">
-
-                <ComboBoxItem Content="Low"/>
-                <ComboBoxItem Content="Medium"/>
-                <ComboBoxItem Content="High"/>
-            </ComboBox>
-
-            <Label Content="Contact No# :"
-                   Grid.Row="4" Grid.Column="0" 
-                   Foreground="#fff"/>
-
-            <TextBox Text="{Binding SelectedJob.Phone}"
-                     x:Name="txtPhone" 
-                     Grid.Row="4" 
-                     Grid.Column="1" 
-                     Margin="5" />
-
-            <!-- DATA COLUMN TWO -->
-
-            <Label Content="Location : " 
-                   Grid.Row="0" 
-                   Grid.Column="2" 
-                   Foreground="#fff" />
-
-            <TextBox Text="{Binding SelectedJob.Location}"
-                     x:Name="txtLocation" 
-                     Grid.Row="0" 
-                     Grid.Column="3" 
-                     Margin="5"/>
-
-
-
-            <Label Content="Completion Date : " 
-                   Grid.Row="1" 
-                   Grid.Column="2" 
-                   Foreground="#fff" />
-
-            <TextBox Text="{Binding SelectedJob.RequestedCompletion}"
-                     x:Name="txtCompletion"
-                     Grid.Row="1" 
-                     Grid.Column="3" 
-                     Margin="5"/>
-
-            <Label Content="Distance Travelled : " 
-                   Grid.Row="2" 
-                   Grid.Column="2" 
-                   Foreground="#fff" />
-
-            <TextBox Text="{Binding SelectedJob.DistanceTravelled}"
-                     x:Name="txtDistance"
-                     Grid.Row="2" 
-                     Grid.Column="3" 
-                     Margin="5"/>
-
-            <Label Content="Job Description : " 
-                   Grid.Row="3" 
-                   Grid.Column="2" 
-                   Foreground="#fff"/>
-
-            <TextBox Text="{Binding SelectedJob.Description}"
-                     x:Name="txtDescription" 
-                     Grid.Column="3" 
-                     Margin="5,4,5,5" Grid.Row="3" Grid.RowSpan="2" />
-
-
-        </Grid>
-
-
-        <StackPanel Orientation="Horizontal" 
+            <StackPanel Orientation="Horizontal" 
                     HorizontalAlignment="right" 
                     Grid.Row="3">
 
@@ -239,23 +116,23 @@
 
 
 
-            <Button x:Name="btnUpdate" 
+                <Button x:Name="btnUpdate" 
                     Content="UPDATE"
                     Width="150" 
                     Margin="10"/>
 
-            <Button x:Name="btnDelete"
+                <Button x:Name="btnDelete"
                     Content="DELETE" 
                     Width="150" 
                     Margin="10"/>
 
-            <Button x:Name="btnAdd" 
+                <Button x:Name="btnAdd" 
                     Content="ADD" 
                     Width="150" 
                     Margin="10"
                     Click="btnAdd_Click"/>
 
-        </StackPanel>
-    </Grid>
-        </Border>
+            </StackPanel>
+        </Grid>
+    </Border>
 </Page>

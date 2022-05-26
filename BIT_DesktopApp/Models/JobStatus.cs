@@ -62,7 +62,6 @@ namespace BIT_DesktopApp.Models
         #region Public Methods
 
 
-
         #endregion Public Methods
     }
 }

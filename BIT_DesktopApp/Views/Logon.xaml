@@ -10,86 +10,87 @@
         AllowsTransparency="True" Background="Transparent"
         WindowStyle="None" ResizeMode="NoResize"
         MouseDown="Window_MouseDown">
-    <Grid>
+
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
 
-            <Border CornerRadius="10" Grid.RowSpan="2">
-                <Border.Background>
-                    <LinearGradientBrush>
-                        <GradientStop Color="#272537" Offset="1"/>
+                <Border CornerRadius="10" Grid.RowSpan="2">
+                    <Border.Background>
+                        <LinearGradientBrush>
+                            <GradientStop Color="#2D3136" Offset="1"/>
 
-                    </LinearGradientBrush>
-                </Border.Background>
-            </Border>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
 
-            <StackPanel VerticalAlignment="Center">
-                <Image Source="../Images/BITServicesFinal.png" Width="280" Margin="20,0,30,0"/>
-            </StackPanel>
-
-            <StackPanel Grid.Row="1" >
-                <StackPanel  Orientation="Horizontal" >
-                    <TextBox FontFamily="Helvetica" 
-                             FontWeight="Light" 
-                             Text="Username"
-                             x:Name="txtUsername"
-                             FontSize="20"
-                             HorizontalAlignment="Center"
-                             Foreground="White"
-                             Background="Transparent"
-                             BorderThickness="0"
-                             Width="225"
-                             HorizontalContentAlignment="Left"
-                             Opacity="0.5"
-                             Height="25"
-                             Margin="80,0,0,0"/>
-                    
-                    <iconPacks:PackIconMaterial Kind="AccountBox"
-                                                HorizontalAlignment="Center"
-                                                VerticalAlignment="Center"
-                                                Foreground="White"/>
-
-                </StackPanel>
-                <Border Width="250"
-                        Height="2"
-                        Background="White"
-                        Opacity="0.5"/>
-
-                <StackPanel  Orientation="Horizontal" Margin="0,15,0,0">
-                    <TextBox FontFamily="Helvetica" 
-                             FontWeight="Light" 
-                             
-                             x:Name="txtPassword"
-                             FontSize="20"
-                             HorizontalAlignment="Left"
-                             Foreground="White"
-                             Background="Transparent"
-                             BorderThickness="0"
-                             Width="225"
-                             HorizontalContentAlignment="Left"
-                             Opacity="0.5"
-                             Height="25"
-                             Margin="80,0,0,0"/>
-                    
-                    <iconPacks:PackIconMaterial Kind="FormTextboxPassword" 
-                                                VerticalAlignment="Center" 
-                                                HorizontalAlignment="Center" 
-                                                Foreground="White"/>
+                <StackPanel VerticalAlignment="Center">
+                    <Image Source="../Images/BITServicesFinal.png" Width="280" Margin="20,0,30,0"/>
                 </StackPanel>
 
-                <Border Width="250"
-                        Height="2"
-                        Background="White"
-                        Opacity="0.5"/>
+                <StackPanel Grid.Row="1" >
+                    <StackPanel  Orientation="Horizontal" >
+                        <TextBox FontFamily="Helvetica" 
+                                 FontWeight="Light" 
+                                 Text="Username"
+                                 x:Name="txtUsername"
+                                 FontSize="20"
+                                 HorizontalAlignment="Center"
+                                 Foreground="White"
+                                 Background="Transparent"
+                                 BorderThickness="0"
+                                 Width="225"
+                                 HorizontalContentAlignment="Left"
+                                 Opacity="0.5"
+                                 Height="25"
+                                 Margin="80,0,0,0"/>
+                        
+                        <iconPacks:PackIconMaterial Kind="AccountBox"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    Foreground="White"/>
 
-                <StackPanel Orientation="Horizontal" Margin="0,50,0,0">
-                    <Button Width="100" Height="40" Content="LOGIN" Margin="65,0,65,0" Click="btnLogon_Click"/>
-                    <Button Width="100" Height="40" Content="Close" Click="btnClose_Click"/>
+                    </StackPanel>
+                    <Border Width="250"
+                            Height="2"
+                            Background="White"
+                            Opacity="0.5"/>
+
+                    <StackPanel  Orientation="Horizontal" Margin="0,15,0,0">
+                        <TextBox FontFamily="Helvetica" 
+                                 FontWeight="Light" 
+                                 
+                                 x:Name="txtPassword"
+                                 FontSize="20"
+                                 HorizontalAlignment="Left"
+                                 Foreground="White"
+                                 Background="Transparent"
+                                 BorderThickness="0"
+                                 Width="225"
+                                 HorizontalContentAlignment="Left"
+                                 Opacity="0.5"
+                                 Height="25"
+                                 Margin="80,0,0,0"/>
+                        
+                        <iconPacks:PackIconMaterial Kind="FormTextboxPassword" 
+                                                    VerticalAlignment="Center" 
+                                                    HorizontalAlignment="Center" 
+                                                    Foreground="White"/>
+                    </StackPanel>
+
+                    <Border Width="250"
+                            Height="2"
+                            Background="White"
+                            Opacity="0.5"/>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,50,0,0">
+                        <Button Width="100" Height="40" Content="LOGIN" Margin="65,0,65,0" Click="btnLogon_Click"/>
+                        <Button Width="100" Height="40" Content="Close" Click="btnClose_Click"/>
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
+            </Grid>
         </Grid>
-    </Grid>
 </Window>

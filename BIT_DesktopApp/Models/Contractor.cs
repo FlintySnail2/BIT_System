@@ -33,6 +33,7 @@ namespace BIT_DesktopApp.Models
         private string _licenceNumber { get; set; }
         private decimal _ratOfPay { get; set; }
         private string _contractorRating { get; set; }
+        private string _skillTitle { get; set; }
         public SQLHelper _db;
         public event PropertyChangedEventHandler PropertyChanged;
         public Dictionary<string,string> ErrorCollection { get; private set; }
@@ -228,6 +229,8 @@ namespace BIT_DesktopApp.Models
             }
         }
 
+        public string DobFormat => _dob.ToShortDateString();
+
         public string Email
         {
             get { return _email; }
@@ -257,13 +260,13 @@ namespace BIT_DesktopApp.Models
             }
         }
 
-        public string Availibility
+        public string Availability
         {
             get { return _availabilty; }
             set
             {
                 _availabilty = value;
-                OnPropertyChanged("Availibility");
+                OnPropertyChanged("Availability");
             }
         }
         public string LicenceNumber
@@ -294,6 +297,11 @@ namespace BIT_DesktopApp.Models
             }
         }
 
+        public string SkillTitle
+        {
+            get { return _skillTitle; }
+            set { _skillTitle = value; }
+        }
         #endregion Public Properties
 
         #region Constructor
@@ -312,7 +320,6 @@ namespace BIT_DesktopApp.Models
             Phone = dr["Phone"].ToString();
             Dob = Convert.ToDateTime(dr["Dob"].ToString());
             Email = dr["Email"].ToString();
-            Availibility = dr["Availability"].ToString();
             ABN = dr["ABN"].ToString();
             LicenceNumber = dr["LicenceNumber"].ToString();
             RateOfPay = Convert.ToDecimal(dr["RateofPay"].ToString());
@@ -366,42 +373,111 @@ namespace BIT_DesktopApp.Models
                                 "       @SkillTitle)" +
                                 "WHERE" +
                                 "   ContractorId = @ContractorId";
-            SqlParameter[] objParams = new SqlParameter[15];
-            objParams[0] = new SqlParameter("FirstName", DbType.String);
-            objParams[0].Value = ContractorName.Split(' ')[0];
+            SqlParameter[] objParams = new SqlParameter[12];
+            objParams[0] = new SqlParameter("@FirstName", DbType.String);
+            objParams[0].Value = FirstName;
             objParams[1] = new SqlParameter("@LastName", DbType.String);
-            objParams[1].Value = ContractorName.Split(' ')[1];
+            objParams[1].Value = LastName;
+            //objParams[0] = new SqlParameter("FirstName", DbType.String);
+            //objParams[0].Value = ContractorName.Split(' ')[0];
+            //objParams[1] = new SqlParameter("@LastName", DbType.String);
+            //objParams[1].Value = ContractorName.Split(' ')[1];
             objParams[2] = new SqlParameter("@Street", DbType.String);
-            objParams[2].Value = Street;
-            objParams[3] = new SqlParameter("@State", DbType.String);
-            objParams[3].Value = State;
-            objParams[4] = new SqlParameter("@Zip", DbType.String);
-            objParams[4].Value = Zip;
-            objParams[5] = new SqlParameter("@Phone", DbType.String);
-            objParams[5].Value = Phone;
-            objParams[6] = new SqlParameter("@Email", DbType.String);
-            objParams[6].Value = Email;
-            objParams[7] = new SqlParameter("@Password", DbType.String);
-            objParams[7].Value = Password;
-            objParams[8] = new SqlParameter("@ABN", DbType.String);
-            objParams[8].Value = ABN;
-            objParams[9] = new SqlParameter("@LicenceNumber", DbType.String);
-            objParams[9].Value = LicenceNumber;
-            objParams[10] = new SqlParameter("@RateofPay", DbType.String);
-            objParams[10].Value = RateOfPay;
+            objParams[2].Value = Street; //String interpolation wont work on char??
+            objParams[3] = new SqlParameter("@Suburb", DbType.Int32);
+            objParams[3].Value = Street;
+            objParams[4] = new SqlParameter("@State", DbType.String);
+            objParams[4].Value = State;
+            objParams[5] = new SqlParameter("@Zip", DbType.String);
+            objParams[5].Value = Zip;
+            objParams[6] = new SqlParameter("@Phone", DbType.String);
+            objParams[6].Value = Phone;
+            objParams[7] = new SqlParameter("@Dob", DbType.DateTime);
+            objParams[7].Value = Dob;
+            objParams[8] = new SqlParameter("@Email", DbType.String);
+            objParams[8].Value = Email;
+            objParams[9] = new SqlParameter("@Password", DbType.String);
+            objParams[9].Value = Password;
+            objParams[10] = new SqlParameter("@ABN", DbType.String);
+            objParams[10].Value = ABN;
+            objParams[11] = new SqlParameter("@LicenceNumber", DbType.String);
+            objParams[11].Value = LicenceNumber;
+            objParams[12] = new SqlParameter("@RateofPay", DbType.Decimal);
+            objParams[12].Value = RateOfPay;
+            SqlParameter[] objParams2 = new SqlParameter[2];
+            objParams2[0] = new SqlParameter("@ContractorId", DbType.Int32);
+            objParams2[0].Value = ContractorId;
+            objParams2[1] = new SqlParameter("@SkillTitle", DbType.String);
+            objParams2[1].Value = SkillTitle;
             int rowsAffectedContractor = _db.ExecuteNonQuery(insertSql, objParams);
+            int rowsAffectedSkill = _db.ExecuteNonQuery(insertSql2, objParams);
 
-
-
-
-            int Ro
-            if (rowsAffected >= 1 && ContractorSkill >=1)
+            if (rowsAffectedContractor >= 1 && rowsAffectedSkill >=1)
             {
                 return "Coordinator Successfully Added";
             }
-            //CONDITION FOR IF ONE OR THE OTHER DOESN'T PASS ROW
+            else if (rowsAffectedContractor >= 1)
+            {
+                return "Unable to add contractor skill, please try again later";
+            }
+            else if (rowsAffectedSkill >= 1)
+            {
+                return "Unable to add contractor, please try again later";
+            }
 
-            return "Unable to add coordinator, please try again later";
+            return "Unable to add contractor or skill, Please try again later";
+        }
+
+        public string RemoveContractor(int contractorId)
+        {
+            string removeSql = "UPDATE " +
+                               "    Contractor" +
+                               "SET" +
+                               "    AccountStatus = 'Inactive" +
+                               "WHERE" +
+                               "    ContractorId = @ContractorId";
+            SqlParameter[] objParams = new SqlParameter[1];
+            objParams[0] = new SqlParameter("@ContractorId", DbType.Int32);
+            objParams[0].Value =contractorId;
+            int rowsAffectedContractor = _db.ExecuteNonQuery(removeSql, objParams);
+            if (rowsAffectedContractor >= 1)
+            {
+                return "Contractor Successfully removed ";
+            }
+
+            return "Unable to remove contractor, please try again later ";
+        }
+
+        public string UpdateContractor(int contractor)
+        {
+            string updateSql = "UPDATE" +
+                               "  Contractor" +
+                               "SET" +
+                               "    FirstName = @FirstName," +
+                               "    LastName = @LastName" +
+                               "    Dob = @Dob," +
+                               "    Street = @Street," +
+                               "    Suburb = @Suburb," +
+                               "    State = @State," +
+                               "    Zip = @Zip" +
+                               "    Phone = @Phone,," +
+                               "    Email = @Email," +
+                               "    ABN = @ABN," +
+                               "    LicenceNumber = @LicenceNumber," +
+                               "    RateofPay = @RateofPay" +
+                               "    ContractorRating = @ContractorRating," +
+                               "    AccountStatus = 'Inactive'" +
+                               "WHERE" +
+                               "  ContractorId = @ContractorId";
+            SqlParameter[] objParams = new SqlParameter[14];
+            objParams[0] = new SqlParameter("@ContractorId", DbType.Int32);
+            int rowsAffectedContractor = _db.ExecuteNonQuery(updateSql, objParams);
+            if (rowsAffectedContractor >= 1)
+            {
+                return "Contractor successfully updated ";
+            }
+
+            return "Unable to update Contractor, please try again later ";
         }
 
         #endregion Public Methods

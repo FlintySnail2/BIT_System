@@ -9,7 +9,9 @@
       Title="ContractorView">
     <!--Background="Transparent"-->
 
-
+    <Border
+        Background="#2D3136"
+        CornerRadius="20">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50px"/>
@@ -57,12 +59,21 @@
             <DataGrid Grid.Column="0" 
                       Name="dgContractors" 
                       Margin="5,5,5,10"
+                      AutoGenerateColumns="False"
                       ItemsSource="{Binding Contractors}"
                       SelectedItem="{Binding SelectedContractor,
                                      UpdateSourceTrigger=PropertyChanged}"
-                      Grid.RowSpan="2"/>
+                      Grid.RowSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Contractor Name" Binding="{Binding ContractorName}"/>
+                <DataGridTextColumn Header="Birth Date" Binding="{Binding DobFormat}"/>
+                <DataGridTextColumn Header="Address" Binding="{Binding Address}"/>
+                <DataGridTextColumn Header="Phone" Binding="{Binding Phone}"/>
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
+            </DataGrid.Columns>
+                </DataGrid>
 
-            <DataGrid Grid.Row="0" 
+                <DataGrid Grid.Row="0" 
                       Grid.Column="1" 
                       x:Name="dgContractorSkills" 
                       Margin="5"
@@ -119,77 +130,77 @@
 
             <!--First Two Column data -->
 
-            <Label Content="Contractor Name : " 
+            <Label Content="First Name : " 
                    Grid.Row="0" 
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
             <TextBox Text="{Binding SelectedContractor.ContractorName}"
-                     x:Name="txtContractorName" 
+                     x:Name="txtFirstName" 
                      Grid.Row="0" 
                      Grid.Column="1" 
                      Margin="5" />
 
-            <Label Content="Birth Date : " 
+                <Label Content="Last Name : " 
                    Grid.Row="1" 
+                   Grid.Column="0" 
+                   Foreground="#fff"/>
+
+            <TextBox Text="{Binding SelectedContractor.Phone}"
+                     x:Name="txtLastName"
+                     Grid.Row="1" 
+                     Grid.Column="1" 
+                     Margin="5" />
+
+
+<Label Content="Birth Date : " 
+                   Grid.Row="2" 
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
             <TextBox Text="{Binding SelectedContractor.Dob, StringFormat=dd/MM/yyyy}"
                      x:Name="txtDob" 
-                     Grid.Row="1" 
+                     Grid.Row="2" 
                      Grid.Column="1" 
                      Margin="5" />
 
             <Label Content="Address : " 
-                   Grid.Row="2" 
+                   Grid.Row="3" 
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
             <TextBox Text="{Binding SelectedContractor.Address}"
                      x:Name="txtAddress" 
-                     Grid.Row="2" 
+                     Grid.Row="3" 
                      Grid.Column="1" 
                      Margin="5" />
 
             <Label Content="Phone : " 
-                   Grid.Row="3" 
+                   Grid.Row="4" 
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
             <TextBox Text="{Binding SelectedContractor.Phone}"
                      x:Name="txtPhone"
-                     Grid.Row="3" 
-                     Grid.Column="1" 
-                     Margin="5" />
-
-            <Label Content="Email : "
-                   Grid.Row="4" 
-                   Grid.Column="0" 
-                   Foreground="#fff"/>
-
-            <TextBox Text="{Binding SelectedContractor.Email}"
-                     x:Name="txtEmail" 
                      Grid.Row="4" 
                      Grid.Column="1" 
                      Margin="5" />
 
-
             <!--Second column of data -->
 
-            <Label Content="Skills : " 
+            <Label Content="Email : "
                    Grid.Row="0" 
                    Grid.Column="2" 
-                   Foreground="#fff" Grid.ColumnSpan="2" Margin="0,0,333,0"/>
+                   Foreground="#fff"/>
 
-            <TextBox Text="{Binding SelectedContractor.Availibility}"
-                     x:Name="txtSkills" 
+            <TextBox Text="{Binding SelectedContractor.Email}"
+                     x:Name="txtEmail" 
                      Grid.Row="0" 
                      Grid.Column="3" 
-                     Margin="5"/>
+                     Margin="5" />
 
 
-            <Label Content="ABN : " 
+                <Label Content="ABN : " 
                    Grid.Row="1" 
                    Grid.Column="2" 
                    Foreground="#fff"/>
@@ -238,11 +249,7 @@
                     HorizontalAlignment="right" 
                     Grid.Row="3">
 
-            <Button x:Name="btnAssignJob" 
-                    Content="ASSIGN JOB" 
-                    Width="150" 
-                    Margin="10"
-                    Click="btnAssignJob_Click"/>
+
 
             <Button x:Name="btnUpdate" 
                     Content="UPDATE" 
@@ -261,4 +268,5 @@
                     Click="btnAdd_Click"/>
         </StackPanel>
     </Grid>
+        </Border>
 </Page>
