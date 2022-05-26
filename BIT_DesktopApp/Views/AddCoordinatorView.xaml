@@ -45,7 +45,7 @@
 
                 </Grid.ColumnDefinitions>
 
-                <!--First Two Column data -->
+                <!--First Two Columns data -->
 
                 <Label Content="First Name : " 
                    Grid.Row="0"
@@ -57,7 +57,6 @@
                              UpdateSourceTrigger=PropertyChanged,
                              Mode=TwoWay}"
                       ToolTip="{Binding NewCoordinator.ErrorCollection[FirstName]}"
-                      x:Name="txtFirstName" 
                       Grid.Row="0" 
                       Grid.Column="1" 
                       Margin="5,5,5,20" />
@@ -72,7 +71,6 @@
                              UpdateSourceTrigger=PropertyChanged,
                              Mode=TwoWay}"
                      ToolTip="{Binding NewCoordinator.ErrorCollection[LastName]}" 
-                     x:Name="txtLastName" 
                      Grid.Row="1" 
                      Grid.Column="1" 
                      Margin="5,10,5,20" />
@@ -82,12 +80,11 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-                <TextBox Text="{Binding NewCoordinator.Dob,
+                <DatePicker Text="{Binding NewCoordinator.Dob,
                              ValidatesOnDataErrors=True,
                              UpdateSourceTrigger=PropertyChanged,
                              Mode=TwoWay}"
-                     ToolTip="{Binding NewCoordinator.ErrorCollection[LastName]}" 
-                     x:Name="txtDob" 
+                     ToolTip="{Binding NewCoordinator.ErrorCollection[Dob]}" 
                      Grid.Row="2" 
                      Grid.Column="1" 
                      Margin="5,10,5,20" />
@@ -99,12 +96,10 @@
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-                <TextBox Text="{Binding NewCoordinator.Phone,
-                                                               ValidatesOnDataErrors=True,
+                <TextBox Text="{Binding NewCoordinator.Phone,ValidatesOnDataErrors=True,
                                                         UpdateSourceTrigger=PropertyChanged,
                              Mode=TwoWay}"
                      ToolTip="{Binding NewCoordinator.ErrorCollection[Phone]}" 
-                     x:Name="txtPhone" 
                      Grid.Row="0" 
                      Grid.Column="3" 
                      Margin="5,5,5,20" />
@@ -119,7 +114,6 @@
                              UpdateSourceTrigger=PropertyChanged,
                              Mode=TwoWay}"
                      ToolTip="{Binding NewCoordinator.ErrorCollection[Email]}" 
-                     x:Name="txtEmail" 
                      Grid.Row="1" 
                      Grid.Column="4" 
                      Margin="5,5,5,20" />
@@ -136,33 +130,30 @@
                              UpdateSourceTrigger=PropertyChanged,
                              Mode=TwoWay}"
                      ToolTip="{Binding NewCoordinator.ErrorCollection[Password]}" 
-                     x:Name="txtPassword" 
                      Grid.Row="3" 
                      Grid.Column="4" 
                      Margin="5,5,5,20" />
-
-
-
             </Grid>
 
 
-            <Button 
-                Command="{Binding AddCommand}"
-                x:Name="btnConfirm"
-                Content="CONFIRM" 
-                Width="150" 
-                Margin="10"
-            />
+           
             <StackPanel Orientation="Horizontal" 
                     HorizontalAlignment="right" 
                     Grid.Row="3">
 
-
-                <Button x:Name="btnCancel" 
-                    Content="CANCEL" 
+                <Button 
+                    Command="{Binding AddCommand}"
+                    Content="CONFIRM" 
                     Width="150" 
                     Margin="10"
-                    Click="btnCancel_Click"/>
+                />
+
+
+                <Button x:Name="btnCancel" 
+                        Content="CANCEL" 
+                        Width="150" 
+                        Margin="10"
+                        Click="btnCancel_Click"/>
 
             </StackPanel>
 

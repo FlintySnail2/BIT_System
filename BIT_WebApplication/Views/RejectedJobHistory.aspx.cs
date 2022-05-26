@@ -12,31 +12,27 @@ namespace BIT_WebApplication.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (IsPostBack) return;
+            if (Session["Contractor_Id"] != null)
             {
 
-
-                if (Session["Contractor_Id"] != null)
-                {
-
-                    LinkButton logout = (LinkButton)Master.FindControl("lbtnLogout");
-                    LinkButton assignedJobs = (LinkButton)Master.FindControl("lbtnAssignedJobs");
-                    LinkButton acceptedJobs = (LinkButton)Master.FindControl("lbtnAcceptedJobs");
-                    logout.Visible = true;
-                    assignedJobs.Visible = true;
-                    acceptedJobs.Visible = true;
+                LinkButton logout = (LinkButton)Master.FindControl("lbtnLogout");
+                LinkButton assignedJobs = (LinkButton)Master.FindControl("lbtnAssignedJobs");
+                LinkButton acceptedJobs = (LinkButton)Master.FindControl("lbtnAcceptedJobs");
+                logout.Visible = true;
+                assignedJobs.Visible = true;
+                acceptedJobs.Visible = true;
 
 
-                    Job allRejectedJobs = new Job();
-                    allRejectedJobs.StaffId = Convert.ToInt32(Session["Contractor_Id"].ToString());
-                    gvRejectedJobs.DataSource = allRejectedJobs.AllRejectedJobs().DefaultView;
-                    gvRejectedJobs.DataBind();
+                Job allRejectedJobs = new Job();
+                allRejectedJobs.StaffId = Convert.ToInt32(Session["Contractor_Id"].ToString());
+                gvRejectedJobs.DataSource = allRejectedJobs.AllRejectedJobs().DefaultView;
+                gvRejectedJobs.DataBind();
 
-                }
-                else
-                {
-                    Response.Redirect("Homepage.aspx");
-                }
+            }
+            else
+            {
+                Response.Redirect("Homepage.aspx");
             }
 
         }

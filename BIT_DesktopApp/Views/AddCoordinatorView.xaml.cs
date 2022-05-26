@@ -24,7 +24,7 @@ namespace BIT_DesktopApp.Views
         public AddCoordinatorView()
         {
             InitializeComponent();
-            this.DataContext = new CoordinatorViewModel();
+            this.DataContext = new AddCoordinatorViewModel();
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)

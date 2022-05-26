@@ -24,7 +24,7 @@ namespace BIT_DesktopApp.Models
         private string _password { get; set; }
         private SQLHelper _db;
         public event PropertyChangedEventHandler PropertyChanged;
-        public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
+
         public string Error { get { return null; } }
         public string this[string propertyName]
         {
@@ -70,7 +70,7 @@ namespace BIT_DesktopApp.Models
                         }
                         break;
                 }
-                if (result == null && !ErrorCollection.ContainsKey(propertyName))
+                if (result != null && !ErrorCollection.ContainsKey(propertyName))
                 {
                     ErrorCollection.Add(propertyName, result);
                 }
@@ -79,6 +79,8 @@ namespace BIT_DesktopApp.Models
 
             }
         }
+
+        public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
 
         #endregion Private Properties
 
@@ -117,6 +119,8 @@ namespace BIT_DesktopApp.Models
             }
         }
 
+        public string EmplopyeeName => $"{FirstName} {LastName}";
+
         public DateTime Dob
         {
             get { return _dob; }
@@ -126,6 +130,9 @@ namespace BIT_DesktopApp.Models
                 OnPropertyChanged("Dob");
             }
         }
+
+        //THESE ARE READ ONLY 
+        public string DobFormat => _dob.ToShortDateString();
 
 
         public string Phone
@@ -183,17 +190,63 @@ namespace BIT_DesktopApp.Models
 
         #region Public Methods
 
-        //public int UpdateStaffDetails(int coordinatorId)
-        //{
-        //    string updateSql = "UPDATE" +
-        //                       "    Staff" +
-        //                    "       SET" +
-        //                       "    FirsName = @FirstName," +
-        //                       "    LastName = @" +
-        //                       " " +
-        //                "       WHERE" +
-        //                       "    "
-        //}
+        public string UpdateStaffDetails(int coordinatorId)
+        {
+            string updateSql = "UPDATE" +
+                               "    Staff" +
+                               "       SET" +
+                               "       FirstName = @FirstName," +
+                               "       LastName = @LastName," +
+                               "       Phone = @Phone," +
+                               "       Dob = @Dob," +
+                               "       Email = @Email," +
+                               "       Password =  @Password" +
+                               " WHERE" +
+                               "    StaffId = @StaffId";
+            SqlParameter[] objParams = new SqlParameter[7];
+            objParams[0] = new SqlParameter("@CoordinatorId", DbType.Int32);
+            objParams[0].Value = coordinatorId; 
+            objParams[1] = new SqlParameter("@FirstName", DbType.String);
+            objParams[1].Value = FirstName;
+            objParams[2] = new SqlParameter("@LastName", DbType.String);
+            objParams[2].Value = LastName;
+            objParams[3] = new SqlParameter("@Phone", DbType.String);
+            objParams[3].Value = Phone;
+            objParams[4] = new SqlParameter("@Dob", DbType.DateTime);
+            objParams[4].Value = Dob;
+            objParams[5] = new SqlParameter("@Email", DbType.String);
+            objParams[5].Value = Email;
+            objParams[6] = new SqlParameter("Password", DbType.String);
+            objParams[6].Value = Password;
+            int rowsAffected = _db.ExecuteNonQuery(updateSql, objParams);
+            if (rowsAffected >= 1)
+            {
+                return "Coordinator Succesfully Updated ";
+            }
+
+            return "Unable to update coordinator, please try again later";
+        }
+
+        public string RemoveCoordinator(int coordinatorId)
+        {
+            string removeSql = " Update" +
+                               "    Staff" +
+                               " Set" +
+                               "    AccountStatus = 'Inactive'" +
+                               " WHERE" +
+                               "    CoordinatorId = @CoordinatorId";
+            SqlParameter[] objParams = new SqlParameter[1];
+            objParams[0] = new SqlParameter("@CoordinatorId", DbType.Int32);
+            objParams[0].Value = coordinatorId;
+            int rowsAffected = _db.ExecuteNonQuery(removeSql, objParams);
+            if (rowsAffected >= 1)
+            {
+                return "Coordinator Successfully Deleted";
+            }
+
+            return "Unable to delete coordinator, please try again later";
+
+        }
 
         public string InsertCoordinator()
         {

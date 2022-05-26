@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Security.RightsManagement;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,10 +17,17 @@ namespace BIT_DesktopApp.Models
 
         private int _contractorId { get; set; }
         private string _contractorName { get; set; }
+        private string _firstName { get; set; }
+        private string _lastName { get; set; }
         private string _address { get; set; }
+        private string _street { get; set; }
+        private string _suburb { get; set; }
+        private string _state { get; set; }
+        private string _zip { get; set; }
         private string _phone { get; set; }
         private DateTime _dob { get; set; }
         private string _email { get; set; }
+        private string _password { get; set; }
         private string _availabilty {get; set;}
         private string _abn { get; set; }
         private string _licenceNumber { get; set; }
@@ -124,6 +133,7 @@ namespace BIT_DesktopApp.Models
             get { return _contractorId; }
             set { _contractorId = value; }
         }
+
         public string ContractorName
         {
             get { return _contractorName; }
@@ -133,6 +143,25 @@ namespace BIT_DesktopApp.Models
             }
         }
 
+        public string FirstName
+        {
+            get { return _firstName;}
+            set
+            {
+                _firstName = value;
+                OnPropertyChanged("FirstName");
+            }
+        }
+
+        public string LastName
+        {
+            get { return _lastName; }
+            set
+            {
+                _lastName = value;
+                OnPropertyChanged("LastName");
+            }
+        }
         public string Address
         {
             get { return _address; }
@@ -143,6 +172,45 @@ namespace BIT_DesktopApp.Models
             }
         }
 
+        public string Street
+        {
+            get { return _street; }
+            set
+            {
+                _street = value;
+                    OnPropertyChanged("Street");
+            }
+        }
+
+        public string Suburb
+        {
+            get { return _suburb; }
+            set
+            {
+                _suburb = value;
+                OnPropertyChanged("Suburb");
+            }
+        }
+
+        public string State
+        {
+            get { return _state; }
+            set
+            {
+                _state = value; 
+                OnPropertyChanged("State");
+            }
+        }
+
+        public string Zip
+        {
+            get { return _zip; }
+            set
+            {
+                _zip = value;
+                OnPropertyChanged("Zip");
+            }
+        }
         public string Phone
         {
             get { return _phone; }
@@ -167,6 +235,16 @@ namespace BIT_DesktopApp.Models
             {
                 _email = value;
                 OnPropertyChanged("Email");
+            }
+        }
+
+        public string Password
+        {
+            get { return _password; }
+            set
+            {
+                _password = value;
+                OnPropertyChanged("Password");
             }
         }
 
@@ -243,5 +321,89 @@ namespace BIT_DesktopApp.Models
 
 
         #endregion Contructor
+
+        #region Public Methods
+
+        public string InsertContractor()
+        {
+            string insertSql = "INSERT INTO " +
+                               "    Contractor(" +
+                               "    FirstName," +
+                               "    LastName," +
+                               "    Street," +
+                               "    Suburb," +
+                               "    State," +
+                               "    Zip," +
+                               "    Phone," +
+                               "    Dob," +
+                               "    Email," +
+                               "    Password," +
+                               "    ABN," +
+                               "    LicenceNumber," +
+                               "    RateofPay," +
+                               "    ContractorRating," +
+                               "    AccountStatus)" +
+                               "VALUES(" +
+                               "    @FirstName," +
+                               "    @LastName," +
+                               "    @Street," +
+                               "    @Suburb," +
+                               "    @State," +
+                               "    @Zip," +
+                               "    @Phone," +
+                               "    @Dob," +
+                               "    @Email," +
+                               "    @Password," +
+                               "    @ABN," +
+                               "    @LicenceNumber," +
+                               "    @RateofPay," +
+                               "    '0'," + //A NEW CONTRACTOR STARTS WITH A RATING OF ZERO (HASNT BEEN RATED YET)
+                               "    'Active')";
+            string insertSql2 = "INSERT INTO " +
+                                "   ContractSkill(" +
+                                "       SkillTitle)" +
+                                "VALUES(" +
+                                "       @SkillTitle)" +
+                                "WHERE" +
+                                "   ContractorId = @ContractorId";
+            SqlParameter[] objParams = new SqlParameter[15];
+            objParams[0] = new SqlParameter("FirstName", DbType.String);
+            objParams[0].Value = ContractorName.Split(' ')[0];
+            objParams[1] = new SqlParameter("@LastName", DbType.String);
+            objParams[1].Value = ContractorName.Split(' ')[1];
+            objParams[2] = new SqlParameter("@Street", DbType.String);
+            objParams[2].Value = Street;
+            objParams[3] = new SqlParameter("@State", DbType.String);
+            objParams[3].Value = State;
+            objParams[4] = new SqlParameter("@Zip", DbType.String);
+            objParams[4].Value = Zip;
+            objParams[5] = new SqlParameter("@Phone", DbType.String);
+            objParams[5].Value = Phone;
+            objParams[6] = new SqlParameter("@Email", DbType.String);
+            objParams[6].Value = Email;
+            objParams[7] = new SqlParameter("@Password", DbType.String);
+            objParams[7].Value = Password;
+            objParams[8] = new SqlParameter("@ABN", DbType.String);
+            objParams[8].Value = ABN;
+            objParams[9] = new SqlParameter("@LicenceNumber", DbType.String);
+            objParams[9].Value = LicenceNumber;
+            objParams[10] = new SqlParameter("@RateofPay", DbType.String);
+            objParams[10].Value = RateOfPay;
+            int rowsAffectedContractor = _db.ExecuteNonQuery(insertSql, objParams);
+
+
+
+
+            int Ro
+            if (rowsAffected >= 1 && ContractorSkill >=1)
+            {
+                return "Coordinator Successfully Added";
+            }
+            //CONDITION FOR IF ONE OR THE OTHER DOESN'T PASS ROW
+
+            return "Unable to add coordinator, please try again later";
+        }
+
+        #endregion Public Methods
     }
 }

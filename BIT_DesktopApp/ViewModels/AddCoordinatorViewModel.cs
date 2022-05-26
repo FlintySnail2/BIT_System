@@ -9,11 +9,24 @@ using System.Windows;
 
 namespace BIT_DesktopApp.ViewModels
 {
-    public class AddCoordinatorViewModel
+    public class AddCoordinatorViewModel : INotifyPropertyChanged
     {
         
         private Coordinator _newCoordinator;
         private RelayCommand _addCommand;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged(string prop)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            }
+        }
+
+
+        #region Add Command 
 
         public RelayCommand AddCommand
         {
@@ -28,30 +41,24 @@ namespace BIT_DesktopApp.ViewModels
             set { _addCommand = value; }
         }
 
-
-
-        public Coordinator NewCoordinator
-        {
-            get { return _newCoordinator; }
-            set { _newCoordinator = value; }
-        }
-
-
-
-        #region Constructor
-
-
-        #endregion
-
-        #region Publc Method
-
         public void AddMethod()
         {
             string message = NewCoordinator.InsertCoordinator();
             MessageBox.Show(message);
         }
 
-        #endregion Public Method
+        #endregion Add Command
+
+        public Coordinator NewCoordinator
+        {
+            get { return _newCoordinator; }
+            set
+            {
+                _newCoordinator = value;
+                OnPropertyChanged("NewCoordinator");
+
+            }
+        }
 
         public AddCoordinatorViewModel()
         {

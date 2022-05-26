@@ -22,7 +22,7 @@ namespace BIT_DesktopApp.Models
                 "           C.ContractorId," +
                 "           C.FirstName + ' ' + C.LastName AS ContractorName," +
                 "           C.Dob," +
-                "           C.Street + ' ' + C.Suburb + ', ' + C.State + ', ' + CAST(C.Zip AS NVARCHAR) AS Address," +
+                "           C.Street + ', ' + C.Suburb + ', ' + C.State + ', ' + CAST(C.Zip AS NVARCHAR) AS Address," +
                 "           A.AvailabilityDate AS Availability," +
                 "           C.Phone," +
                 "           C.Email,    " +
