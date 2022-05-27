@@ -13,7 +13,7 @@ namespace BIT_DesktopApp.ViewModels
     {
         
         private Coordinator _newCoordinator;
-        private RelayCommand _addCommand;
+        private RelayCommand _confirmCommand;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -28,17 +28,17 @@ namespace BIT_DesktopApp.ViewModels
 
         #region Add Command 
 
-        public RelayCommand AddCommand
+        public RelayCommand ConfirmCommand
         {
             get
             {
-                if (_addCommand == null)
+                if (_confirmCommand == null)
                 {
-                    _addCommand = new RelayCommand(this.AddMethod, true);
+                    _confirmCommand = new RelayCommand(this.AddMethod, true);
                 }
-                return _addCommand;
+                return _confirmCommand;
             }
-            set { _addCommand = value; }
+            set { _confirmCommand = value; }
         }
 
         public void AddMethod()

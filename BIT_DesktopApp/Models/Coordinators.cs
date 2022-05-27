@@ -24,7 +24,9 @@ namespace BIT_DesktopApp.Models
                 "           Email," +
                 "           Password" +
                 "       FROM" +
-                "           Staff";
+                "           Staff" +
+                "       WHERE" +
+                "           AccountStatus = 'Active'";
             DataTable datatable = _db.ExecuteSQL(sql);
             foreach (DataRow dr in datatable.Rows)
             {
@@ -36,14 +38,20 @@ namespace BIT_DesktopApp.Models
         public Coordinators(string searchText)
         {
             _db = new SQLHelper();
-            string sql = "SELECT" +
-                "           FirstName," +
-                "           LastName," +
-                "        FROM" +
-                "           Staff" +
-                "        WHERE" +
-                "           FirstName LIKE '%" + searchText + "%'" +
-                "           LastName LIKE '%" + searchText + "%'";
+            string sql = "SELECT " +
+                         "           StaffId," +
+                         "           FirstName," +
+                         "           LastName," +
+                         "           Dob," +
+                         "           Phone," +
+                         "           Email," +
+                         "           Password " +
+                         "       FROM " +
+                         "           Staff " +
+                         "        WHERE " +
+                         "           FirstName LIKE '%Van%' "; 
+                //"       OR " +
+                //"           LastName LIKE '% " + searchText + " %'";
             DataTable dataTable = _db.ExecuteSQL(sql);
             foreach (DataRow dr in dataTable.Rows)
             {

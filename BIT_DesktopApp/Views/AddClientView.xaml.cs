@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BIT_DesktopApp.ViewModels;
 
 namespace BIT_DesktopApp.Views
 {
@@ -23,6 +24,7 @@ namespace BIT_DesktopApp.Views
         public AddClientView()
         {
             InitializeComponent();
+            this.DataContext = new AddClientViewModel();
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -40,19 +42,5 @@ namespace BIT_DesktopApp.Views
             }
         }
 
-        private void btnConfirm_Click(object sender, RoutedEventArgs e)
-        {
-            if (MessageBox.Show("Do you wish to continue? ",
-                     "Client Added",
-                     MessageBoxButton.YesNo,
-                     MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
-                NavigationService.Navigate(new Uri("Views/ClientView.xaml", UriKind.Relative));
-            }
-            else
-            {
-                NavigationService.Navigate(new Uri("Views/AddClientView.xaml", UriKind.Relative));
-            }
-        }
     }
 }

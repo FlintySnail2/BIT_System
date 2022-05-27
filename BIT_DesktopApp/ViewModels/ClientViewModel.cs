@@ -50,7 +50,7 @@ namespace BIT_DesktopApp.ViewModels
             int returnValue = SelectedClient.ClientId;
             if (returnValue > 0)
             {
-                MessageBox.Show("Client has been upodated");
+                MessageBox.Show("Client has been updated");
             }
             else
             {

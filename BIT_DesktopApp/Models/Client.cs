@@ -20,7 +20,8 @@ namespace BIT_DesktopApp.Models
         private int _clientId;
         private string _organisationName;
         private string _contactName;
-
+        private string _firstName;
+        private string _lastName;
         private string _phone;
         private string _email;
         private string _password;
@@ -47,8 +48,14 @@ namespace BIT_DesktopApp.Models
                             result = "Field cannot be empty ";
                         }
                         break;
-                    case "ContactName":
-                        if (string.IsNullOrEmpty(this.ContactName))
+                    case "FirstName":
+                        if (string.IsNullOrEmpty(this.FirstName))
+                        {
+                            result = "Field cannot be empty ";
+                        }
+                        break;
+                    case "LastName":
+                        if (string.IsNullOrEmpty(this.LastName))
                         {
                             result = "Field cannot be empty ";
                         }
@@ -150,6 +157,26 @@ namespace BIT_DesktopApp.Models
             {
                 _contactName = value;
                 OnPropertyChanged("ContactName");
+            }
+        }
+
+        public string FirstName
+        {
+            get { return _firstName; }
+            set
+            {
+                _firstName = value; 
+                OnPropertyChanged("FirstName");
+            }
+        }
+
+        public string LastName
+        {
+            get { return _lastName; }
+            set
+            {
+                _lastName = value;
+                OnPropertyChanged("LastName");
             }
         }
         public string Phone
@@ -267,18 +294,18 @@ namespace BIT_DesktopApp.Models
                 "               OrganisationName," +
                 "               FirstName," +
                 "               LastName," +
-                "               Phone" +
-                "               Email" +
+                "               Phone," +
+                "               Email," +
                 "               Password," +
                 "               AccountStatus)" +
                 "       VALUES(" +
                 "               @OrganisationName," +
                 "               @FirstName," +
-                "               @LastName" +
+                "               @LastName," +
                 "               @Phone," +
                 "               @Email," +
                 "               @Password," +
-                "               'Active'";
+                "               'Active')";
 
             string sql2 = "INSERT INTO" +
                           "         Location(" +
@@ -292,17 +319,20 @@ namespace BIT_DesktopApp.Models
                           "        @Street," +
                           "        @Suburb," +
                           "        @State," +
-                          "        @Zip";
-            SqlParameter[] objParams = new SqlParameter[5];
+                          "        @Zip)";
+            SqlParameter[] objParams = new SqlParameter[6];
             objParams[0] = new SqlParameter("@OrganisationName", DbType.String);
             objParams[0].Value = this.OrganisationName;
-            objParams[1] = new SqlParameter("@FirstName" + "@LastName", DbType.String);
-            objParams[1].Value = this.ContactName;
-            objParams[2] = new SqlParameter("@Phone", DbType.String);
-            objParams[2].Value = this.Phone;
-            objParams[3] = new SqlParameter("@Email", DbType.String);
-            objParams[3].Value = this.Email;
-            objParams[4] = new SqlParameter("@Password", DbType.String);
+            objParams[1] = new SqlParameter("@FirstName", DbType.String);
+            objParams[1].Value = this.ContactName.Split(' ')[0];
+            objParams[2] = new SqlParameter("@LastName", DbType.String);
+            objParams[2].Value = ContactName.Split(' ')[1];
+            objParams[3] = new SqlParameter("@Phone", DbType.String);
+            objParams[3].Value = this.Phone;
+            objParams[4] = new SqlParameter("@Email", DbType.String);
+            objParams[4].Value = this.Email;
+            objParams[5] = new SqlParameter("@Password", DbType.String);
+            objParams[5].Value = this.Password;
             SqlParameter[] objParams2 = new SqlParameter[5];
             objParams2[0] = new SqlParameter("@Region", DbType.String);
             objParams2[0].Value = Region;
@@ -316,7 +346,7 @@ namespace BIT_DesktopApp.Models
             objParams2[4].Value = Zip;
 
             int rowsAffectedClient = _db.ExecuteNonQuery(sql1, objParams);
-            int rowsAffectedRegion = _db.ExecuteNonQuery(sql2, objParams);
+            int rowsAffectedRegion = _db.ExecuteNonQuery(sql2, objParams2);
             if (rowsAffectedClient >= 1 && rowsAffectedRegion >= 1)
             {
                 return "New Client & Location Successfully Added";

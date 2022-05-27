@@ -7,10 +7,10 @@ using System.Windows.Input;
 
 namespace BIT_DesktopApp
 {
-    public class RelayCommand 
+    public class RelayCommand : ICommand
     {
         private Action _whatToExecute;
-        private event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged;
         private bool _canExecute;
 
         public RelayCommand(Action what, bool canExecute)
@@ -18,6 +18,7 @@ namespace BIT_DesktopApp
             _whatToExecute = what;
             _canExecute = canExecute;
         }
+
 
         public bool CanExecute(object parameter)
         {

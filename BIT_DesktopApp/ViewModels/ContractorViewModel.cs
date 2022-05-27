@@ -20,7 +20,7 @@ namespace BIT_DesktopApp.ViewModels
 
         private ObservableCollection<ContractorSkill> _contractorSkills;
         private ContractorSkill _selectedSkill;
-        private ContractorSkill _ContractorSkill;
+        private ContractorSkill _contractorSkill;
 
         private string _searchText;
         private RelayCommand _searchCommand;
@@ -165,8 +165,8 @@ namespace BIT_DesktopApp.ViewModels
 
         public ContractorSkill ContractorSkill
         {
-            get { return _ContractorSkill; }
-            set { _ContractorSkill = value; }
+            get { return _contractorSkill; }
+            set { _contractorSkill = value; }
         }
 
         #endregion contractor Skills

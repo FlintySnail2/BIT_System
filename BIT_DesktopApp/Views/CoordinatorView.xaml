@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:BIT_DesktopApp.Views"
+      xmlns:local="clr-namespace:BIT_DesktopApp.Views" xmlns:viewmodels="clr-namespace:BIT_DesktopApp.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:CoordinatorViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="1000"
       Title="CoordinatorView">
@@ -32,13 +32,14 @@
 
 
                 <TextBox Text="{Binding SearchText}"
-                         x:Name="txtSearchContractor" 
+                         x:Name="txtSearch" 
                          Width="200" 
-                         Style="{StaticResource SearchTheme}"/>
+
+                         />
 
                 <Button Command="{Binding SearchCommand}"
                         Content="SEARCH" 
-                        x:Name="btnSearchContractor" 
+                        x:Name="btnSearch" 
                         Width="90" 
                         Margin="10,10,10,10" 
                         FontSize="18"/>
@@ -62,16 +63,17 @@
                           Grid.ColumnSpan="2"
                           ItemsSource="{Binding Coordinators}"
                           SelectedItem="{Binding SelectedCoordinator}"
-                          AutoGenerateColumns="False"> 
+                          AutoGenerateColumns="False"
+                          > 
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Staff Id" Binding="{Binding StaffId}"/>
-                        <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}"/>
-                        <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}"/>
-                        <DataGridTextColumn Header="Birth Date" Binding="{Binding DobFormat}"/>
-                        <DataGridTextColumn Header="Phone" Binding="{Binding Phone}"/>
-                        <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
-                        <DataGridTextColumn Header="Password" Binding="{Binding Password}"/>
+                        <DataGridTextColumn Width="*" Header="Staff Id" Binding="{Binding StaffId}"/>
+                        <DataGridTextColumn Width="*" Header="First Name" Binding="{Binding FirstName}"/>
+                        <DataGridTextColumn Width="*" Header="Last Name" Binding="{Binding LastName}"/>
+                        <DataGridTextColumn Width="*" Header="Birth Date" Binding="{Binding DobFormat}"/>
+                        <DataGridTextColumn Width="*" Header="Phone" Binding="{Binding Phone}"/>
+                        <DataGridTextColumn Width="*" Header="Email" Binding="{Binding Email}"/>
+                        <DataGridTextColumn Width="*" Header="Password" Binding="{Binding Password}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
@@ -95,7 +97,7 @@
                        Grid.Column="0" 
                        Foreground="#fff" Grid.RowSpan="2"/>
 
-                <TextBox  Text="{Binding SelectedCoordinator.FirstName}"
+                <TextBox  Text="{Binding SelectedCoordinator.FirstName, Mode = TwoWay}"
                           x:Name="txtFirstName" 
                           Grid.Row="0" 
                           Grid.Column="1" 
@@ -131,7 +133,7 @@
                        Foreground="#fff" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="0,0,5,0"/>
 
                 <DatePicker 
-                            Text="{Binding SelectedCoordinator.DOB}"
+                            Text="{Binding SelectedCoordinator.Dob}"
                             x:Name="txtDob" 
                             Grid.Row="0" 
                             Grid.Column="3" 
@@ -170,7 +172,8 @@
                         Width="150" 
                         Margin="10"/>
 
-                <Button x:Name="btnDelete" 
+                <Button x:Name="btnDelete"
+                        Command="{Binding DeleteCommand}"
                         Content="DELETE" 
                         Width="150" 
                         Margin="10"/>
@@ -179,7 +182,7 @@
                         Content="ADD" 
                         Width="150" 
                         Margin="10"
-                        Click="btnAdd_Click"/>
+                        Click="BtnAdd_OnClick"/>
 
             </StackPanel>
         </Grid>

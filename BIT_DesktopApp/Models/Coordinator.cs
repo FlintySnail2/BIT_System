@@ -15,13 +15,13 @@ namespace BIT_DesktopApp.Models
     {
         #region Private Properties
 
-        private int _staffId { get; set; }
-        private string _firstName { get; set; }
-        private string _lastName { get; set; }
-        private DateTime _dob { get; set; }
-        private string _phone {  get; set; }
-        private string _email { get; set; }
-        private string _password { get; set; }
+        private int _staffId;
+        private string _firstName;
+        private string _lastName;
+        private DateTime _dob;
+        private string _phone;
+        private string _email;
+        private string _password;
         private SQLHelper _db;
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -46,7 +46,7 @@ namespace BIT_DesktopApp.Models
                         }
                         break;
                     case "Dob":
-                        if (Dob.Year > 1945)
+                        if (Dob.Year < 1945)
                         {
                             result = "You are too old to work here";
                         }
@@ -204,7 +204,7 @@ namespace BIT_DesktopApp.Models
                                " WHERE" +
                                "    StaffId = @StaffId";
             SqlParameter[] objParams = new SqlParameter[7];
-            objParams[0] = new SqlParameter("@CoordinatorId", DbType.Int32);
+            objParams[0] = new SqlParameter("@StaffId", DbType.Int32);
             objParams[0].Value = coordinatorId; 
             objParams[1] = new SqlParameter("@FirstName", DbType.String);
             objParams[1].Value = FirstName;
@@ -221,23 +221,23 @@ namespace BIT_DesktopApp.Models
             int rowsAffected = _db.ExecuteNonQuery(updateSql, objParams);
             if (rowsAffected >= 1)
             {
-                return "Coordinator Succesfully Updated ";
+                return "Coordinator Successfully Updated ";
             }
 
             return "Unable to update coordinator, please try again later";
         }
 
-        public string RemoveCoordinator(int coordinatorId)
+        public string RemoveCoordinator(int staffId)
         {
             string removeSql = " Update" +
                                "    Staff" +
                                " Set" +
                                "    AccountStatus = 'Inactive'" +
                                " WHERE" +
-                               "    CoordinatorId = @CoordinatorId";
+                               "    StaffId = @StaffId";
             SqlParameter[] objParams = new SqlParameter[1];
-            objParams[0] = new SqlParameter("@CoordinatorId", DbType.Int32);
-            objParams[0].Value = coordinatorId;
+            objParams[0] = new SqlParameter("@StaffId", DbType.Int32);
+            objParams[0].Value = staffId;
             int rowsAffected = _db.ExecuteNonQuery(removeSql, objParams);
             if (rowsAffected >= 1)
             {
@@ -256,27 +256,31 @@ namespace BIT_DesktopApp.Models
                                "            Phone," +
                                "            Dob," +
                                "            Email," +
-                               "            Password" +
-                               "            StaffType" +
+                               "            Password," +
+                               "            StaffType," +
                                "            AccountStatus)" +
                             "            VALUES(" +
                                "            @FirstName," +
                                "            @LastName," +
                                "            @Phone," +
                                "            @Dob," +
+                               "            @Email," +
                                "            @Password," +
                                "            'Coordinator'," +
-                               "            'Active'";
-            SqlParameter[] objParams = new SqlParameter[8];
+                               "            'Active')";
+            SqlParameter[] objParams = new SqlParameter[6];
             objParams[0] = new SqlParameter("@FirstName", DbType.String);
             objParams[0].Value = this.FirstName;
             objParams[1] = new SqlParameter("@LastName", DbType.String);
             objParams[1].Value = this.LastName;
             objParams[2] = new SqlParameter("@Phone", DbType.String);
-            objParams[3] = new SqlParameter("@Email", DbType.DateTime);
+            objParams[2].Value = this.Phone;
+            objParams[3] = new SqlParameter("@Dob", DbType.DateTime);
             objParams[3].Value = this.Dob;
-            objParams[4] = new SqlParameter("@Password", DbType.String);
-            objParams[4].Value = this.Password;
+            objParams[4] = new SqlParameter("@Email", DbType.DateTime);
+            objParams[4].Value = this.Email;
+            objParams[5] = new SqlParameter("@Password", DbType.String);
+            objParams[5].Value = this.Password;
             int rowsAffected = _db.ExecuteNonQuery(insertSql, objParams);
             if (rowsAffected >= 1)
             {

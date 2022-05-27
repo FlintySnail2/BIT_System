@@ -3,29 +3,39 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.ComponentModel.Design;
 using System.Dynamic;
 using System.Linq;
 using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using NLog;
 
 namespace BIT_DesktopApp.ViewModels
 {
     public class CoordinatorViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<Coordinator> _coordinators;
+       public event PropertyChangedEventHandler PropertyChanged;
+
+        public ObservableCollection<Coordinator> Coordinators
+        {
+            get { return _coordinators; }
+            set
+            {
+                _coordinators = value;
+                OnPropertyChanged("Coordinators");
+            }
+        }
+
         private Coordinator _selectedCoordinator;
 
 
         private string _searchText;
-        private Coordinator _newCoordinator;
         private RelayCommand _searchCommand;
         private RelayCommand _updateCommand;
         private RelayCommand _deleteCommand;
-        
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged(string prop)
         {
@@ -34,6 +44,7 @@ namespace BIT_DesktopApp.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
             }
         }
+
 
         #region Update Command
 
@@ -53,15 +64,16 @@ namespace BIT_DesktopApp.ViewModels
 
         public void UpdateMethod()
         {
-            int returnValue = SelectedCoordinator.StaffId;
-            if (returnValue > 0)
-            {
-                MessageBox.Show("She works boys, she actually doesn't shes clapped harder than dads dome" );
-            }
-            else
-            {
-                MessageBox.Show("error");
-            }
+            string returnValue = SelectedCoordinator.UpdateStaffDetails(SelectedCoordinator.StaffId);
+            MessageBox.Show(returnValue);
+            //if (returnValue != null)
+            //{
+            //    MessageBox.Show("She works boys, she actually doesn't shes clapped harder than dads dome");
+            //}
+            //else
+            //{
+            //    MessageBox.Show("error");
+            //}
         }
 
         #endregion Update Command
@@ -84,15 +96,16 @@ namespace BIT_DesktopApp.ViewModels
 
         public void DeleteMethod()
         {
-            int returnValue = SelectedCoordinator.StaffId;
-            if (returnValue > 0)
-            {
-                MessageBox.Show("Coordinator has been deleted");
-            }
-            else
-            {
-                MessageBox.Show("error ");
-            }
+            string returnValue = SelectedCoordinator.RemoveCoordinator(SelectedCoordinator.StaffId);
+            MessageBox.Show(returnValue);
+            //if (returnValue > 0)
+            //{
+            //    MessageBox.Show("Coordinator has been deleted");
+            //}
+            //else
+            //{
+            //    MessageBox.Show("error ");
+            //}
         }
         #endregion Delete Command
 
@@ -106,6 +119,7 @@ namespace BIT_DesktopApp.ViewModels
             {
                 _searchText = value;
                 OnPropertyChanged("SearchText");
+
             }
         }
 
@@ -134,26 +148,26 @@ namespace BIT_DesktopApp.ViewModels
 
 
 
-        public ObservableCollection<Coordinator> Coordinators
-        {
-            get { return _coordinators; }
-            set { _coordinators = value; }
-        }
 
         public Coordinator SelectedCoordinator
         {
             get { return _selectedCoordinator; }
-            set { _selectedCoordinator = value; }
-        }
-        public Coordinator NewCoordinator
-        {
-            get { return _newCoordinator; }
             set
             {
-                _newCoordinator = value; 
-                OnPropertyChanged("NewCoordinator");
+                _selectedCoordinator = value; 
+                OnPropertyChanged("SelectedCoordinator");
             }
         }
+
+        //public Coordinator NewCoordinator
+        //{
+        //    get { return _newCoordinator; }
+        //    set
+        //    {
+        //        _newCoordinator = value; 
+        //        OnPropertyChanged("NewCoordinator");
+        //    }
+        //}
 
         public CoordinatorViewModel()
         {

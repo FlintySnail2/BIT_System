@@ -14,30 +14,37 @@ namespace BIT_DesktopApp.ViewModels
 
       
         private Client _newClient;
-        private RelayCommand _addCommand;
+        private RelayCommand _confirmCommand;
 
-        public RelayCommand AddCommand
-        {
-            get
-            {
-                if (_addCommand == null)
-                {
-                    _addCommand = new RelayCommand(this.AddMethod, true);
-                }
-                return _addCommand;
-            }
-            set { _addCommand = value; }
-        }
-
-    
-
+        #region Add Method
 
 
         public void AddMethod()
         {
-            //string message = NewClient.InsertClient();
-            MessageBox.Show("Derp");
+            string message = NewClient.InsertClient();
+            MessageBox.Show(message);
         }
+
+        public RelayCommand ConfirmCommand
+        {
+            get
+            {
+                if (_confirmCommand == null)
+                {
+                    _confirmCommand = new RelayCommand(this.AddMethod, true);
+                }
+                return _confirmCommand;
+            }
+            set { _confirmCommand = value; }
+        }
+
+        #endregion Add Method
+
+
+
+
+
+
 
         public Client NewClient
         {
