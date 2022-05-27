@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:BIT_DesktopApp.Views"
+      xmlns:local="clr-namespace:BIT_DesktopApp.Views" xmlns:viewmodels="clr-namespace:BIT_DesktopApp.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:ContractorViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="1000"
       Title="ContractorView">
@@ -12,133 +12,136 @@
     <Border
         Background="#2D3136"
         CornerRadius="20">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50px"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="50px"/>
-        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50px"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50px"/>
+            </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" 
+            <StackPanel Orientation="Horizontal" 
                     HorizontalAlignment="Center" 
                     Width="800">
 
-            <TextBlock Text="Contractors" 
+                <TextBlock Text="Contractors" 
                        FontSize="28px" 
                        FontWeight="bold" 
                        Foreground="#fff" 
                        Width="323" 
                        Margin="10,5,10,5"/>
 
-            <TextBox Text="{Binding SearchText}"
+                <TextBox Text="{Binding SearchText}"
                      x:Name="txtSearchContractor" 
                      Width="200" 
                       Style="{StaticResource SearchTheme}"/>
 
-            <Button Content="SEARCH" 
+                <Button Content="SEARCH" 
                     x:Name="btnSearchContractor"
                     Command="{Binding SearchCommand}"
                     Width="90" 
                     Margin="10" 
                     FontSize="18"/>
 
-        </StackPanel>
+            </StackPanel>
 
-        <Grid Grid.Row="1" Margin="0,0,0,180" Grid.RowSpan="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="1" Margin="0,0,0,180" Grid.RowSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="3*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-            <DataGrid Grid.Column="0" 
+                <DataGrid Grid.Column="0" 
                       Name="dgContractors" 
-                      Margin="5,5,5,10"
+                      Margin="5,5,5,50"
                       AutoGenerateColumns="False"
                       ItemsSource="{Binding Contractors}"
                       SelectedItem="{Binding SelectedContractor,
                                      UpdateSourceTrigger=PropertyChanged}"
                       Grid.RowSpan="2">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Contractor Name" Binding="{Binding ContractorName}"/>
-                <DataGridTextColumn Header="Birth Date" Binding="{Binding DobFormat}"/>
-                <DataGridTextColumn Header="Address" Binding="{Binding Address}"/>
-                <DataGridTextColumn Header="Phone" Binding="{Binding Phone}"/>
-                <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
-            </DataGrid.Columns>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="*" Header="First Name" Binding="{Binding FirstName}"/>
+                        <DataGridTextColumn Width="*" Header="Last Name" Binding="{Binding LastName}"/>
+                        <DataGridTextColumn Width="*" Header="Rating" Binding="{Binding ContractorRating}"/>
+                        <DataGridTextColumn Width="*"  Header="Rate Of Pay" Binding="{Binding RateOfPay}"/>
+                        <DataGridTextColumn Width="*" Header="Phone" Binding="{Binding Phone}"/>
+                        <DataGridTextColumn Width="*" Header="Email" Binding="{Binding Email}"/>
+                    </DataGrid.Columns>
                 </DataGrid>
 
                 <DataGrid Grid.Row="0" 
                       Grid.Column="1" 
                       x:Name="dgContractorSkills" 
-                      Margin="5"
+                      Margin="5,5,5,42"
                       ItemsSource="{Binding ContractorSkills}" 
                       SelectedItem="{Binding SelectedSkill}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Contractor Skill" Binding="{Binding Skill}"/>
+                        <DataGridTextColumn Width="*" Header="Contractor Skill" Binding="{Binding Skill}"/>
                     </DataGrid.Columns>
-            </DataGrid>
+                </DataGrid>
 
-                <StackPanel Grid.Row="1" 
+                <StackPanel 
                         Grid.Column="1" 
-                        Orientation="Horizontal">
+                        Orientation="Horizontal" Margin="0,166,0,37" Grid.RowSpan="2">
 
-                <TextBox Text="{Binding ContractorSkill.Skill}"
+                    <TextBox Text="{Binding ContractorSkill.Skill}"
                         
                          x:Name="txtSkill" 
                          Width="100" 
                          Height="31" 
                          Margin="5"/>
 
-                <Button x:Name="btnAddSuburb" 
+                    <Button x:Name="btnAddSuburb" 
                         Width="50" Height="31"
                         Margin="5" Content="ADD"/>
 
-                <Button x:Name="btnRemoveSuburb" 
+                    <Button x:Name="btnRemoveSuburb" 
                         Width="70" 
                         Height="30" 
                         Content=" REMOVE">
 
-                    <Button.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform/>
-                            <SkewTransform AngleY="0"/>
-                            <RotateTransform/>
-                            <TranslateTransform Y="0"/>
-                        </TransformGroup>
-                    </Button.RenderTransform>
-                </Button>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleY="0"/>
+                                <RotateTransform/>
+                                <TranslateTransform Y="0"/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                    </Button>
 
-            </StackPanel>
-        </Grid>
-        <Grid Grid.Row="2" Margin="0,50,0,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="2*" />
-            </Grid.ColumnDefinitions>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="2" Margin="0,10,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
 
-            <!--First Two Column data -->
+                <!--First Two Column data -->
 
-            <Label Content="First Name : " 
+                <Label Content="First Name : " 
                    Grid.Row="0" 
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox Text="{Binding SelectedContractor.ContractorName}"
+                <TextBox Text="{Binding SelectedContractor.FirstName}"
                      x:Name="txtFirstName" 
                      Grid.Row="0" 
                      Grid.Column="1" 
@@ -149,127 +152,161 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox Text="{Binding SelectedContractor.Phone}"
+                <TextBox Text="{Binding SelectedContractor.LastName}"
                      x:Name="txtLastName"
                      Grid.Row="1" 
                      Grid.Column="1" 
                      Margin="5" />
 
 
-<Label Content="Birth Date : " 
+                <Label Content="Birth Date : " 
                    Grid.Row="2" 
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox Text="{Binding SelectedContractor.Dob, StringFormat=dd/MM/yyyy}"
+                <TextBox Text="{Binding SelectedContractor.Dob, StringFormat=dd/MM/yyyy}"
                      x:Name="txtDob" 
                      Grid.Row="2" 
                      Grid.Column="1" 
                      Margin="5" />
 
-            <Label Content="Address : " 
+                <Label Content="Email : " 
                    Grid.Row="3" 
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox Text="{Binding SelectedContractor.Address}"
-                     x:Name="txtAddress" 
+                <TextBox Text="{Binding SelectedContractor.Email}"
+                     x:Name="txtEmail" 
                      Grid.Row="3" 
                      Grid.Column="1" 
                      Margin="5" />
 
-            <Label Content="Phone : " 
+                <Label Content="Phone : " 
                    Grid.Row="4" 
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox Text="{Binding SelectedContractor.Phone}"
+                <TextBox Text="{Binding SelectedContractor.Phone}"
                      x:Name="txtPhone"
                      Grid.Row="4" 
                      Grid.Column="1" 
                      Margin="5" />
 
-            <!--Second column of data -->
-
-            <Label Content="Email : "
-                   Grid.Row="0" 
-                   Grid.Column="2" 
-                   Foreground="#fff"/>
-
-            <TextBox Text="{Binding SelectedContractor.Email}"
-                     x:Name="txtEmail" 
-                     Grid.Row="0" 
-                     Grid.Column="3" 
-                     Margin="5" />
-
-
                 <Label Content="ABN : " 
+                       Grid.Row="5" 
+                       Grid.Column="0" 
+                       Foreground="#fff"/>
+
+                <TextBox Text="{Binding SelectedContractor.ABN}"
+                         x:Name="txtABN" 
+                         Grid.Row="5" 
+                         Grid.Column="1" 
+                         Margin="5"/>
+
+                <Label Content="Licence No#  : " 
+                       Grid.Row="6" 
+                       Grid.Column="0" 
+                       Foreground="#fff"/>
+
+                <TextBox Text="{Binding SelectedContractor.LicenceNumber}"
+                         x:Name="txtLicenceNum" 
+                         Grid.Row="6" 
+                         Grid.Column="1" 
+                         Margin="5"/>
+
+                <!--Second column of data -->
+
+                <Label Content="Rate of Pay : " 
+                       Grid.Row="0" 
+                       Grid.Column="2" 
+                       Foreground="#fff"/>
+
+                <TextBox  Text="{Binding SelectedContractor.RateOfPay}"
+                      x:Name="txtRateofPay" 
+                      Grid.Row="0" 
+                      Grid.Column="3" 
+                      Margin="5" />
+
+                <Label Content="Rating : " 
                    Grid.Row="1" 
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-            <TextBox Text="{Binding SelectedContractor.ABN}"
-                     x:Name="txtABN" 
-                     Grid.Row="1" 
-                     Grid.Column="3" 
-                     Margin="5"/>
-
-            <Label Content="Licence No#  : " 
-                   Grid.Row="2" 
-                   Grid.Column="2" 
-                   Foreground="#fff"/>
-
-            <TextBox Text="{Binding SelectedContractor.LicenceNumber}"
-                     x:Name="txtLicenceNum" 
-                     Grid.Row="2" 
-                     Grid.Column="3" 
-                     Margin="5"/>
-
-            <Label Content="Rate of Pay : " 
-                   Grid.Row="3" 
-                   Grid.Column="2" 
-                   Foreground="#fff"/>
-
-            <TextBox  Text="{Binding SelectedContractor.RateOfPay}"
-                      x:Name="txtRateofPay" 
-                      Grid.Row="3" 
-                      Grid.Column="3" 
-                      Margin="5" />
-
-            <Label Content="Rating : " 
-                   Grid.Row="4" 
-                   Grid.Column="2" 
-                   Foreground="#fff"/>
-
-            <TextBox  Text="{Binding SelectedContractor.ContractorRating}"
+                <TextBox  Text="{Binding SelectedContractor.ContractorRating}"
                       x:Name="txtRating" 
-                      Grid.Row="4" 
+                      Grid.Row="1" 
                       Grid.Column="3" 
                       Margin="5" />
 
-        </Grid>
-        <StackPanel Orientation="Horizontal" 
+                <Label Content="Street : "
+                       Grid.Row="2" 
+                       Grid.Column="2" 
+                       Foreground="#fff"/>
+
+                <TextBox Text="{Binding SelectedContractor.Street}"
+                         x:Name="txtStreet" 
+                         Grid.Row="2" 
+                         Grid.Column="3" 
+                         Margin="5" />
+
+                <Label Content="Suburb : "
+                       Grid.Row="3" 
+                       Grid.Column="2" 
+                       Foreground="#fff"/>
+
+                <TextBox Text="{Binding SelectedContractor.Suburb}"
+                         x:Name="txtSuburb" 
+                         Grid.Row="3" 
+                         Grid.Column="3" 
+                         Margin="5" />
+
+                <Label Content="State : "
+                       Grid.Row="4" 
+                       Grid.Column="2" 
+                       Foreground="#fff"/>
+
+                <TextBox Text="{Binding SelectedContractor.State}"
+                         x:Name="txtState" 
+                         Grid.Row="4" 
+                         Grid.Column="3" 
+                         Margin="5" />
+
+                <Label Content="Zip : "
+                       Grid.Row="5" 
+                       Grid.Column="2" 
+                       Foreground="#fff"/>
+
+                <TextBox Text="{Binding SelectedContractor.Zip}"
+                         x:Name="txtZip" 
+                         Grid.Row="5" 
+                         Grid.Column="3" 
+                         Margin="5" />
+
+            </Grid>
+            <StackPanel Orientation="Horizontal" 
                     HorizontalAlignment="right" 
                     Grid.Row="3">
 
 
 
-            <Button x:Name="btnUpdate" 
-                    Content="UPDATE" 
+                <Button x:Name="btnUpdate" 
+                    Content="UPDATE"
+                    Command="{Binding UpdateCommand}"
                     Width="150" 
                     Margin="10"/>
 
-            <Button x:Name="btnDelete" 
+                <Button x:Name="btnDelete"
+                    Command="{Binding DeleteCommand}"
                     Content="DELETE" 
                     Width="150" 
                     Margin="10"/>
 
-            <Button x:Name="btnAdd" 
+                <Button x:Name="btnAdd" 
                     Content="ADD" 
                     Width="150" 
                     Margin="10"
                     Click="btnAdd_Click"/>
-        </StackPanel>
-    </Grid>
-        </Border>
+            </StackPanel>
+        </Grid>
+    </Border>
 </Page>

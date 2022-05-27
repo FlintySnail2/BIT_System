@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:BIT_DesktopApp.Views"
+      xmlns:local="clr-namespace:BIT_DesktopApp.Views" xmlns:viewmodels="clr-namespace:BIT_DesktopApp.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:AddContractorViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="1000"
       Title="AddContractorView">
@@ -97,7 +97,7 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-                <TextBox Text="{Binding NewContractor.Dob,
+                <DatePicker Text="{Binding NewContractor.Dob,
                              ValidatesOnDataErrors=True,
                              UpdateSourceTrigger=PropertyChanged,
                              Mode=TwoWay}"
@@ -157,12 +157,12 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-                <TextBox Text="{Binding NewContractor.LicenceNum,
+                <TextBox Text="{Binding NewContractor.LicenceNumber,
                              ValidatesOnDataErrors=True,
                              UpdateSourceTrigger=PropertyChanged,
                              Mode=TwoWay}"
-                      ToolTip="{Binding NewContractor.ErrorCollection[LicenceNum]}" 
-                     x:Name="txtLicenceNum" 
+                      ToolTip="{Binding NewContractor.ErrorCollection[LicenceNumber]}" 
+                     x:Name="txtLicenceNumber" 
                      Grid.Row="5" 
                      Grid.Column="1" 
                      Margin="5" />
@@ -176,7 +176,7 @@
                        Grid.Column="2" 
                        Foreground="#fff"/>
 
-                <TextBox Text="{Binding NewContractor.Abn,
+                <TextBox Text="{Binding NewContractor.ABN,
                              ValidatesOnDataErrors=True,
                              UpdateSourceTrigger=PropertyChanged,
                              Mode=TwoWay}"
@@ -191,7 +191,7 @@
                        Grid.Column="2" 
                        Foreground="#fff"/>
 
-                <TextBox Text="{Binding NewContractor.Skill,
+                <TextBox Text="{Binding NewContractor.SkillTitle,
                              ValidatesOnDataErrors=True,
                              UpdateSourceTrigger=PropertyChanged,
                              Mode=TwoWay}"
@@ -206,11 +206,8 @@
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-                <TextBox Text="{Binding NewContractor.PayRate,
-                             ValidatesOnDataErrors=True,
-                             UpdateSourceTrigger=PropertyChanged,
-                             Mode=TwoWay}"
-                      ToolTip="{Binding NewContractor.ErrorCollection[PayRate]}" 
+                <TextBox 
+                      
                      x:Name="txtPayRate" 
                      Grid.Row="2" 
                      Grid.Column="3" 

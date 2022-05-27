@@ -93,15 +93,8 @@ namespace BIT_DesktopApp.ViewModels
 
         public void DeleteMethod()
         {
-            int returnValue = SelectedContractor.ContractorId;
-            if (returnValue > 0)
-            {
-                MessageBox.Show("Contractor has been deleted. ");
-            }
-            else
-            {
-                MessageBox.Show("Error");
-            }
+            string returnValue = SelectedContractor.RemoveContractor(SelectedContractor.ContractorId);
+            MessageBox.Show(returnValue);
         }
 
         #endregion Delete Mthod
@@ -125,16 +118,9 @@ namespace BIT_DesktopApp.ViewModels
 
         public void UpdateMethod()
         {
-            int returnValue = SelectedContractor.ContractorId;
-            if (returnValue > 0)
-            {
-                MessageBox.Show("Contractor has been updated");
-            }
-            else
-            {
-                MessageBox.Show("Error");
-            }
-            
+            string returnValue =  SelectedContractor.UpdateContractor(SelectedContractor.ContractorId);
+            MessageBox.Show(returnValue);
+
         }
 
 

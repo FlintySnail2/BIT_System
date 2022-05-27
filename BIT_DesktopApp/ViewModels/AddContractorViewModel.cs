@@ -1,6 +1,7 @@
 ﻿using BIT_DesktopApp.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,12 +9,24 @@ using System.Windows;
 
 namespace BIT_DesktopApp.ViewModels
 {
-    public class AddContractorViewModel
+    public class AddContractorViewModel : INotifyPropertyChanged
     {
-        #region Properties
+        
         private Contractor _newContractor;
         private RelayCommand _addCommand;
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged(string prop)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            }
+        }
+
+
+        #region Add Method
         public RelayCommand AddCommand
         {
             get
@@ -27,32 +40,29 @@ namespace BIT_DesktopApp.ViewModels
             set { _addCommand = value; }
         }
 
+        public void AddMethod()
+        {
+            string message = NewContractor.InsertContractor();
 
+        }
+
+        #endregion Add Method
 
         public Contractor NewContractor
         {
             get { return _newContractor; }
-            set { _newContractor = value; }
+            set
+            {
+                _newContractor = value;
+                OnPropertyChanged("NewContractor");
+            }
         }
 
-        #endregion Properties
 
-        #region Constructor
         public AddContractorViewModel()
         {
             NewContractor = new Contractor();
         }
-
-        #endregion
-
-        #region Publc Method
-
-        public void AddMethod()
-        {
-            //string message = NewContractor.InsertContractor();
-            MessageBox.Show("Derp");
-        }
-
-        #endregion Public Method
+        
     }
 }

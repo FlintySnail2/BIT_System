@@ -112,7 +112,7 @@ namespace BIT_DesktopApp.Models
 
 
                 }
-                if (result == null && !ErrorCollection.ContainsKey(propertyName))
+                if (result != null && !ErrorCollection.ContainsKey(propertyName))
                 {
                     ErrorCollection.Add(propertyName, result);
                 }
@@ -276,10 +276,14 @@ namespace BIT_DesktopApp.Models
             _db = new SQLHelper();
             ClientId = Convert.ToInt32(dr["ClientId"].ToString());
             OrganisationName = dr["OrganisationName"].ToString();
-            ContactName = dr["ContactName"].ToString();
+            FirstName = dr["FirstName"].ToString();
+            LastName = dr["LastName"].ToString();
             Phone = dr["Phone"].ToString();
             Email = dr["Email"].ToString();
-            Address = dr["Address"].ToString();
+            Street = dr["Street"].ToString();
+            Suburb = dr["Suburb"].ToString();
+            State = dr["state"].ToString();
+            Zip = dr["Zip"].ToString();
             Region = dr["Region"].ToString();
         }
 
@@ -309,12 +313,14 @@ namespace BIT_DesktopApp.Models
 
             string sql2 = "INSERT INTO" +
                           "         Location(" +
+                          "         ClientId," +
                           "         Region," +
                           "         Street," +
                           "         Suburb," +
                           "         State," +
                           "         Zip)" +
                           "          VALUES(" +
+                          "         @ClientId," +
                           "        @Region," +
                           "        @Street," +
                           "        @Suburb," +
@@ -333,17 +339,19 @@ namespace BIT_DesktopApp.Models
             objParams[4].Value = this.Email;
             objParams[5] = new SqlParameter("@Password", DbType.String);
             objParams[5].Value = this.Password;
-            SqlParameter[] objParams2 = new SqlParameter[5];
-            objParams2[0] = new SqlParameter("@Region", DbType.String);
-            objParams2[0].Value = Region;
-            objParams2[1] = new SqlParameter("@Street", DbType.String);
-            objParams2[1].Value = Street;
-            objParams2[2] = new SqlParameter("@Suburb", DbType.String);
-            objParams2[2].Value = Suburb;
-            objParams2[3] = new SqlParameter("@State", DbType.String);
-            objParams2[3].Value = State;
-            objParams2[4] = new SqlParameter("@Zip", DbType.String);
-            objParams2[4].Value = Zip;
+            SqlParameter[] objParams2 = new SqlParameter[6];
+            objParams2[0] = new SqlParameter("@ClientId", DbType.Int32);
+            objParams2[0].Value = ClientId;
+            objParams2[1] = new SqlParameter("@Region", DbType.String);
+            objParams2[1].Value = Region;
+            objParams2[2] = new SqlParameter("@Street", DbType.String);
+            objParams2[2].Value = Street;
+            objParams2[3] = new SqlParameter("@Suburb", DbType.String);
+            objParams2[3].Value = Suburb;
+            objParams2[4] = new SqlParameter("@State", DbType.String);
+            objParams2[4].Value = State;
+            objParams2[5] = new SqlParameter("@Zip", DbType.String);
+            objParams2[5].Value = Zip;
 
             int rowsAffectedClient = _db.ExecuteNonQuery(sql1, objParams);
             int rowsAffectedRegion = _db.ExecuteNonQuery(sql2, objParams2);
@@ -373,35 +381,45 @@ namespace BIT_DesktopApp.Models
                                 "   FirstName = @FirstName," +
                                 "   LastName = @LastName," +
                                 "   Phone = @Phone," +
-                                "   Email = @Email";
+                                "   Email = @Email" +
+                                " WHERE" +
+                                "   ClientId = @ClientId";
             string updateSql2 = "UPDATE" +
                                 "   Location" +
-                                " SET      "  +
-                                "   Region = @Region" +
+                                " SET      " +
+                                "   Region = @Region," +
                                 "   Street = @Street," +
                                 "   Suburb = @Suburb," +
                                 "   State = @State," +
-                                "   Zip = @Zip";
-            SqlParameter[] objParams = new SqlParameter[4];
-            objParams[0] = new SqlParameter("@OrganisationName", DbType.String);
-            objParams[0].Value = OrganisationName;
-            objParams[1] = new SqlParameter("@FirstName + @LastName", DbType.String);
-            objParams[1].Value = ContactName;
-            objParams[2] = new SqlParameter("@Email", DbType.String);
-            objParams[2].Value = Email;
-            objParams[3] = new SqlParameter("@Phone", DbType.String);
-            objParams[3].Value = Phone;
-            SqlParameter[] objParams2 = new SqlParameter[5];
-            objParams2[0] = new SqlParameter("@Region", DbType.String);
-            objParams2[0].Value = Region;
-            objParams2[1] = new SqlParameter("@Street", DbType.String);
-            objParams2[1].Value = Street;
-            objParams2[2] = new SqlParameter("@Suburb", DbType.String);
-            objParams2[2].Value = Suburb;
-            objParams2[3] = new SqlParameter("@State", DbType.String);
-            objParams2[3].Value = State;
-            objParams2[4] = new SqlParameter("@Zip", DbType.String);
-            objParams2[4].Value = Zip;
+                                "   Zip = @Zip"+
+            " WHERE" +
+            "   ClientId = @ClientId";
+            SqlParameter[] objParams = new SqlParameter[6];
+            objParams[0] = new SqlParameter("@ClientId", DbType.Int32);
+            objParams[0].Value = clientId;
+            objParams[1] = new SqlParameter("@OrganisationName", DbType.String);
+            objParams[1].Value = OrganisationName;
+            objParams[2] = new SqlParameter("@FirstName", DbType.String);
+            objParams[2].Value = FirstName;
+            objParams[3] = new SqlParameter("@LastName", DbType.String);
+            objParams[3].Value = LastName;
+            objParams[4] = new SqlParameter("@Email", DbType.String);
+            objParams[4].Value = Email;
+            objParams[5] = new SqlParameter("@Phone", DbType.String);
+            objParams[5].Value = Phone;
+            SqlParameter[] objParams2 = new SqlParameter[6];
+            objParams2[0] = new SqlParameter("@ClientId", DbType.Int32);
+            objParams2[0].Value = clientId;
+            objParams2[1] = new SqlParameter("@Region", DbType.String);
+            objParams2[1].Value = Region;
+            objParams2[2] = new SqlParameter("@Street", DbType.String);
+            objParams2[2].Value = Street;
+            objParams2[3] = new SqlParameter("@Suburb", DbType.String);
+            objParams2[3].Value = Suburb;
+            objParams2[4] = new SqlParameter("@State", DbType.String);
+            objParams2[4].Value = State;
+            objParams2[5] = new SqlParameter("@Zip", DbType.String);
+            objParams2[5].Value = Zip;
             int rowsAffectedClient = _db.ExecuteNonQuery(updateSql1, objParams);
             int rowsAffectedLocation = _db.ExecuteNonQuery(updateSql2, objParams2);
 
@@ -424,10 +442,10 @@ namespace BIT_DesktopApp.Models
         public string RemoveClient(int clientId)
         {
             string removeSql = "UPDATE " +
-                               "    Client" +
-                               "SET" +
-                               "    AccountStatus = 'Inactive" +
-                               "WHERE" +
+                               "    Client " +
+                               " SET " +
+                               "    AccountStatus = 'Inactive'" +
+                               " WHERE " +
                                "    ClientId = @ClientId";
             SqlParameter[] objParams = new SqlParameter[1];
             objParams[0] = new SqlParameter("@ClientId", DbType.Int32);

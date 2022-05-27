@@ -45,16 +45,22 @@ namespace BIT_DesktopApp.Models
                 string result = null;
                 switch (propertyName)
                 {
-                    case "ContractorName":
-                        if (string.IsNullOrEmpty(ContractorName))
+                    case "FirstName":
+                        if (string.IsNullOrEmpty(FirstName))
                         {
                             result = "Field cannot be left empty";
                         }
                         break;
-                    case "Address":
-                        if (string.IsNullOrEmpty(Address))
+                    case "LastName":
+                        if (string.IsNullOrEmpty(LastName))
                         {
                             result = "Field cannot be left empty";
+                        }
+                        break;
+                    case "Dob":
+                        if (Dob.Year < 1945)
+                        {
+                            result = "You are to old to work here";
                         }
                         break;
                     case "Phone":
@@ -63,22 +69,23 @@ namespace BIT_DesktopApp.Models
                             result = "Field cannot be empty";
                         }
                         break;
-                    case "Dob":
-                        if (Dob.Year > 1945)
-                        {
-                            result = "You are to old to work here";
-                        }
-                        break;
+                    
                     case "Email":
                         if (string.IsNullOrEmpty(Email))
                         {
                             result = "Field cannot be empty";
                         }
                         break;
-                    case "Availability":
-                        if (string.IsNullOrEmpty(Availability))
+                    case "LicenceNumber":
+                        if (string.IsNullOrEmpty(LicenceNumber))
                         {
-                            result = "Field cannot be left empty";
+                            result = "Field cannot be empty";
+                        }
+                        break;
+                    case "Password":
+                        if (string.IsNullOrEmpty(Password))
+                        {
+                            result = "Field cannot be empty";
                         }
                         break;
                     case "ABN":
@@ -87,20 +94,39 @@ namespace BIT_DesktopApp.Models
                             result = "Field cannot be left empty";
                         }
                         break;
-                    case "LicenceNumber":
-                        if (string.IsNullOrEmpty(ABN))
+                    case "SkillTitle":
+                        if (string.IsNullOrEmpty(SkillTitle))
+                        {
+                            result = "Field cannot be left empty";
+                        }
+                        break;
+
+                    //case "RateOfPay":
+                    //    if (Decimal.))
+                    //    {
+                    //        result = "field cannot be empty";
+                    //    }
+                    //    break;
+                    case "Street":
+                        if (string.IsNullOrEmpty(Street))
+                        {
+                            result = "Field cannot be left empty";
+                        }
+                        break;
+                    case "Suburb":
+                        if (string.IsNullOrEmpty(Suburb))
                         {
                             result = "Field cannot be empty";
                         }
                         break;
-                    case "RateOfPay":
-                        if (int.TryParse(ABN, out int test))
+                    case "State":
+                        if (string.IsNullOrEmpty(State))
                         {
-                            result = "field cannot be empty";
+                            result = "Field cannot be empty";
                         }
                         break;
-                    case "ContractorRating":
-                        if (string.IsNullOrEmpty(ContractorRating))
+                    case "Zip":
+                        if (string.IsNullOrEmpty(Zip))
                         {
                             result = "Field cannot be empty";
                         }
@@ -300,7 +326,11 @@ namespace BIT_DesktopApp.Models
         public string SkillTitle
         {
             get { return _skillTitle; }
-            set { _skillTitle = value; }
+            set
+            {
+                _skillTitle = value; 
+                OnPropertyChanged("SkillTitle");
+            }
         }
         #endregion Public Properties
 
@@ -315,8 +345,12 @@ namespace BIT_DesktopApp.Models
         {
             _db = new SQLHelper();
             ContractorId = Convert.ToInt32(dr["ContractorId"].ToString());
-            ContractorName = dr["ContractorName"].ToString(); 
-            Address = dr["Address"].ToString();
+            FirstName = dr["FirstName"].ToString();
+            LastName = dr["LastName"].ToString();
+            Street = dr["Street"].ToString();
+            Suburb = dr["Suburb"].ToString();
+            State = dr["State"].ToString();
+            Zip = dr["Zip"].ToString();
             Phone = dr["Phone"].ToString();
             Dob = Convert.ToDateTime(dr["Dob"].ToString());
             Email = dr["Email"].ToString();
@@ -431,10 +465,10 @@ namespace BIT_DesktopApp.Models
         public string RemoveContractor(int contractorId)
         {
             string removeSql = "UPDATE " +
-                               "    Contractor" +
-                               "SET" +
-                               "    AccountStatus = 'Inactive" +
-                               "WHERE" +
+                               "    Contractor " +
+                               "SET " +
+                               "    AccountStatus = 'Inactive'" +
+                               "WHERE " +
                                "    ContractorId = @ContractorId";
             SqlParameter[] objParams = new SqlParameter[1];
             objParams[0] = new SqlParameter("@ContractorId", DbType.Int32);
@@ -448,29 +482,56 @@ namespace BIT_DesktopApp.Models
             return "Unable to remove contractor, please try again later ";
         }
 
-        public string UpdateContractor(int contractor)
+        public string UpdateContractor(int contractorId)
         {
-            string updateSql = "UPDATE" +
-                               "  Contractor" +
-                               "SET" +
+            string updateSql = "UPDATE " +
+                               "  Contractor " +
+                               " SET " +
                                "    FirstName = @FirstName," +
-                               "    LastName = @LastName" +
+                               "    LastName = @LastName," +
                                "    Dob = @Dob," +
                                "    Street = @Street," +
                                "    Suburb = @Suburb," +
                                "    State = @State," +
-                               "    Zip = @Zip" +
-                               "    Phone = @Phone,," +
+                               "    Zip = @Zip," +
+                               "    Phone = @Phone," +
                                "    Email = @Email," +
                                "    ABN = @ABN," +
                                "    LicenceNumber = @LicenceNumber," +
-                               "    RateofPay = @RateofPay" +
+                               "    RateofPay = @RateofPay," +
                                "    ContractorRating = @ContractorRating," +
                                "    AccountStatus = 'Inactive'" +
                                "WHERE" +
                                "  ContractorId = @ContractorId";
             SqlParameter[] objParams = new SqlParameter[14];
             objParams[0] = new SqlParameter("@ContractorId", DbType.Int32);
+            objParams[0].Value = contractorId;
+            objParams[1] = new SqlParameter("@FirstName", DbType.String);
+            objParams[1].Value = FirstName;
+            objParams[2] = new SqlParameter("@LastName", DbType.String);
+            objParams[2].Value = LastName;
+            objParams[3] = new SqlParameter("@Dob", DbType.DateTime);
+            objParams[3].Value = Dob;
+            objParams[4] = new SqlParameter("@Street", DbType.String);
+            objParams[4].Value = Street;
+            objParams[5] = new SqlParameter("@Suburb", DbType.String);
+            objParams[5].Value = Suburb;
+            objParams[6] = new SqlParameter("@State", DbType.String);
+            objParams[6].Value = State;
+            objParams[7] = new SqlParameter("@Zip", DbType.String);
+            objParams[7].Value = Zip;
+            objParams[8] = new SqlParameter("@Phone", DbType.String);
+            objParams[8].Value = Phone;
+            objParams[9] = new SqlParameter("@Email", DbType.String);
+            objParams[9].Value = Email;
+            objParams[10] = new SqlParameter("@ABN", DbType.String);
+            objParams[10].Value = ABN;
+            objParams[11] = new SqlParameter("@LicenceNumber", DbType.String);
+            objParams[11].Value = LicenceNumber;
+            objParams[12] = new SqlParameter("@RateofPay", DbType.Decimal);
+            objParams[12].Value = RateOfPay;
+            objParams[13] = new SqlParameter("@ContractorRating", DbType.String);
+            objParams[13].Value = ContractorRating;
             int rowsAffectedContractor = _db.ExecuteNonQuery(updateSql, objParams);
             if (rowsAffectedContractor >= 1)
             {

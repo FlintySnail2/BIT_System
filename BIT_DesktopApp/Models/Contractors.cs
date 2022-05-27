@@ -20,9 +20,13 @@ namespace BIT_DesktopApp.Models
             _db = new SQLHelper();
             string sql = "SELECT " +
                 "           C.ContractorId," +
-                "           C.FirstName + ' ' + C.LastName AS ContractorName," +
+                "           C.FirstName," +
+                "           C.LastName, " +            
                 "           C.Dob," +
-                "           C.Street + ', ' + C.Suburb + ', ' + C.State + ', ' + CAST(C.Zip AS NVARCHAR) AS Address," +
+                "           C.Street," +
+                "           C.Suburb, " +
+                "           C.State, " +
+                "           C.Zip," +
                 "           C.Phone," +
                 "           C.Email,    " +
                 "           C.ABN," +
@@ -30,7 +34,9 @@ namespace BIT_DesktopApp.Models
                 "           C.RateofPay," +
                 "           C.ContractorRating" +
                 "       FROM" +
-                "           Contractor AS C";
+                "           Contractor AS C" +
+                "       WHERE " +
+                "          AccountStatus = 'Active'";
             DataTable datatable = _db.ExecuteSQL(sql);
             foreach (DataRow dr in datatable.Rows)
             {

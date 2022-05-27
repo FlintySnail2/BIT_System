@@ -47,15 +47,16 @@ namespace BIT_DesktopApp.ViewModels
 
         public void UpdateMethod()
         {
-            int returnValue = SelectedClient.ClientId;
-            if (returnValue > 0)
-            {
-                MessageBox.Show("Client has been updated");
-            }
-            else
-            {
-                MessageBox.Show("Error");
-            }
+            string returnValue = SelectedClient.UpdateClient(SelectedClient.ClientId);
+            MessageBox.Show(returnValue);
+            //if (returnValue > 0)
+            //{
+            //    MessageBox.Show("Client has been updated");
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Error");
+            //}
 
         }
 
@@ -122,43 +123,45 @@ namespace BIT_DesktopApp.ViewModels
 
         public void DeleteMethod()
         {
-            int returnValue = SelectedClient.ClientId;
-            if (returnValue > 0)
-            {
-                MessageBox.Show("Client has been deleted ");
-            }
-            else
-            {
-                MessageBox.Show("Error");
-            }
+            string returnValue = SelectedClient.RemoveClient(SelectedClient.ClientId);
+            MessageBox.Show(returnValue);
+
         }
         #endregion Delete Command 
 
         public ObservableCollection<Client> Clients
         {
             get { return _clients; }
-            set { _clients = value; }
+            set
+            {
+                _clients = value;
+                OnPropertyChanged("Clients");
+            }
         }
 
         public Client SelectedClient
         {
             get { return _selectedClient; }
-            set { _selectedClient = value; }
+            set
+            {
+                _selectedClient = value;
+                OnPropertyChanged("SelectedClient");
+            }
         }
 
         public ClientViewModel()
         {
             //COMMENTED OUT AS USING MOQ
-            // Clients allClients = new Clients();
-            //this.Clients = new ObservableCollection<Client>(allClients);
-            GetClients();
+             Clients allClients = new Clients();
+            this.Clients = new ObservableCollection<Client>(allClients);
+            //GetClients();
         }
 
-        public virtual ObservableCollection<Client> GetClients()
-        {
-            Clients allClients = new Clients();
-            return new ObservableCollection<Client>(allClients);
-        }
+        //public virtual ObservableCollection<Client> GetClients()
+        //{
+        //    Clients allClients = new Clients();
+        //    return new ObservableCollection<Client>(allClients);
+        //}
 
 
     }

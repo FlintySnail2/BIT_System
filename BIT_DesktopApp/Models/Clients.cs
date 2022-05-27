@@ -19,16 +19,22 @@ namespace BIT_DesktopApp.Models
             string sql = "SELECT" +
                 "           C.ClientId, " +
                 "           C.OrganisationName," +
-                "           C.FirstName + ' ' + C.LastName AS ContactName," +
+                "           C.FirstName," +
+                "           C.LastName," +
                 "           C.Phone," +
                 "           C.Email," +
-                "           L.Street + ' ' + L.Suburb + ', ' + L.State + ', ' + CAST(L.Zip AS NVARCHAR) AS Address," +
+                "           L.Street, " +
+                        "   L.Suburb, "+   
+                        "   L.State, " + " " +
+                "           L.Zip, " +
                 "           L.Region" +
                 "       FROM" +
                 "           Client AS C," +
                 "           Location AS L" +
                 "       WHERE " +
-                "           C.ClientId = L.ClientId " +
+                "           C.ClientId = L.ClientId" +
+                "       AND " +
+                "           AccountStatus = 'Active'" +
                 "       ORDER BY C.ClientId ASC";
             DataTable dataTable = _db.ExecuteSQL(sql);
             foreach (DataRow dr in dataTable.Rows)
@@ -61,24 +67,6 @@ namespace BIT_DesktopApp.Models
             }
         }
         
-        //METHOD FOR MAKING CLIENT INACTIVE
-
-        //public Client(string deleteClient)
-        //{
-        //    string sql = " UPDATE" +
-        //                 "      Client" +
-        //                 " SET" +
-        //                 "      AccountStatus = 'Inactive'" +
-        //                 " WHERE" +
-        //                 "      ClientId = 1";
-        //    DataTable dataTable = _db.ExecuteSQL(sql);
-        //    foreach (DataRow dr in dataTable.Rows)
-        //    {
-        //        Client newClient = new Client(dr);
-        //        this.Add(newClient);
-        //    }
-
-        //}
 
     }
 }
