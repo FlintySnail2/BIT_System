@@ -48,8 +48,8 @@ namespace BIT_DesktopApp.Models
                             result = "Field cannot be empty ";
                         }
                         break;
-                    case "FirstName":
-                        if (string.IsNullOrEmpty(this.FirstName))
+                    case "ContactName":
+                        if (string.IsNullOrEmpty(this.ContactName))
                         {
                             result = "Field cannot be empty ";
                         }

@@ -66,6 +66,7 @@ namespace BIT_DesktopApp.Views
             //{
             //    var mainwindow = (MainWindow)Window.GetWindow(this);
             //    mainwindow.UpdateButtons("Administrator");
+                
 
             //    //CLOSE CURRENT LOGIN WINDOW
             //    Window newLoginWindow = new MainWindow();

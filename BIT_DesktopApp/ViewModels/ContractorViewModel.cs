@@ -152,7 +152,11 @@ namespace BIT_DesktopApp.ViewModels
         public ContractorSkill ContractorSkill
         {
             get { return _contractorSkill; }
-            set { _contractorSkill = value; }
+            set
+            {
+                _contractorSkill = value;
+                OnPropertyChanged("ContractorSkill");
+            }
         }
 
         #endregion contractor Skills
@@ -184,8 +188,8 @@ namespace BIT_DesktopApp.ViewModels
         public ContractorViewModel()
         {
            Contractors allContractors = new Contractors();
-            this.Contractors = new ObservableCollection<Contractor>(allContractors);
-            this.ContractorSkill = new ContractorSkill();
+            Contractors = new ObservableCollection<Contractor>(allContractors); 
+            ContractorSkill = new ContractorSkill();
             //GetContractors();
 
         }

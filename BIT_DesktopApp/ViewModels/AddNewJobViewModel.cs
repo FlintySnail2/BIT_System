@@ -1,6 +1,7 @@
 ﻿using BIT_DesktopApp.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,51 +9,60 @@ using System.Windows;
 
 namespace BIT_DesktopApp.ViewModels
 {
-    public class AddNewJobViewModel
+    public class AddNewJobViewModel : INotifyPropertyChanged
     {
-        #region Properties
+        
         private Job _newJob;
-        private RelayCommand _addCommand;
+        private RelayCommand _confirmCommand;
 
-        public RelayCommand AddCommand
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged(string prop)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            }
+        }
+
+        #region Add Command
+
+        public RelayCommand ConfirmCommand
         {
             get
             {
-                if (_addCommand == null)
+                if (_confirmCommand == null)
                 {
-                    _addCommand = new RelayCommand(this.AddMethod, true);
+                    _confirmCommand = new RelayCommand(this.AddMethod, true);
                 }
-                return _addCommand;
+                return _confirmCommand;
             }
-            set { _addCommand = value; }
+            set { _confirmCommand = value; }
         }
 
 
+        public void AddMethod()
+        {
+            //string message = NewJob.InsertNewJob();
+            //MessageBox.Show(message);
+        }
+
+        #endregion Add Command
 
         public Job NewJob
         {
             get { return _newJob; }
-            set { _newJob = value; }
+            set
+            {
+                _newJob = value;
+                OnPropertyChanged("NewJob");
+            }
         }
 
-        #endregion Properties
-
-        #region Constructor
         public AddNewJobViewModel()
         {
             NewJob = new Job();
         }
-            #endregion
-
-            #region Publc Method
-
-            public void AddMethod()
-        {
-            //string message = NewJob.InsertClient();
-            MessageBox.Show("Derp");
-        }
-
-        #endregion Public Method
     }
 }
 

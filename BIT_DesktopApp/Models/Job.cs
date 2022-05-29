@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,12 +17,17 @@ namespace BIT_DesktopApp.Models
         #region Private Properties
         private int _jobId;
         private string _organisationName; 
-        private string _contactName;  
+        private string _contactName;
+        private string _contractorName;
         private string _description;
         private string _skillReq;
         private string _priority;
         private string _status;
         private string _phone;
+        private string _street;
+        private string _suburb;
+        private string _state;
+        private string _zip;
         private string _location;
         private decimal _hoursOnJob;
         private DateTime _requestedStartDate;
@@ -44,19 +50,7 @@ namespace BIT_DesktopApp.Models
                             result = "Field cannot be empty";
                         }
                         break;
-                    case ("ContactName"):
-                        if (string.IsNullOrEmpty(ContactName))
-                        {
-                            result = "Field cannot be empty";
-                        }
-                        break;
-                    case "Description":
-                        if (string.IsNullOrEmpty(Description))
-                        {
-                            result = "Field cannot be empty";
-                        }
-                        break;
-                    case "SkillReq":
+                    case ("SkillReq"):
                         if (string.IsNullOrEmpty(SkillReq))
                         {
                             result = "Field cannot be empty";
@@ -68,34 +62,40 @@ namespace BIT_DesktopApp.Models
                             result = "Field cannot be empty";
                         }
                         break;
-                    case "Status":
-                        if (string.IsNullOrEmpty(Status))
+                    case "RequestedCompletion":
+                        if (RequestedCompletion < DateTime.Today)
                         {
                             result = "Field cannot be empty";
                         }
                         break;
-                    case "Phone":
-                        if (string.IsNullOrEmpty(Status))
+                    case "Description":
+                        if (string.IsNullOrEmpty(Description))
                         {
                             result = "Field cannot be empty";
                         }
                         break;
-                    case "Location":
-                        if (string.IsNullOrEmpty(Status))
+                    case "Street":
+                        if (string.IsNullOrEmpty(Street))
                         {
                             result = "Field cannot be empty";
                         }
                         break;
-                    case "RequestedStartDate":
-                        if (RequestedStartDate.Date < DateTime.Today)
+                    case "Suburb":
+                        if (string.IsNullOrEmpty(Suburb))
                         {
-                            result = "Service date must be booked a day in advance ";
+                            result = "Field cannot be empty";
                         }
                         break;
-                    case "CompletedDate":
-                        if (RequestedCompletion.Date < DateTime.Today && RequestedCompletion <= RequestedStartDate)
+                    case "State":
+                        if (string.IsNullOrEmpty(State))
                         {
-                            result = "Completion date cannot be prior to service day";
+                            result = "Field cannot be empty";
+                        }
+                        break;
+                    case "Zip":
+                        if (string.IsNullOrEmpty(Zip))
+                        {
+                            result = "Field cannot be empty";
                         }
                         break;
                 }
@@ -145,6 +145,15 @@ namespace BIT_DesktopApp.Models
             }
         }
 
+        public string ContractorName
+        {
+            get { return _contractorName; }
+            set
+            {
+                _contractorName = value;
+                OnPropertyChanged("ContractorName");
+            }
+        }
         public string Description
         {
             get { return _description; }
@@ -222,6 +231,8 @@ namespace BIT_DesktopApp.Models
             }
         }
 
+        public string CompletionFormat => RequestedCompletion.ToShortDateString();
+
         public string DistanceTravelled
         {
             get { return _distanceTravelled; }
@@ -241,6 +252,45 @@ namespace BIT_DesktopApp.Models
                 OnPropertyChanged("Location");
             }
         }
+
+        public string Street
+        {
+            get { return _street; }
+            set
+            {
+                _street = value;
+                OnPropertyChanged("Street");
+            }
+        }
+
+        public string Suburb
+        {
+            get { return _suburb; }
+            set
+            {
+                _suburb = value;
+                OnPropertyChanged("Suburb");
+            }
+        }
+        public string State
+        {
+            get { return _state; }
+            set
+            {
+                _state = value;
+                OnPropertyChanged("State");
+            }
+        }
+
+        public string Zip
+        {
+            get { return _zip; }
+            set
+            {
+                _zip = value;
+                OnPropertyChanged("Zip");
+            }
+        }
         #endregion Public Properties
 
         #region Constructor
@@ -256,6 +306,7 @@ namespace BIT_DesktopApp.Models
             JobId = Convert.ToInt32(dr["JobId"].ToString());
             OrganisationName = dr["Organisation Name"].ToString();
             ContactName = dr["Contact Name"].ToString();
+            ContractorName = dr["ContractorName"].ToString();
             Description = dr["Description"].ToString();
             Status = dr["Status"].ToString();
             RequestedCompletion = Convert.ToDateTime(dr["Requested Completion"].ToString());
@@ -268,6 +319,38 @@ namespace BIT_DesktopApp.Models
         }
 
         #endregion Constructor
+
+        #region Public Methods
+
+        public string UpdateJobStatus(int jobId)
+        {
+            string updateSql = "UPDATE" +
+                               "    Job" +
+                               "    SET" +
+                               "    Status = @JobStatus" +
+                               " WHERE " +
+                               "    JobId = @JobId";
+            SqlParameter[] objParams = new SqlParameter[2];
+            objParams[0] = new SqlParameter("@JobStatus", DbType.String);
+            objParams[0].Value = Status;
+            objParams[1] = new SqlParameter("JobId", DbType.Int32);
+            objParams[1].Value = JobId;
+            int rowsAffected = _db.ExecuteNonQuery(updateSql, objParams);
+            if (rowsAffected >= 1)
+            {
+                return "Job Status Successfully Updated";
+            }
+
+            return "Unable to update Job Status, please try again later";
+
+        }
+
+        //public string InsertNewJob(int jobId)
+        //{
+        //    string sql =
+        //}
+
+#endregion Public Methods
 
     }
 }

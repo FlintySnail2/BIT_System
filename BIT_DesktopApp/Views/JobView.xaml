@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:BIT_DesktopApp.Views"
+      xmlns:local="clr-namespace:BIT_DesktopApp.Views" xmlns:viewmodels="clr-namespace:BIT_DesktopApp.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:JobViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="1000"
       Title="JobView">
@@ -43,96 +43,200 @@
                         FontSize="18"/>
             </StackPanel>
 
-            <TabItem
-                    Header="Completed Jobs" Margin="185,25,715,5">
+            <TabControl Grid.Row="1" Grid.RowSpan="3"  Background="#2D3136" Margin="0,10,0,0">
+                <TabItem Header="Completed Jobs"  Margin="0,0,-18,0" Grid.Row="1">
 
-                <Grid Grid.Row="1" Margin="0,0,0,185" Grid.RowSpan="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="3*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Row="1" Grid.RowSpan="2" Height="473">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="17*"/>
+                            <ColumnDefinition Width="729*"/>
+                            <ColumnDefinition Width="249*"/>
+                        </Grid.ColumnDefinitions>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="3*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="3*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
 
-                    <DataGrid Grid.Column="0" 
+                        <DataGrid Grid.Column="0" 
                       Name="dgJobs" 
-                      Margin="10,5,10,10"
+                      Margin="10,0,10,189"
                       ItemsSource="{Binding Jobs}"
                       SelectedItem="{Binding SelectedJob}" 
-                      Grid.ColumnSpan="2"/>
+                      Grid.ColumnSpan="3"
+                      AutoGenerateColumns="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Width="*" Header="Client" Binding="{Binding OrganisationName}"/>
+                                <DataGridTextColumn Width="*" Header="Contact Name" Binding="{Binding ContactName}"/>
+                                <DataGridTextColumn Width="*" Header="Contractor Name" Binding="{Binding ContractorName}"/>
+                                <DataGridTextColumn Width="*" Header="Description" Binding="{Binding Description}"/>
+                                <DataGridTextColumn Width="*" Header="Job Status" Binding="{Binding Status}"/>
+                                <DataGridTextColumn Width="*" Header="Completed Date" Binding="{Binding CompletionFormat}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
 
+                        <Grid VerticalAlignment="Top" Margin="10,247,10,0" Grid.Column="1" Grid.ColumnSpan="2" Height="167" Grid.RowSpan="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                    <!-- JOB STATUS MANAGEMENT -->
+                            <!--First Two Column data -->
 
-                    <StackPanel Grid.Column="0" 
-                        Grid.Row="1" 
-                        Orientation="Horizontal" 
-                
-                        Margin="165,9,250,10">
+                            <Label Content="Client : " 
+                                       Grid.Row="0" 
+                                       Grid.Column="0" 
+                                       Foreground="#fff" Grid.RowSpan="2" Grid.ColumnSpan="4" Margin="0,0,-507,0"/>
 
-                        <!--ADD BIND TO JOB STATUS-->
-                        <ComboBox Text="{Binding SelectedJob.Status}"
-                                 DisplayMemberPath="Status"
+                            <TextBox  Text="{Binding 
+                                    SelectedJob.OrganisationName, 
+                                              Mode = TwoWay}"
+                                          x:Name="txtOrganisationName" 
+                                          Grid.Row="0" 
+                                          Grid.Column="1" 
+                                          Margin="4,10,5,10" />
 
-                          ItemsSource="{Binding JobsStatus, 
+                            <Label Content="Contact Name : " 
+                                   Grid.Row="1" 
+                                   Grid.Column="0" 
+                                   Foreground="#fff" Grid.RowSpan="2" Grid.ColumnSpan="4" Margin="0,0,-507,0"/>
+
+                            <TextBox  Text="{Binding 
+                                    SelectedJob.ContactName, 
+                                              Mode = TwoWay}"
+                                      x:Name="txtContactName" 
+                                      Grid.Row="1" 
+                                      Grid.Column="1" 
+                                      Margin="4,10,5,10" />
+
+                            <Label Content="Contractor : " 
+                                   Grid.Row="2" 
+                                   Grid.Column="0" 
+                                   Foreground="#fff" Grid.RowSpan="2" Grid.ColumnSpan="4" Margin="0,0,-507,0"/>
+
+                            <TextBox  Text="{Binding 
+                                    SelectedJob.ContractorName, 
+                                              Mode = TwoWay}"
+                                      x:Name="txtContractorName" 
+                                      Grid.Row="2" 
+                                      Grid.Column="1" 
+                                      Margin="4,10,5,10" />
+
+                            <!-- SECOND COLUMN -->
+
+                            <Label 
+                                   Content="Job Status : " 
+                                   Grid.Row="0" 
+                                   Foreground="#fff" 
+                                   Grid.Column="1"  
+                                   Margin="239,0,0,0" Grid.ColumnSpan="4"/>
+
+                            <ComboBox Text="{Binding SelectedJob.Status}"
+                                      DisplayMemberPath="Status"
+                                      ItemsSource="{Binding JobsStatus, 
                                         Mode=TwoWay, 
                                         UpdateSourceTrigger=PropertyChanged}"
-                          x:Name="txtJobStatus" 
-                          Width="110" 
-                          Height="31" 
-                          />
-                        <!--<ComboBoxItem Content="Verified"/>
-                    <ComboBoxItem Content="Send For Payment"/>-->
-                        <!--</ComboBox>-->
-                        <Button x:Name="btnUpdateStatus" 
-                        Width="70" Height="30" 
-                        Content=" UPDATE" 
-                        Margin="55,0"
-                        >
-                            <Button.RenderTransform>
+                                      x:Name="txtStatus" 
+                                      Grid.Row="0"
+                                      Grid.Column="3" Margin="4,10,5,10" />
 
-                                <TransformGroup>
-                                    <ScaleTransform/>
-                                    <SkewTransform AngleY="0"/>
-                                    <RotateTransform/>
-                                    <TranslateTransform Y="0"/>
-                                </TransformGroup>
-                            </Button.RenderTransform>
-                        </Button>
-                    </StackPanel>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Assign Jobs" Margin="750,25,150,5"/>
+                            <Label Content="Description : " 
+                                   Grid.Row="1" 
+                                   Grid.Column="2" 
+                                   Foreground="#fff" Grid.RowSpan="2" Grid.ColumnSpan="4" Margin="0,0,-507,0"/>
 
-            <StackPanel Orientation="Horizontal" 
-                    HorizontalAlignment="right" 
-                    Grid.Row="3">
+                            <TextBox  Text="{Binding 
+                                    SelectedJob.Description, 
+                                              Mode = TwoWay}"
+                                      x:Name="txtDescriptionName" 
+                                      Grid.Row="1" 
+                                      Grid.Column="3" 
+                                      Margin="4,10,5,10" />
+
+                            <Label Content="Completion Date : " 
+                                   Grid.Row="3" 
+                                   Grid.Column="2" 
+                                   Foreground="#fff" Grid.RowSpan="2" Grid.ColumnSpan="4" Margin="0,0,-507,0"/>
+
+                            <TextBox  Text="{Binding 
+                                    SelectedJob.RequestedCompletion, 
+                                              Mode = TwoWay}"
+                                      x:Name="txtCompletionDate" 
+                                      Grid.Row="3" 
+                                      Grid.Column="3" 
+                                      Margin="4,10,5,10" />
+
+                        </Grid>
+
+                        <StackPanel Orientation="Horizontal"  Grid.Column="1" Grid.Row="1" Margin="638,68,5,0" Height="50" Grid.ColumnSpan="2">
+
+                            <Button x:Name="btnUpdate" 
+                                    Command="{Binding UpdateCommand}"
+                                    Content="UPDATE"
+                                    Width="150" 
+                                    Margin="10"/>
+
+                            <Button x:Name="btnAdd" 
+
+                                    Content="ADD" 
+                                    Width="149"
+                                    Margin="10"
+                                    Click="btnAdd_Click"/>
+
+                        </StackPanel>
+
+
+                    </Grid>
 
 
 
+                </TabItem>
+                <TabItem Header="Requested Jobs" Margin="18,0,-37,0" Grid.Row="1">
+
+                    <DataGrid Grid.Column="0" 
+                              Name="dgRequestedjobs"
+                              ItemsSource="{Binding RequestedJobs}"
+                             
+                              AutoGenerateColumns="False" Height="120"  RenderTransformOrigin="0.566,0.187"   Margin="10,0,10,320">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Width="*" Header="Client" Binding="{Binding OrganisationName}"/>
+                            <DataGridTextColumn Width="*" Header="Contact Name" Binding="{Binding ContactName}"/>
+                            <DataGridTextColumn Width="*" Header="Skill Required" Binding="{Binding SkillReq}"/>
+                            <DataGridTextColumn Width="*" Header="Description" Binding="{Binding Description}"/>
+                            <DataGridTextColumn Width="*" Header="Job Status" Binding="{Binding Status}"/>
+                            <DataGridTextColumn Width="*" Header="Requested Date" Binding="{Binding ReqCompletion}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
 
 
+                </TabItem>
 
-                <Button x:Name="btnUpdate" 
-                    Content="UPDATE"
-                    Width="150" 
-                    Margin="10"/>
+                <TabItem Header="Rejected Jobs" Margin="36,0,-64,0" Grid.Row="1">
 
-                <Button x:Name="btnDelete"
-                    Content="DELETE" 
-                    Width="150" 
-                    Margin="10"/>
+                    <DataGrid Grid.Column="0" 
+                              Name="dgRejectedjobs"
+                              ItemsSource="{Binding RejectedJobs}"
+                             
+                              AutoGenerateColumns="False" Height="120"  RenderTransformOrigin="0.566,0.187" Margin="10,0,10,320">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Width="*" Header="Client" Binding="{Binding OrganisationName}"/>
+                            <DataGridTextColumn Width="*" Header="Contact Name" Binding="{Binding ContactName}"/>
+                            <DataGridTextColumn Width="*" Header="Skill Required" Binding="{Binding SkillReq}"/>
+                            <DataGridTextColumn Width="*" Header="Description" Binding="{Binding Description}"/>
+                            <DataGridTextColumn Width="*" Header="Job Status" Binding="{Binding Status}"/>
+                            <DataGridTextColumn Width="*" Header="Requested Date" Binding="{Binding ReqCompletion}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
 
-                <Button x:Name="btnAdd" 
-                    Content="ADD" 
-                    Width="150" 
-                    Margin="10"
-                    Click="btnAdd_Click"/>
-
-            </StackPanel>
+                </TabItem>
+            </TabControl>
         </Grid>
     </Border>
 </Page>

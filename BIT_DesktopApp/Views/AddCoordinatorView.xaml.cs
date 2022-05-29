@@ -41,20 +41,5 @@ namespace BIT_DesktopApp.Views
                 NavigationService.Navigate(new Uri("Views/AddCoordinatorView.xaml", UriKind.Relative));
             }
         }
-
-        //private void btnConfirm_Click(object sender, RoutedEventArgs e)
-        //{
-        //    if (MessageBox.Show("Do you wish to continue? ",
-        //             "Coordinator Added",
-        //             MessageBoxButton.YesNo,
-        //             MessageBoxImage.Question) == MessageBoxResult.Yes)
-        //    {
-        //        NavigationService.Navigate(new Uri("Views/CoordinatorView.xaml", UriKind.Relative));
-        //    }
-        //    else
-        //    {
-        //        NavigationService.Navigate(new Uri("Views/AddCoordinatorView.xaml", UriKind.Relative));
-        //    }
-        //}
     }
 }

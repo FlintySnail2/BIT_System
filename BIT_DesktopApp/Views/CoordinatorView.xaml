@@ -3,7 +3,8 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:BIT_DesktopApp.Views" xmlns:viewmodels="clr-namespace:BIT_DesktopApp.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:CoordinatorViewModel}"
+      xmlns:local="clr-namespace:BIT_DesktopApp.Views" 
+       xmlns:viewmodels="clr-namespace:BIT_DesktopApp.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:CoordinatorViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="1000"
       Title="CoordinatorView">
@@ -67,7 +68,6 @@
                           > 
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Width="*" Header="Staff Id" Binding="{Binding StaffId}"/>
                         <DataGridTextColumn Width="*" Header="First Name" Binding="{Binding FirstName}"/>
                         <DataGridTextColumn Width="*" Header="Last Name" Binding="{Binding LastName}"/>
                         <DataGridTextColumn Width="*" Header="Birth Date" Binding="{Binding DobFormat}"/>

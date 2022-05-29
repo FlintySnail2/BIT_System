@@ -19,6 +19,7 @@ namespace BIT_DesktopApp.Models
                 "           J.JobId," +
                 "           C.OrganisationName AS [Organisation Name]," +
                 "           C.FirstName + ' ' + C.LastName as [Contact Name]," +
+                "           CON.FirstName AS ContractorName," +
                 "           J.Description," +
                 "           J.SkillTitle AS [Skill Required]," +
                 "           J.Priority," +
@@ -32,11 +33,13 @@ namespace BIT_DesktopApp.Models
                 "           Job AS J," +
                 "           Client AS C," +
                 "           Location AS L," +
-                "           Status AS S" +
+                "           Status AS S," +
+                "           Contractor AS CON" +
                 "       WHERE" +
                 "           J.ClientId = C.ClientId" +
                 "       AND J.ClientId = L.ClientId" +
                 "       AND J.Status = S.Status" +
+            "           AND CON.ContractorId = J.ContractorId" +
                 "       AND J.Status = 'Completed'";
 
             DataTable datatable = _db.ExecuteSQL(sql);

@@ -9,12 +9,21 @@ using System.Windows;
 
 namespace BIT_DesktopApp.ViewModels
 {
-    public class AddClientViewModel 
+    public class AddClientViewModel : INotifyPropertyChanged
     {
 
       
         private Client _newClient;
         private RelayCommand _confirmCommand;
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged(string prop)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            }
+        }
 
         #region Add Method
 
@@ -41,15 +50,14 @@ namespace BIT_DesktopApp.ViewModels
         #endregion Add Method
 
 
-
-
-
-
-
         public Client NewClient
         {
             get { return _newClient; }
-            set { _newClient = value; }
+            set
+            {
+                _newClient = value; 
+                OnPropertyChanged("NewClient");
+            }
         }
 
 

@@ -34,10 +34,5 @@ namespace BIT_DesktopApp.Views
         {
             NavigationService.Navigate(new Uri("Views/AddContractorView.xaml", UriKind.Relative));
         }
-
-        private void btnAssignJob_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new Uri("Views/AssignJobView.xaml", UriKind.Relative));
-        }
     }
 }

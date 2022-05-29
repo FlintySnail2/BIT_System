@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace BIT_DesktopApp.ViewModels
 {
-    public class JobViewModel
+    public class JobViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<Job> _jobs;
         private Job _SelectedJob;
@@ -18,8 +18,13 @@ namespace BIT_DesktopApp.ViewModels
         private ObservableCollection<JobStatus> _jobsStatus;
         private JobStatus _selectedJobStatus;
         private JobStatus _jobStatus;
+
+        private ObservableCollection<RequestedJob> _requestedJobs;
+        private ObservableCollection<RejectedJob> _rejectedJobs;
+
         private string _searchText;
         private RelayCommand _searchCommand;
+        private RelayCommand _updateCommand;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -30,7 +35,32 @@ namespace BIT_DesktopApp.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
             }
         }
-        #region Search Method
+
+        #region Update Command
+
+        public RelayCommand UpdateCommand
+        {
+            get
+            {
+                if (_updateCommand == null)
+                {
+                    _updateCommand = new RelayCommand(this.UpdateMethod, true);
+                }
+                return _updateCommand;
+            }
+            set { _updateCommand = value; }
+        }
+
+        public void UpdateMethod()
+        {
+            string returnValue = SelectedJob.UpdateJobStatus(SelectedJob.JobId);
+            MessageBox.Show(returnValue);
+        }
+
+
+        #endregion Update Command
+
+            #region Search Method
         public RelayCommand SearchCommand
         {
             get
@@ -86,9 +116,17 @@ namespace BIT_DesktopApp.ViewModels
             }
         }
 
-        
+        public ObservableCollection<RequestedJob> RequestedJobs
+        {
+            get { return _requestedJobs; }
+            set { _requestedJobs = value; }
+        }
 
-
+        public ObservableCollection<RejectedJob> RejectedJobs
+        {
+            get { return _rejectedJobs; }
+            set { _rejectedJobs = value; }
+        }
 
         //ITEMS SOURCE (FOR REFERENCE)
         public ObservableCollection<JobStatus> JobsStatus
@@ -121,8 +159,13 @@ namespace BIT_DesktopApp.ViewModels
             this.Jobs = new ObservableCollection<Job>(allJobs);
             JobsStatus allStatus = new JobsStatus();
             this.JobsStatus = new ObservableCollection<JobStatus>(allStatus);
-           //GetJobs();
-            
+            RequestedJobs allRequestedJobs = new RequestedJobs();
+            this.RequestedJobs = new ObservableCollection<RequestedJob>(allRequestedJobs);
+            RejectedJobs allRejectedJobs = new RejectedJobs();
+            this.RejectedJobs = new ObservableCollection<RejectedJob>(allRejectedJobs);
+
+            //GetJobs();
+
         }
 
         //public virtual ObservableCollection<Job> GetJobs()

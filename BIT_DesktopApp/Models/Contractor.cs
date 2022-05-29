@@ -101,12 +101,12 @@ namespace BIT_DesktopApp.Models
                         }
                         break;
 
-                    //case "RateOfPay":
-                    //    if (Decimal.))
-                    //    {
-                    //        result = "field cannot be empty";
-                    //    }
-                    //    break;
+                    case "RateOfPay":
+                        if (decimal.TryParse(result, out decimal success))
+                        {
+                            result = "field cannot be empty";
+                        }
+                        break;
                     case "Street":
                         if (string.IsNullOrEmpty(Street))
                         {
@@ -499,9 +499,8 @@ namespace BIT_DesktopApp.Models
                                "    ABN = @ABN," +
                                "    LicenceNumber = @LicenceNumber," +
                                "    RateofPay = @RateofPay," +
-                               "    ContractorRating = @ContractorRating," +
-                               "    AccountStatus = 'Inactive'" +
-                               "WHERE" +
+                               "    ContractorRating = @ContractorRating" +
+                               " WHERE" +
                                "  ContractorId = @ContractorId";
             SqlParameter[] objParams = new SqlParameter[14];
             objParams[0] = new SqlParameter("@ContractorId", DbType.Int32);

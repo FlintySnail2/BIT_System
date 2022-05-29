@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BIT_DesktopApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace BIT_DesktopApp.Views
         public AddJobView()
         {
             InitializeComponent();
+            this.DataContext = new AddNewJobViewModel();
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -37,21 +39,6 @@ namespace BIT_DesktopApp.Views
             else
             {
                 NavigationService.Navigate(new Uri("Views/AddJopView.xaml", UriKind.Relative));
-            }
-        }
-
-        private void btnConfirm_Click(object sender, RoutedEventArgs e)
-        {
-            if (MessageBox.Show("Do you wish to continue? ",
-                     "Job Created",
-                     MessageBoxButton.YesNo,
-                     MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
-                NavigationService.Navigate(new Uri("Views/JpobView.xaml", UriKind.Relative));
-            }
-            else
-            {
-                NavigationService.Navigate(new Uri("Views/AddJobView.xaml", UriKind.Relative));
             }
         }
     }

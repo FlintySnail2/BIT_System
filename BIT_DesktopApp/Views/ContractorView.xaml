@@ -78,6 +78,7 @@
                       Grid.Column="1" 
                       x:Name="dgContractorSkills" 
                       Margin="5,5,5,42"
+                      AutoGenerateColumns="False"
                       ItemsSource="{Binding ContractorSkills}" 
                       SelectedItem="{Binding SelectedSkill}">
                     <DataGrid.Columns>
@@ -90,7 +91,7 @@
                         Orientation="Horizontal" Margin="0,166,0,37" Grid.RowSpan="2">
 
                     <TextBox Text="{Binding ContractorSkill.Skill}"
-                        
+                            
                          x:Name="txtSkill" 
                          Width="100" 
                          Height="31" 

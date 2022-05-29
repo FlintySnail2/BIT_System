@@ -3,70 +3,72 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:BIT_DesktopApp.Views"
+      xmlns:local="clr-namespace:BIT_DesktopApp.Views" xmlns:viewmodels="clr-namespace:BIT_DesktopApp.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:AddNewJobViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="1000"
       Title="AddJobView">
+    <Border
+        Background="#2D3136"
+        CornerRadius="20">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50px"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50px"/>
+            </Grid.RowDefinitions>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50px"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="50px"/>
-        </Grid.RowDefinitions>
-
-        <StackPanel Orientation="Horizontal" 
+            <StackPanel Orientation="Horizontal" 
                     HorizontalAlignment="Center" 
                     Width="800">
 
-            <TextBlock Text="New Job Form" 
+                <TextBlock Text="New Job Form" 
                        FontSize="28px" 
                        FontWeight="bold" 
                        Foreground="#fff" 
                        Width="323" 
                        Margin="10,5,10,5"/>
-        </StackPanel>
+            </StackPanel>
 
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="3*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-        </Grid>
-        <Grid Margin="0,40,0,0" Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+            </Grid>
+            <Grid Margin="0,40,0,0" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
 
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="2*" />
-            </Grid.ColumnDefinitions>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
 
-            <!--First Two Column data -->
+                <!--First Two Column data -->
 
-            <Label Content="Client : " 
+                <Label Content="Client : " 
                    Grid.Row="0"
                    Grid.Column="0" 
                    Foreground="#fff"/>
-            <!--DO NOT TAKE UN-NEEDED INFO (REFER WEB APP CLIENT VIEW)-->
-            <TextBox  Text="{Binding NewJob.CLientName,
+
+                <ComboBox  Text="{Binding NewJob.OrganisationName,
                                      ValidatesOnDataErrors=True,
                                      UpdateSourceTrigger=PropertyChanged,
                                      Mode=TwoWay}"
-                      ToolTip="{Binding NewClient.ErrorCollection[CLientName]}"
+                      ToolTip="{Binding NewJob.ErrorCollection[ClientName]}"
                       x:Name="txtClientName" 
                       Grid.Row="0" 
                       Grid.Column="1" 
@@ -74,156 +76,116 @@
 
 
 
-            <Label Content="Skill Required: "
+                <Label Content="Skill Required: "
                    Grid.Row="1" 
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox 
-                Text="{Binding NewJob.Skill,
+                <ComboBox Text="{Binding NewJob.SkillReq,
                                      ValidatesOnDataErrors=True,
                                      UpdateSourceTrigger=PropertyChanged,
                                      Mode=TwoWay}"
-                ToolTip="{Binding NewClient.ErrorCollection[Skill]}"
-                x:Name="txtSkill" 
-                Grid.Row="1" 
-                Grid.Column="1" 
-                Margin="5" />
+                         ToolTip="{Binding NewJob.ErrorCollection[Skill]}"
+                         x:Name="txtSkill" 
+                         Grid.Row="1" 
+                         Grid.Column="1" 
+                         Margin="5" />
 
 
-            <Label Content="Priority : "
+                <Label Content="Priority : "
                    Grid.Row="2" 
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox 
-                Text="{Binding NewJob.Priority,
+                <ComboBox 
+                    Text="{Binding NewJob.Priority,
                                      ValidatesOnDataErrors=True,
                                      UpdateSourceTrigger=PropertyChanged,
                                      Mode=TwoWay}"
-                      ToolTip="{Binding NewClient.ErrorCollection[Priority]}"
+                      ToolTip="{Binding NewJob.ErrorCollection[Priority]}"
                      x:Name="txtPriority" 
                      Grid.Row="2" 
                      Grid.Column="1" 
-                     Margin="5,5,5,5" />
+                     Margin="5,5,5,5">
+                        <ComboBoxItem> High</ComboBoxItem>
+                        <ComboBoxItem>Medium</ComboBoxItem>
+                        <ComboBoxItem>Low</ComboBoxItem>
+                    </ComboBox>
 
-            <Label Content="Requested Completion Date : "
+                <Label Content="Requested Completion Date : "
                    Grid.Row="3" 
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <DatePicker
-                Text="{Binding NewJob.DateCreated,
+                <DatePicker
+                Text="{Binding NewJob.RequestedCompletion,
                                      ValidatesOnDataErrors=True,
                                      UpdateSourceTrigger=PropertyChanged,
                                      Mode=TwoWay}"
-                ToolTip="{Binding NewClient.ErrorCollection[DateCreated]}"
+                ToolTip="{Binding NewJob.ErrorCollection[RequestedCompletion]}"
                 x:Name="txtDateCreated" 
                 Grid.Row="3" 
                 Grid.Column="1" 
                 Margin="5,5,5,5"/>
 
-            <TextBox Text="{Binding NewJob.JobDescription,
+             
+
+                <!--Second column of data -->
+
+                <Label Content="Region : "
+                       Grid.Row="0" 
+                       Grid.Column="2" 
+                       Foreground="#fff"/>
+
+                <ComboBox
+                    d:DataContext="{d:DesignInstance Type=viewmodels:ClientViewModel}"
+                    Text="{Binding Client.Region,
                                      ValidatesOnDataErrors=True,
                                      UpdateSourceTrigger=PropertyChanged,
                                      Mode=TwoWay}"
-                     ToolTip="{Binding NewClient.ErrorCollection[JobDescription]}"
-                     x:Name="txtJobDesc" 
-                     Grid.Row="4" 
-                     Grid.Column="1" 
-                     Margin="5" />
 
-            <!--Second column of data -->
+                    ToolTip="{Binding NewJob.ErrorCollection[RequestedCompletion]}"
+                    x:Name="txtRegion" 
+                    Grid.Row="0" 
+                    Grid.Column="3" 
+                    Margin="5,5,5,5"/>
 
-            <Label Content="Street : " 
-                   Grid.Row="0" 
-                   Grid.Column="2" 
-                   Foreground="#fff"/>
+                <Label Content="Job Description : "
+                       Grid.Row="1" 
+                       Grid.Column="2" 
+                       Foreground="#fff"/>
 
-            <TextBox 
-                Text="{Binding NewJob.Street,
+                <TextBox Text="{Binding NewJob.Description,
                                      ValidatesOnDataErrors=True,
                                      UpdateSourceTrigger=PropertyChanged,
                                      Mode=TwoWay}"
-                      ToolTip="{Binding NewClient.ErrorCollection[Street]}"
-                     x:Name="txtStreet" 
-                     Grid.Row="0" 
-                     Grid.Column="3" 
-                     Margin="5"/>
-
-            <Label Content="Suburb : " 
-                   Grid.Row="1" 
-                   Grid.Column="2" 
-                   Foreground="#fff"/>
-
-            <TextBox 
-                Text="{Binding NewJob.Suburb,
-                                     ValidatesOnDataErrors=True,
-                                     UpdateSourceTrigger=PropertyChanged,
-                                     Mode=TwoWay}"
-                      ToolTip="{Binding NewClient.ErrorCollection[Suburb]}"
-                     x:Name="txtSuburb" 
-                     Grid.Row="1" 
-                     Grid.Column="3" 
-                     Margin="5"/>
-
-            <Label Content="State : " 
-                   Grid.Row="2" 
-                   Grid.Column="2" 
-                   Foreground="#fff"/>
-
-            <TextBox
-                     Text="{Binding NewJob.State,
-                                     ValidatesOnDataErrors=True,
-                                     UpdateSourceTrigger=PropertyChanged,
-                                     Mode=TwoWay}"
-                      ToolTip="{Binding NewClient.ErrorCollection[State]}"
-                     x:Name="txtState" 
-                     Grid.Row="2" 
-                     Grid.Column="3" 
-                     Margin="5" />
-
-            <Label Content="Zip : " 
-                   Grid.Row="3" 
-                   Grid.Column="2" 
-                   Foreground="#fff"/>
-
-            <Label Content="Job Description : "
-                   Grid.Row="4" 
-                   Grid.Column="0" 
-                   Foreground="#fff"/>
-
-            <TextBox
-                     Text="{Binding NewJob.Zip,
-                                     ValidatesOnDataErrors=True,
-                                     UpdateSourceTrigger=PropertyChanged,
-                                     Mode=TwoWay}"
-                      ToolTip="{Binding NewClient.ErrorCollection[Zip]}"
-                     x:Name="txtZip" 
-                     Grid.Row="3" 
-                     Grid.Column="3" 
-                     Margin="5" />
+                         ToolTip="{Binding NewJob.ErrorCollection[JobDescription]}"
+                         x:Name="txtJobDesc" 
+                         Grid.Row="1" 
+                         Grid.Column="3" 
+                         Margin="5,5,5,0" Grid.RowSpan="2" />
 
 
-        </Grid>
-        <StackPanel Orientation="Horizontal" 
+
+            </Grid>
+            <StackPanel Orientation="Horizontal" 
                     HorizontalAlignment="right" 
                     Grid.Row="3">
 
-            <Button x:Name="btnConfirm" 
+                <Button x:Name="btnConfirm" 
                     Content="CONFIRM" 
                     Width="150" 
                     Margin="10"
-                    Click="btnConfirm_Click"
-                    Command="{Binding AddCommand}"/>
+                    Command="{Binding ConfirmCommand}"/>
 
-            <Button x:Name="btnCancel" 
+                <Button x:Name="btnCancel" 
                     Content="CANCEL" 
                     Width="150" 
                     Margin="10"
                     Click="btnCancel_Click"/>
 
-        </StackPanel>
+            </StackPanel>
 
-    </Grid>
+        </Grid>
+    </Border>
 </Page>
