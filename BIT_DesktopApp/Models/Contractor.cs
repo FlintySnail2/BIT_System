@@ -28,7 +28,7 @@ namespace BIT_DesktopApp.Models
         private DateTime _dob { get; set; }
         private string _email { get; set; }
         private string _password { get; set; }
-        private string _availabilty {get; set;}
+        private string _availabilty { get; set; }
         private string _abn { get; set; }
         private string _licenceNumber { get; set; }
         private decimal _ratOfPay { get; set; }
@@ -36,7 +36,7 @@ namespace BIT_DesktopApp.Models
         private string _skillTitle { get; set; }
         public SQLHelper _db;
         public event PropertyChangedEventHandler PropertyChanged;
-        public Dictionary<string,string> ErrorCollection { get; private set; }
+        public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
         public string Error { get { return null; } }
         public string this[string propertyName]
         {
@@ -45,8 +45,8 @@ namespace BIT_DesktopApp.Models
                 string result = null;
                 switch (propertyName)
                 {
-                    case "FirstName":
-                        if (string.IsNullOrEmpty(FirstName))
+                    case "ContractorName":
+                        if (string.IsNullOrEmpty(ContractorName))
                         {
                             result = "Field cannot be left empty";
                         }
@@ -62,6 +62,7 @@ namespace BIT_DesktopApp.Models
                         {
                             result = "You are to old to work here";
                         }
+
                         break;
                     case "Phone":
                         if (string.IsNullOrEmpty(Phone))
@@ -69,7 +70,7 @@ namespace BIT_DesktopApp.Models
                             result = "Field cannot be empty";
                         }
                         break;
-                    
+
                     case "Email":
                         if (string.IsNullOrEmpty(Email))
                         {
@@ -164,7 +165,9 @@ namespace BIT_DesktopApp.Models
         public string ContractorName
         {
             get { return _contractorName; }
-            set { _contractorName = value;
+            set
+            {
+                _contractorName = value;
                 OnPropertyChanged("Contractor Name");
 
             }
@@ -172,7 +175,7 @@ namespace BIT_DesktopApp.Models
 
         public string FirstName
         {
-            get { return _firstName;}
+            get { return _firstName; }
             set
             {
                 _firstName = value;
@@ -205,7 +208,7 @@ namespace BIT_DesktopApp.Models
             set
             {
                 _street = value;
-                    OnPropertyChanged("Street");
+                OnPropertyChanged("Street");
             }
         }
 
@@ -224,7 +227,7 @@ namespace BIT_DesktopApp.Models
             get { return _state; }
             set
             {
-                _state = value; 
+                _state = value;
                 OnPropertyChanged("State");
             }
         }
@@ -241,7 +244,9 @@ namespace BIT_DesktopApp.Models
         public string Phone
         {
             get { return _phone; }
-            set { _phone = value;
+            set
+            {
+                _phone = value;
                 OnPropertyChanged("Phone");
 
             }
@@ -250,7 +255,9 @@ namespace BIT_DesktopApp.Models
         public DateTime Dob
         {
             get { return _dob; }
-            set { _dob = value;
+            set
+            {
+                _dob = value;
                 OnPropertyChanged("Dob");
             }
         }
@@ -279,8 +286,10 @@ namespace BIT_DesktopApp.Models
 
         public string ABN
         {
-            get { return _abn;}
-            set { _abn = value;
+            get { return _abn; }
+            set
+            {
+                _abn = value;
                 OnPropertyChanged("ABN");
 
             }
@@ -318,7 +327,9 @@ namespace BIT_DesktopApp.Models
         public string ContractorRating
         {
             get { return _contractorRating; }
-            set { _contractorRating = value;
+            set
+            {
+                _contractorRating = value;
                 OnPropertyChanged("Contractor Rating");
             }
         }
@@ -328,7 +339,7 @@ namespace BIT_DesktopApp.Models
             get { return _skillTitle; }
             set
             {
-                _skillTitle = value; 
+                _skillTitle = value;
                 OnPropertyChanged("SkillTitle");
             }
         }
@@ -446,7 +457,7 @@ namespace BIT_DesktopApp.Models
             int rowsAffectedContractor = _db.ExecuteNonQuery(insertSql, objParams);
             int rowsAffectedSkill = _db.ExecuteNonQuery(insertSql2, objParams);
 
-            if (rowsAffectedContractor >= 1 && rowsAffectedSkill >=1)
+            if (rowsAffectedContractor >= 1 && rowsAffectedSkill >= 1)
             {
                 return "Coordinator Successfully Added";
             }
@@ -472,7 +483,7 @@ namespace BIT_DesktopApp.Models
                                "    ContractorId = @ContractorId";
             SqlParameter[] objParams = new SqlParameter[1];
             objParams[0] = new SqlParameter("@ContractorId", DbType.Int32);
-            objParams[0].Value =contractorId;
+            objParams[0].Value = contractorId;
             int rowsAffectedContractor = _db.ExecuteNonQuery(removeSql, objParams);
             if (rowsAffectedContractor >= 1)
             {

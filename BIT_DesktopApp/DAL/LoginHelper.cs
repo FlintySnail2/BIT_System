@@ -21,15 +21,16 @@ namespace BIT_DesktopApp.Models
                 "       WHERE" +
                 "           Email = @Username" +
                 "       AND " +
-                "           Password = @Password";
+                "           Password = @Password" +
+                "       AND " +
+                "           StaffType = 'Coordinator'";
             SqlParameter[] objParams = new SqlParameter[2];
             objParams[0] = new SqlParameter("@username", DbType.String);
             objParams[0].Value = email;
             objParams[1] = new SqlParameter("@Password", DbType.String);
             objParams[1].Value = password;
-            DataTable dt = db.ExecuteSQL(sql, objParams);
-            string userType = dt.Rows[0][0].ToString();  //What if null
-            if (userType == "Coordinator")
+            int returnValue = db.ExecuteNonQuery(sql, objParams);
+            if (returnValue > 0)
             {
                 return true;
             }
@@ -45,7 +46,9 @@ namespace BIT_DesktopApp.Models
                 "        WHERE " +
                 "           Email = @Username " +
                 "        AND" +
-                "           Password = @Password ";
+                "           Password = @Password " +
+                "       AND " +
+                "           StaffType = 'Administrator'";
             SQLHelper db = new SQLHelper();
             SqlParameter[] objParams = new SqlParameter[2];
             objParams[0] = new SqlParameter("@username", DbType.String);
@@ -53,8 +56,8 @@ namespace BIT_DesktopApp.Models
             objParams[1] = new SqlParameter("@Password", DbType.String);
             objParams[1].Value = password;
             DataTable dt = db.ExecuteSQL(sql, objParams);
-            string userType = dt.Rows[0][0].ToString();
-            if (userType == "Administrator")
+            int returnValue = db.ExecuteNonQuery(sql, objParams);
+            if (returnValue > 0)
             {
                 return true;
             }

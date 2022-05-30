@@ -83,6 +83,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DAL\LoginHelper.cs" />
+    <Compile Include="Models\AvailableContractor.cs" />
+    <Compile Include="Models\AvailableContractors.cs" />
     <Compile Include="Models\RejectedJob.cs" />
     <Compile Include="Models\RejectedJobs.cs" />
     <Compile Include="Models\RequestedJob.cs" />

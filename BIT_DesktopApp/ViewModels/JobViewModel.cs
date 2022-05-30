@@ -21,10 +21,14 @@ namespace BIT_DesktopApp.ViewModels
 
         private ObservableCollection<RequestedJob> _requestedJobs;
         private ObservableCollection<RejectedJob> _rejectedJobs;
+        private RequestedJob _selectedRequestedJob;
+
+        private ObservableCollection<AvailableContractor> _availableContractors;
 
         private string _searchText;
         private RelayCommand _searchCommand;
         private RelayCommand _updateCommand;
+        private RelayCommand _findCommand;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -60,7 +64,7 @@ namespace BIT_DesktopApp.ViewModels
 
         #endregion Update Command
 
-            #region Search Method
+        #region Search Method
         public RelayCommand SearchCommand
         {
             get
@@ -97,8 +101,37 @@ namespace BIT_DesktopApp.ViewModels
         #region Assign Job
         #endregion Assign Job
 
+        #region FindContractor
+
+        public RelayCommand FindCommand
+        {
+            get
+            {
+                if (_findCommand == null)
+                {
+                    _findCommand = new RelayCommand(this.FindMethod, true);
+
+                }
+                return _findCommand;
+            }
+            set { _findCommand = value; }
+        }
+
+
+
+        public void FindMethod()
+        {
+            AvailableContractors allAvailableContractors = new AvailableContractors(SelectedRequestedJob.SkillReq, SelectedRequestedJob.RequestedCompletion);
+            this.AvailableContractors = new ObservableCollection<AvailableContractor>(allAvailableContractors);
+        }
+
+
+        #endregion Find Contractor
+
+
+
         #region Reassign Job
-#endregion Reassign Job
+        #endregion Reassign Job
 
         public ObservableCollection<Job> Jobs
         {
@@ -116,16 +149,39 @@ namespace BIT_DesktopApp.ViewModels
             }
         }
 
+        public ObservableCollection<AvailableContractor> AvailableContractors
+        {
+            get { return _availableContractors; }
+            set { _availableContractors = value; }
+        }
+
         public ObservableCollection<RequestedJob> RequestedJobs
         {
             get { return _requestedJobs; }
-            set { _requestedJobs = value; }
+            set
+            {
+                _requestedJobs = value; 
+                OnPropertyChanged("RequestedJobs");
+            }
         }
 
+        public RequestedJob SelectedRequestedJob
+        {
+            get { return _selectedRequestedJob; }
+            set
+            {
+                _selectedRequestedJob = value;
+                OnPropertyChanged("SelectedRequestedJob");
+            }
+        }
         public ObservableCollection<RejectedJob> RejectedJobs
         {
             get { return _rejectedJobs; }
-            set { _rejectedJobs = value; }
+            set
+            {
+                _rejectedJobs = value;
+                OnPropertyChanged("SelectedRejectedJobs");
+            }
         }
 
         //ITEMS SOURCE (FOR REFERENCE)
@@ -150,7 +206,11 @@ namespace BIT_DesktopApp.ViewModels
          public JobStatus JobStatus
         {
             get { return _jobStatus; }
-            set { _jobStatus = value;}
+            set
+            {
+                _jobStatus = value;
+                OnPropertyChanged("JobStatus");
+            }
         }
 
         public JobViewModel()
@@ -163,6 +223,8 @@ namespace BIT_DesktopApp.ViewModels
             this.RequestedJobs = new ObservableCollection<RequestedJob>(allRequestedJobs);
             RejectedJobs allRejectedJobs = new RejectedJobs();
             this.RejectedJobs = new ObservableCollection<RejectedJob>(allRejectedJobs);
+            //SelectedRequestedJob = new RequestedJob();
+            //
 
             //GetJobs();
 

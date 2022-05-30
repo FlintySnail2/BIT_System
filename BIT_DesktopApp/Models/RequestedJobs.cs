@@ -25,7 +25,8 @@ namespace BIT_DesktopApp.Models
                          "           J.SkillTitle AS [SkillReq]," +
                          "           J.Priority," +
                          "           S.Status," +
-                         "           CONVERT(NVARCHAR, J.RequestedCompletionDate, 6) AS [RequestedCompletion]" +
+                         "           CONVERT(NVARCHAR, J.RequestedCompletionDate, 6) AS [RequestedCompletion]," +
+                         "           CON.ContractorRating" +
                          "       FROM" +
                          "           Job AS J," +
                          "           Client AS C," +

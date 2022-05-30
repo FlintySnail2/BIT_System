@@ -1,4 +1,4 @@
-﻿using BIT_DesktopApp.DAL;
+﻿ using BIT_DesktopApp.DAL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -340,8 +340,6 @@ namespace BIT_DesktopApp.Models
             objParams[5] = new SqlParameter("@Password", DbType.String);
             objParams[5].Value = this.Password;
             SqlParameter[] objParams2 = new SqlParameter[6];
-            objParams2[0] = new SqlParameter("@ClientId", DbType.Int32);
-            objParams2[0].Value = ClientId;
             objParams2[1] = new SqlParameter("@Region", DbType.String);
             objParams2[1].Value = Region;
             objParams2[2] = new SqlParameter("@Street", DbType.String);

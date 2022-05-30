@@ -48,38 +48,36 @@ namespace BIT_DesktopApp.Views
             LogHelper.Log(LogTarget.File, message); //Customised File logger
             logger.Info("Login Information ");
 
-            //string username = txtUsername.Text;
-            //string password = txtPassword.Text;
+            string username = txtUsername.Text;
+            string password = txtPassword.Text;
 
-            //if (LoginHelper.IsCoordinator(username, password))
-            //{
-            //    var mainwindow = (MainWindow)Window.GetWindow(this);
-            //    mainwindow.UpdateButtons("coordinator");
+            if (LoginHelper.IsCoordinator(username, password))
+            {
+                Window newWindow = new MainWindow();
+                newWindow.Show();
+                //newWindow.UpdateButtons("Coordinator");
 
-            //    //CLOSE CURRENT LOGIN WINDOW
-            //    Window newLoginWindow = new MainWindow();
-            //    newLoginWindow.Show();
-            //    this.Close();
+                //CLOSE CURRENT LOGIN WINDOW
+                this.Close();
 
-            //}
-            //if (LoginHelper.IsAdmin(username, password))
-            //{
-            //    var mainwindow = (MainWindow)Window.GetWindow(this);
-            //    mainwindow.UpdateButtons("Administrator");
-                
+            }
+            if (LoginHelper.IsAdmin(username, password))
+            {
+                Window newWindow = new MainWindow();
+                newWindow.Show();
+                //newWindow.UpdateButtons("Administrator");
 
-            //    //CLOSE CURRENT LOGIN WINDOW
-            //    Window newLoginWindow = new MainWindow();
-            //    newLoginWindow.Show();
-            //    this.Close();
 
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Invalid Credentials");
-            //}
-            Window newWindow = new MainWindow();
-            newWindow.Show();
+                //CLOSE CURRENT LOGIN WINDOW
+                this.Close();
+
+            }
+            else
+            {
+                MessageBox.Show("Invalid Credentials");
+            }
+            //Window newWindow = new MainWindow();
+            //newWindow.Show();
             this.Close();
         }
 

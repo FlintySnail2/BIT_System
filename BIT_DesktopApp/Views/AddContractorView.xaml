@@ -107,6 +107,16 @@
                      Grid.Column="1" 
                      Margin="5" />
 
+                <!--<TextBox Text="{Binding NewContractor.Dob,
+                             ValidatesOnDataErrors=True,
+                             UpdateSourceTrigger=PropertyChanged,
+                             Mode=TwoWay}"
+                      ToolTip="{Binding NewContractor.ErrorCollection[Dob]}" 
+                     x:Name="txtDob" 
+                     Grid.Row="3" 
+                     Grid.Column="1" 
+                     Margin="5" />-->
+
                 <Label Content="Phone : "
                    Grid.Row="3" 
                    Grid.Column="0" 
