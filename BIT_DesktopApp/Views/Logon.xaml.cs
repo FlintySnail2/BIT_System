@@ -32,7 +32,7 @@ namespace BIT_DesktopApp.Views
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            //Let Login window be draged aaround with the mouse
+            //Let Login window be dragged around with the mouse
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 DragMove();

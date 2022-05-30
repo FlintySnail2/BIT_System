@@ -18,7 +18,7 @@ namespace BIT_DesktopApp.ViewModels
 
         private ObservableCollection<Client> _clients;
         private Client _selectedClient;
-        private ObservableCollection<Region> _region;
+        private ObservableCollection<Region> _regions;
         private Region _selectedRegion;
         public event PropertyChangedEventHandler PropertyChanged;
         private string _searchText;
@@ -54,6 +54,7 @@ namespace BIT_DesktopApp.ViewModels
 
         public void UpdateMethod()
         {
+            SelectedClient.Region = SelectedRegion.RegionName;
             string returnValue = SelectedClient.UpdateClient(SelectedClient.ClientId);
             MessageBox.Show(returnValue);
         }
@@ -131,10 +132,10 @@ namespace BIT_DesktopApp.ViewModels
 
         public ObservableCollection<Region> Regions
         {
-            get { return _region; }
+            get { return _regions; }
             set
             {
-                _region = value;
+                _regions = value;
                 OnPropertyChanged("Regions");
             }
         }
@@ -171,10 +172,10 @@ namespace BIT_DesktopApp.ViewModels
             {
                 _selectedClient = value;
                 OnPropertyChanged("SelectedClient");
-                if (value != null)
+                if (SelectedClient != null)
                 {
-                    Regions allClientRegions = new Regions(SelectedClient.ClientId);
-                    this.Regions = new ObservableCollection<Region>(allClientRegions);
+                    SelectedRegion = new Region(SelectedClient.Region);
+                    
                 }
 
             }
@@ -189,7 +190,10 @@ namespace BIT_DesktopApp.ViewModels
             //COMMENTED OUT AS USING MOQ
              Clients allClients = new Clients();
             this.Clients = new ObservableCollection<Client>(allClients);
-            
+
+            Regions allRegions = new Regions();
+            this.Regions = new ObservableCollection<Region>(allRegions);
+
             //GetClients();
         }
 

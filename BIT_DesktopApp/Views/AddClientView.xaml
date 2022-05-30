@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:BIT_DesktopApp.Views" xmlns:viewmodels="clr-namespace:BIT_DesktopApp.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:ClientViewModel}"
+      xmlns:local="clr-namespace:BIT_DesktopApp.Views" xmlns:viewmodels="clr-namespace:BIT_DesktopApp.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:AddClientViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="1000"
       Title="AddClientView">
@@ -83,7 +83,7 @@
                                      ValidatesOnDataErrors=True,
                                      UpdateSourceTrigger=PropertyChanged,
                                      Mode=TwoWay}"
-                      ToolTip="{Binding NewClient.ErrorCollection[FirstName]}" 
+                      ToolTip="{Binding NewClient.ErrorCollection[ContactName]}" 
                      x:Name="txtContactName" 
                      Grid.Row="1" 
                      Grid.Column="1" 
@@ -143,11 +143,12 @@
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-                <ComboBox Text="{Binding SelectedRegion.RegionName,
+                <ComboBox d:DataContext="{d:DesignInstance Type=viewmodels:ClientViewModel}" 
+                          Text="{Binding SelectedRegion.RegionName,
                                      ValidatesOnDataErrors=True,
                                      UpdateSourceTrigger=PropertyChanged,
                                      Mode=TwoWay}"
-                      ToolTip="{Binding NewClient.ErrorCollection[Region]}" 
+                      ToolTip="{ Binding NewClint.ErrorCollection[Region]}" 
                      x:Name="txtRegion" 
                      Grid.Row="0" 
                      Grid.Column="3" 

@@ -54,6 +54,11 @@ namespace BIT_DesktopApp.Models
             RegionName = dr["Region"].ToString();
         }
 
+        public Region(string regionName)
+        {
+            this.RegionName = regionName;
+        }
+
 
         #endregion
 

@@ -67,7 +67,6 @@ namespace BIT_DesktopApp
         {
             btnJob.IsEnabled = true;
             btnCoordinators.IsEnabled = false;
-            MessageBox.Show(btnCoordinators.IsEnabled.ToString());
             btnContractors.IsEnabled = true;
             btnClients.IsEnabled = true;
         }

@@ -31,13 +31,6 @@ namespace BIT_DesktopApp.Models
             objParams[1].Value = password;
             DataTable dt = db.ExecuteSQL(sql, objParams);
             return dt.Rows.Count == 1;
-
-            //int returnValue = db.ExecuteNonQuery(sql, objParams);
-            //if (returnValue > 0)
-            //{
-            //    return true;
-            //}
-            //return false;
         }
 
         public static bool IsAdmin(string email, string password)
@@ -61,12 +54,6 @@ namespace BIT_DesktopApp.Models
             objParams[1].Value = password;
             DataTable dt = db.ExecuteSQL(sql, objParams);
             return dt.Rows.Count == 1;
-            //int returnValue = db.ExecuteNonQuery(sql, objParams);
-            //if (returnValue > 0)
-            //{
-            //    return true;
-            //}
-            //return false;
         }
     }
 }

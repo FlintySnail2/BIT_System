@@ -205,15 +205,13 @@
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-            <ComboBox
-                     Text="{Binding SelectedRegion.RegionName}"
-                     ItemsSource="{Binding Regions,
-                        Mode=TwoWay,
-                        UpdateSourceTrigger=PropertyChanged}"
+            <TextBox
+                     Text="{Binding SelectedRegion.RegionName, UpdateSourceTrigger=PropertyChanged}"
                      x:Name="txtRegion" 
                      Grid.Row="4" 
                      Grid.Column="3" 
-                     Margin="5" />
+                     Margin="5"
+                     IsReadOnly="True"/>
 
         </Grid>
         <StackPanel Orientation="Horizontal" 
@@ -238,7 +236,6 @@
                     Width="150" 
                     Margin="10"
                     Click="btnAdd_Click"/>
-
         </StackPanel>
     </Grid>
     </Border>

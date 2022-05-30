@@ -105,10 +105,10 @@ namespace BIT_DesktopApp.Models
                         break;
                     case "Zip":
                          if (string.IsNullOrEmpty(this.Zip))
-                        {
-                            result = "Field cannot be empty ";
-                        }
-                        break;
+                         {
+                             result = "Field cannot be empty ";
+                         }
+                         break;
 
 
                 }
@@ -355,7 +355,7 @@ namespace BIT_DesktopApp.Models
                 return "New Client & Location Successfully Added";
              }
 
-        return "An error occured, please try again later";
+            return "An error occurred, please try again later";
         }
 
         public string UpdateClient(int clientId)
@@ -373,7 +373,6 @@ namespace BIT_DesktopApp.Models
             string updateSql2 = "UPDATE" +
                                 "   Location" +
                                 " SET      " +
-                                "   Region = @Region," +
                                 "   Street = @Street," +
                                 "   Suburb = @Suburb," +
                                 "   State = @State," +
@@ -393,19 +392,17 @@ namespace BIT_DesktopApp.Models
             objParams[4].Value = Email;
             objParams[5] = new SqlParameter("@Phone", DbType.String);
             objParams[5].Value = Phone;
-            SqlParameter[] objParams2 = new SqlParameter[6];
+            SqlParameter[] objParams2 = new SqlParameter[5];
             objParams2[0] = new SqlParameter("@ClientId", DbType.Int32);
             objParams2[0].Value = clientId;
-            objParams2[1] = new SqlParameter("@Region", DbType.String);
-            objParams2[1].Value = Region;
-            objParams2[2] = new SqlParameter("@Street", DbType.String);
-            objParams2[2].Value = Street;
-            objParams2[3] = new SqlParameter("@Suburb", DbType.String);
-            objParams2[3].Value = Suburb;
-            objParams2[4] = new SqlParameter("@State", DbType.String);
-            objParams2[4].Value = State;
-            objParams2[5] = new SqlParameter("@Zip", DbType.String);
-            objParams2[5].Value = Zip;
+            objParams2[1] = new SqlParameter("@Street", DbType.String);
+            objParams2[1].Value = Street;
+            objParams2[2] = new SqlParameter("@Suburb", DbType.String);
+            objParams2[2].Value = Suburb;
+            objParams2[3] = new SqlParameter("@State", DbType.String);
+            objParams2[3].Value = State;
+            objParams2[4] = new SqlParameter("@Zip", DbType.String);
+            objParams2[4].Value = Zip;
             int rowsAffectedClient = _db.ExecuteNonQuery(updateSql1, objParams);
             int rowsAffectedLocation = _db.ExecuteNonQuery(updateSql2, objParams2);
 
