@@ -29,8 +29,8 @@ namespace BIT_DesktopApp
         public MainWindow()
         {
             InitializeComponent();
-            contentFrame.Navigate(new ClientView());
-            //LOGON VIA VALIDATION BASED OF ROLE
+            //contentFrame.Navigate(new JobView());
+            //////LOGON VIA VALIDATION BASED OF ROLE
             //contentFrame.Navigate(new Logon());
             //btnJob.IsEnabled = false;
             //btnCoordinators.IsEnabled = false;
@@ -40,7 +40,7 @@ namespace BIT_DesktopApp
 
         }
 
-        public MainWindow(string userType) //Parameterised Constructor
+        public MainWindow(string userType) 
         {
             InitializeComponent();
             UpdateButtons(userType);
@@ -48,7 +48,7 @@ namespace BIT_DesktopApp
 
         public void UpdateButtons(string userType)
         {
-            if (userType == "Admistrator")
+            if (userType == "Administrator")
             {
                 AdminLogon();
             }
@@ -67,6 +67,7 @@ namespace BIT_DesktopApp
         {
             btnJob.IsEnabled = true;
             btnCoordinators.IsEnabled = false;
+            MessageBox.Show(btnCoordinators.IsEnabled.ToString());
             btnContractors.IsEnabled = true;
             btnClients.IsEnabled = true;
         }

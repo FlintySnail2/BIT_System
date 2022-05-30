@@ -45,8 +45,8 @@ namespace BIT_DesktopApp.Models
                 string result = null;
                 switch (propertyName)
                 {
-                    case "ContractorName":
-                        if (string.IsNullOrEmpty(ContractorName))
+                    case "FirstName":
+                        if (string.IsNullOrEmpty(FirstName))
                         {
                             result = "Field cannot be left empty";
                         }
@@ -58,11 +58,10 @@ namespace BIT_DesktopApp.Models
                         }
                         break;
                     case "Dob":
-                        if (Dob.Year < 1945)
+                        if (Dob.Year == null)
                         {
                             result = "You are to old to work here";
                         }
-
                         break;
                     case "Phone":
                         if (string.IsNullOrEmpty(Phone))
@@ -143,8 +142,6 @@ namespace BIT_DesktopApp.Models
         }
 
 
-        #endregion Private Properties
-
         private void OnPropertyChanged(string prop)
         {
             if (PropertyChanged != null)
@@ -153,6 +150,7 @@ namespace BIT_DesktopApp.Models
             }
         }
 
+        #endregion Private Properties
 
         #region Public Properties
 
@@ -409,26 +407,25 @@ namespace BIT_DesktopApp.Models
                                "    @ABN," +
                                "    @LicenceNumber," +
                                "    @RateofPay," +
-                               "    '0'," + //A NEW CONTRACTOR STARTS WITH A RATING OF ZERO (HASNT BEEN RATED YET)
+                               "    '0'," +
                                "    'Active')";
-            string insertSql2 = "INSERT INTO " +
-                                "   ContractSkill(" +
-                                "       SkillTitle)" +
-                                "VALUES(" +
-                                "       @SkillTitle)" +
-                                "WHERE" +
-                                "   ContractorId = @ContractorId";
-            SqlParameter[] objParams = new SqlParameter[12];
+                               //" DECLARE @ContractorId INT = @@IDENTITY " +
+                               // " INSERT INTO " +
+                               // "   ContractSkill(" +
+                               //"        ContractorId," +
+                               // "       SkillTitle," +
+                               //"        SkillStatus)" +
+                               // "VALUES(" +
+                               //"        @ContractorId," +
+                               // "       @SkillTitle," +
+                               //"        'Active')";
+            SqlParameter[] objParams = new SqlParameter[13];
             objParams[0] = new SqlParameter("@FirstName", DbType.String);
             objParams[0].Value = FirstName;
             objParams[1] = new SqlParameter("@LastName", DbType.String);
             objParams[1].Value = LastName;
-            //objParams[0] = new SqlParameter("FirstName", DbType.String);
-            //objParams[0].Value = ContractorName.Split(' ')[0];
-            //objParams[1] = new SqlParameter("@LastName", DbType.String);
-            //objParams[1].Value = ContractorName.Split(' ')[1];
             objParams[2] = new SqlParameter("@Street", DbType.String);
-            objParams[2].Value = Street; //String interpolation wont work on char??
+            objParams[2].Value = Street; 
             objParams[3] = new SqlParameter("@Suburb", DbType.Int32);
             objParams[3].Value = Street;
             objParams[4] = new SqlParameter("@State", DbType.String);
@@ -449,28 +446,17 @@ namespace BIT_DesktopApp.Models
             objParams[11].Value = LicenceNumber;
             objParams[12] = new SqlParameter("@RateofPay", DbType.Decimal);
             objParams[12].Value = RateOfPay;
-            SqlParameter[] objParams2 = new SqlParameter[2];
-            objParams2[0] = new SqlParameter("@ContractorId", DbType.Int32);
-            objParams2[0].Value = ContractorId;
-            objParams2[1] = new SqlParameter("@SkillTitle", DbType.String);
-            objParams2[1].Value = SkillTitle;
+            //objParams[13] = new SqlParameter("@SkillTitle", DbType.String);
+            //objParams[13].Value = SkillTitle;
             int rowsAffectedContractor = _db.ExecuteNonQuery(insertSql, objParams);
-            int rowsAffectedSkill = _db.ExecuteNonQuery(insertSql2, objParams);
 
-            if (rowsAffectedContractor >= 1 && rowsAffectedSkill >= 1)
+
+            if (rowsAffectedContractor >= 1)
             {
-                return "Coordinator Successfully Added";
-            }
-            else if (rowsAffectedContractor >= 1)
-            {
-                return "Unable to add contractor skill, please try again later";
-            }
-            else if (rowsAffectedSkill >= 1)
-            {
-                return "Unable to add contractor, please try again later";
+                return "Contractor Successfully Added";
             }
 
-            return "Unable to add contractor or skill, Please try again later";
+            return "Unable to add contractor, Please try again later";
         }
 
         public string RemoveContractor(int contractorId)
@@ -550,6 +536,11 @@ namespace BIT_DesktopApp.Models
 
             return "Unable to update Contractor, please try again later ";
         }
+
+        //public string updateContractorSkills()
+        //{
+            
+        //}
 
         #endregion Public Methods
     }

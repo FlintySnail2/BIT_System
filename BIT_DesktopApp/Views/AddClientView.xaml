@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:BIT_DesktopApp.Views" xmlns:viewmodels="clr-namespace:BIT_DesktopApp.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:AddClientViewModel}"
+      xmlns:local="clr-namespace:BIT_DesktopApp.Views" xmlns:viewmodels="clr-namespace:BIT_DesktopApp.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:ClientViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="1000"
       Title="AddClientView">
@@ -143,7 +143,7 @@
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-                <ComboBox Text="{Binding NewClient.Region,
+                <ComboBox Text="{Binding SelectedRegion.RegionName,
                                      ValidatesOnDataErrors=True,
                                      UpdateSourceTrigger=PropertyChanged,
                                      Mode=TwoWay}"
@@ -152,10 +152,10 @@
                      Grid.Row="0" 
                      Grid.Column="3" 
                      Margin="5">
-                    <ComboBoxItem>North Sydney</ComboBoxItem>
+                    <!--<ComboBoxItem>North Sydney</ComboBoxItem>
                     <ComboBoxItem>Western Sydney</ComboBoxItem>
                     <ComboBoxItem>Eastern Sydney</ComboBoxItem>
-                    <ComboBoxItem>South Sydney</ComboBoxItem>
+                    <ComboBoxItem>South Sydney</ComboBoxItem>-->
                 </ComboBox>
 
                 <Label Content="Street : " 

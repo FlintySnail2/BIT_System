@@ -205,8 +205,11 @@
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-            <TextBox
-                     Text="{Binding SelectedClient.Region}"
+            <ComboBox
+                     Text="{Binding SelectedRegion.RegionName}"
+                     ItemsSource="{Binding Regions,
+                        Mode=TwoWay,
+                        UpdateSourceTrigger=PropertyChanged}"
                      x:Name="txtRegion" 
                      Grid.Row="4" 
                      Grid.Column="3" 

@@ -25,20 +25,24 @@ namespace BIT_DesktopApp.Models
                 "       AND " +
                 "           StaffType = 'Coordinator'";
             SqlParameter[] objParams = new SqlParameter[2];
-            objParams[0] = new SqlParameter("@username", DbType.String);
+            objParams[0] = new SqlParameter("@Username", DbType.String);
             objParams[0].Value = email;
             objParams[1] = new SqlParameter("@Password", DbType.String);
             objParams[1].Value = password;
-            int returnValue = db.ExecuteNonQuery(sql, objParams);
-            if (returnValue > 0)
-            {
-                return true;
-            }
-            return false;
+            DataTable dt = db.ExecuteSQL(sql, objParams);
+            return dt.Rows.Count == 1;
+
+            //int returnValue = db.ExecuteNonQuery(sql, objParams);
+            //if (returnValue > 0)
+            //{
+            //    return true;
+            //}
+            //return false;
         }
 
         public static bool IsAdmin(string email, string password)
         {
+            SQLHelper db = new SQLHelper();
             string sql = "SELECT " +
                 "               StaffType " +
                 "        FROM " +
@@ -49,19 +53,20 @@ namespace BIT_DesktopApp.Models
                 "           Password = @Password " +
                 "       AND " +
                 "           StaffType = 'Administrator'";
-            SQLHelper db = new SQLHelper();
+            
             SqlParameter[] objParams = new SqlParameter[2];
-            objParams[0] = new SqlParameter("@username", DbType.String);
+            objParams[0] = new SqlParameter("@Username", DbType.String);
             objParams[0].Value = email;
             objParams[1] = new SqlParameter("@Password", DbType.String);
             objParams[1].Value = password;
             DataTable dt = db.ExecuteSQL(sql, objParams);
-            int returnValue = db.ExecuteNonQuery(sql, objParams);
-            if (returnValue > 0)
-            {
-                return true;
-            }
-            return false;
+            return dt.Rows.Count == 1;
+            //int returnValue = db.ExecuteNonQuery(sql, objParams);
+            //if (returnValue > 0)
+            //{
+            //    return true;
+            //}
+            //return false;
         }
     }
 }

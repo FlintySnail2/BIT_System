@@ -13,7 +13,9 @@ namespace BIT_DesktopApp.ViewModels
 {
     public class ContractorViewModel : INotifyPropertyChanged
     {
-        
+
+        #region Private Properties
+
         private ObservableCollection<Contractor> _contractors;
 
         private Contractor _selectedContractor;
@@ -26,10 +28,11 @@ namespace BIT_DesktopApp.ViewModels
         private RelayCommand _searchCommand;
         private RelayCommand _updateCommand;
         private RelayCommand _deleteCommand;
+        private RelayCommand _updateSkill;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        
+
 
         private void OnPropertyChanged(string prop)
         {
@@ -38,6 +41,8 @@ namespace BIT_DesktopApp.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
             }
         }
+
+        #endregion Private Properties
 
         #region Search Command
 
@@ -101,6 +106,30 @@ namespace BIT_DesktopApp.ViewModels
 
         #region Update Method
 
+        public RelayCommand UpdateSkill
+        {
+            get
+            {
+                if (_updateSkill == null)
+                {
+                    _updateSkill = new RelayCommand(this.UpdateMethod, true);
+                }
+
+                return _updateSkill;
+
+            }
+            set { _updateSkill = value; }
+        }
+
+        public void UpdateContractorSkill()
+        {
+            string returnValue =  SelectedContractor.UpdateContractor(SelectedContractor.ContractorId);
+            MessageBox.Show(returnValue);
+
+        }
+
+        #region Update SKill
+
         public RelayCommand UpdateCommand
         {
             get
@@ -118,10 +147,14 @@ namespace BIT_DesktopApp.ViewModels
 
         public void UpdateMethod()
         {
-            string returnValue =  SelectedContractor.UpdateContractor(SelectedContractor.ContractorId);
+            string returnValue = SelectedContractor.UpdateContractor(SelectedContractor.ContractorId);
             MessageBox.Show(returnValue);
 
         }
+
+
+        #endregion Update Skill
+
 
 
         #endregion Update Method
@@ -161,6 +194,8 @@ namespace BIT_DesktopApp.ViewModels
 
         #endregion contractor Skills
 
+        #region Contractors
+
         public ObservableCollection<Contractor> Contractors
         {
             get { return _contractors; }
@@ -182,6 +217,10 @@ namespace BIT_DesktopApp.ViewModels
                 this.ContractorSkills = new ObservableCollection<ContractorSkill>(allSkills);
             }
         }
+
+        #endregion Contractors
+
+
 
 
 

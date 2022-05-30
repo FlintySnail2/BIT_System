@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -43,6 +44,7 @@ namespace BIT_DesktopApp.ViewModels
         public void AddMethod()
         {
             string message = NewContractor.InsertContractor();
+            MessageBox.Show(message);
 
         }
 

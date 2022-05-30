@@ -25,6 +25,16 @@ namespace BIT_DesktopApp.ViewModels
             }
         }
 
+        public Client NewClient
+        {
+            get { return _newClient; }
+            set
+            {
+                _newClient = value;
+                OnPropertyChanged("NewClient");
+            }
+        }
+
         #region Add Method
 
 
@@ -50,15 +60,7 @@ namespace BIT_DesktopApp.ViewModels
         #endregion Add Method
 
 
-        public Client NewClient
-        {
-            get { return _newClient; }
-            set
-            {
-                _newClient = value; 
-                OnPropertyChanged("NewClient");
-            }
-        }
+       
 
 
         public AddClientViewModel()

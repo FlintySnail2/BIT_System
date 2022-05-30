@@ -120,9 +120,6 @@ namespace BIT_DesktopApp.Models
                 return result;
             }
         }
-
-        #endregion Private Properties
-
         private void OnPropertyChanged(string prop)
         {
             if (PropertyChanged != null)
@@ -130,6 +127,8 @@ namespace BIT_DesktopApp.Models
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
             }
         }
+
+        #endregion Private Properties
 
         #region Public Properties
 
@@ -294,24 +293,24 @@ namespace BIT_DesktopApp.Models
         public string InsertClient()
         {
             string sql1 = "INSERT INTO" +
-                "               Client(" +
-                "               OrganisationName," +
-                "               FirstName," +
-                "               LastName," +
-                "               Phone," +
-                "               Email," +
-                "               Password," +
-                "               AccountStatus)" +
-                "       VALUES(" +
-                "               @OrganisationName," +
-                "               @FirstName," +
-                "               @LastName," +
-                "               @Phone," +
-                "               @Email," +
-                "               @Password," +
-                "               'Active')";
-
-            string sql2 = "INSERT INTO" +
+                          "               Client(" +
+                          "               OrganisationName," +
+                          "               FirstName," +
+                          "               LastName," +
+                          "               Phone," +
+                          "               Email," +
+                          "               Password," +
+                          "               AccountStatus)" +
+                          "       VALUES(" +
+                          "               @OrganisationName," +
+                          "               @FirstName," +
+                          "               @LastName," +
+                          "               @Phone," +
+                          "               @Email," +
+                          "               @Password," +
+                          "               'Active') " +
+                          " DECLARE @ClientId INT = @@IDENTITY " +
+                          "INSERT INTO" +
                           "         Location(" +
                           "         ClientId," +
                           "         Region," +
@@ -326,7 +325,7 @@ namespace BIT_DesktopApp.Models
                           "        @Suburb," +
                           "        @State," +
                           "        @Zip)";
-            SqlParameter[] objParams = new SqlParameter[6];
+            SqlParameter[] objParams = new SqlParameter[11];
             objParams[0] = new SqlParameter("@OrganisationName", DbType.String);
             objParams[0].Value = this.OrganisationName;
             objParams[1] = new SqlParameter("@FirstName", DbType.String);
@@ -339,37 +338,26 @@ namespace BIT_DesktopApp.Models
             objParams[4].Value = this.Email;
             objParams[5] = new SqlParameter("@Password", DbType.String);
             objParams[5].Value = this.Password;
-            SqlParameter[] objParams2 = new SqlParameter[6];
-            objParams2[1] = new SqlParameter("@Region", DbType.String);
-            objParams2[1].Value = Region;
-            objParams2[2] = new SqlParameter("@Street", DbType.String);
-            objParams2[2].Value = Street;
-            objParams2[3] = new SqlParameter("@Suburb", DbType.String);
-            objParams2[3].Value = Suburb;
-            objParams2[4] = new SqlParameter("@State", DbType.String);
-            objParams2[4].Value = State;
-            objParams2[5] = new SqlParameter("@Zip", DbType.String);
-            objParams2[5].Value = Zip;
+            objParams[6] = new SqlParameter("@Region", DbType.String);
+            objParams[6].Value = Region;
+            objParams[7] = new SqlParameter("@Street", DbType.String);
+            objParams[7].Value = Street;
+            objParams[8] = new SqlParameter("@Suburb", DbType.String);
+            objParams[8].Value = Suburb;
+            objParams[9] = new SqlParameter("@State", DbType.String);
+            objParams[9].Value = State;
+            objParams[10] = new SqlParameter("@Zip", DbType.String);
+            objParams[10].Value = Zip;
 
             int rowsAffectedClient = _db.ExecuteNonQuery(sql1, objParams);
-            int rowsAffectedRegion = _db.ExecuteNonQuery(sql2, objParams2);
-            if (rowsAffectedClient >= 1 && rowsAffectedRegion >= 1)
+            if (rowsAffectedClient >= 1)
             {
                 return "New Client & Location Successfully Added";
-            }
-            else if (rowsAffectedClient >= 1)
-            {
-                return "New Client Added, Error when adding location";
-            }
-            else if (rowsAffectedRegion >= 1)
-            {
-                return "New Location Add, Error when adding Client";
-            }
+             }
 
-            return "An error occured, please try again later";
+        return "An error occured, please try again later";
         }
 
-        #endregion Public Methods
         public string UpdateClient(int clientId)
         {
             string updateSql1 = "UPDATE" +
@@ -431,7 +419,7 @@ namespace BIT_DesktopApp.Models
             }
             if (rowsAffectedClient >= 1)
             {
-                return "Client Details Succesfully Updated";
+                return "Client Details Successfully Updated";
             }
 
             return "An error has Occurred, please try again later";
@@ -456,6 +444,7 @@ namespace BIT_DesktopApp.Models
 
             return "Unable to remove client, please try again later ";
         }
+        #endregion Public Methods
 
     }
 }

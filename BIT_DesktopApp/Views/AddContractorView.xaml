@@ -97,30 +97,21 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-                <DatePicker Text="{Binding NewContractor.Dob,
+                <TextBox 
+                    Text="{Binding NewContractor.Dob,
                              ValidatesOnDataErrors=True,
                              UpdateSourceTrigger=PropertyChanged,
-                             Mode=TwoWay}"
+                             Mode=TwoWay, StringFormat= MM/dd/yyyy}"
                      ToolTip="{Binding NewContractor.ErrorCollection[Dob]}" 
                      x:Name="txtDob" 
                      Grid.Row="2" 
                      Grid.Column="1" 
                      Margin="5" />
 
-                <!--<TextBox Text="{Binding NewContractor.Dob,
-                             ValidatesOnDataErrors=True,
-                             UpdateSourceTrigger=PropertyChanged,
-                             Mode=TwoWay}"
-                      ToolTip="{Binding NewContractor.ErrorCollection[Dob]}" 
-                     x:Name="txtDob" 
-                     Grid.Row="3" 
-                     Grid.Column="1" 
-                     Margin="5" />-->
-
                 <Label Content="Phone : "
-                   Grid.Row="3" 
-                   Grid.Column="0" 
-                   Foreground="#fff"/>
+                       Grid.Row="3" 
+                       Grid.Column="0" 
+                       Foreground="#fff"/>
 
                 <TextBox Text="{Binding NewContractor.Phone,
                              ValidatesOnDataErrors=True,
@@ -196,7 +187,7 @@
                          Grid.Column="3" 
                          Margin="5" />
 
-                <Label Content="Skill : "
+                <!--<Label Content="Skill : "
                        Grid.Row="1" 
                        Grid.Column="2" 
                        Foreground="#fff"/>
@@ -209,17 +200,18 @@
                      x:Name="txtSkill" 
                      Grid.Row="1" 
                      Grid.Column="3" 
-                     Margin="5" />
+                     Margin="5" />-->
 
                 <Label Content="Pay Rate : "
-                   Grid.Row="2" 
+                   Grid.Row="1" 
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
                 <TextBox 
-                      
+                     Text="{Binding NewContractor.RateOfPay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                     ToolTip="{Binding NewContractor.ErrorCollection[RateOfPay]}"
                      x:Name="txtPayRate" 
-                     Grid.Row="2" 
+                     Grid.Row="1" 
                      Grid.Column="3" 
                      Margin="5" />
 
@@ -298,7 +290,7 @@
                         Content="CONFIRM" 
                         Width="150" 
                         Margin="10"
-                        Click="btnConfirm_Click"/>
+                        />
                     
 
                 <Button x:Name="btnCancel" 

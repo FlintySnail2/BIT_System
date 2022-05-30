@@ -41,20 +41,5 @@ namespace BIT_DesktopApp.Views
                 NavigationService.Navigate(new Uri("Views/AddContractorView.xaml", UriKind.Relative));
             }
         }
-
-        private void btnConfirm_Click(object sender, RoutedEventArgs e)
-        {
-            if (MessageBox.Show("Do you wish to continue? ",
-                     "Client Added",
-                     MessageBoxButton.YesNo,
-                     MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
-                NavigationService.Navigate(new Uri("Views/ContractorView.xaml", UriKind.Relative));
-            }
-            else
-            {
-                NavigationService.Navigate(new Uri("Views/AddContractorView.xaml", UriKind.Relative));
-            }
-        }
     }
 }

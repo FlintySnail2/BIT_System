@@ -13,8 +13,13 @@ namespace BIT_DesktopApp.ViewModels
 {
     public class ClientViewModel : INotifyPropertyChanged
     {
+
+        #region Private Properties
+
         private ObservableCollection<Client> _clients;
         private Client _selectedClient;
+        private ObservableCollection<Region> _region;
+        private Region _selectedRegion;
         public event PropertyChangedEventHandler PropertyChanged;
         private string _searchText;
         private RelayCommand _searchCommand;
@@ -28,6 +33,8 @@ namespace BIT_DesktopApp.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
             }
         }
+
+        #endregion Private Properties
 
         #region Update Command
 
@@ -49,15 +56,6 @@ namespace BIT_DesktopApp.ViewModels
         {
             string returnValue = SelectedClient.UpdateClient(SelectedClient.ClientId);
             MessageBox.Show(returnValue);
-            //if (returnValue > 0)
-            //{
-            //    MessageBox.Show("Client has been updated");
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Error");
-            //}
-
         }
 
 
@@ -127,7 +125,34 @@ namespace BIT_DesktopApp.ViewModels
             MessageBox.Show(returnValue);
 
         }
-        #endregion Delete Command 
+        #endregion Delete Command
+
+        #region Region
+
+        public ObservableCollection<Region> Regions
+        {
+            get { return _region; }
+            set
+            {
+                _region = value;
+                OnPropertyChanged("Regions");
+            }
+        }
+
+        public Region SelectedRegion
+        {
+            get { return _selectedRegion; }
+            set
+            {
+                _selectedRegion = value;
+                OnPropertyChanged("SelectedRegion");
+            }
+        }
+
+
+        #endregion Region 
+
+        #region Client
 
         public ObservableCollection<Client> Clients
         {
@@ -146,14 +171,25 @@ namespace BIT_DesktopApp.ViewModels
             {
                 _selectedClient = value;
                 OnPropertyChanged("SelectedClient");
+                if (value != null)
+                {
+                    Regions allClientRegions = new Regions(SelectedClient.ClientId);
+                    this.Regions = new ObservableCollection<Region>(allClientRegions);
+                }
+
             }
         }
+
+        #endregion Client
+
+
 
         public ClientViewModel()
         {
             //COMMENTED OUT AS USING MOQ
              Clients allClients = new Clients();
             this.Clients = new ObservableCollection<Client>(allClients);
+            
             //GetClients();
         }
 
