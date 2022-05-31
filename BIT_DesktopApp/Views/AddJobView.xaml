@@ -68,7 +68,7 @@
                                      ValidatesOnDataErrors=True,
                                      UpdateSourceTrigger=PropertyChanged,
                                      Mode=TwoWay}"
-                      ToolTip="{Binding NewJob.ErrorCollection[ClientName]}"
+                      ToolTip="{Binding NewJob.ErrorCollection[OrganisationName]}"
                       x:Name="txtClientName" 
                       Grid.Row="0" 
                       Grid.Column="1" 
@@ -85,7 +85,7 @@
                                      ValidatesOnDataErrors=True,
                                      UpdateSourceTrigger=PropertyChanged,
                                      Mode=TwoWay}"
-                         ToolTip="{Binding NewJob.ErrorCollection[Skill]}"
+                         ToolTip="{Binding NewJob.ErrorCollection[SkillReq]}"
                          x:Name="txtSkill" 
                          Grid.Row="1" 
                          Grid.Column="1" 
@@ -103,6 +103,7 @@
                                      UpdateSourceTrigger=PropertyChanged,
                                      Mode=TwoWay}"
                       ToolTip="{Binding NewJob.ErrorCollection[Priority]}"
+                    DisplayMemberPath="ClientName"
                      x:Name="txtPriority" 
                      Grid.Row="2" 
                      Grid.Column="1" 

@@ -12,6 +12,8 @@ namespace BIT_DesktopApp.Models
 {
     public class RequestedJob: INotifyPropertyChanged
     {
+        #region Private Properties
+
         private int _jobId;
         private int _contractorId;
         private string _OrganisationName;
@@ -31,6 +33,10 @@ namespace BIT_DesktopApp.Models
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
             }
         }
+
+        #endregion Private Properties
+
+        #region Public Properties
 
         public int JobId
         {
@@ -118,6 +124,11 @@ namespace BIT_DesktopApp.Models
                 OnPropertyChanged("ContractorRating");
             }
         }
+
+        #endregion Public Properties
+
+        #region Consstructor
+
         public RequestedJob()
         {
             _db = new SQLHelper();
@@ -140,7 +151,9 @@ namespace BIT_DesktopApp.Models
 
 
 
+        #endregion Constructor
 
+        #region Public Methods
         public string FindContractor(int contractorId)
         {
             string findSQL =
@@ -160,7 +173,7 @@ namespace BIT_DesktopApp.Models
                              " AND" +
                              "  CON.ContractorId = A.ContractorId" +
                              "AND" +
-                             "  CON.ContractorId = @C";
+                             "  CON.ContractorId = @ContractorId";
             SqlParameter[] objParams  = new SqlParameter[1];
             objParams[0] = new SqlParameter("@ContractorId", DbType.Int32);
             objParams[0].Value = contractorId;
@@ -170,7 +183,9 @@ namespace BIT_DesktopApp.Models
                 return "Contractors Found";
             }
 
-            return "Derp";
+            return "There are no contractors Available";
         }
+
+    #endregion Public Methods
     }
 }

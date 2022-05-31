@@ -16,21 +16,10 @@ namespace BIT_DesktopApp.ViewModels
 {
     public class CoordinatorViewModel : INotifyPropertyChanged
     {
-        private ObservableCollection<Coordinator> _coordinators;
-       public event PropertyChangedEventHandler PropertyChanged;
-
-        public ObservableCollection<Coordinator> Coordinators
-        {
-            get { return _coordinators; }
-            set
-            {
-                _coordinators = value;
-                OnPropertyChanged("Coordinators");
-            }
-        }
-
+        
+        #region Private Properties
         private Coordinator _selectedCoordinator;
-
+        private ObservableCollection<Coordinator> _coordinators;
 
         private string _searchText;
         private RelayCommand _searchCommand;
@@ -45,6 +34,19 @@ namespace BIT_DesktopApp.ViewModels
             }
         }
 
+        #endregion Private Properties
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public ObservableCollection<Coordinator> Coordinators
+        {
+            get { return _coordinators; }
+            set
+            {
+                _coordinators = value;
+                OnPropertyChanged("Coordinators");
+            }
+        }
 
         #region Update Command
 
@@ -119,7 +121,6 @@ namespace BIT_DesktopApp.ViewModels
             {
                 _searchText = value;
                 OnPropertyChanged("SearchText");
-
             }
         }
 
@@ -132,6 +133,7 @@ namespace BIT_DesktopApp.ViewModels
                     _searchCommand = new RelayCommand(this.SearchMethod, true);
 
                 }
+
                 return _searchCommand;
             }
             set { _searchCommand = value; }
@@ -145,19 +147,22 @@ namespace BIT_DesktopApp.ViewModels
         }
         #endregion Search Command
 
-
-
-
-
+        #region Selected Coordinator
         public Coordinator SelectedCoordinator
         {
             get { return _selectedCoordinator; }
             set
             {
-                _selectedCoordinator = value; 
+                _selectedCoordinator = value;
                 OnPropertyChanged("SelectedCoordinator");
             }
         }
+
+        #endregion Selected coordinator
+
+
+
+
 
         //public Coordinator NewCoordinator
         //{

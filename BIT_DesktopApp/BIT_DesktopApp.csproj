@@ -83,6 +83,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DAL\LoginHelper.cs" />
+    <Compile Include="Models\AbsentContractorSkill.cs" />
     <Compile Include="Models\AvailableContractor.cs" />
     <Compile Include="Models\AvailableContractors.cs" />
     <Compile Include="Models\Region.cs" />
@@ -91,6 +92,8 @@
     <Compile Include="Models\RejectedJobs.cs" />
     <Compile Include="Models\RequestedJob.cs" />
     <Compile Include="Models\RequestedJobs.cs" />
+    <Compile Include="Models\SystemSkill.cs" />
+    <Compile Include="Models\SystemSkills.cs" />
     <Compile Include="ViewModels\AddClientViewModel.cs" />
     <Compile Include="ViewModels\AddContractorViewModel.cs" />
     <Compile Include="ViewModels\AddCoordinatorViewModel.cs" />

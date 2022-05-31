@@ -31,10 +31,14 @@
                        Width="323" 
                        Margin="10,5,10,5"/>
 
-                <TextBox Text="{Binding SearchText}"
-                     x:Name="txtSearchContractor" 
-                     Width="200" 
-                      Style="{StaticResource SearchTheme}"/>
+                <Border CornerRadius="25">
+                    <TextBox Text="{Binding SearchText,
+                            UpdateSourceTrigger=PropertyChanged}"
+                             x:Name="txtSearchContractor" 
+                             Width="190" Height="34"
+                             FontSize="16"
+                    />
+                </Border>
 
                 <Button Content="SEARCH" 
                     x:Name="btnSearchContractor"
@@ -45,7 +49,7 @@
 
             </StackPanel>
 
-            <Grid Grid.Row="1" Margin="0,0,0,180" Grid.RowSpan="2">
+            <Grid Grid.Row="1" Margin="0,0,0,175" Grid.RowSpan="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="3*"/>
                     <ColumnDefinition Width="*"/>
@@ -86,45 +90,74 @@
                     </DataGrid.Columns>
                 </DataGrid>
 
-                <TextBox Text="{Binding ContractorSkill.Skill, Mode=TwoWay ,UpdateSourceTrigger=PropertyChanged}"
-                            
-                         x:Name="txtSkill" 
+                <ComboBox Text="{Binding SelectedAbsentSkills.Skill, 
+                                                                        Mode=TwoWay ,
+                                                                        UpdateSourceTrigger=PropertyChanged}"
+                          ItemsSource="{Binding AbsentSkills, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          DisplayMemberPath="Skill"
+                          x:Name="cmbUpdateAddSkill" 
                          Height="31" 
-                         Margin="5,135,5,36" Grid.Column="1"/>
+                         Margin="5,135,85,36" Grid.Column="1"/>
 
-                <StackPanel 
-                        Grid.Column="1" 
-                        Orientation="Horizontal" Margin="0,166,5,37" Grid.RowSpan="2">
-
-
-
-                    <Button x:Name="btnAddSkill" 
+                <Button 
+                        x:Name="btnAddSkill"
+                        Command="{Binding UpdateSkill}"
                         Width="70" Height="31"
-                        Margin="5" Content="ADD"/>
+                        Content="UPDATE" 
+                        Grid.Column="1" 
+                        Margin="175,135,5,36"/>
 
-                    <Button x:Name="btnUpdateSkill" 
-                            Width="70" Height="31"
-                            Margin="10" 
-                            Content="UPDATE"/>
+                <ComboBox Text="{Binding SelectedSkill.Skill, 
+                                                                        Mode=TwoWay ,
+                                                                        UpdateSourceTrigger=PropertyChanged}"
+                          ItemsSource="{Binding ContractorSkills,
+                                                                        Mode=TwoWay,
+                                                                        UpdateSourceTrigger=PropertyChanged}"
+                          DisplayMemberPath="Skill"
+                          x:Name="cmbBoxRemove" 
+                          Height="31" 
+                          Margin="5,180,85,59" 
+                          Grid.Column="1" 
+                          Grid.RowSpan="2"/>
 
-                    <Button x:Name="btnRemoveSkill" 
+                <Button x:Name="btnRemoveSkill" 
                         Width="70" 
-                        Height="30" 
-                        Content=" REMOVE">
+                        Height="30"
+                        Command="{Binding RemoveSkill}"
+                        Content=" REMOVE" Grid.Column="1" Margin="175,180,5,60" Grid.RowSpan="2"/>
 
-                        <Button.RenderTransform>
-                            <TransformGroup>
-                                <ScaleTransform/>
-                                <SkewTransform AngleY="0"/>
-                                <RotateTransform/>
-                                <TranslateTransform Y="0"/>
-                            </TransformGroup>
-                        </Button.RenderTransform>
-                    </Button>
 
-                </StackPanel>
-            </Grid>
-            <Grid Grid.Row="2" Margin="0,10,0,0">
+                <!-- SKILLS MANAGEMENT -->
+
+                <DataGrid Grid.Row="1" 
+                      Grid.Column="1" 
+                      x:Name="dgContractoSkills" 
+                      Margin="5,26,5,-170"
+                      AutoGenerateColumns="False"
+                      ItemsSource="{Binding SystemSkill}" 
+                      >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="*" Header="BIT Skills" Binding="{Binding SkillName}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <Button x:Name="btnAddSystemSkill"
+                        Command="{Binding AddSkillCommand}"
+                        Width="70" Height="31"
+                        Content="ADD" Grid.Column="1" Margin="175,253,5,-215" Grid.Row="1"/>
+
+                <TextBox Text="{Binding SkillName.SkillName, 
+                                                                ValidatesOnDataErrors=True, 
+                                                            UpdateSourceTrigger=PropertyChanged}"
+                         ToolTip="{Binding SkillName.ErrorCollection[SkillName]}"
+                         x:Name="TxtSystemSkill" 
+                          Height="31" 
+                          Margin="5,253,90,-215" Grid.Column="1" Grid.Row="1"/>
+
+               </Grid>
+
+
+            <Grid Grid.Row="2" Margin="5,10,255,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
@@ -291,7 +324,7 @@
 
             </Grid>
             <StackPanel Orientation="Horizontal" 
-                    HorizontalAlignment="right" 
+                    HorizontalAlignment="Left" 
                     Grid.Row="3">
 
 

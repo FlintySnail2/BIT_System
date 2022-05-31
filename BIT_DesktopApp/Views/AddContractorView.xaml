@@ -97,7 +97,7 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-                <TextBox 
+                <DatePicker 
                     Text="{Binding NewContractor.Dob,
                              ValidatesOnDataErrors=True,
                              UpdateSourceTrigger=PropertyChanged,

@@ -13,6 +13,7 @@ namespace BIT_DesktopApp.ViewModels
     {
         
         private Job _newJob;
+        private Client _client;
         private RelayCommand _confirmCommand;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -25,6 +26,7 @@ namespace BIT_DesktopApp.ViewModels
             }
         }
 
+        
         #region Add Command
 
         public RelayCommand ConfirmCommand

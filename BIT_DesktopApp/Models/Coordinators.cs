@@ -49,13 +49,13 @@ namespace BIT_DesktopApp.Models
                          "       FROM " +
                          "           Staff " +
                          "        WHERE " +
-                         "           FirstName LIKE '%Van%' "; 
-                //"       OR " +
-                //"           LastName LIKE '% " + searchText + " %'";
+                         "           AccountStatus = 'Active'" +
+                    "            AND" +
+                    "                FirstName LIKE '%"+ searchText +"%'";
             DataTable dataTable = _db.ExecuteSQL(sql);
             foreach (DataRow dr in dataTable.Rows)
             {
-                Coordinator newCoordinator = new Coordinator();
+                Coordinator newCoordinator = new Coordinator(dr);
                 this.Add(newCoordinator);
             }
         }

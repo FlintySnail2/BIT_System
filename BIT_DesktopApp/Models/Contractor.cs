@@ -409,23 +409,13 @@ namespace BIT_DesktopApp.Models
                                "    @RateofPay," +
                                "    '0'," +
                                "    'Active')";
-                               //" DECLARE @ContractorId INT = @@IDENTITY " +
-                               // " INSERT INTO " +
-                               // "   ContractSkill(" +
-                               //"        ContractorId," +
-                               // "       SkillTitle," +
-                               //"        SkillStatus)" +
-                               // "VALUES(" +
-                               //"        @ContractorId," +
-                               // "       @SkillTitle," +
-                               //"        'Active')";
             SqlParameter[] objParams = new SqlParameter[13];
             objParams[0] = new SqlParameter("@FirstName", DbType.String);
             objParams[0].Value = FirstName;
             objParams[1] = new SqlParameter("@LastName", DbType.String);
             objParams[1].Value = LastName;
             objParams[2] = new SqlParameter("@Street", DbType.String);
-            objParams[2].Value = Street; 
+            objParams[2].Value = Street;
             objParams[3] = new SqlParameter("@Suburb", DbType.Int32);
             objParams[3].Value = Street;
             objParams[4] = new SqlParameter("@State", DbType.String);
@@ -481,6 +471,7 @@ namespace BIT_DesktopApp.Models
 
         public string UpdateContractor(int contractorId)
         {
+
             string updateSql = "UPDATE " +
                                "  Contractor " +
                                " SET " +
@@ -537,10 +528,53 @@ namespace BIT_DesktopApp.Models
             return "Unable to update Contractor, please try again later ";
         }
 
-        //public string updateContractorSkills()
-        //{
-            
-        //}
+        public string updateContractorSkills(int contractorId)
+        {
+            string updateSql = "UPDATE" +
+                               "     ContractSkill" +
+                               " SET " +
+                               "    SkillTitle = @SkillTitle," +
+                               "    SkillStatus = 1 " +
+                               " WHERE " +
+                               "    ContractorId = @ContractorId";
+            SqlParameter[] objParams = new SqlParameter[2];
+            objParams[0] = new SqlParameter("@ContractorId", DbType.Int32);
+            objParams[0].Value = contractorId;
+            objParams[1] = new SqlParameter("@SkillTitle", DbType.String);
+            objParams[1].Value = SkillTitle;
+            int rowsAffectedContractor = _db.ExecuteNonQuery(updateSql, objParams);
+            if (rowsAffectedContractor >= 1)
+            {
+                return "Contractor Skill Successfully Updated";
+            }
+
+            return "Unable to update contractor skill, please try again later";
+
+        }
+
+        public string RemoveContractorSkill(int contractorId, string skill)
+        {
+            string removeSql = "UPDATE" +
+                               "     ContractSkill" +
+                               " SET" +
+                               "    SkillStatus = 0" +
+                               " WHERE " +
+                               "    ContractorId = @ContractorId" +
+                               " AND " +
+                               "    SkillTitle = @SkillTitle";
+            SqlParameter[] objParams = new SqlParameter[2];
+            objParams[0] = new SqlParameter("@ContractorId", DbType.Int32);
+            objParams[0].Value = contractorId;
+            objParams[1] = new SqlParameter("@SkillTitle", DbType.Int32);
+            objParams[1].Value = skill;
+            int rowsAffectedContractor = _db.ExecuteNonQuery(removeSql, objParams);
+            if (rowsAffectedContractor >= 1)
+            {
+                return "Contractor Skill Successfully removed";
+            }
+
+            return "Unable to remove contractor skill, please try again later";
+        }
 
         #endregion Public Methods
     }

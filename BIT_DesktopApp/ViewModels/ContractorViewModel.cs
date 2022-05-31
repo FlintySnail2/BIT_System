@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.ServiceModel.Description;
 using System.Text;
@@ -17,18 +18,21 @@ namespace BIT_DesktopApp.ViewModels
         #region Private Properties
 
         private ObservableCollection<Contractor> _contractors;
-
+        private ObservableCollection<ContractorSkill> _absentSkills;
+        private ContractorSkill _selectedAbsentSkills;
         private Contractor _selectedContractor;
-
+        private SystemSkill _skill;
         private ObservableCollection<ContractorSkill> _contractorSkills;
+        private ObservableCollection<SystemSkill> _systemSkills;
         private ContractorSkill _selectedSkill;
         private ContractorSkill _contractorSkill;
-
         private string _searchText;
         private RelayCommand _searchCommand;
         private RelayCommand _updateCommand;
         private RelayCommand _deleteCommand;
+        private RelayCommand _addSkillCommand;
         private RelayCommand _updateSkill;
+        private RelayCommand _removeSkill;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -75,10 +79,30 @@ namespace BIT_DesktopApp.ViewModels
                 OnPropertyChanged("SearchText");
             }
         }
-
-
-
         #endregion Search Command
+
+        #region Add Skill
+
+        public RelayCommand AddSkillCommand
+        {
+            get
+            {
+                if (_addSkillCommand == null)
+                {
+                    _addSkillCommand = new RelayCommand(this.AddSkillMethod, true);
+                }
+
+                return _addSkillCommand;
+            }
+            set { _updateCommand = value; }
+        }
+
+        public void AddSkillMethod()
+        {
+            string message = SkillName.InsertSystemSkill();
+            MessageBox.Show(message);
+        }
+        #endregion Add Skill
 
         #region Delete Method
 
@@ -104,7 +128,7 @@ namespace BIT_DesktopApp.ViewModels
 
         #endregion Delete Mthod
 
-        #region Update Method
+        #region Update Skill
 
         public RelayCommand UpdateSkill
         {
@@ -112,7 +136,7 @@ namespace BIT_DesktopApp.ViewModels
             {
                 if (_updateSkill == null)
                 {
-                    _updateSkill = new RelayCommand(this.UpdateMethod, true);
+                    _updateSkill = new RelayCommand(this.UpdateContractorSkill, true);
                 }
 
                 return _updateSkill;
@@ -123,12 +147,41 @@ namespace BIT_DesktopApp.ViewModels
 
         public void UpdateContractorSkill()
         {
-            string returnValue =  SelectedContractor.UpdateContractor(SelectedContractor.ContractorId);
+            string returnValue =  SelectedContractor.updateContractorSkills(SelectedContractor.ContractorId);
             MessageBox.Show(returnValue);
 
         }
 
-        #region Update SKill
+        #endregion Update Skill
+
+        #region Remove Skill
+
+
+        public RelayCommand RemoveSkill
+        {
+            get
+            {
+                if (_removeSkill == null)
+                {
+                    _removeSkill = new RelayCommand(this.RemoveContractorSkill, true);
+                }
+
+                return _removeSkill;
+
+            }
+            set { _removeSkill = value; }
+        }
+
+        public void RemoveContractorSkill()
+        {
+            string returnValue = SelectedContractor.RemoveContractorSkill(SelectedContractor.ContractorId, SelectedSkill.Skill );
+            MessageBox.Show(returnValue);
+
+        }
+
+        #endregion Remove Skill
+
+        #region Update Method
 
         public RelayCommand UpdateCommand
         {
@@ -152,11 +205,6 @@ namespace BIT_DesktopApp.ViewModels
 
         }
 
-
-        #endregion Update Skill
-
-
-
         #endregion Update Method
 
         #region Contractor Skills
@@ -178,7 +226,6 @@ namespace BIT_DesktopApp.ViewModels
             {
                 _selectedSkill = value;
                 OnPropertyChanged("SelectedSkill");
-
             }
         }
 
@@ -189,6 +236,7 @@ namespace BIT_DesktopApp.ViewModels
             {
                 _contractorSkill = value;
                 OnPropertyChanged("ContractorSkill");
+
             }
         }
 
@@ -215,20 +263,72 @@ namespace BIT_DesktopApp.ViewModels
                 OnPropertyChanged("SelectedContractor");
                 ContractorSkills allSkills = new ContractorSkills(SelectedContractor.ContractorId);
                 this.ContractorSkills = new ObservableCollection<ContractorSkill>(allSkills);
+                AbsentContractorSkill allAbsentSkills = new AbsentContractorSkill(SelectedContractor.ContractorId);
+                this.AbsentSkills = new ObservableCollection<ContractorSkill>(allAbsentSkills);
+                if (SelectedContractor != null)
+                {
+                    SelectedSkill = new ContractorSkill(SelectedContractor.SkillTitle);
+                }
             }
         }
 
         #endregion Contractors
 
+        #region System Skills
 
+        public ObservableCollection<SystemSkill> SystemSkill
+        {
+            get { return _systemSkills; }
+            set
+            {
+                _systemSkills = value;
+                OnPropertyChanged("SystemSkill");
+            }
+        }
 
+        public SystemSkill SkillName
+        {
+            get { return _skill; }
+            set
+            {
+                _skill = value;
+                OnPropertyChanged("SkillName");
+            }
+        }
+        #endregion System Skills
 
+        #region Absent Skill
+
+        public ContractorSkill SelectedAbsentSkills
+        {
+            get { return _selectedAbsentSkills; }
+            set
+            {
+                _selectedAbsentSkills = value;
+                OnPropertyChanged("SelectedAbsentSkills");
+            }
+        }
+
+        public ObservableCollection<ContractorSkill> AbsentSkills
+        {
+            get { return _absentSkills; }
+            set
+            {
+                _absentSkills = value;
+                OnPropertyChanged("AbsentSkills");
+            }
+        }
+        #endregion Absent Skill
 
         public ContractorViewModel()
         {
            Contractors allContractors = new Contractors();
             Contractors = new ObservableCollection<Contractor>(allContractors); 
             ContractorSkill = new ContractorSkill();
+            SystemSkills newSystemSkills = new SystemSkills();
+            SystemSkill = new ObservableCollection<SystemSkill>(newSystemSkills);
+            SkillName = new SystemSkill(); // CATCHES THE VALUE FROM THE TEXTBOX
+
             //GetContractors();
 
         }

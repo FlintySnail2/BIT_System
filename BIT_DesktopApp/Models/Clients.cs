@@ -48,18 +48,27 @@ namespace BIT_DesktopApp.Models
         {
             _db = new SQLHelper();
             string sql = "SELECT" +
-                "           OrganisationName," +
-                "           FirstName," +
-                "           LastName," +
-                "       FROM" +
-                "           CLient" +
-                "       WHERE" +
-                "           OrganisationName LIKE '%" + searchText + "%'" +
-                "       AND" +
-                "           FirstName LIKE '%" + searchText + "%'" +
-                "       AND" +
-                "           LastName LIKE '% " + searchText + "%'";
-            DataTable dataTable = _db.ExecuteSQL(sql);
+                         "           C.ClientId, " +
+                         "           C.OrganisationName," +
+                         "           C.FirstName," +
+                         "           C.LastName," +
+                         "           C.Phone," +
+                         "           C.Email," +
+                         "           L.Street, " +
+                         "   L.Suburb, " +
+                         "   L.State, " + " " +
+                         "           L.Zip, " +
+                         "           L.Region" +
+                         "       FROM" +
+                         "           Client AS C," +
+                         "           Location AS L" +
+                         "       WHERE " +
+                         "           C.ClientId = L.ClientId" +
+                         "       AND " +
+                         "           AccountStatus = 'Active'" +
+                         "       AND" +
+            "                       OrganisationName LIKE '%" + searchText + "%'"; 
+                DataTable dataTable = _db.ExecuteSQL(sql);
             foreach (DataRow dr in dataTable.Rows)
             {
                 Client newClient = new Client(dr);

@@ -143,20 +143,20 @@
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-                <ComboBox d:DataContext="{d:DesignInstance Type=viewmodels:ClientViewModel}" 
-                          Text="{Binding SelectedRegion.RegionName,
+                <ComboBox 
+                          Text="{Binding NewClient.Region,
                                      ValidatesOnDataErrors=True,
                                      UpdateSourceTrigger=PropertyChanged,
                                      Mode=TwoWay}"
-                      ToolTip="{ Binding NewClint.ErrorCollection[Region]}" 
+                      ToolTip="{ Binding NewClient.ErrorCollection[Region]}" 
                      x:Name="txtRegion" 
                      Grid.Row="0" 
                      Grid.Column="3" 
                      Margin="5">
-                    <!--<ComboBoxItem>North Sydney</ComboBoxItem>
+                    <ComboBoxItem>North Sydney</ComboBoxItem>
                     <ComboBoxItem>Western Sydney</ComboBoxItem>
                     <ComboBoxItem>Eastern Sydney</ComboBoxItem>
-                    <ComboBoxItem>South Sydney</ComboBoxItem>-->
+                    <ComboBoxItem>South Sydney</ComboBoxItem>
                 </ComboBox>
 
                 <Label Content="Street : " 

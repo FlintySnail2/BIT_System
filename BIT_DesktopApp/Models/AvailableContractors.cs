@@ -40,7 +40,13 @@ namespace BIT_DesktopApp.Models
             objParams[0].Value = skillReq;
             objParams[1] = new SqlParameter("@reqCompletion", DbType.String);
             objParams[1].Value = reqCompletion;
-            
+            DataTable dt = _db.ExecuteSQL(findSql);
+            foreach (DataRow datarow in dt.Rows)
+            {
+                AvailableContractor newAvailableContractor = new AvailableContractor(datarow);
+                Add(newAvailableContractor);
+            }
+
 
         }
     }
