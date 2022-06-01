@@ -21,9 +21,7 @@ namespace BIT_DesktopApp.Models
 							from	
 								ContractSkill
 							where
-								ContractorId = @ContractorId
-							AND
-								SkillStatus = 1;";
+								ContractorId = @ContractorId";
             SqlParameter[] objParams = new SqlParameter[1];
             objParams[0] = new SqlParameter("@ContractorId", DbType.Int32);
             objParams[0].Value = contractorId;

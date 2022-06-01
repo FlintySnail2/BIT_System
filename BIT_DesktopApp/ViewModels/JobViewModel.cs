@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using BIT_DesktopApp.Logger;
 
 namespace BIT_DesktopApp.ViewModels
 {
@@ -23,9 +24,11 @@ namespace BIT_DesktopApp.ViewModels
         private JobStatus _selectedJobStatus;
         private JobStatus _jobStatus;
 
+        private AvailableContractor _selectedContractor;
         private ObservableCollection<RequestedJob> _requestedJobs;
         private ObservableCollection<RejectedJob> _rejectedJobs;
         private RequestedJob _selectedRequestedJob;
+        private RejectedJob _selectedRejectedJob;
 
         private ObservableCollection<AvailableContractor> _availableContractors;
 
@@ -33,6 +36,8 @@ namespace BIT_DesktopApp.ViewModels
         private RelayCommand _searchCommand;
         private RelayCommand _updateCommand;
         private RelayCommand _findCommand;
+        private RelayCommand _assignCommand;
+        private RelayCommand _findComandRejected;
 
         private void OnPropertyChanged(string prop)
         {
@@ -67,6 +72,9 @@ namespace BIT_DesktopApp.ViewModels
         {
             string returnValue = SelectedJob.UpdateJobStatus(SelectedJob.JobId);
             MessageBox.Show(returnValue);
+
+            string log = "Job Status Updated" + DateTime.Now;
+            LogHelper.Log(LogHelper.LogTarget.File, log); //Customised File logger
         }
 
 
@@ -107,6 +115,26 @@ namespace BIT_DesktopApp.ViewModels
         #endregion Search Method
 
         #region Assign Job
+
+        public RelayCommand assignCommand
+        {
+            get
+            {
+                if (_assignCommand == null)
+                {
+                    _assignCommand = new RelayCommand(this.AssignMethod, true);
+                }
+                return _assignCommand;
+            }
+            set { _assignCommand = value; }
+        }
+
+        public void AssignMethod()
+        {
+            string returnValue = SelectedRequestedJob.AssignJob(SelectedRequestedJob.JobId, SelectedContractor.ContractorId);
+            MessageBox.Show(returnValue);
+        }
+
         #endregion Assign Job
 
         #region FindContractor
@@ -131,10 +159,37 @@ namespace BIT_DesktopApp.ViewModels
         { 
             AvailableContractors allAvailableContractors = new AvailableContractors(SelectedRequestedJob.SkillReq, SelectedRequestedJob.RequestedCompletion);
             this.AvailableContractors = new ObservableCollection<AvailableContractor>(allAvailableContractors);
+
+            string log = "Queried Available contractors" + DateTime.Now;
+            LogHelper.Log(LogHelper.LogTarget.File, log); //Customised File logger
+        }
+
+        public RelayCommand FindCommandRejected
+        {
+            get
+            {
+                if (_findComandRejected == null)
+                {
+                    _findComandRejected = new RelayCommand(this.FindMethodRejected, true);
+
+                }
+                return _findComandRejected;
+            }
+            set { _findComandRejected = value; }
+        }
+
+
+
+        public void FindMethodRejected()
+        {
+            AvailableContractors allAvailableContractors = new AvailableContractors(SelectedRejectedJob.SkillReq, SelectedRejectedJob.RequestedCompletion);
+            this.AvailableContractors = new ObservableCollection<AvailableContractor>(allAvailableContractors);
         }
 
 
         #endregion Find Contractor
+
+
 
         #region Reassign Job
         #endregion Reassign Job
@@ -205,6 +260,15 @@ namespace BIT_DesktopApp.ViewModels
             }
         }
 
+        public RejectedJob SelectedRejectedJob
+        {
+            get { return _selectedRejectedJob; }
+            set
+            {
+                _selectedRejectedJob = value;
+                OnPropertyChanged("SelectedRejectedJob");
+            }
+        }
         #endregion Rejected Jobs
 
         #region Job Status
@@ -241,6 +305,22 @@ namespace BIT_DesktopApp.ViewModels
 
         #endregion Job Status
 
+        public AvailableContractor SelectedContractor
+        {
+            get { return _selectedContractor; }
+            set
+            {
+                _selectedContractor = value;
+                OnPropertyChanged("SelectedContractor");
+            }
+        }
+        #region Assign Job
+
+
+
+        #endregion Assign Job
+
+
         public ObservableCollection<Job> Jobs
         {
             get { return _jobs; }
@@ -265,14 +345,14 @@ namespace BIT_DesktopApp.ViewModels
             this.RequestedJobs = new ObservableCollection<RequestedJob>(allRequestedJobs);
             RejectedJobs allRejectedJobs = new RejectedJobs();
             this.RejectedJobs = new ObservableCollection<RejectedJob>(allRejectedJobs);
-            //GetJobs();
+            this.Jobs = GetJobs();
 
         }
 
-        //public virtual ObservableCollection<Job> GetJobs()
-        //{
-        //    Jobs allJobs = new Jobs();
-        //    return new ObservableCollection<Job>(allJobs);
-        //}
+        public virtual ObservableCollection<Job> GetJobs()
+        {
+            Jobs allJobs = new Jobs();
+            return new ObservableCollection<Job>(allJobs);
+        }
     }
 }

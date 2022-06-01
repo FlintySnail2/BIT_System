@@ -294,7 +294,8 @@
 
                         <DataGrid Grid.Column="0" 
                               Name="dgAvailableContractor"
-                              ItemsSource="{Binding RequestedJobs}"
+                              ItemsSource="{Binding RequestedJobs, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedItem="{Binding SelectedRequestedJob}"
                              
                               AutoGenerateColumns="False" Height="120"  RenderTransformOrigin="0.566,0.187"   Margin="10,0,10,320">
                             <DataGrid.Columns>
@@ -369,15 +370,15 @@
                             <DataGrid Grid.Column="0" 
                               Name="dgtest"
                               ItemsSource="{Binding AvailableContractors}"
-                             
-                              AutoGenerateColumns="False"  RenderTransformOrigin="0.566,0.187" Margin="10,231,10,82">
+                              SelectedItem="{Binding SelectedContractor}"
+                             AutoGenerateColumns="False"
+                              RenderTransformOrigin="0.566,0.187" Margin="10,231,10,82">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Width="*" Header="Client" Binding="{Binding OrganisationName}"/>
-                                    <DataGridTextColumn Width="*" Header="Contact Name" Binding="{Binding ContactName}"/>
-                                    <DataGridTextColumn Width="*" Header="Skill Required" Binding="{Binding SkillReq}"/>
-                                    <DataGridTextColumn Width="*" Header="Description" Binding="{Binding Description}"/>
-                                    <DataGridTextColumn Width="*" Header="Job Status" Binding="{Binding Status}"/>
-                                    <DataGridTextColumn Width="*" Header="Requested Date" Binding="{Binding ReqCompletion}"/>
+                                    <DataGridTextColumn Width="*" Header="Contractor Name" Binding="{Binding FirstName}"/>
+                                    <DataGridTextColumn Width="*" Header="Contact Name" Binding="{Binding LastName}"/>
+                                    <DataGridTextColumn Width="*" Header="Skill Required" Binding="{Binding SkillTitle}"/>
+                                    <DataGridTextColumn Width="*" Header="Requested Date" Binding="{Binding AvailabilityDate, StringFormat=dd/MM/yyyy}"/>
+                                    <DataGridTextColumn Width="*" Header="Contractor Rating" Binding="{Binding ContractorRating}"/>
                                 </DataGrid.Columns>
                             </DataGrid>
 
@@ -434,8 +435,8 @@
                                        Grid.ColumnSpan="3" 
                                        Margin="10,5,-507,0"/>
 
-                                <TextBox  Text="{Binding 
-                                    SelectedRequestedJob.RequestedCompletion, 
+                                <TextBox d:DataContext="{d:DesignInstance Type=viewmodels:ContractorViewModel}" Text="{Binding 
+                                    SelectedContractor.ContractorRating, 
                                               Mode = TwoWay}"
                                           x:Name="txtReq" 
                                           Grid.Row="0" 
@@ -443,7 +444,7 @@
                                           Margin="4,10,5,10" />
 
                                 <Button x:Name="btnAssign" 
-                                    Command="{Binding UpdateCommand}"
+                                    Command="{Binding Ass}"
                                     HorizontalAlignment="Left"
                                     Content="ASSIGN"
                                     Grid.Row="0" 
@@ -454,7 +455,7 @@
                         </Grid>
                     </Grid>
                 </TabItem>
-                <TabItem Header="ReJected Jobs" Margin="34,0,-53,0" Grid.Row="1">
+                <TabItem Header="Rejected Jobs" Margin="34,0,-53,0" Grid.Row="1">
                     <Grid>
 
                         <DataGrid Grid.Column="0" 
@@ -530,7 +531,7 @@
 
                         <DataGrid Grid.Column="0" 
                               Name="dgAvailableContractors"
-                              ItemsSource="{Binding RequestedJobs}"
+                              ItemsSource="{Binding RejectedJobs}"
                              
                               AutoGenerateColumns="False" Height="120"  RenderTransformOrigin="0.566,0.187"   Margin="10,0,10,320">
                             <DataGrid.Columns>
@@ -590,7 +591,7 @@
                                       Margin="4,10,5,10" />
 
                             <Button x:Name="btnmFnd" 
-                                    Command="{Binding FindCommand}"
+                                    Command="{Binding FindCommandRejected}"
                                     HorizontalAlignment="Right"
                                     Content="FIND"
                                     Grid.Row="0" 
@@ -641,7 +642,7 @@
                                    Margin="10,5,-90,0"/>
 
                                 <TextBox  Text="{Binding 
-                                    SelectedRequestedJob.SkillReq, 
+                                    SelectedRejectedJob.SkillReq, 
                                               Mode = TwoWay}"
                                       x:Name="txtSkmilReq" 
                                       Grid.Row="0" 
@@ -679,7 +680,7 @@
                                           Margin="4,10,5,10" />
 
                                 <Button x:Name="btmnAssign" 
-                                    Command="{Binding UpdateCommand}"
+                                    Command="{Binding UpdateAssign}"
                                     HorizontalAlignment="Left"
                                     Content="ASSIGN"
                                     Grid.Row="0" 

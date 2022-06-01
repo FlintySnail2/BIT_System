@@ -93,6 +93,7 @@
                 <ComboBox Text="{Binding SelectedAbsentSkills.Skill, 
                                                                         Mode=TwoWay ,
                                                                         UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding SelectedAbsentSkill}"
                           ItemsSource="{Binding AbsentSkills, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           DisplayMemberPath="Skill"
                           x:Name="cmbUpdateAddSkill" 
@@ -103,9 +104,9 @@
                         x:Name="btnAddSkill"
                         Command="{Binding UpdateSkill}"
                         Width="70" Height="31"
-                        Content="UPDATE" 
+                        Content="ADD" 
                         Grid.Column="1" 
-                        Margin="175,135,5,36"/>
+                        Margin="175,137,5,0" VerticalAlignment="Top"/>
 
                 <ComboBox Text="{Binding SelectedSkill.Skill, 
                                                                         Mode=TwoWay ,
@@ -124,7 +125,7 @@
                         Width="70" 
                         Height="30"
                         Command="{Binding RemoveSkill}"
-                        Content=" REMOVE" Grid.Column="1" Margin="175,180,5,60" Grid.RowSpan="2"/>
+                        Content=" DELETE" Grid.Column="1" Margin="175,180,5,60" Grid.RowSpan="2"/>
 
 
                 <!-- SKILLS MANAGEMENT -->

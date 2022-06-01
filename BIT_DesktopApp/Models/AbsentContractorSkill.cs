@@ -17,16 +17,15 @@ namespace BIT_DesktopApp.Models
         {
             SQLHelper db = new SQLHelper();
 
-            string sql = @"SELECT DISTINCT
-                                CS.SkillTitle
-                            FROM
-                               Skill AS S
-                            LEFT OUTER JOIN
-                               ContractSkill AS CS ON CS.SkillTitle = S.SkillTitle
-                            WHERE
-                                CS.ContractorId != @ContractorId";
+            string sql = @"SELECT distinct 
+                            s.SkillTitle
+                        From 
+                            Skill s where
+                            s.SkillTitle not in (select cs.SkillTitle
+                        From ContractSkill cs 
+                        where cs.ContractorId = @ContractorId)";
             SqlParameter[] objParams = new SqlParameter[1];
-            objParams[0] = new SqlParameter("@ContractorId", DbType.String);
+            objParams[0] = new SqlParameter("@ContractorId", DbType.Int32);
             objParams[0].Value = contractorId;
             DataTable dataTable = db.ExecuteSQL(sql, objParams);
             foreach (DataRow dr in dataTable.Rows)

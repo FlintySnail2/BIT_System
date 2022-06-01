@@ -99,9 +99,8 @@
 
                 <DatePicker 
                     Text="{Binding NewContractor.Dob,
-                             ValidatesOnDataErrors=True,
                              UpdateSourceTrigger=PropertyChanged,
-                             Mode=TwoWay, StringFormat= MM/dd/yyyy}"
+                             Mode=TwoWay}"
                      ToolTip="{Binding NewContractor.ErrorCollection[Dob]}" 
                      x:Name="txtDob" 
                      Grid.Row="2" 

@@ -16,6 +16,7 @@ namespace BIT_DesktopApp.Models
         private string _lastName;
         private string _skillTitle;
         private string _availabilityDate;
+        private string _contractorRating;
         public SQLHelper _db;
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string prop)
@@ -77,6 +78,15 @@ namespace BIT_DesktopApp.Models
             }
         }
 
+        public string ContractorRating
+        {
+            get { return _contractorRating; }
+            set
+            {
+                _contractorRating = value;
+                OnPropertyChanged("ContractorRating");
+            }
+        }
         public AvailableContractor()
         {
             _db = new SQLHelper();
@@ -90,6 +100,7 @@ namespace BIT_DesktopApp.Models
             LastName = dr["LastName"].ToString();
             SkillTitle = dr["SkillTitle"].ToString();
             AvailabilityDate = dr["AvailabilityDate"].ToString();
+            ContractorRating = dr["ContractorRating"].ToString();
 
         }
 

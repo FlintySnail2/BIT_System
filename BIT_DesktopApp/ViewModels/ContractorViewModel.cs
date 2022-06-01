@@ -9,6 +9,7 @@ using System.ServiceModel.Description;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using BIT_DesktopApp.Logger;
 
 namespace BIT_DesktopApp.ViewModels
 {
@@ -19,7 +20,7 @@ namespace BIT_DesktopApp.ViewModels
 
         private ObservableCollection<Contractor> _contractors;
         private ObservableCollection<ContractorSkill> _absentSkills;
-        private ContractorSkill _selectedAbsentSkills;
+        private ContractorSkill _selectedAbsentSkill;
         private Contractor _selectedContractor;
         private SystemSkill _skill;
         private ObservableCollection<ContractorSkill> _contractorSkills;
@@ -101,6 +102,11 @@ namespace BIT_DesktopApp.ViewModels
         {
             string message = SkillName.InsertSystemSkill();
             MessageBox.Show(message);
+            AbsentContractorSkill allAbsentSkills = new AbsentContractorSkill(SelectedContractor.ContractorId);
+            this.AbsentSkills = new ObservableCollection<ContractorSkill>(allAbsentSkills);
+
+            string log = "Skill Added" + DateTime.Now;
+            LogHelper.Log(LogHelper.LogTarget.File, log); //Customised File logger
         }
         #endregion Add Skill
 
@@ -124,6 +130,9 @@ namespace BIT_DesktopApp.ViewModels
         {
             string returnValue = SelectedContractor.RemoveContractor(SelectedContractor.ContractorId);
             MessageBox.Show(returnValue);
+
+            string log = "Contractor Removed" + DateTime.Now;
+            LogHelper.Log(LogHelper.LogTarget.File, log); //Customised File logger
         }
 
         #endregion Delete Mthod
@@ -147,8 +156,11 @@ namespace BIT_DesktopApp.ViewModels
 
         public void UpdateContractorSkill()
         {
-            string returnValue =  SelectedContractor.updateContractorSkills(SelectedContractor.ContractorId);
+            string returnValue =  SelectedContractor.updateContractorSkills(SelectedContractor.ContractorId, SelectedAbsentSkill.Skill );
             MessageBox.Show(returnValue);
+
+            string log = "Skill Updated" + DateTime.Now;
+            LogHelper.Log(LogHelper.LogTarget.File, log); //Customised File logger
 
         }
 
@@ -177,6 +189,9 @@ namespace BIT_DesktopApp.ViewModels
             string returnValue = SelectedContractor.RemoveContractorSkill(SelectedContractor.ContractorId, SelectedSkill.Skill );
             MessageBox.Show(returnValue);
 
+            string log = "Skill Removed" + DateTime.Now;
+            LogHelper.Log(LogHelper.LogTarget.File, log); //Customised File logger
+
         }
 
         #endregion Remove Skill
@@ -202,6 +217,9 @@ namespace BIT_DesktopApp.ViewModels
         {
             string returnValue = SelectedContractor.UpdateContractor(SelectedContractor.ContractorId);
             MessageBox.Show(returnValue);
+
+            string log = "Contractor Updated" + DateTime.Now;
+            LogHelper.Log(LogHelper.LogTarget.File, log); //Customised File logger
 
         }
 
@@ -299,13 +317,13 @@ namespace BIT_DesktopApp.ViewModels
 
         #region Absent Skill
 
-        public ContractorSkill SelectedAbsentSkills
+        public ContractorSkill SelectedAbsentSkill
         {
-            get { return _selectedAbsentSkills; }
+            get { return _selectedAbsentSkill; }
             set
             {
-                _selectedAbsentSkills = value;
-                OnPropertyChanged("SelectedAbsentSkills");
+                _selectedAbsentSkill = value;
+                OnPropertyChanged("SelectedAbsentSkill");
             }
         }
 
@@ -318,6 +336,8 @@ namespace BIT_DesktopApp.ViewModels
                 OnPropertyChanged("AbsentSkills");
             }
         }
+
+
         #endregion Absent Skill
 
         public ContractorViewModel()
@@ -329,15 +349,15 @@ namespace BIT_DesktopApp.ViewModels
             SystemSkill = new ObservableCollection<SystemSkill>(newSystemSkills);
             SkillName = new SystemSkill(); // CATCHES THE VALUE FROM THE TEXTBOX
 
-            //GetContractors();
+            this.Contractors = GetContractors();
 
         }
 
-        //public virtual ObservableCollection<Contractor> GetContractors()
-        //{
-        //    Contractors allContractors = new Contractors();
-        //    return new ObservableCollection<Contractor>(allContractors);
-        //}
+        public virtual ObservableCollection<Contractor> GetContractors()
+        {
+            Contractors allContractors = new Contractors();
+            return new ObservableCollection<Contractor>(allContractors);
+        }
 
     }
 }

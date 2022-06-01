@@ -8,6 +8,7 @@ using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using BIT_DesktopApp.Logger;
 
 namespace BIT_DesktopApp.ViewModels
 {
@@ -57,6 +58,9 @@ namespace BIT_DesktopApp.ViewModels
             SelectedClient.Region = SelectedRegion.RegionName;
             string returnValue = SelectedClient.UpdateClient(SelectedClient.ClientId);
             MessageBox.Show(returnValue);
+
+            string log = "Client Updated" + DateTime.Now;
+            LogHelper.Log(LogHelper.LogTarget.File, log); //Customised File logger
         }
 
 
@@ -125,6 +129,9 @@ namespace BIT_DesktopApp.ViewModels
             string returnValue = SelectedClient.RemoveClient(SelectedClient.ClientId);
             MessageBox.Show(returnValue);
 
+            string log = "Remove Client" + DateTime.Now;
+            LogHelper.Log(LogHelper.LogTarget.File, log); //Customised File logger
+
         }
         #endregion Delete Command
 
@@ -188,20 +195,19 @@ namespace BIT_DesktopApp.ViewModels
         public ClientViewModel()
         {
             //COMMENTED OUT AS USING MOQ
-             Clients allClients = new Clients();
-            this.Clients = new ObservableCollection<Client>(allClients);
+            this.Clients = GetClients();
 
             Regions allRegions = new Regions();
             this.Regions = new ObservableCollection<Region>(allRegions);
 
-            //GetClients();
+           
         }
 
-        //public virtual ObservableCollection<Client> GetClients()
-        //{
-        //    Clients allClients = new Clients();
-        //    return new ObservableCollection<Client>(allClients);
-        //}
+        public virtual ObservableCollection<Client> GetClients()
+        {
+            Clients allClients = new Clients();
+           return new ObservableCollection<Client>(allClients);
+        }
 
 
     }

@@ -58,7 +58,7 @@ namespace BIT_DesktopApp.Models
                         }
                         break;
                     case "Dob":
-                        if (Dob.Year == null)
+                        if (Dob.Year < 1945)
                         {
                             result = "You are to old to work here";
                         }
@@ -376,7 +376,7 @@ namespace BIT_DesktopApp.Models
 
         public string InsertContractor()
         {
-            string insertSql = "INSERT INTO " +
+            string insertSql = "SET DATEFORMAT DMY; INSERT INTO " +
                                "    Contractor(" +
                                "    FirstName," +
                                "    LastName," +
@@ -528,20 +528,19 @@ namespace BIT_DesktopApp.Models
             return "Unable to update Contractor, please try again later ";
         }
 
-        public string updateContractorSkills(int contractorId)
+        public string updateContractorSkills(int contractorId, string skillTitle)
         {
-            string updateSql = "UPDATE" +
-                               "     ContractSkill" +
-                               " SET " +
-                               "    SkillTitle = @SkillTitle," +
-                               "    SkillStatus = 1 " +
-                               " WHERE " +
-                               "    ContractorId = @ContractorId";
-            SqlParameter[] objParams = new SqlParameter[2];
+            string updateSql = "INSERT INTO ContractSkill(" +
+                               " SkillTitle," +
+                               " ContractorId)" +
+                               " VALUES(" +
+                               "    @SkillTitle," +
+                               "       @ContractorId) ";
+                               SqlParameter[] objParams = new SqlParameter[2];
             objParams[0] = new SqlParameter("@ContractorId", DbType.Int32);
             objParams[0].Value = contractorId;
             objParams[1] = new SqlParameter("@SkillTitle", DbType.String);
-            objParams[1].Value = SkillTitle;
+            objParams[1].Value = skillTitle;
             int rowsAffectedContractor = _db.ExecuteNonQuery(updateSql, objParams);
             if (rowsAffectedContractor >= 1)
             {
@@ -554,20 +553,26 @@ namespace BIT_DesktopApp.Models
 
         public string RemoveContractorSkill(int contractorId, string skill)
         {
-            string removeSql = "UPDATE" +
-                               "     ContractSkill" +
-                               " SET" +
-                               "    SkillStatus = 0" +
-                               " WHERE " +
-                               "    ContractorId = @ContractorId" +
-                               " AND " +
-                               "    SkillTitle = @SkillTitle";
+            string deleteSql = @"DELETE FROM ContractSkill
+                                         WHERE
+                                             ContractorId = @ContractorId
+                                         AND
+                                            SkillTitle = @SkillTitle";
+            
+            //string removeSql = "UPDATE" +
+            //                   "     ContractSkill" +
+            //                   " SET" +
+            //                   "    SkillStatus = 0" +
+            //                   " WHERE " +
+            //                   "    ContractorId = @ContractorId" +
+            //                   " AND " +
+            //                   "    SkillTitle = @SkillTitle";
             SqlParameter[] objParams = new SqlParameter[2];
             objParams[0] = new SqlParameter("@ContractorId", DbType.Int32);
             objParams[0].Value = contractorId;
             objParams[1] = new SqlParameter("@SkillTitle", DbType.Int32);
             objParams[1].Value = skill;
-            int rowsAffectedContractor = _db.ExecuteNonQuery(removeSql, objParams);
+            int rowsAffectedContractor = _db.ExecuteNonQuery(deleteSql, objParams);
             if (rowsAffectedContractor >= 1)
             {
                 return "Contractor Skill Successfully removed";
