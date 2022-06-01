@@ -16,12 +16,12 @@ namespace BIT_DesktopApp.Models
         public ContractorSkills(int contractorId)
         {
             SQLHelper db = new SQLHelper();
-            string sql = "SELECT" +
-                "           SkillTitle" +
-                "         FROM" +
-                "           ContractSkill" +
-                "         WHERE" +
-                "           ContractorId = @ContractorId";
+            string sql = @"select
+								SkillTitle
+							from	
+								ContractSkill
+							where
+								ContractorId = @ContractorId";
             SqlParameter[] objParams = new SqlParameter[1];
             objParams[0] = new SqlParameter("@ContractorId", DbType.Int32);
             objParams[0].Value = contractorId;

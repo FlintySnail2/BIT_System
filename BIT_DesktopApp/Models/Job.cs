@@ -16,6 +16,7 @@ namespace BIT_DesktopApp.Models
     {
         #region Private Properties
         private int _jobId;
+        private int _clientId;
         private string _organisationName; 
         private string _contactName;
         private string _contractorName;
@@ -125,6 +126,11 @@ namespace BIT_DesktopApp.Models
             set { _jobId = value; }
         }
 
+        public int ClientId
+        {
+            get { return _clientId; }
+            set { _clientId = value; }
+        }
         public string OrganisationName
         {
             get { return _organisationName; }
@@ -345,12 +351,58 @@ namespace BIT_DesktopApp.Models
 
         }
 
-        //public string InsertNewJob(int jobId)
-        //{
-        //    string sql =
-        //}
+        public string InsertNewJob()
+        {
 
-#endregion Public Methods
+            int clientId = 0;
+            Clients allClients = new Clients();
+            foreach (Client client in allClients)
+            {
+                if (client.OrganisationName == OrganisationName)
+                {
+                    clientId = client.ClientId;
+                }
+            }
+            string insertSql = @"SET DATEFORMAT DMY;
+                                    INSERT INTO JOB(
+                                                 ClientId,
+                                                 Priority,
+                                                 SkillTitle,
+                                                 Status,
+                                                 Description,
+	                                             Region)
+                                             Values(
+	                                             @ClientId,
+                                                 @Priority,
+                                                 @SkillTitle,
+                                                 'Pending',
+                                                 @Description,
+	                                             @Location);";
+            //DONT FORGET TO ADD THE REQUESTED DATE
+            SqlParameter[] objParameters =new SqlParameter[5];
+            objParameters[0] = new SqlParameter("@ClientId",DbType.Int32);
+            objParameters[0].Value = clientId;
+            //objParameters[1] = new SqlParameter("@ReqCompletion", DbType.DateTime);
+            //objParameters[1].Value = RequestedCompletion;
+            objParameters[1] = new SqlParameter("@Priority", DbType.String);
+            objParameters[1].Value = Priority;
+            objParameters[2] = new SqlParameter("@SkillTitle", DbType.String);
+            objParameters[2].Value = SkillReq;
+            objParameters[3] = new SqlParameter("@Description", DbType.String);
+            objParameters[3].Value = Description;
+            objParameters[4] = new SqlParameter("@Location",DbType.String);
+            objParameters[4].Value = Location;
+            int rowsAffected = _db.ExecuteNonQuery(insertSql, objParameters);
+            if (rowsAffected >= 1)
+            {
+                return "Job Successfully Updated";
+            }
+
+            return "Shes not gravy boys";
+
+        }
+
+        #endregion Public Methods
 
     }
 }

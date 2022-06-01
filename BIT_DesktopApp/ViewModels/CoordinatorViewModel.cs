@@ -10,27 +10,17 @@ using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using BIT_DesktopApp.Logger;
 using NLog;
 
 namespace BIT_DesktopApp.ViewModels
 {
     public class CoordinatorViewModel : INotifyPropertyChanged
     {
-        private ObservableCollection<Coordinator> _coordinators;
-       public event PropertyChangedEventHandler PropertyChanged;
-
-        public ObservableCollection<Coordinator> Coordinators
-        {
-            get { return _coordinators; }
-            set
-            {
-                _coordinators = value;
-                OnPropertyChanged("Coordinators");
-            }
-        }
-
+        
+        #region Private Properties
         private Coordinator _selectedCoordinator;
-
+        private ObservableCollection<Coordinator> _coordinators;
 
         private string _searchText;
         private RelayCommand _searchCommand;
@@ -45,6 +35,19 @@ namespace BIT_DesktopApp.ViewModels
             }
         }
 
+        #endregion Private Properties
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public ObservableCollection<Coordinator> Coordinators
+        {
+            get { return _coordinators; }
+            set
+            {
+                _coordinators = value;
+                OnPropertyChanged("Coordinators");
+            }
+        }
 
         #region Update Command
 
@@ -66,14 +69,10 @@ namespace BIT_DesktopApp.ViewModels
         {
             string returnValue = SelectedCoordinator.UpdateStaffDetails(SelectedCoordinator.StaffId);
             MessageBox.Show(returnValue);
-            //if (returnValue != null)
-            //{
-            //    MessageBox.Show("She works boys, she actually doesn't shes clapped harder than dads dome");
-            //}
-            //else
-            //{
-            //    MessageBox.Show("error");
-            //}
+
+            string message = "Update Coordinator" + DateTime.Now;
+            LogHelper.Log(LogHelper.LogTarget.File, message); //Customised File logger
+
         }
 
         #endregion Update Command
@@ -98,14 +97,9 @@ namespace BIT_DesktopApp.ViewModels
         {
             string returnValue = SelectedCoordinator.RemoveCoordinator(SelectedCoordinator.StaffId);
             MessageBox.Show(returnValue);
-            //if (returnValue > 0)
-            //{
-            //    MessageBox.Show("Coordinator has been deleted");
-            //}
-            //else
-            //{
-            //    MessageBox.Show("error ");
-            //}
+
+            string message = "Removed Coordinator" + DateTime.Now;
+            LogHelper.Log(LogHelper.LogTarget.File, message); //Customised File logger
         }
         #endregion Delete Command
 
@@ -119,7 +113,6 @@ namespace BIT_DesktopApp.ViewModels
             {
                 _searchText = value;
                 OnPropertyChanged("SearchText");
-
             }
         }
 
@@ -132,6 +125,7 @@ namespace BIT_DesktopApp.ViewModels
                     _searchCommand = new RelayCommand(this.SearchMethod, true);
 
                 }
+
                 return _searchCommand;
             }
             set { _searchCommand = value; }
@@ -145,29 +139,19 @@ namespace BIT_DesktopApp.ViewModels
         }
         #endregion Search Command
 
-
-
-
-
+        #region Selected Coordinator
         public Coordinator SelectedCoordinator
         {
             get { return _selectedCoordinator; }
             set
             {
-                _selectedCoordinator = value; 
+                _selectedCoordinator = value;
                 OnPropertyChanged("SelectedCoordinator");
             }
         }
 
-        //public Coordinator NewCoordinator
-        //{
-        //    get { return _newCoordinator; }
-        //    set
-        //    {
-        //        _newCoordinator = value; 
-        //        OnPropertyChanged("NewCoordinator");
-        //    }
-        //}
+        #endregion Selected coordinator
+
 
         public CoordinatorViewModel()
         {

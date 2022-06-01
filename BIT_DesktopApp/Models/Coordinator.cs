@@ -83,7 +83,7 @@ namespace BIT_DesktopApp.Models
 
         public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
 
-        #endregion Private Properties
+        
 
         private void OnPropertyChanged(string prop)
         {
@@ -92,6 +92,8 @@ namespace BIT_DesktopApp.Models
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
             }
         }
+
+        #endregion Private Properties
 
         #region Public Properties
 

@@ -8,13 +8,19 @@ using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using BIT_DesktopApp.Logger;
 
 namespace BIT_DesktopApp.ViewModels
 {
     public class ClientViewModel : INotifyPropertyChanged
     {
+
+        #region Private Properties
+
         private ObservableCollection<Client> _clients;
         private Client _selectedClient;
+        private ObservableCollection<Region> _regions;
+        private Region _selectedRegion;
         public event PropertyChangedEventHandler PropertyChanged;
         private string _searchText;
         private RelayCommand _searchCommand;
@@ -28,6 +34,8 @@ namespace BIT_DesktopApp.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
             }
         }
+
+        #endregion Private Properties
 
         #region Update Command
 
@@ -47,17 +55,12 @@ namespace BIT_DesktopApp.ViewModels
 
         public void UpdateMethod()
         {
+            SelectedClient.Region = SelectedRegion.RegionName;
             string returnValue = SelectedClient.UpdateClient(SelectedClient.ClientId);
             MessageBox.Show(returnValue);
-            //if (returnValue > 0)
-            //{
-            //    MessageBox.Show("Client has been updated");
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Error");
-            //}
 
+            string log = "Client Updated" + DateTime.Now;
+            LogHelper.Log(LogHelper.LogTarget.File, log); //Customised File logger
         }
 
 
@@ -126,8 +129,38 @@ namespace BIT_DesktopApp.ViewModels
             string returnValue = SelectedClient.RemoveClient(SelectedClient.ClientId);
             MessageBox.Show(returnValue);
 
+            string log = "Remove Client" + DateTime.Now;
+            LogHelper.Log(LogHelper.LogTarget.File, log); //Customised File logger
+
         }
-        #endregion Delete Command 
+        #endregion Delete Command
+
+        #region Region
+
+        public ObservableCollection<Region> Regions
+        {
+            get { return _regions; }
+            set
+            {
+                _regions = value;
+                OnPropertyChanged("Regions");
+            }
+        }
+
+        public Region SelectedRegion
+        {
+            get { return _selectedRegion; }
+            set
+            {
+                _selectedRegion = value;
+                OnPropertyChanged("SelectedRegion");
+            }
+        }
+
+
+        #endregion Region 
+
+        #region Client
 
         public ObservableCollection<Client> Clients
         {
@@ -146,22 +179,35 @@ namespace BIT_DesktopApp.ViewModels
             {
                 _selectedClient = value;
                 OnPropertyChanged("SelectedClient");
+                if (SelectedClient != null)
+                {
+                    SelectedRegion = new Region(SelectedClient.Region);
+                    
+                }
+
             }
         }
+
+        #endregion Client
+
+
 
         public ClientViewModel()
         {
             //COMMENTED OUT AS USING MOQ
-             Clients allClients = new Clients();
-            this.Clients = new ObservableCollection<Client>(allClients);
-            //GetClients();
+            this.Clients = GetClients();
+
+            Regions allRegions = new Regions();
+            this.Regions = new ObservableCollection<Region>(allRegions);
+
+           
         }
 
-        //public virtual ObservableCollection<Client> GetClients()
-        //{
-        //    Clients allClients = new Clients();
-        //    return new ObservableCollection<Client>(allClients);
-        //}
+        public virtual ObservableCollection<Client> GetClients()
+        {
+            Clients allClients = new Clients();
+           return new ObservableCollection<Client>(allClients);
+        }
 
 
     }

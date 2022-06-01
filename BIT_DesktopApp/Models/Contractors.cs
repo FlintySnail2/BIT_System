@@ -49,25 +49,29 @@ namespace BIT_DesktopApp.Models
         public Contractors(string searchText)
         {
             _db = new SQLHelper();
-            string sql = "SELECT" +
-                "               C.ContractorId," +
-                "               C.FirstName," +
-                "               C.LastName," +
-                "               C.Contractor_Rating," +
-                "               S.SkillTitle" +
+            string sql = "SELECT DISTINCT" +
+                "           C.ContractorId," +
+                "           C.FirstName," +
+                "           C.LastName, " +
+                "           c.dob," +
+                "           c.street," +
+                "           c.suburb, " +
+                "           c.state, " +
+                "           c.zip," +
+                "           c.phone," +
+                "           c.email,    " +
+                "           c.abn," +
+                "           c.licencenumber," +
+                "           c.rateofpay," +
+                "           C.ContractorRating, " +
+            "               S.SkillTitle " +
                 "           FROM" +
                 "               ContractSkill AS S," +
                 "               Contractor AS C" +
                 "           WHERE" +
                 "               S.ContractorId = C.ContractorId" +
                 "           AND     " +
-                "               C.FirstName LIKE '%" + searchText + "%' " +
-                "           AND" +
-                "               C.LastName  LIKE '%" + searchText + "%' " +
-                "           AND" +
-                "               C.ContractorRating  LIKE '%" + searchText + "%'" +
-                "           AND " +
-                "               S.SkillTitle  LIKE '%" + searchText + "%' ";
+                "               C.FirstName  LIKE '%" + searchText + "%' ";
             DataTable dataTable = _db.ExecuteSQL(sql);
             foreach (DataRow dr in dataTable.Rows)
             {

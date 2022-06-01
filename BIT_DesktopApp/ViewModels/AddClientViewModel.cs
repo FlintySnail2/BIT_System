@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using BIT_DesktopApp.Logger;
 
 namespace BIT_DesktopApp.ViewModels
 {
@@ -25,6 +26,16 @@ namespace BIT_DesktopApp.ViewModels
             }
         }
 
+        public Client NewClient
+        {
+            get { return _newClient; }
+            set
+            {
+                _newClient = value;
+                OnPropertyChanged("NewClient");
+            }
+        }
+
         #region Add Method
 
 
@@ -32,6 +43,9 @@ namespace BIT_DesktopApp.ViewModels
         {
             string message = NewClient.InsertClient();
             MessageBox.Show(message);
+
+            string log = "Client Added" + DateTime.Now;
+            LogHelper.Log(LogHelper.LogTarget.File, log); //Customised File logger
         }
 
         public RelayCommand ConfirmCommand
@@ -50,15 +64,7 @@ namespace BIT_DesktopApp.ViewModels
         #endregion Add Method
 
 
-        public Client NewClient
-        {
-            get { return _newClient; }
-            set
-            {
-                _newClient = value; 
-                OnPropertyChanged("NewClient");
-            }
-        }
+       
 
 
         public AddClientViewModel()

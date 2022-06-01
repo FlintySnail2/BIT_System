@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using BIT_DesktopApp.Logger;
 
 namespace BIT_DesktopApp.ViewModels
 {
@@ -45,6 +46,9 @@ namespace BIT_DesktopApp.ViewModels
         {
             string message = NewCoordinator.InsertCoordinator();
             MessageBox.Show(message);
+
+            string log = "Added Coordinator" + DateTime.Now;
+            LogHelper.Log(LogHelper.LogTarget.File, log); //Customised File logger
         }
 
         #endregion Add Command

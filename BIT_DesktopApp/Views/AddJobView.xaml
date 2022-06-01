@@ -3,7 +3,9 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:BIT_DesktopApp.Views" xmlns:viewmodels="clr-namespace:BIT_DesktopApp.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:AddNewJobViewModel}"
+      xmlns:local="clr-namespace:BIT_DesktopApp.Views" xmlns:viewmodels="clr-namespace:BIT_DesktopApp.ViewModels"
+      xmlns:System="clr-namespace:System;assembly=mscorlib"
+      d:DataContext="{d:DesignInstance Type=viewmodels:AddNewJobViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="1000"
       Title="AddJobView">
@@ -64,11 +66,14 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-                <ComboBox  Text="{Binding NewJob.OrganisationName,
+                <ComboBox  Text="{Binding ClientName,
                                      ValidatesOnDataErrors=True,
                                      UpdateSourceTrigger=PropertyChanged,
                                      Mode=TwoWay}"
-                      ToolTip="{Binding NewJob.ErrorCollection[ClientName]}"
+                           ItemsSource="{Binding ClientList}"
+                           SelectedItem="{Binding SelectedClient, UpdateSourceTrigger=PropertyChanged}"
+                           ToolTip="{Binding NewJob.ErrorCollection[OrganisationName]}"
+                           DisplayMemberPath="OrganisationName"
                       x:Name="txtClientName" 
                       Grid.Row="0" 
                       Grid.Column="1" 
@@ -81,11 +86,14 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-                <ComboBox Text="{Binding NewJob.SkillReq,
+                <ComboBox Text="{Binding SkillName.SkillName,
                                      ValidatesOnDataErrors=True,
                                      UpdateSourceTrigger=PropertyChanged,
                                      Mode=TwoWay}"
-                         ToolTip="{Binding NewJob.ErrorCollection[Skill]}"
+                          SelectedItem="{Binding SelectedSystemSkill}"
+                          ItemsSource="{Binding SystemSkill, UpdateSourceTrigger=PropertyChanged}"
+                          ToolTip="{Binding NewJob.ErrorCollection[SkillReq]}"
+                          DisplayMemberPath="SkillName"
                          x:Name="txtSkill" 
                          Grid.Row="1" 
                          Grid.Column="1" 
@@ -98,12 +106,9 @@
                    Foreground="#fff"/>
 
                 <ComboBox 
-                    Text="{Binding NewJob.Priority,
-                                     ValidatesOnDataErrors=True,
-                                     UpdateSourceTrigger=PropertyChanged,
-                                     Mode=TwoWay}"
-                      ToolTip="{Binding NewJob.ErrorCollection[Priority]}"
-                     x:Name="txtPriority" 
+                    SelectedItem="{Binding NewJob.Priority}"
+                    ToolTip="{Binding NewJob.ErrorCollection[Priority]}"
+                    x:Name="txtPriority" 
                      Grid.Row="2" 
                      Grid.Column="1" 
                      Margin="5,5,5,5">
@@ -117,11 +122,17 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
+                
+
+
+
                 <DatePicker
-                Text="{Binding NewJob.RequestedCompletion,
-                                     ValidatesOnDataErrors=True,
+                SelectedDate="{Binding NewJob.RequestedCompletion,
+                                    
                                      UpdateSourceTrigger=PropertyChanged,
                                      Mode=TwoWay}"
+                DisplayDateStart="{Binding Mode=OneWay, Source={x:Static System:DateTime.Today}}"
+
                 ToolTip="{Binding NewJob.ErrorCollection[RequestedCompletion]}"
                 x:Name="txtDateCreated" 
                 Grid.Row="3" 
@@ -138,13 +149,14 @@
                        Foreground="#fff"/>
 
                 <ComboBox
-                    d:DataContext="{d:DesignInstance Type=viewmodels:ClientViewModel}"
-                    Text="{Binding Client.Region,
+                    Text="{Binding RegionName,
                                      ValidatesOnDataErrors=True,
                                      UpdateSourceTrigger=PropertyChanged,
                                      Mode=TwoWay}"
-
+                    ItemsSource="{Binding RegionList, UpdateSourceTrigger=PropertyChanged }"
+                    SelectedItem="{Binding SelectedRegion, UpdateSourceTrigger=PropertyChanged}"
                     ToolTip="{Binding NewJob.ErrorCollection[RequestedCompletion]}"
+                    DisplayMemberPath="RegionName"
                     x:Name="txtRegion" 
                     Grid.Row="0" 
                     Grid.Column="3" 
@@ -155,7 +167,7 @@
                        Grid.Column="2" 
                        Foreground="#fff"/>
 
-                <TextBox Text="{Binding NewJob.Description,
+                <!--TextBox Text="{Binding NewJob.Description,
                                      ValidatesOnDataErrors=True,
                                      UpdateSourceTrigger=PropertyChanged,
                                      Mode=TwoWay}"
@@ -163,7 +175,12 @@
                          x:Name="txtJobDesc" 
                          Grid.Row="1" 
                          Grid.Column="3" 
-                         Margin="5,5,5,0" Grid.RowSpan="2" />
+                         Margin="5,5,5,0" Grid.RowSpan="2" />-->
+                <TextBox Text="{Binding NewJob.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         x:Name="txtJobDesc" 
+                         Grid.Row="1" 
+                         Grid.Column="3" 
+                         Margin="5,5,5,0" Grid.RowSpan="2"/>
 
 
 

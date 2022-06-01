@@ -22,7 +22,8 @@ namespace BIT_DesktopApp.Models
                      "  CON.FirstName," +
                      "  CON.LastName," +
                      "  CS.SkillTitle," +
-                     "  A.AvailabilityDate" +
+                     "  A.AvailabilityDate," + 
+                         "CON.ContractorRating " +
                      " FROM" +
                      "  Contractor AS CON," +
                      "  Availability AS A," +
@@ -40,7 +41,13 @@ namespace BIT_DesktopApp.Models
             objParams[0].Value = skillReq;
             objParams[1] = new SqlParameter("@reqCompletion", DbType.String);
             objParams[1].Value = reqCompletion;
-            
+            DataTable dt = _db.ExecuteSQL(findSql,objParams);
+            foreach (DataRow datarow in dt.Rows)
+            {
+                AvailableContractor newAvailableContractor = new AvailableContractor(datarow);
+                Add(newAvailableContractor);
+            }
+
 
         }
     }

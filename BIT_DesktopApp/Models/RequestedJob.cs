@@ -12,6 +12,8 @@ namespace BIT_DesktopApp.Models
 {
     public class RequestedJob: INotifyPropertyChanged
     {
+        #region Private Properties
+
         private int _jobId;
         private int _contractorId;
         private string _OrganisationName;
@@ -32,9 +34,18 @@ namespace BIT_DesktopApp.Models
             }
         }
 
+        #endregion Private Properties
+
+        #region Public Properties
+
         public int JobId
         {
-            get { return _jobId; } set { _jobId = value; }
+            get { return _jobId; }
+            set
+            {
+                _jobId = value; 
+                OnPropertyChanged("JobId");
+            }
 
         }
 
@@ -107,7 +118,7 @@ namespace BIT_DesktopApp.Models
             }
         }
 
-        public string ReqCompletion => _requestedCompletion.ToShortDateString();
+        //public string ReqCompletion => _requestedCompletion.ToShortDateString();
 
         public string ContractorRating
         {
@@ -118,6 +129,11 @@ namespace BIT_DesktopApp.Models
                 OnPropertyChanged("ContractorRating");
             }
         }
+
+        #endregion Public Properties
+
+        #region Consstructor
+
         public RequestedJob()
         {
             _db = new SQLHelper();
@@ -140,7 +156,9 @@ namespace BIT_DesktopApp.Models
 
 
 
+        #endregion Constructor
 
+        #region Public Methods
         public string FindContractor(int contractorId)
         {
             string findSQL =
@@ -160,7 +178,7 @@ namespace BIT_DesktopApp.Models
                              " AND" +
                              "  CON.ContractorId = A.ContractorId" +
                              "AND" +
-                             "  CON.ContractorId = @C";
+                             "  CON.ContractorId = @ContractorId";
             SqlParameter[] objParams  = new SqlParameter[1];
             objParams[0] = new SqlParameter("@ContractorId", DbType.Int32);
             objParams[0].Value = contractorId;
@@ -170,7 +188,35 @@ namespace BIT_DesktopApp.Models
                 return "Contractors Found";
             }
 
-            return "Derp";
+            return "There are no contractors Available";
         }
+
+        public string AssignJob(int contractorId, int jobId)
+        {
+            string assignSql = @"UPDATE
+                                    Job
+                                SET
+                                    Status = 'Assigned',
+                                    ContractorId = @ContractorId
+                                WHERE
+                                    JobId = @JobId";
+
+                                   
+            SqlParameter[] objParams = new SqlParameter[2];
+            objParams[0] = new SqlParameter("@JobId", DbType.Int32);
+            objParams[0].Value = jobId;
+            objParams[1] = new SqlParameter("@ContractorId", DbType.Int32);
+            objParams[1].Value = contractorId;
+            int rowsAffected = _db.ExecuteNonQuery(assignSql, objParams);
+            if (rowsAffected >= 1)
+            {
+                return "Job Assigned Successfully";
+            }
+
+            return "Unable to assign job, please try again later";
+
+        }
+
+        #endregion Public Methods
     }
 }

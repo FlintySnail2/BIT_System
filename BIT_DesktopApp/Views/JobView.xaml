@@ -29,11 +29,16 @@
                        Width="323" 
                        Margin="10,5,10,5"/>
 
-                <TextBox Text="{Binding SearchText,
+                <Border CornerRadius="25">
+                    <TextBox Text="{Binding SearchText,
                             UpdateSourceTrigger=PropertyChanged}"
-                     x:Name="txtSearchContractor" 
-                     Width="200"
-                     Style="{StaticResource SearchTheme}"/>
+                             x:Name="txtSearchContractor" 
+                             Width="190" Height="34"
+                             FontSize="16"
+                    />
+                </Border>
+
+
 
                 <Button     Command="{Binding SearchCommand}"
                         Content="SEARCH" 
@@ -58,6 +63,7 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
+<!-- COMPLETED JOBS -->
                         <DataGrid Grid.Column="0" 
                       Name="dgJobs" 
                       Margin="10,0,10,189"
@@ -101,7 +107,8 @@
                                           x:Name="txtOrganisationName" 
                                           Grid.Row="0" 
                                           Grid.Column="1" 
-                                          Margin="4,10,5,10" />
+                                          Margin="4,10,5,10"
+                                          IsReadOnly="True"/>
 
                             <Label Content="Contact Name : " 
                                    Grid.Row="1" 
@@ -114,12 +121,17 @@
                                       x:Name="txtContactName" 
                                       Grid.Row="1" 
                                       Grid.Column="1" 
-                                      Margin="4,10,5,10" />
+                                      Margin="4,10,5,10"
+                                      IsReadOnly="True"/>
 
                             <Label Content="Contractor : " 
                                    Grid.Row="2" 
                                    Grid.Column="0" 
-                                   Foreground="#fff" Grid.RowSpan="2" Grid.ColumnSpan="4" Margin="0,0,-507,0"/>
+                                   Foreground="#fff" 
+                                   Grid.RowSpan="2" 
+                                   Grid.ColumnSpan="4" 
+                                   Margin="0,0,-507,0"
+                                   />
 
                             <TextBox  Text="{Binding 
                                     SelectedJob.ContractorName, 
@@ -127,7 +139,8 @@
                                       x:Name="txtContractorName" 
                                       Grid.Row="2" 
                                       Grid.Column="1" 
-                                      Margin="4,10,5,10" />
+                                      Margin="4,10,5,10" 
+                                      IsReadOnly="True"/>
 
                             <!-- SECOND COLUMN -->
 
@@ -145,7 +158,8 @@
                                         UpdateSourceTrigger=PropertyChanged}"
                                       x:Name="txtStatus" 
                                       Grid.Row="0"
-                                      Grid.Column="3" Margin="4,10,5,10" />
+                                      Grid.Column="3" 
+                                      Margin="4,10,5,10" />
 
                             <Label Content="Description : " 
                                    Grid.Row="1" 
@@ -158,20 +172,26 @@
                                       x:Name="txtDescriptionName" 
                                       Grid.Row="1" 
                                       Grid.Column="3" 
-                                      Margin="4,10,5,10" />
+                                      Margin="4,10,5,10" 
+                                      IsReadOnly="True"/>
 
                             <Label Content="Completion Date : " 
                                    Grid.Row="3" 
                                    Grid.Column="2" 
-                                   Foreground="#fff" Grid.RowSpan="2" Grid.ColumnSpan="4" Margin="0,0,-507,0"/>
+                                   Foreground="#fff" 
+                                   Grid.RowSpan="2" 
+                                   Grid.ColumnSpan="4" 
+                                   Margin="0,0,-507,0"
+                                   />
 
                             <TextBox  Text="{Binding 
                                     SelectedJob.RequestedCompletion, 
-                                              Mode = TwoWay}"
+                                              Mode = TwoWay, StringFormat=dd/MM/yyyy}"
                                       x:Name="txtCompletionDate" 
                                       Grid.Row="3" 
                                       Grid.Column="3" 
-                                      Margin="4,10,5,10" />
+                                      Margin="4,10,5,10" 
+                                      IsReadOnly="True"/>
 
                         </Grid>
 
@@ -255,8 +275,8 @@
                                    Margin="10,5,-507,0"/>
 
                             <TextBox  Text="{Binding 
-                                    SelectedRequestedJob.RequestedCompletion, 
-                                              Mode = TwoWay}"
+                                    SelectedRequestedJob.ReqCompletion, 
+                                              Mode = TwoWay, StringFormat=dd/MM/yyyy}"
                                       x:Name="txtReqCompletion" 
                                       Grid.Row="0" 
                                       Grid.Column="3" 
@@ -274,7 +294,8 @@
 
                         <DataGrid Grid.Column="0" 
                               Name="dgAvailableContractor"
-                              ItemsSource="{Binding RequestedJobs}"
+                              ItemsSource="{Binding RequestedJobs, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedItem="{Binding SelectedRequestedJob}"
                              
                               AutoGenerateColumns="False" Height="120"  RenderTransformOrigin="0.566,0.187"   Margin="10,0,10,320">
                             <DataGrid.Columns>
@@ -349,15 +370,15 @@
                             <DataGrid Grid.Column="0" 
                               Name="dgtest"
                               ItemsSource="{Binding AvailableContractors}"
-                             
-                              AutoGenerateColumns="False"  RenderTransformOrigin="0.566,0.187" Margin="10,231,10,82">
+                              SelectedItem="{Binding SelectedContractor}"
+                             AutoGenerateColumns="False"
+                              RenderTransformOrigin="0.566,0.187" Margin="10,231,10,82">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Width="*" Header="Client" Binding="{Binding OrganisationName}"/>
-                                    <DataGridTextColumn Width="*" Header="Contact Name" Binding="{Binding ContactName}"/>
-                                    <DataGridTextColumn Width="*" Header="Skill Required" Binding="{Binding SkillReq}"/>
-                                    <DataGridTextColumn Width="*" Header="Description" Binding="{Binding Description}"/>
-                                    <DataGridTextColumn Width="*" Header="Job Status" Binding="{Binding Status}"/>
-                                    <DataGridTextColumn Width="*" Header="Requested Date" Binding="{Binding ReqCompletion}"/>
+                                    <DataGridTextColumn Width="*" Header="Contractor Name" Binding="{Binding FirstName}"/>
+                                    <DataGridTextColumn Width="*" Header="Contact Name" Binding="{Binding LastName}"/>
+                                    <DataGridTextColumn Width="*" Header="Skill Required" Binding="{Binding SkillTitle}"/>
+                                    <DataGridTextColumn Width="*" Header="Requested Date" Binding="{Binding AvailabilityDate, StringFormat=dd/MM/yyyy}"/>
+                                    <DataGridTextColumn Width="*" Header="Contractor Rating" Binding="{Binding ContractorRating}"/>
                                 </DataGrid.Columns>
                             </DataGrid>
 
@@ -414,8 +435,8 @@
                                        Grid.ColumnSpan="3" 
                                        Margin="10,5,-507,0"/>
 
-                                <TextBox  Text="{Binding 
-                                    SelectedRequestedJob.RequestedCompletion, 
+                                <TextBox d:DataContext="{d:DesignInstance Type=viewmodels:ContractorViewModel}" Text="{Binding 
+                                    SelectedContractor.ContractorRating, 
                                               Mode = TwoWay}"
                                           x:Name="txtReq" 
                                           Grid.Row="0" 
@@ -423,7 +444,7 @@
                                           Margin="4,10,5,10" />
 
                                 <Button x:Name="btnAssign" 
-                                    Command="{Binding UpdateCommand}"
+                                    Command="{Binding Ass}"
                                     HorizontalAlignment="Left"
                                     Content="ASSIGN"
                                     Grid.Row="0" 
@@ -433,6 +454,244 @@
                             </Grid>
                         </Grid>
                     </Grid>
+                </TabItem>
+                <TabItem Header="Rejected Jobs" Margin="34,0,-53,0" Grid.Row="1">
+                    <Grid>
+
+                        <DataGrid Grid.Column="0" 
+                              Name="dgRejectedjobs"
+                              ItemsSource="{Binding RejectedJobs, Mode=TwoWay}" 
+                              SelectedItem="{Binding SelectedRequestedJob, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                              AutoGenerateColumns="False" Height="120"  RenderTransformOrigin="0.566,0.187"   Margin="10,0,10,320">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Width="*" Header="Client" Binding="{Binding OrganisationName}"/>
+                                <DataGridTextColumn Width="*" Header="Contact Name" Binding="{Binding ContactName}"/>
+                                <DataGridTextColumn Width="*" Header="Skill Required" Binding="{Binding SkillReq}"/>
+                                <DataGridTextColumn Width="*" Header="Description" Binding="{Binding Description}"/>
+                                <DataGridTextColumn Width="*" Header="Job Status" Binding="{Binding Status}"/>
+                                <DataGridTextColumn Width="*" Header="Requested Date" Binding="{Binding ReqCompletion}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <Grid VerticalAlignment="Top" Margin="10,150,10,0" Height="40">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!--First Two Column data -->
+
+                            <Label Content="Skill Required : " 
+                                   Grid.Row="0" 
+                                   Grid.Column="0" 
+                                   Foreground="#fff" 
+                                   Grid.RowSpan="2" 
+                                   Grid.ColumnSpan="4" 
+                                   Margin="10,5,-507,0"/>
+
+                            <TextBox  Text="{Binding 
+                                    SelectedRequestedJob.SkillReq, 
+                                              Mode = TwoWay}"
+                                      x:Name="txtSksillReq" 
+                                      Grid.Row="0" 
+                                      Grid.Column="1" 
+                                      Margin="4,10,5,10" />
+
+                            <Label Content="Requested Completion : " 
+                                   Grid.Row="0" 
+                                   Grid.Column="2" 
+                                   Foreground="#fff" 
+                                   Grid.RowSpan="2" 
+                                   Grid.ColumnSpan="4" 
+                                   Margin="10,5,-507,0"/>
+
+                            <TextBox  Text="{Binding 
+                                    SelectedRequestedJob.RequestedCompletion, 
+                                              Mode = TwoWay}"
+                                      x:Name="txtReqCsmpletion" 
+                                      Grid.Row="0" 
+                                      Grid.Column="3" 
+                                      Margin="4,10,5,10" />
+
+                            <Button x:Name="btsnFind" 
+                                    Command="{Binding UpdateCommand}"
+                                    HorizontalAlignment="Right"
+                                    Content="FIND"
+                                    Grid.Row="0" 
+                                    Grid.Column="4" 
+                                    Width="150" Height="30" />
+
+                        </Grid>
+
+                        <DataGrid Grid.Column="0" 
+                              Name="dgAvailableContractors"
+                              ItemsSource="{Binding RejectedJobs}"
+                             
+                              AutoGenerateColumns="False" Height="120"  RenderTransformOrigin="0.566,0.187"   Margin="10,0,10,320">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Width="*" Header="Client" Binding="{Binding OrganisationName}"/>
+                                <DataGridTextColumn Width="*" Header="Contact Name" Binding="{Binding ContactName}"/>
+                                <DataGridTextColumn Width="*" Header="Skill Required" Binding="{Binding SkillReq}"/>
+                                <DataGridTextColumn Width="*" Header="Description" Binding="{Binding Description}"/>
+                                <DataGridTextColumn Width="*" Header="Job Status" Binding="{Binding Status}"/>
+                                <DataGridTextColumn Width="*" Header="Requested Date" Binding="{Binding ReqCompletion}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <Grid VerticalAlignment="Top" Margin="10,150,10,0" Height="40">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!--First Two Column data -->
+
+                            <Label Content="Skill Required : " 
+                                   Grid.Row="0" 
+                                   Grid.Column="0" 
+                                   Foreground="#fff" 
+                                   Grid.RowSpan="2" 
+                                   Grid.ColumnSpan="4" 
+                                   Margin="10,5,-507,0"/>
+
+                            <TextBox  Text="{Binding 
+                                    SelectedRequestedJob.SkillReq, 
+                                              Mode = TwoWay}"
+                                      x:Name="txtSkilllReq" 
+                                      Grid.Row="0" 
+                                      Grid.Column="1" 
+                                      Margin="4,10,5,10" />
+
+                            <Label Content="Requested Completion : " 
+                                   Grid.Row="0" 
+                                   Grid.Column="2" 
+                                   Foreground="#fff" 
+                                   Grid.RowSpan="2" 
+                                   Grid.ColumnSpan="4" 
+                                   Margin="10,5,-507,0"/>
+
+                            <TextBox  Text="{Binding 
+                                    SelectedRequestedJob.RequestedCompletion, 
+                                              Mode = TwoWay}"
+                                      x:Name="txtReqComplemtn" 
+                                      Grid.Row="0" 
+                                      Grid.Column="3" 
+                                      Margin="4,10,5,10" />
+
+                            <Button x:Name="btnmFnd" 
+                                    Command="{Binding FindCommandRejected}"
+                                    HorizontalAlignment="Right"
+                                    Content="FIND"
+                                    Grid.Row="0" 
+                                    Grid.Column="4" 
+                                    Width="150" Height="30" />
+                        </Grid>
+                        <Grid>
+
+
+
+
+                            <DataGrid Grid.Column="0" 
+                              Name="dgmtest"
+                              ItemsSource="{Binding AvailableContractors}"
+                             
+                              AutoGenerateColumns="False"  RenderTransformOrigin="0.566,0.187" Margin="10,231,10,82">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Width="*" Header="Client" Binding="{Binding OrganisationName}"/>
+                                    <DataGridTextColumn Width="*" Header="Contact Name" Binding="{Binding ContactName}"/>
+                                    <DataGridTextColumn Width="*" Header="Skill Required" Binding="{Binding SkillReq}"/>
+                                    <DataGridTextColumn Width="*" Header="Description" Binding="{Binding Description}"/>
+                                    <DataGridTextColumn Width="*" Header="Job Status" Binding="{Binding Status}"/>
+                                    <DataGridTextColumn Width="*" Header="Requested Date" Binding="{Binding ReqCompletion}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+
+                            <Grid VerticalAlignment="Top" Margin="10,400,10,0" Height="40">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="127*" />
+                                    <ColumnDefinition Width="151*" />
+                                    <ColumnDefinition Width="139*" />
+                                    <ColumnDefinition Width="139*"/>
+                                    <ColumnDefinition Width="139*"/>
+                                    <ColumnDefinition Width="126*"/>
+                                    <ColumnDefinition Width="152*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!--First Two Column data -->
+
+                                <Label Content="Skill Required : " 
+                                   Grid.Row="0" 
+                                   Grid.Column="0" 
+                                   Foreground="#fff" 
+                                   Grid.ColumnSpan="7" 
+                                   Margin="10,5,-90,0"/>
+
+                                <TextBox  Text="{Binding 
+                                    SelectedRejectedJob.SkillReq, 
+                                              Mode = TwoWay}"
+                                      x:Name="txtSkmilReq" 
+                                      Grid.Row="0" 
+                                      Grid.Column="1" 
+                                      Margin="4,10,5,10" />
+
+                                <Label Content="Requested Completion : " 
+                                   Grid.Row="0" 
+                                   Grid.Column="2" 
+                                   Foreground="#fff" 
+                                   Grid.ColumnSpan="5" 
+                                   Margin="10,5,-360,0"/>
+
+                                <TextBox  Text="{Binding 
+                                    SelectedRequestedJob.RequestedCompletion, 
+                                              Mode = TwoWay}"
+                                      x:Name="txtAvaill" 
+                                      Grid.Row="0" 
+                                      Grid.Column="3" 
+                                      Margin="4,10,5,10" />
+
+                                <Label Content="Contractor Rating : " 
+                                       Grid.Row="0" 
+                                       Grid.Column="4" 
+                                       Foreground="#fff" 
+                                       Grid.ColumnSpan="3" 
+                                       Margin="10,5,-507,0"/>
+
+                                <TextBox  Text="{Binding 
+                                    SelectedRequestedJob.RequestedCompletion, 
+                                              Mode = TwoWay}"
+                                          x:Name="txtRmeq" 
+                                          Grid.Row="0" 
+                                          Grid.Column="5" 
+                                          Margin="4,10,5,10" />
+
+                                <Button x:Name="btmnAssign" 
+                                    Command="{Binding UpdateAssign}"
+                                    HorizontalAlignment="Left"
+                                    Content="ASSIGN"
+                                    Grid.Row="0" 
+                                    Grid.Column="6" 
+                                    Width="150" Margin="2,5,0,5" />
+
+                            </Grid>
+                        </Grid>
+                    </Grid>
+
+
                 </TabItem>
             </TabControl>
         </Grid>

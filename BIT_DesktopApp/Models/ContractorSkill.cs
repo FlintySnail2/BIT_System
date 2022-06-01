@@ -24,8 +24,6 @@ namespace BIT_DesktopApp.Models
         {
             get
             {
-
-                //SILLY USE SWITCH FOR ONE CASE ???
                 string result = null;
                 switch (propertyName)
                 {
@@ -44,6 +42,7 @@ namespace BIT_DesktopApp.Models
                 return result;
             }
         }
+
         private void OnPropertyChanged(string prop)
         {
             if (PropertyChanged != null)
@@ -51,6 +50,8 @@ namespace BIT_DesktopApp.Models
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
             }
         }
+
+        public int ContractorId { get { return _contractorId; } }
         public string Skill
         {
             get { return _skill; }
@@ -74,49 +75,13 @@ namespace BIT_DesktopApp.Models
             Skill = dr["SkillTitle"].ToString();
         }
 
+        public ContractorSkill(string contractSkill)
+        {
+            this.Skill = contractSkill;
+        }
+
         #endregion Constructor
 
-        #region Public Methods
-
-        public int InsertNewSkill(int contractorId)
-        {
-            int returnValue = 0;
-            string sql = "INSERT INTO" +
-                "               Skill" +
-                "         VALUES(" +
-                "               @ContractorId, @Skill ";
-            SqlParameter[] objParams = new SqlParameter[2];
-            objParams[0] = new SqlParameter("@ContractorId", DbType.Int32);
-            objParams[0].Value = contractorId;
-            objParams[1] = new SqlParameter("Skill", DbType.String);
-            objParams[1].Value = this.Skill;
-            returnValue = _db.ExecuteNonQuery(sql, objParams);
-            return returnValue;
-
-            
-
-        }
-
-        public int DeleteSkill(int contractorId)
-        {
-            int returnValue = 0;
-            string sql = "DELETE FROM" +
-                "               Contract_Skill" +
-                "         WHERE" +
-                "               ContractorId = @ContractorId" +
-                "         AND   " +
-                "               Skill_Title = @Skill";
-            SqlParameter[] objParams = new SqlParameter[2];
-            objParams[0] = new SqlParameter("@ContractorId", DbType.Int32);
-            objParams[0].Value = contractorId;
-            objParams[1] = new SqlParameter("@Skill", DbType.String);
-            objParams[1].Value= this.Skill;
-            returnValue = _db.ExecuteNonQuery(sql, objParams);
-            return returnValue;
-
-        }
-
-        #endregion Public Methods
 
     }
 }
