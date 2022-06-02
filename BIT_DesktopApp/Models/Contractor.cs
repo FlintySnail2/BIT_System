@@ -58,9 +58,9 @@ namespace BIT_DesktopApp.Models
                         }
                         break;
                     case "Dob":
-                        if (Dob.Year < 1945)
+                        if (Dob == DateTime.MinValue )
                         {
-                            result = "You are to old to work here";
+                            result = "Field Cannot be null";
                         }
                         break;
                     case "Phone":
@@ -102,7 +102,7 @@ namespace BIT_DesktopApp.Models
                         break;
 
                     case "RateOfPay":
-                        if (decimal.TryParse(result, out decimal success))
+                        if (RateOfPay.Equals(null))
                         {
                             result = "field cannot be empty";
                         }

@@ -47,7 +47,7 @@ namespace BitTest
         {
             ContractorViewModel contractorVM = new ContractorViewModel();
             int count = contractorVM.Contractors.Count;
-            Assert.AreEqual(4, count);
+            Assert.AreEqual(3, count);
         }
 
         [TestMethod]
@@ -97,7 +97,7 @@ namespace BitTest
             Mock<ContractorViewModel> mockContractorVM = new Mock<ContractorViewModel>();
             mockContractorVM.Setup(mc => mc.GetContractors()).Returns(mockContractors);
             int count = mockContractorVM.Object.GetContractors().Count;
-            Assert.AreEqual(4, count);
+            Assert.AreEqual(3, count);
         }
     }
 }

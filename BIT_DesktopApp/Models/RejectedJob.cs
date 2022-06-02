@@ -114,5 +114,5 @@ namespace BIT_DesktopApp.Models
             return "Unable to assign job, please try again later";
 
         }
-        }
     }
+}

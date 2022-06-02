@@ -98,14 +98,14 @@
                    Foreground="#fff"/>
 
                 <DatePicker 
-                    Text="{Binding NewContractor.Dob,
-                             UpdateSourceTrigger=PropertyChanged,
-                             Mode=TwoWay}"
+                    SelectedDate="{Binding NewContractor.Dob, 
+                                    UpdateSourceTrigger=PropertyChanged, 
+                                    Mode=TwoWay}"
                      ToolTip="{Binding NewContractor.ErrorCollection[Dob]}" 
                      x:Name="txtDob" 
                      Grid.Row="2" 
                      Grid.Column="1" 
-                     Margin="5" />
+                     Margin="10" />
 
                 <Label Content="Phone : "
                        Grid.Row="3" 
@@ -180,26 +180,12 @@
                              ValidatesOnDataErrors=True,
                              UpdateSourceTrigger=PropertyChanged,
                              Mode=TwoWay}"
-                         ToolTip="{Binding NewContractor.ErrorCollection[Abn]}" 
+                         ToolTip="{Binding NewContractor.ErrorCollection[ABN]}" 
                          x:Name="txtAbn" 
                          Grid.Row="0" 
                          Grid.Column="3" 
                          Margin="5" />
 
-                <!--<Label Content="Skill : "
-                       Grid.Row="1" 
-                       Grid.Column="2" 
-                       Foreground="#fff"/>
-
-                <TextBox Text="{Binding NewContractor.SkillTitle,
-                             ValidatesOnDataErrors=True,
-                             UpdateSourceTrigger=PropertyChanged,
-                             Mode=TwoWay}"
-                      ToolTip="{Binding NewContractor.ErrorCollection[Skill]}" 
-                     x:Name="txtSkill" 
-                     Grid.Row="1" 
-                     Grid.Column="3" 
-                     Margin="5" />-->
 
                 <Label Content="Pay Rate : "
                    Grid.Row="1" 
@@ -207,7 +193,10 @@
                    Foreground="#fff"/>
 
                 <TextBox 
-                     Text="{Binding NewContractor.RateOfPay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                     Text="{Binding NewContractor.RateOfPay, 
+                            ValidatesOnDataErrors=True, 
+                            UpdateSourceTrigger=PropertyChanged, 
+                            Mode=TwoWay}"
                      ToolTip="{Binding NewContractor.ErrorCollection[RateOfPay]}"
                      x:Name="txtPayRate" 
                      Grid.Row="1" 
@@ -215,7 +204,7 @@
                      Margin="5" />
 
                 <Label Content="Street : " 
-                   Grid.Row="3" 
+                   Grid.Row="2" 
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
@@ -225,12 +214,12 @@
                              Mode=TwoWay}"
                       ToolTip="{Binding NewContractor.ErrorCollection[Street]}" 
                      x:Name="txtStreet" 
-                     Grid.Row="3" 
+                     Grid.Row="2" 
                      Grid.Column="3" 
                      Margin="5"/>
 
                 <Label Content="Suburb : " 
-                   Grid.Row="4" 
+                   Grid.Row="3" 
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
@@ -240,40 +229,42 @@
                              Mode=TwoWay}"
                       ToolTip="{Binding NewContractor.ErrorCollection[Suburb]}" 
                      x:Name="txtSuburb" 
-                     Grid.Row="4" 
+                     Grid.Row="3" 
                      Grid.Column="3" 
                      Margin="5"/>
 
                 <Label Content="State : " 
-                   Grid.Row="5" 
+                   Grid.Row="4" 
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-                <TextBox Text="{Binding NewContractor.State,
+                <ComboBox Text="{Binding NewContractor.State,
                              ValidatesOnDataErrors=True,
                              UpdateSourceTrigger=PropertyChanged,
                              Mode=TwoWay}"
                       ToolTip="{Binding NewContractor.ErrorCollection[State]}" 
                      
                      x:Name="txtState" 
-                     Grid.Row="5" 
+                     Grid.Row="4" 
                      Grid.Column="3" 
-                     Margin="5" />
+                     Margin="5" >
+                    <ComboBoxItem>NSW</ComboBoxItem>
+                </ComboBox>
 
                 <Label 
                    Content="Zip : " 
-                   Grid.Row="6" 
+                   Grid.Row="5" 
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
                 <TextBox 
                      Text="{Binding NewContractor.Zip,
-                             ValidatesOnDataErrors=True,
-                             UpdateSourceTrigger=PropertyChanged,
-                             Mode=TwoWay}"
+                            ValidatesOnDataErrors=True,
+                            UpdateSourceTrigger=PropertyChanged,
+                            Mode=TwoWay}"
                       ToolTip="{Binding NewContractor.ErrorCollection[Zip]}" 
                      x:Name="txtZip" 
-                     Grid.Row="6" 
+                     Grid.Row="5" 
                      Grid.Column="3" 
                      Margin="5" />
 

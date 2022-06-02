@@ -29,7 +29,10 @@ namespace BIT_DesktopApp.Models
                         {
                             result = "Field cannot be empty ";
                         }
+                        
                         break;
+                       
+
                 }
                 if (result != null && !ErrorCollection.ContainsKey(propertyName))
                 {

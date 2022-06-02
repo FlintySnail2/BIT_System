@@ -364,7 +364,7 @@ namespace BIT_DesktopApp.Models
                 }
             }
 
-            string insertSql = @"SET DATEFORMAT DMY;
+            string insertSql = @"
                                     INSERT INTO JOB(
                                                  ClientId,
                                                  Priority,

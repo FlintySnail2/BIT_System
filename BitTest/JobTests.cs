@@ -40,7 +40,7 @@ namespace BitTest
         {
             JobViewModel jobVM = new JobViewModel();
             int count = jobVM.Jobs.Count;
-            Assert.AreEqual(4, count);
+            Assert.AreEqual(2, count);
         }
 
         [TestMethod]

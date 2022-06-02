@@ -47,7 +47,7 @@ namespace BIT_DesktopApp.Models
                         }
                         break;
                     case "Dob":
-                        if (Dob.Year <= 1950 )
+                        if (Dob.Year < 1950 )
                         {
                             result = "You are too old to work here";
                         }

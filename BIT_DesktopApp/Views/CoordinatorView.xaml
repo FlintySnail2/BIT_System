@@ -111,7 +111,7 @@
                        Grid.Column="0" 
                        Foreground="#fff"/>
 
-                <TextBox Text="{Binding SelectedCoordinator.LastName}"
+                <TextBox Text="{Binding SelectedCoordinator.LastName, Mode=TwoWay}"
                          x:Name="txtLastName" 
                          Grid.Row="1" 
                          Grid.Column="1" 
@@ -122,7 +122,7 @@
                        Grid.Column="0" 
                        Foreground="#fff"/>
 
-                <TextBox Text="{Binding SelectedCoordinator.Phone}"
+                <TextBox Text="{Binding SelectedCoordinator.Phone, Mode=TwoWay}"
                          x:Name="txtPhone" 
                          Grid.Row="2" 
                          Grid.Column="1" 
@@ -136,7 +136,8 @@
                        Foreground="#fff" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="0,0,5,0"/>
 
                 <DatePicker 
-                            Text="{Binding SelectedCoordinator.Dob}"
+                    
+                            SelectedDate="{Binding SelectedCoordinator.Dob,  Mode=TwoWay}"
                             x:Name="txtDob" 
                             Grid.Row="0" 
                             Grid.Column="3" 
@@ -147,7 +148,7 @@
                        Grid.Column="2"
                        Foreground="#fff" Grid.ColumnSpan="2"/>
 
-                <TextBox Text="{Binding SelectedCoordinator.Email}"
+                <TextBox Text="{Binding SelectedCoordinator.Email, Mode=TwoWay}"
                          x:Name="txtEmail" 
                          Grid.Row="1" 
                          Grid.Column="3" 
@@ -158,7 +159,7 @@
                        Grid.Column="2"
                        Foreground="#fff" Grid.ColumnSpan="2"/>
 
-                <TextBox Text="{Binding SelectedCoordinator.Password}"
+                <TextBox Text="{Binding SelectedCoordinator.Password, Mode=TwoWay}"
                          x:Name="txtPassword" 
                          Grid.Row="2" 
                          Grid.Column="3" 

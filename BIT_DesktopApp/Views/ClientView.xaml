@@ -188,7 +188,7 @@
                    Foreground="#fff"/>
 
             <TextBox Text="{Binding SelectedClient.State, Mode=TwoWay}"
-                     x:Name="txtState" 
+                      x:Name="txtState" 
                      Grid.Row="2" 
                      Grid.Column="3" 
                      Margin="5"/>

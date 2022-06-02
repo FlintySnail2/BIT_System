@@ -106,7 +106,8 @@
                    Foreground="#fff"/>
 
                 <ComboBox 
-                    SelectedItem="{Binding NewJob.Priority}"
+                    SelectedItem="{Binding NewJob.Priority,
+                                    Mode=TwoWay}"
                     ToolTip="{Binding NewJob.ErrorCollection[Priority]}"
                     x:Name="txtPriority" 
                      Grid.Row="2" 
@@ -124,11 +125,9 @@
 
                 <DatePicker
                 SelectedDate="{Binding NewJob.RequestedCompletion,
-                                    
                                      UpdateSourceTrigger=PropertyChanged,
                                      Mode=TwoWay}"
-                DisplayDateStart="{Binding Mode=OneWay, Source={x:Static System:DateTime.Today}}"
-
+                SelectedDateFormat="Short"
                 ToolTip="{Binding NewJob.ErrorCollection[RequestedCompletion]}"
                 x:Name="txtDateCreated" 
                 Grid.Row="3" 
@@ -142,18 +141,14 @@
 
                 <DatePicker
                 SelectedDate="{Binding NewJob.RequestedCompletion,
-                                    
                                      UpdateSourceTrigger=PropertyChanged,
                                      Mode=TwoWay}"
-                
-
                 ToolTip="{Binding NewJob.ErrorCollection[RequestedCompletion]}"
+                SelectedDateFormat="Short"
                 x:Name="txtReqServiceDate" 
                 Grid.Row="3" 
                 Grid.Column="1" 
-                Margin="5,5,5,5"/>
-
-
+                Margin="5"/>
 
                 <!--Second column of data -->
 
@@ -164,16 +159,13 @@
 
                 <DatePicker
                 SelectedDate="{Binding NewJob.RequestedStartDate,
-                                    
                                      UpdateSourceTrigger=PropertyChanged,
                                      Mode=TwoWay}"
-                
-
                 ToolTip="{Binding NewJob.ErrorCollection[RequestedCompletion]}"
                 x:Name="txtRequestedCompletion" 
                 Grid.Row="0" 
                 Grid.Column="3" 
-                Margin="5,5,5,5"/>
+                Margin="5"/>
 
                 <Label Content="Requested Service Date : "
                        Grid.Row="3" 
@@ -181,8 +173,8 @@
                        Foreground="#fff"/>
 
                 <Label Content="Region : "
-                       Grid.Row="3" 
-                       Grid.Column="3" 
+                       Grid.Row="1" 
+                       Grid.Column="2" 
                        Foreground="#fff"/>
 
                 <TextBox
@@ -190,9 +182,7 @@
                                      ValidatesOnDataErrors=True,
                                      UpdateSourceTrigger=PropertyChanged,
                                      Mode=TwoWay}"
-                    
-                    ToolTip="{Binding NewJob.ErrorCollection[RequestedCompletion]}"
-                    
+                    ToolTip="{Binding NewJob.ErrorCollection[RegionName]}"
                     x:Name="txtRegion" 
                     IsReadOnly="True"
                     Grid.Row="1" 
@@ -204,16 +194,11 @@
                        Grid.Column="2" 
                        Foreground="#fff"/>
 
-                <!--TextBox Text="{Binding NewJob.Description,
-                                     ValidatesOnDataErrors=True,
-                                     UpdateSourceTrigger=PropertyChanged,
-                                     Mode=TwoWay}"
-                         ToolTip="{Binding NewJob.ErrorCollection[JobDescription]}"
-                         x:Name="txtJobDesc" 
-                         Grid.Row="1" 
-                         Grid.Column="3" 
-                         Margin="5,5,5,0" Grid.RowSpan="2" />-->
-                <TextBox Text="{Binding NewJob.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                <TextBox Text="{Binding NewJob.Description,
+                                ValidatesOnDataErrors=true,
+                                Mode=TwoWay,
+                                UpdateSourceTrigger=PropertyChanged}"
+                         ToolTip="{Binding NewJob.ErrorCollection[Description]}"
                          x:Name="txtJobDesc" 
                          Grid.Row="2" 
                          Grid.Column="3" 

@@ -87,7 +87,7 @@
                      ToolTip="{Binding NewCoordinator.ErrorCollection[Dob]}" 
                      Grid.Row="2" 
                      Grid.Column="1" 
-                     Margin="5,10,5,20" />
+                     Margin="0,15" />
 
                 <!--Second column of data -->
 

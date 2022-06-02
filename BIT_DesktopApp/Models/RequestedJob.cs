@@ -218,32 +218,6 @@ namespace BIT_DesktopApp.Models
 
         }
 
-        public string ReassignJob(int jobId, int contractorId)
-        {
-            string assignSql = @"UPDATE
-                                    Job
-                                SET
-                                    Status = 'Assigned',
-                                    ContractorId = @ContractorId
-                                WHERE
-                                    JobId = @JobId";
-
-
-            SqlParameter[] objParams = new SqlParameter[2];
-            objParams[0] = new SqlParameter("@JobId", DbType.Int32);
-            objParams[0].Value = jobId;
-            objParams[1] = new SqlParameter("@ContractorId", DbType.Int32);
-            objParams[1].Value = contractorId;
-            int rowsAffected = _db.ExecuteNonQuery(assignSql, objParams);
-            if (rowsAffected >= 1)
-            {
-                return "Job Assigned Successfully";
-            }
-
-            return "Unable to assign job, please try again later";
-
-        }
-
         #endregion Public Methods
     }
 }

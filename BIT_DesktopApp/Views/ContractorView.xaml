@@ -90,11 +90,10 @@
                     </DataGrid.Columns>
                 </DataGrid>
 
-                <ComboBox Text="{Binding SelectedAbsentSkills.Skill, 
-                                                                        Mode=TwoWay ,
-                                                                        UpdateSourceTrigger=PropertyChanged}"
+                <ComboBox Text="{Binding SelectedAbsentSkill.Skill, Mode=TwoWay ,UpdateSourceTrigger=PropertyChanged}"
                           SelectedItem="{Binding SelectedAbsentSkill}"
                           ItemsSource="{Binding AbsentSkills, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          ToolTip="{Binding SelectedAbsentSkill.ErrorCollection[Skill]}"
                           DisplayMemberPath="Skill"
                           x:Name="cmbUpdateAddSkill" 
                          Height="31" 
@@ -108,12 +107,8 @@
                         Grid.Column="1" 
                         Margin="175,137,5,0" VerticalAlignment="Top"/>
 
-                <ComboBox Text="{Binding SelectedSkill.Skill, 
-                                                                        Mode=TwoWay ,
-                                                                        UpdateSourceTrigger=PropertyChanged}"
-                          ItemsSource="{Binding ContractorSkills,
-                                                                        Mode=TwoWay,
-                                                                        UpdateSourceTrigger=PropertyChanged}"
+                <ComboBox Text="{Binding SelectedSkill.Skill, Mode=TwoWay ,UpdateSourceTrigger=PropertyChanged}"
+                          ItemsSource="{Binding ContractorSkills, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           DisplayMemberPath="Skill"
                           x:Name="cmbBoxRemove" 
                           Height="31" 
@@ -145,11 +140,14 @@
                 <Button x:Name="btnAddSystemSkill"
                         Command="{Binding AddSkillCommand}"
                         Width="70" Height="31"
-                        Content="ADD" Grid.Column="1" Margin="175,253,5,-215" Grid.Row="1"/>
+                        Content="ADD" Grid.Column="1" 
+                        Margin="175,253,5,-215" 
+                        Grid.Row="1"
+                        FontSize="16"/>
 
                 <TextBox Text="{Binding SkillName.SkillName, 
-                                                                ValidatesOnDataErrors=True, 
-                                                            UpdateSourceTrigger=PropertyChanged}"
+                                ValidatesOnDataErrors=True, 
+                                UpdateSourceTrigger=PropertyChanged}"
                          ToolTip="{Binding SkillName.ErrorCollection[SkillName]}"
                          x:Name="TxtSystemSkill" 
                           Height="31" 
@@ -205,11 +203,12 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-                <DatePicker Text="{Binding SelectedContractor.Dob, StringFormat=dd/MM/yyyy, Mode=TwoWay}"
-                     x:Name="txtDob" 
+                <DatePicker 
+                            SelectedDate="{Binding SelectedContractor.Dob, StringFormat=dd/MM/yyyy, Mode=TwoWay}"
+                            x:Name="txtDob" 
                      Grid.Row="2" 
                      Grid.Column="1" 
-                     Margin="5,5,5,0" />
+                     Margin="5" />
 
                 <Label Content="Email : " 
                    Grid.Row="3" 
