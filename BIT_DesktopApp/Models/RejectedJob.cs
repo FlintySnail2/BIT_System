@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -87,5 +88,31 @@ namespace BIT_DesktopApp.Models
             RequestedCompletion = Convert.ToDateTime(dr["RequestedCompletion"].ToString());
 
         }
+
+        public string ReassignJob(int jobId, int contractorId)
+        {
+            string assignSql = @"UPDATE
+                                    Job
+                                SET
+                                    Status = 'Assigned',
+                                    ContractorId = @ContractorId
+                                WHERE
+                                    JobId = @JobId";
+
+
+            SqlParameter[] objParams = new SqlParameter[2];
+            objParams[0] = new SqlParameter("@JobId", DbType.Int32);
+            objParams[0].Value = jobId;
+            objParams[1] = new SqlParameter("@ContractorId", DbType.Int32);
+            objParams[1].Value = contractorId;
+            int rowsAffected = _db.ExecuteNonQuery(assignSql, objParams);
+            if (rowsAffected >= 1)
+            {
+                return "Job Assigned Successfully";
+            }
+
+            return "Unable to assign job, please try again later";
+
+        }
+        }
     }
-}

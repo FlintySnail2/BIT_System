@@ -182,7 +182,7 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-                <TextBox Text="{Binding SelectedContractor.FirstName}"
+                <TextBox Text="{Binding SelectedContractor.FirstName, Mode=TwoWay}"
                      x:Name="txtFirstName" 
                      Grid.Row="0" 
                      Grid.Column="1" 
@@ -193,7 +193,7 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-                <TextBox Text="{Binding SelectedContractor.LastName}"
+                <TextBox Text="{Binding SelectedContractor.LastName, Mode=TwoWay}"
                      x:Name="txtLastName"
                      Grid.Row="1" 
                      Grid.Column="1" 
@@ -205,7 +205,7 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-                <DatePicker Text="{Binding SelectedContractor.Dob, StringFormat=dd/MM/yyyy}"
+                <DatePicker Text="{Binding SelectedContractor.Dob, StringFormat=dd/MM/yyyy, Mode=TwoWay}"
                      x:Name="txtDob" 
                      Grid.Row="2" 
                      Grid.Column="1" 
@@ -216,7 +216,7 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-                <TextBox Text="{Binding SelectedContractor.Email}"
+                <TextBox Text="{Binding SelectedContractor.Email, Mode=TwoWay}"
                      x:Name="txtEmail" 
                      Grid.Row="3" 
                      Grid.Column="1" 
@@ -227,7 +227,7 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-                <TextBox Text="{Binding SelectedContractor.Phone}"
+                <TextBox Text="{Binding SelectedContractor.Phone, Mode=TwoWay}"
                      x:Name="txtPhone"
                      Grid.Row="4" 
                      Grid.Column="1" 
@@ -238,7 +238,7 @@
                        Grid.Column="0" 
                        Foreground="#fff"/>
 
-                <TextBox Text="{Binding SelectedContractor.ABN}"
+                <TextBox Text="{Binding SelectedContractor.ABN, Mode=TwoWay}"
                          x:Name="txtABN" 
                          Grid.Row="5" 
                          Grid.Column="1" 
@@ -249,7 +249,7 @@
                        Grid.Column="0" 
                        Foreground="#fff"/>
 
-                <TextBox Text="{Binding SelectedContractor.LicenceNumber}"
+                <TextBox Text="{Binding SelectedContractor.LicenceNumber, Mode=TwoWay}"
                          x:Name="txtLicenceNum" 
                          Grid.Row="6" 
                          Grid.Column="1" 
@@ -262,7 +262,7 @@
                        Grid.Column="2" 
                        Foreground="#fff"/>
 
-                <TextBox  Text="{Binding SelectedContractor.RateOfPay}"
+                <TextBox  Text="{Binding SelectedContractor.RateOfPay, Mode=TwoWay}"
                       x:Name="txtRateofPay" 
                       Grid.Row="0" 
                       Grid.Column="3" 
@@ -273,7 +273,7 @@
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-                <TextBox  Text="{Binding SelectedContractor.ContractorRating}"
+                <TextBox  Text="{Binding SelectedContractor.ContractorRating, Mode=TwoWay}"
                       x:Name="txtRating" 
                       Grid.Row="1" 
                       Grid.Column="3" 
@@ -284,7 +284,7 @@
                        Grid.Column="2" 
                        Foreground="#fff"/>
 
-                <TextBox Text="{Binding SelectedContractor.Street}"
+                <TextBox Text="{Binding SelectedContractor.Street, Mode=TwoWay}"
                          x:Name="txtStreet" 
                          Grid.Row="2" 
                          Grid.Column="3" 
@@ -295,7 +295,7 @@
                        Grid.Column="2" 
                        Foreground="#fff"/>
 
-                <TextBox Text="{Binding SelectedContractor.Suburb}"
+                <TextBox Text="{Binding SelectedContractor.Suburb, Mode=TwoWay}"
                          x:Name="txtSuburb" 
                          Grid.Row="3" 
                          Grid.Column="3" 
@@ -306,7 +306,7 @@
                        Grid.Column="2" 
                        Foreground="#fff"/>
 
-                <TextBox Text="{Binding SelectedContractor.State}"
+                <TextBox Text="{Binding SelectedContractor.State, Mode=TwoWay}"
                          x:Name="txtState" 
                          Grid.Row="4" 
                          Grid.Column="3" 
@@ -317,7 +317,7 @@
                        Grid.Column="2" 
                        Foreground="#fff"/>
 
-                <TextBox Text="{Binding SelectedContractor.Zip}"
+                <TextBox Text="{Binding SelectedContractor.Zip, Mode=TwoWay}"
                          x:Name="txtZip" 
                          Grid.Row="5" 
                          Grid.Column="3" 

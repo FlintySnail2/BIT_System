@@ -105,7 +105,7 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox  Text="{Binding SelectedClient.OrganisationName}"
+            <TextBox  Text="{Binding SelectedClient.OrganisationName, Mode=TwoWay}"
                       x:Name="txtOrgName" 
                       Grid.Row="0" 
                       Grid.Column="1" 
@@ -116,7 +116,7 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox Text="{Binding SelectedClient.FirstName}" 
+            <TextBox Text="{Binding SelectedClient.FirstName, Mode=TwoWay}" 
                      x:Name="txtFirstName" 
                      Grid.Row="1" 
                      Grid.Column="1" 
@@ -127,7 +127,7 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox Text="{Binding SelectedClient.LastName}" 
+            <TextBox Text="{Binding SelectedClient.LastName,Mode=TwoWay}" 
                      x:Name="txtLastName" 
                      Grid.Row="2" 
                      Grid.Column="1" 
@@ -139,7 +139,7 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox Text="{Binding SelectedClient.Phone}" 
+            <TextBox Text="{Binding SelectedClient.Phone, Mode=TwoWay}" 
                      x:Name="txtPhone" 
                      Grid.Row="3" 
                      Grid.Column="1" 
@@ -150,7 +150,7 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-            <TextBox Text="{Binding SelectedClient.Email}"
+            <TextBox Text="{Binding SelectedClient.Email, Mode=TwoWay}"
                      x:Name="txtEamil" 
                      Grid.Row="4" 
                      Grid.Column="1" 
@@ -165,7 +165,7 @@
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-            <TextBox Text="{Binding SelectedClient.Street}"
+            <TextBox Text="{Binding SelectedClient.Street, Mode=TwoWay}"
                      x:Name="txtStreet" 
                      Grid.Row="0" 
                      Grid.Column="3" 
@@ -176,7 +176,7 @@
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-            <TextBox Text="{Binding SelectedClient.Suburb}"
+            <TextBox Text="{Binding SelectedClient.Suburb, Mode=TwoWay}"
                      x:Name="txtSuburb" 
                      Grid.Row="1" 
                      Grid.Column="3" 
@@ -187,7 +187,7 @@
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-            <TextBox Text="{Binding SelectedClient.State}"
+            <TextBox Text="{Binding SelectedClient.State, Mode=TwoWay}"
                      x:Name="txtState" 
                      Grid.Row="2" 
                      Grid.Column="3" 
@@ -198,7 +198,7 @@
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-            <TextBox Text="{Binding SelectedClient.Zip}"
+            <TextBox Text="{Binding SelectedClient.Zip, Mode=TwoWay}"
                      x:Name="txtZip" 
                      Grid.Row="3" 
                      Grid.Column="3" 
@@ -210,7 +210,7 @@
                    Foreground="#fff"/>
 
             <TextBox
-                     Text="{Binding SelectedRegion.RegionName, UpdateSourceTrigger=PropertyChanged}"
+                     Text="{Binding SelectedRegion.RegionName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                      x:Name="txtRegion" 
                      Grid.Row="4" 
                      Grid.Column="3" 

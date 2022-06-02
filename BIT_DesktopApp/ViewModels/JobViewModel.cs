@@ -37,6 +37,7 @@ namespace BIT_DesktopApp.ViewModels
         private RelayCommand _updateCommand;
         private RelayCommand _findCommand;
         private RelayCommand _assignCommand;
+        private RelayCommand _reassignCommand;
         private RelayCommand _findComandRejected;
 
         private void OnPropertyChanged(string prop)
@@ -114,6 +115,32 @@ namespace BIT_DesktopApp.ViewModels
 
         #endregion Search Method
 
+        #region Reassign Job
+
+        public RelayCommand reassignCommand
+        {
+            get
+            {
+                if (_reassignCommand == null)
+                {
+                    _reassignCommand = new RelayCommand(this.ReassignMethod, true);
+                }
+                return _reassignCommand;
+            }
+            set { _reassignCommand = value; }
+        }
+
+        public void ReassignMethod()
+        {
+            string returnValue = SelectedRejectedJob.ReassignJob(SelectedRejectedJob.JobId, SelectedContractor.ContractorId);
+            MessageBox.Show(returnValue);
+
+            string log = "Job Reassigned" + DateTime.Now;
+            LogHelper.Log(LogHelper.LogTarget.File, log); //Customised File logger
+        }
+
+        #endregion Reassign Job
+
         #region Assign Job
 
         public RelayCommand assignCommand
@@ -167,6 +194,7 @@ namespace BIT_DesktopApp.ViewModels
             LogHelper.Log(LogHelper.LogTarget.File, log); //Customised File logger
         }
 
+
         public RelayCommand FindCommandRejected
         {
             get
@@ -192,10 +220,6 @@ namespace BIT_DesktopApp.ViewModels
 
         #endregion Find Contractor
 
-
-
-        #region Reassign Job
-        #endregion Reassign Job
 
         #region Selected Job
 
