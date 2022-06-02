@@ -35,7 +35,7 @@ namespace BIT_DesktopApp.Models
             set
             {
                 _region = value; 
-                OnPropertyChanged("Region");
+                OnPropertyChanged("RegionName");
             }
         }
 

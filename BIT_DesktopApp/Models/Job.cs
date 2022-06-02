@@ -363,11 +363,14 @@ namespace BIT_DesktopApp.Models
                     clientId = client.ClientId;
                 }
             }
+
             string insertSql = @"SET DATEFORMAT DMY;
                                     INSERT INTO JOB(
                                                  ClientId,
                                                  Priority,
                                                  SkillTitle,
+                                                 RequestedStartDate,
+                                                 RequestedCompletionDate,
                                                  Status,
                                                  Description,
 	                                             Region)
@@ -375,30 +378,33 @@ namespace BIT_DesktopApp.Models
 	                                             @ClientId,
                                                  @Priority,
                                                  @SkillTitle,
+                                                 @ReqStartDate,
+                                                 @ReqCompletion,
                                                  'Pending',
                                                  @Description,
 	                                             @Location);";
-            //DONT FORGET TO ADD THE REQUESTED DATE
-            SqlParameter[] objParameters =new SqlParameter[5];
+            SqlParameter[] objParameters =new SqlParameter[7];
             objParameters[0] = new SqlParameter("@ClientId",DbType.Int32);
             objParameters[0].Value = clientId;
-            //objParameters[1] = new SqlParameter("@ReqCompletion", DbType.DateTime);
-            //objParameters[1].Value = RequestedCompletion;
-            objParameters[1] = new SqlParameter("@Priority", DbType.String);
-            objParameters[1].Value = Priority;
-            objParameters[2] = new SqlParameter("@SkillTitle", DbType.String);
-            objParameters[2].Value = SkillReq;
-            objParameters[3] = new SqlParameter("@Description", DbType.String);
-            objParameters[3].Value = Description;
-            objParameters[4] = new SqlParameter("@Location",DbType.String);
-            objParameters[4].Value = Location;
+            objParameters[1] = new SqlParameter("@ReqCompletion", DbType.Date);
+            objParameters[1].Value = RequestedCompletion;
+            objParameters[2] = new SqlParameter("@ReqStartDate", DbType.Date);
+            objParameters[2].Value = RequestedStartDate;
+            objParameters[3] = new SqlParameter("@Priority", DbType.String);
+            objParameters[3].Value = Priority;
+            objParameters[4] = new SqlParameter("@SkillTitle", DbType.String);
+            objParameters[4].Value = SkillReq;
+            objParameters[5] = new SqlParameter("@Description", DbType.String);
+            objParameters[5].Value = Description;
+            objParameters[6] = new SqlParameter("@Location",DbType.String);
+            objParameters[6].Value = Location;
             int rowsAffected = _db.ExecuteNonQuery(insertSql, objParameters);
             if (rowsAffected >= 1)
             {
                 return "Job Successfully Updated";
             }
 
-            return "Shes not gravy boys";
+            return "Unable to add job, please try ain later.";
 
         }
 

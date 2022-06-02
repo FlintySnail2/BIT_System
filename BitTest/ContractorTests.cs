@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BitTest
 {
-    
+    [TestClass]
     public class ContractorTests
     {
         [TestMethod]

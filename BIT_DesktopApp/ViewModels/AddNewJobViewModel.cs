@@ -71,7 +71,10 @@ namespace BIT_DesktopApp.ViewModels
             {
                 _selectedClient = value;
                 OnPropertyChanged("SelectedClient");
-
+                SelectedRegion = new Region()
+                {
+                    RegionName = SelectedClient.Region
+                };
             }
         }
         #endregion Client
@@ -84,7 +87,7 @@ namespace BIT_DesktopApp.ViewModels
             set
             {
                 _regionList = value;
-                OnPropertyChanged("SelectedRegions");
+                OnPropertyChanged("RegionList");
             }
         }
 

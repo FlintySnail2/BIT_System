@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace BitTest
 {
+    [TestClass]
     public class JobTests
     {
         [TestMethod]
@@ -39,7 +40,7 @@ namespace BitTest
         {
             JobViewModel jobVM = new JobViewModel();
             int count = jobVM.Jobs.Count;
-            Assert.AreEqual(6, count);
+            Assert.AreEqual(4, count);
         }
 
         [TestMethod]
@@ -89,7 +90,7 @@ namespace BitTest
             Mock<JobViewModel> mockJobVM = new Mock<JobViewModel>();
             mockJobVM.Setup(mc => mc.GetJobs()).Returns(mockJobs);
             int count = mockJobVM.Object.GetJobs().Count;
-            Assert.AreEqual(10, count);
+            Assert.AreEqual(5, count);
         }
     }
 }

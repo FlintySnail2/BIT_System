@@ -215,7 +215,7 @@ namespace BIT_DesktopApp.Models
             objParams[2].Value = LastName;
             objParams[3] = new SqlParameter("@Phone", DbType.String);
             objParams[3].Value = Phone;
-            objParams[4] = new SqlParameter("@Dob", DbType.DateTime);
+            objParams[4] = new SqlParameter("@Dob", DbType.Date);
             objParams[4].Value = Dob;
             objParams[5] = new SqlParameter("@Email", DbType.String);
             objParams[5].Value = Email;
@@ -278,9 +278,9 @@ namespace BIT_DesktopApp.Models
             objParams[1].Value = this.LastName;
             objParams[2] = new SqlParameter("@Phone", DbType.String);
             objParams[2].Value = this.Phone;
-            objParams[3] = new SqlParameter("@Dob", DbType.DateTime);
+            objParams[3] = new SqlParameter("@Dob", DbType.Date);
             objParams[3].Value = this.Dob;
-            objParams[4] = new SqlParameter("@Email", DbType.DateTime);
+            objParams[4] = new SqlParameter("@Email", DbType.String);
             objParams[4].Value = this.Email;
             objParams[5] = new SqlParameter("@Password", DbType.String);
             objParams[5].Value = this.Password;

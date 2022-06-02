@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using BIT_DesktopApp.DAL;
 
 namespace BIT_DesktopApp.Models
@@ -191,7 +192,7 @@ namespace BIT_DesktopApp.Models
             return "There are no contractors Available";
         }
 
-        public string AssignJob(int contractorId, int jobId)
+        public string AssignJob(int jobId, int contractorId)
         {
             string assignSql = @"UPDATE
                                     Job

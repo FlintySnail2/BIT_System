@@ -118,13 +118,9 @@
                     </ComboBox>
 
                 <Label Content="Requested Completion Date : "
-                   Grid.Row="3" 
-                   Grid.Column="0" 
+                   Grid.Row="0" 
+                   Grid.Column="2" 
                    Foreground="#fff"/>
-
-                
-
-
 
                 <DatePicker
                 SelectedDate="{Binding NewJob.RequestedCompletion,
@@ -139,31 +135,72 @@
                 Grid.Column="1" 
                 Margin="5,5,5,5"/>
 
-             
+                <Label Content="Requested Service Date : "
+                       Grid.Row="3" 
+                       Grid.Column="0" 
+                       Foreground="#fff"/>
+
+                <DatePicker
+                SelectedDate="{Binding NewJob.RequestedCompletion,
+                                    
+                                     UpdateSourceTrigger=PropertyChanged,
+                                     Mode=TwoWay}"
+                
+
+                ToolTip="{Binding NewJob.ErrorCollection[RequestedCompletion]}"
+                x:Name="txtReqServiceDate" 
+                Grid.Row="3" 
+                Grid.Column="1" 
+                Margin="5,5,5,5"/>
+
+
 
                 <!--Second column of data -->
 
-                <Label Content="Region : "
-                       Grid.Row="0" 
-                       Grid.Column="2" 
+                <Label Content="Requested Completion Date : "
+                   Grid.Row="0" 
+                   Grid.Column="2" 
+                   Foreground="#fff"/>
+
+                <DatePicker
+                SelectedDate="{Binding NewJob.RequestedStartDate,
+                                    
+                                     UpdateSourceTrigger=PropertyChanged,
+                                     Mode=TwoWay}"
+                
+
+                ToolTip="{Binding NewJob.ErrorCollection[RequestedCompletion]}"
+                x:Name="txtRequestedCompletion" 
+                Grid.Row="0" 
+                Grid.Column="3" 
+                Margin="5,5,5,5"/>
+
+                <Label Content="Requested Service Date : "
+                       Grid.Row="3" 
+                       Grid.Column="0" 
                        Foreground="#fff"/>
 
-                <ComboBox
-                    Text="{Binding RegionName,
+                <Label Content="Region : "
+                       Grid.Row="3" 
+                       Grid.Column="3" 
+                       Foreground="#fff"/>
+
+                <TextBox
+                    Text="{Binding SelectedRegion.RegionName,
                                      ValidatesOnDataErrors=True,
                                      UpdateSourceTrigger=PropertyChanged,
                                      Mode=TwoWay}"
-                    ItemsSource="{Binding RegionList, UpdateSourceTrigger=PropertyChanged }"
-                    SelectedItem="{Binding SelectedRegion, UpdateSourceTrigger=PropertyChanged}"
+                    
                     ToolTip="{Binding NewJob.ErrorCollection[RequestedCompletion]}"
-                    DisplayMemberPath="RegionName"
+                    
                     x:Name="txtRegion" 
-                    Grid.Row="0" 
+                    IsReadOnly="True"
+                    Grid.Row="1" 
                     Grid.Column="3" 
                     Margin="5,5,5,5"/>
 
                 <Label Content="Job Description : "
-                       Grid.Row="1" 
+                       Grid.Row="2" 
                        Grid.Column="2" 
                        Foreground="#fff"/>
 
@@ -178,7 +215,7 @@
                          Margin="5,5,5,0" Grid.RowSpan="2" />-->
                 <TextBox Text="{Binding NewJob.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          x:Name="txtJobDesc" 
-                         Grid.Row="1" 
+                         Grid.Row="2" 
                          Grid.Column="3" 
                          Margin="5,5,5,0" Grid.RowSpan="2"/>
 

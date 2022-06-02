@@ -13,6 +13,7 @@ namespace BIT_DesktopApp.Models
     {
         private SQLHelper _db;
 
+
         public AvailableContractors(string skillReq, DateTime reqCompletion)
         {
             _db = new SQLHelper();

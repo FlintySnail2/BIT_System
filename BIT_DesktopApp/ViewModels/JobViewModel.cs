@@ -133,11 +133,14 @@ namespace BIT_DesktopApp.ViewModels
         {
             string returnValue = SelectedRequestedJob.AssignJob(SelectedRequestedJob.JobId, SelectedContractor.ContractorId);
             MessageBox.Show(returnValue);
+
+            string log = "Job Assigned" + DateTime.Now;
+            LogHelper.Log(LogHelper.LogTarget.File, log); //Customised File logger
         }
 
         #endregion Assign Job
 
-        #region FindContractor
+        #region Find Contractor
 
         public RelayCommand FindCommand
         {

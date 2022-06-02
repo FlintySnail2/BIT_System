@@ -232,7 +232,7 @@
                                 <DataGridTextColumn Width="*" Header="Skill Required" Binding="{Binding SkillReq}"/>
                                 <DataGridTextColumn Width="*" Header="Description" Binding="{Binding Description}"/>
                                 <DataGridTextColumn Width="*" Header="Job Status" Binding="{Binding Status}"/>
-                                <DataGridTextColumn Width="*" Header="Requested Date" Binding="{Binding ReqCompletion}"/>
+                                <DataGridTextColumn Width="*" Header="Requested Date" Binding="{Binding SelectedRequestedJob.RequestedCompletion}"/>
                             </DataGrid.Columns>
                         </DataGrid>
 
@@ -275,7 +275,7 @@
                                    Margin="10,5,-507,0"/>
 
                             <TextBox  Text="{Binding 
-                                    SelectedRequestedJob.ReqCompletion, 
+                                    SelectedRequestedJob.RequestedCompletion, 
                                               Mode = TwoWay, StringFormat=dd/MM/yyyy}"
                                       x:Name="txtReqCompletion" 
                                       Grid.Row="0" 
@@ -296,7 +296,6 @@
                               Name="dgAvailableContractor"
                               ItemsSource="{Binding RequestedJobs, UpdateSourceTrigger=PropertyChanged}"
                               SelectedItem="{Binding SelectedRequestedJob}"
-                             
                               AutoGenerateColumns="False" Height="120"  RenderTransformOrigin="0.566,0.187"   Margin="10,0,10,320">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Width="*" Header="Client" Binding="{Binding OrganisationName}"/>
@@ -398,7 +397,7 @@
 
                                 <!--First Two Column data -->
 
-                                <Label Content="Skill Required : " 
+                                <Label Content="Contractor Skill: " 
                                    Grid.Row="0" 
                                    Grid.Column="0" 
                                    Foreground="#fff" 
@@ -406,14 +405,14 @@
                                    Margin="10,5,-90,0"/>
 
                                 <TextBox  Text="{Binding 
-                                    SelectedRequestedJob.SkillReq, 
+                                    SelectedContractor.SkillTitle, 
                                               Mode = TwoWay}"
                                       x:Name="txtSkiReq" 
                                       Grid.Row="0" 
                                       Grid.Column="1" 
                                       Margin="4,10,5,10" />
 
-                                <Label Content="Requested Completion : " 
+                                <Label Content="Availability : " 
                                    Grid.Row="0" 
                                    Grid.Column="2" 
                                    Foreground="#fff" 
@@ -421,7 +420,7 @@
                                    Margin="10,5,-360,0"/>
 
                                 <TextBox  Text="{Binding 
-                                    SelectedRequestedJob.RequestedCompletion, 
+                                    SelectedContractor.AvailabilityDate, 
                                               Mode = TwoWay}"
                                       x:Name="txtAvail" 
                                       Grid.Row="0" 
@@ -444,7 +443,7 @@
                                           Margin="4,10,5,10" />
 
                                 <Button x:Name="btnAssign" 
-                                    Command="{Binding Ass}"
+                                    Command="{Binding assignCommand}"
                                     HorizontalAlignment="Left"
                                     Content="ASSIGN"
                                     Grid.Row="0" 

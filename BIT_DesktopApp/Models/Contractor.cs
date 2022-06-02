@@ -424,7 +424,7 @@ namespace BIT_DesktopApp.Models
             objParams[5].Value = Zip;
             objParams[6] = new SqlParameter("@Phone", DbType.String);
             objParams[6].Value = Phone;
-            objParams[7] = new SqlParameter("@Dob", DbType.DateTime);
+            objParams[7] = new SqlParameter("@Dob", DbType.Date);
             objParams[7].Value = Dob;
             objParams[8] = new SqlParameter("@Email", DbType.String);
             objParams[8].Value = Email;
@@ -497,7 +497,7 @@ namespace BIT_DesktopApp.Models
             objParams[1].Value = FirstName;
             objParams[2] = new SqlParameter("@LastName", DbType.String);
             objParams[2].Value = LastName;
-            objParams[3] = new SqlParameter("@Dob", DbType.DateTime);
+            objParams[3] = new SqlParameter("@Dob", DbType.Date);
             objParams[3].Value = Dob;
             objParams[4] = new SqlParameter("@Street", DbType.String);
             objParams[4].Value = Street;
@@ -558,19 +558,11 @@ namespace BIT_DesktopApp.Models
                                              ContractorId = @ContractorId
                                          AND
                                             SkillTitle = @SkillTitle";
-            
-            //string removeSql = "UPDATE" +
-            //                   "     ContractSkill" +
-            //                   " SET" +
-            //                   "    SkillStatus = 0" +
-            //                   " WHERE " +
-            //                   "    ContractorId = @ContractorId" +
-            //                   " AND " +
-            //                   "    SkillTitle = @SkillTitle";
+      
             SqlParameter[] objParams = new SqlParameter[2];
             objParams[0] = new SqlParameter("@ContractorId", DbType.Int32);
             objParams[0].Value = contractorId;
-            objParams[1] = new SqlParameter("@SkillTitle", DbType.Int32);
+            objParams[1] = new SqlParameter("@SkillTitle", DbType.String);
             objParams[1].Value = skill;
             int rowsAffectedContractor = _db.ExecuteNonQuery(deleteSql, objParams);
             if (rowsAffectedContractor >= 1)

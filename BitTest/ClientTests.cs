@@ -10,6 +10,8 @@ namespace BitTest
     [TestClass]
     public class ClientTests
     {
+
+        //UNIT TESTING
         [TestMethod]
         public void testclient()
         {
