@@ -301,7 +301,7 @@
                                 <DataGridTextColumn Width="*" Header="Skill Required" Binding="{Binding SkillReq}"/>
                                 <DataGridTextColumn Width="*" Header="Description" Binding="{Binding Description}"/>
                                 <DataGridTextColumn Width="*" Header="Job Status" Binding="{Binding Status}"/>
-                                <DataGridTextColumn Width="*" Header="Requested Date" Binding="{Binding ReqCompletion}"/>
+                                <DataGridTextColumn Width="*" Header="Requested Date" Binding="{Binding RequestedCompletion}"/>
                             </DataGrid.Columns>
                         </DataGrid>
 
@@ -328,7 +328,7 @@
                                    Margin="10,5,-507,0"/>
 
                             <TextBox  Text="{Binding 
-                                    SelectedRJob.SkillReq, 
+                                    SelectedRequestedJob.SkillReq, 
                                               Mode = TwoWay}"
                                       x:Name="txtSkilReq" 
                                       Grid.Row="0" 

@@ -31,8 +31,6 @@ namespace BIT_DesktopApp.Models
                         }
                         
                         break;
-                       
-
                 }
                 if (result != null && !ErrorCollection.ContainsKey(propertyName))
                 {

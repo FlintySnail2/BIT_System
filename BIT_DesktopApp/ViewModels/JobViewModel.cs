@@ -187,8 +187,18 @@ namespace BIT_DesktopApp.ViewModels
 
         public void FindMethod()
         { 
-            AvailableContractors allAvailableContractors = new AvailableContractors(SelectedRequestedJob.SkillReq, SelectedRequestedJob.RequestedCompletion);
-            this.AvailableContractors = new ObservableCollection<AvailableContractor>(allAvailableContractors);
+            AvailableContractors allAvailableContractors = new AvailableContractors(SelectedRequestedJob.SkillReq, SelectedRequestedJob.RequestedCompletion); 
+            if (allAvailableContractors.Count > 0)
+            {
+                this.AvailableContractors = new ObservableCollection<AvailableContractor>(allAvailableContractors);
+                MessageBox.Show("Contractor Found");
+            }
+            else
+            {
+                this.AvailableContractors = new ObservableCollection<AvailableContractor>(allAvailableContractors);
+                MessageBox.Show("No Contractors Available");
+            }
+
 
             string log = "Queried Available contractors" + DateTime.Now;
             LogHelper.Log(LogHelper.LogTarget.File, log); //Customised File logger
@@ -214,7 +224,17 @@ namespace BIT_DesktopApp.ViewModels
         public void FindMethodRejected()
         {
             AvailableContractors allAvailableContractors = new AvailableContractors(SelectedRejectedJob.SkillReq, SelectedRejectedJob.RequestedCompletion);
-            this.AvailableContractors = new ObservableCollection<AvailableContractor>(allAvailableContractors);
+            if (allAvailableContractors.Count > 0)
+            {
+                this.AvailableContractors = new ObservableCollection<AvailableContractor>(allAvailableContractors);
+                MessageBox.Show("Contractor Found");
+            }
+            else
+            {
+                this.AvailableContractors = new ObservableCollection<AvailableContractor>(allAvailableContractors);
+                MessageBox.Show("No Contractors Available");
+            }
+            
         }
 
 

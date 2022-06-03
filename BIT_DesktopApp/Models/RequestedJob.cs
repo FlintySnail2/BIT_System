@@ -151,7 +151,7 @@ namespace BIT_DesktopApp.Models
             Description = dr["Description"].ToString();
             Status = dr["Status"].ToString();
             RequestedCompletion = Convert.ToDateTime(dr["RequestedCompletion"].ToString());
-            ContractorRating = dr["ContractorRating"].ToString();
+            //ContractorRating = dr["ContractorRating"].ToString();
 
         }
 

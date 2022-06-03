@@ -245,7 +245,7 @@ namespace BIT_DesktopApp.Models
             set
             {
                 _distanceTravelled = value;
-                OnPropertyChanged("DistanceTravlled");
+                OnPropertyChanged("DistanceTravelled");
             }
         }
 
@@ -364,7 +364,7 @@ namespace BIT_DesktopApp.Models
                 }
             }
 
-            string insertSql = @"
+            string insertSql = @"   SET DATEFORMAT DMY;
                                     INSERT INTO JOB(
                                                  ClientId,
                                                  Priority,
@@ -386,12 +386,12 @@ namespace BIT_DesktopApp.Models
             SqlParameter[] objParameters =new SqlParameter[7];
             objParameters[0] = new SqlParameter("@ClientId",DbType.Int32);
             objParameters[0].Value = clientId;
-            objParameters[1] = new SqlParameter("@ReqCompletion", DbType.Date);
+            objParameters[1] = new SqlParameter("@ReqCompletion", DbType.DateTime);
             objParameters[1].Value = RequestedCompletion;
-            objParameters[2] = new SqlParameter("@ReqStartDate", DbType.Date);
+            objParameters[2] = new SqlParameter("@ReqStartDate", DbType.DateTime);
             objParameters[2].Value = RequestedStartDate;
             objParameters[3] = new SqlParameter("@Priority", DbType.String);
-            objParameters[3].Value = Priority;
+            objParameters[3].Value = Priority.Remove(0,38);
             objParameters[4] = new SqlParameter("@SkillTitle", DbType.String);
             objParameters[4].Value = SkillReq;
             objParameters[5] = new SqlParameter("@Description", DbType.String);
