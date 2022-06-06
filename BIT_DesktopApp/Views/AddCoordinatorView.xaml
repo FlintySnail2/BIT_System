@@ -80,7 +80,8 @@
                    Grid.Column="0" 
                    Foreground="#fff"/>
 
-                <DatePicker Text="{Binding NewCoordinator.Dob,
+                <DatePicker 
+                    SelectedDate="{Binding NewCoordinator.Dob,
                              ValidatesOnDataErrors=True,
                              UpdateSourceTrigger=PropertyChanged,
                              Mode=TwoWay}"
