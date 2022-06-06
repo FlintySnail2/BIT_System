@@ -47,7 +47,7 @@ namespace BIT_DesktopApp.Models
                         }
                         break;
                     case "Dob":
-                        if (Dob.Year < 1950 )
+                        if (Dob.Year <= 1950 )
                         {
                             result = "You are too old to work here";
                         }
@@ -253,7 +253,8 @@ namespace BIT_DesktopApp.Models
 
         public string InsertCoordinator()
         {
-            string insertSql = "INSERT INTO Staff(" +
+            string insertSql = "SET DATEFORMAT DMY" +
+                "               INSERT INTO Staff(" +
                                "            FirstName," +
                                "            LastName," +
                                "            Phone," +

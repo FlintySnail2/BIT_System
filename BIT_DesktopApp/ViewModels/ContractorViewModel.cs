@@ -102,8 +102,13 @@ namespace BIT_DesktopApp.ViewModels
         {
             string message = SkillName.InsertSystemSkill();
             MessageBox.Show(message);
-            AbsentContractorSkill allAbsentSkills = new AbsentContractorSkill(SelectedContractor.ContractorId);
-            this.AbsentSkills = new ObservableCollection<ContractorSkill>(allAbsentSkills);
+
+            if (SelectedContractor != null)
+            {
+                AbsentContractorSkill allAbsentSkills = new AbsentContractorSkill(SelectedContractor.ContractorId);
+                this.AbsentSkills = new ObservableCollection<ContractorSkill>(allAbsentSkills);
+            }
+     
 
             string log = "Skill Added" + DateTime.Now;
             LogHelper.Log(LogHelper.LogTarget.File, log); //Customised File logger

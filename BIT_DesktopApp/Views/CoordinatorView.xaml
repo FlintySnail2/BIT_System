@@ -100,7 +100,7 @@
                        Grid.Column="0" 
                        Foreground="#fff" Grid.RowSpan="2"/>
 
-                <TextBox  Text="{Binding SelectedCoordinator.FirstName, Mode = TwoWay}"
+                <TextBox  Text="{Binding SelectedCoordinator.FirstName, Mode=TwoWay}"
                           x:Name="txtFirstName" 
                           Grid.Row="0" 
                           Grid.Column="1" 

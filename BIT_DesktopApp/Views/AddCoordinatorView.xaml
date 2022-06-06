@@ -84,6 +84,7 @@
                     SelectedDate="{Binding NewCoordinator.Dob,
                              ValidatesOnDataErrors=True,
                              UpdateSourceTrigger=PropertyChanged,
+                            StringFormat=dd/MM/yyyy,
                              Mode=TwoWay}"
                      ToolTip="{Binding NewCoordinator.ErrorCollection[Dob]}" 
                      Grid.Row="2" 
@@ -97,9 +98,10 @@
                    Grid.Column="2" 
                    Foreground="#fff"/>
 
-                <TextBox Text="{Binding NewCoordinator.Phone,ValidatesOnDataErrors=True,
-                                                        UpdateSourceTrigger=PropertyChanged,
-                             Mode=TwoWay}"
+                <TextBox Text="{Binding NewCoordinator.Phone,
+                    ValidatesOnDataErrors=True,
+                    UpdateSourceTrigger=PropertyChanged,
+                    Mode=TwoWay}"
                      ToolTip="{Binding NewCoordinator.ErrorCollection[Phone]}" 
                      Grid.Row="0" 
                      Grid.Column="3" 

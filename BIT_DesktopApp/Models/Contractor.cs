@@ -417,7 +417,7 @@ namespace BIT_DesktopApp.Models
             objParams[2] = new SqlParameter("@Street", DbType.String);
             objParams[2].Value = Street;
             objParams[3] = new SqlParameter("@Suburb", DbType.Int32);
-            objParams[3].Value = Street;
+            objParams[3].Value = Suburb;
             objParams[4] = new SqlParameter("@State", DbType.String);
             objParams[4].Value = State;
             objParams[5] = new SqlParameter("@Zip", DbType.String);

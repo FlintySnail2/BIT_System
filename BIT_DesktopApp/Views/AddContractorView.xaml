@@ -100,7 +100,7 @@
                 <DatePicker 
                     SelectedDate="{Binding NewContractor.Dob, 
                                     UpdateSourceTrigger=PropertyChanged, 
-                                    Mode=TwoWay}"
+                                    Mode=TwoWay,StringFormat=dd/MM/yyyy}"
                      ToolTip="{Binding NewContractor.ErrorCollection[Dob]}" 
                      x:Name="txtDob" 
                      Grid.Row="2" 
