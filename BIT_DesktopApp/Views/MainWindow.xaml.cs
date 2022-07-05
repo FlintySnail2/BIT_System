@@ -125,9 +125,19 @@ namespace BIT_DesktopApp
 
         }
 
+        private void btnDashBoard_Click(object sender, RoutedEventArgs e)
+        {
+            contentFrame.Navigate(new Dashboard());
+        }
+
+        private void btnRoster_Click(object sender, RoutedEventArgs e)
+        {
+            contentFrame.Navigate(new RosterMangementView());
+        }
+
+
+
         #endregion Basic Navigation
-
-
 
 
     }

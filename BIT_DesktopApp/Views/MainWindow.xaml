@@ -33,6 +33,15 @@
 
             <StackPanel Grid.Column="0" Grid.Row="1">
 
+                <RadioButton Content="Dashboard"
+                             x:Name="btnDashBoard"
+                             Height="50"
+                             Foreground="white"
+                             FontSize="14"
+                             Style="{StaticResource MenuButton}"
+                             Click="btnDashBoard_Click"
+                             />
+
                 <RadioButton Content="Jobs"
                              x:Name="btnJob"
                              Height="50"
@@ -40,15 +49,6 @@
                              FontSize="14"
                              Style="{StaticResource MenuButton}" 
                              Click="btnJob_Click"
-                             />
-
-                <RadioButton Content="Co-ordinators"
-                             x:Name="btnCoordinators"
-                             Height="50"
-                             Foreground="white"
-                             FontSize="14"
-                             Style="{StaticResource MenuButton}"
-                             Click="btnCoordinator_Click"
                              />
 
                 <RadioButton Content="Contractors"
@@ -68,6 +68,27 @@
                              Style="{StaticResource MenuButton}"
                              Click="btnClients_Click"
                              />
+
+                <RadioButton Content="Co-ordinators"
+                             x:Name="btnCoordinators"
+                             Height="50"
+                             Foreground="white"
+                             FontSize="14"
+                             Style="{StaticResource MenuButton}"
+                             Click="btnCoordinator_Click"
+                             />
+
+                <RadioButton Content="Roster"
+                             x:Name="btnRoster"
+                             Height="50"
+                             Foreground="white"
+                             FontSize="14"
+                             Style="{StaticResource MenuButton}"
+                             Click="btnRoster_Click"
+                             />
+
+
+
             </StackPanel>
 
             <RadioButton Grid.Row="0"     Grid.Column="1"
@@ -81,6 +102,8 @@
                              Style="{StaticResource MenuButton}"
                              Click="btnLogout_Click"
             />
+
+            
 
             <ContentControl Grid.Row="1"
                             Grid.Column="1"
