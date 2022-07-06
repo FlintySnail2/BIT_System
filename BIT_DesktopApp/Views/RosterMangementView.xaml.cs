@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BIT_DesktopApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace BIT_DesktopApp.Views
         public RosterMangementView()
         {
             InitializeComponent();
+            this.DataContext = new RosterViewModel();
         }
     }
 }

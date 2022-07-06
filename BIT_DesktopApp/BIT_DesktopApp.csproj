@@ -86,6 +86,8 @@
     <Compile Include="Models\AbsentContractorSkill.cs" />
     <Compile Include="Models\AvailableContractor.cs" />
     <Compile Include="Models\AvailableContractors.cs" />
+    <Compile Include="Models\ContractorAvailabilities.cs" />
+    <Compile Include="Models\ContractorAvailability.cs" />
     <Compile Include="Models\DashboardInfo.cs" />
     <Compile Include="Models\Region.cs" />
     <Compile Include="Models\Regions.cs" />
@@ -99,6 +101,7 @@
     <Compile Include="ViewModels\AddContractorViewModel.cs" />
     <Compile Include="ViewModels\AddCoordinatorViewModel.cs" />
     <Compile Include="ViewModels\AddNewJobViewModel.cs" />
+    <Compile Include="ViewModels\RosterViewModel.cs" />
     <Compile Include="ViewModels\DashboardViewModel.cs" />
     <Compile Include="Views\AddClientView.xaml.cs">
       <DependentUpon>AddClientView.xaml</DependentUpon>

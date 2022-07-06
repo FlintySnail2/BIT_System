@@ -20,12 +20,14 @@ namespace BIT_DesktopApp.ViewModels
 
         private ObservableCollection<Contractor> _contractors;
         private ObservableCollection<ContractorSkill> _absentSkills;
+
         private ContractorSkill _selectedAbsentSkill;
         private Contractor _selectedContractor;
         private SystemSkill _skill;
         private ObservableCollection<ContractorSkill> _contractorSkills;
         private ObservableCollection<SystemSkill> _systemSkills;
         private ContractorSkill _selectedSkill;
+
         private ContractorSkill _contractorSkill;
         private string _searchText;
         private RelayCommand _searchCommand;

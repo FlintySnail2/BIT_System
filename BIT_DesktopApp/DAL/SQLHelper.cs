@@ -60,8 +60,8 @@ namespace BIT_DesktopApp.DAL
         {
             int returnValue = -1;
             SqlConnection dbConnection = new SqlConnection(_conn);
-            SqlCommand dbCommand = new SqlCommand(sql, dbConnection);//Fire the query
-                                                                     //written in queryString using the connection object
+            SqlCommand dbCommand = new SqlCommand(sql, dbConnection);   //Fire the query
+                                                                        //written in queryString using the connection object
             if (storedProcedure == true)
             {
                 dbCommand.CommandType = CommandType.StoredProcedure;

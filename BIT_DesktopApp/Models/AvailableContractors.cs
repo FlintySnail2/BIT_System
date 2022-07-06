@@ -14,6 +14,29 @@ namespace BIT_DesktopApp.Models
         private SQLHelper _db;
 
 
+        public AvailableContractors(int contractorId)
+        {
+            _db = new SQLHelper();
+
+            string sql = "SELECT" +
+                         " CON.ContractorId,  " +
+                     "  CON.FirstName," +
+                     "  CON.LastName," +
+                     "  CS.SkillTitle," +
+                     "  A.AvailabilityDate," +
+                     "  CON.ContractorRating " +
+                     " FROM" +
+                     "  Contractor AS CON," +
+                     "  Availability AS A," +
+                     "  ContractSkill AS CS";
+            DataTable dt = _db.ExecuteSQL(sql);
+            foreach (DataRow dr in dt.Rows)
+            {
+                AvailableContractor newavailableContractor = new AvailableContractor(dr);
+                this.Add(newavailableContractor);
+            }
+        }
+
         public AvailableContractors(string skillReq, DateTime reqCompletion)
         {
             _db = new SQLHelper();

@@ -15,8 +15,11 @@ namespace BIT_DesktopApp.Models
         private string _firstName;
         private string _lastName;
         private string _skillTitle;
-        private string _availabilityDate;
+        private DateTime _availabilityDate;
         private string _contractorRating;
+        private Decimal _rateOfPay;
+        private string _phone;
+        private string _email;
         public SQLHelper _db;
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string prop)
@@ -68,7 +71,7 @@ namespace BIT_DesktopApp.Models
             }
         }
 
-        public string AvailabilityDate
+        public DateTime AvailabilityDate
         {
             get { return _availabilityDate; }
             set
@@ -87,6 +90,32 @@ namespace BIT_DesktopApp.Models
                 OnPropertyChanged("ContractorRating");
             }
         }
+
+        public decimal RateOPay
+        {
+            get { return _rateOfPay; }
+            set { _rateOfPay = value;
+                OnPropertyChanged("RateOfPay");
+            }
+        }
+
+        public string Phone
+        {
+            get { return _phone; }
+            set { _phone = value;
+            OnPropertyChanged("Phone");}
+        }
+
+        public string Email
+        {
+            get { return _email; }
+            set
+            {
+                _email = value;
+                OnPropertyChanged("Email");
+            }
+        }
+
         public AvailableContractor()
         {
             _db = new SQLHelper();
@@ -99,8 +128,11 @@ namespace BIT_DesktopApp.Models
             FirstName = dr["FirstName"].ToString();
             LastName = dr["LastName"].ToString();
             SkillTitle = dr["SkillTitle"].ToString();
-            AvailabilityDate = dr["AvailabilityDate"].ToString();
+            AvailabilityDate = Convert.ToDateTime(dr["AvailabilityDate"].ToString());
             ContractorRating = dr["ContractorRating"].ToString();
+            RateOPay = Convert.ToDecimal(dr["RateOfPay"].ToString());
+            Phone = dr["Phone"].ToString();
+            Email = dr["Email"].ToString();
 
         }
 

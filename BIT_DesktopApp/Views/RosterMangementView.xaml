@@ -52,7 +52,7 @@
                 </Grid.ColumnDefinitions>
 
                 <DataGrid Grid.Column="0" 
-                      Name="dgContractors" 
+                      Name="dgAvailableContractors" 
                       Margin="5,5,4,165"
                       AutoGenerateColumns="False"
                       ItemsSource="{Binding Contractors}"
@@ -69,7 +69,7 @@
                                             Header="Rating" 
                                             Binding="{Binding ContractorRating}"/>
                         <DataGridTextColumn Width="*"  
-                                            Header="Rate Of Pay" 
+                                            Header="Pay Rate" 
                                             Binding="{Binding RateOfPay}"/>
                         <DataGridTextColumn Width="*" 
                                             Header="Phone" 
@@ -81,34 +81,36 @@
                 </DataGrid>
 
 
-                <DataGrid 
+                <DataGrid
+                     ItemsSource="{Binding AvailableDates}"
+                     SelectedItem="{Binding SelectedAvailableContractor}"
                       Grid.Column="1" 
                       x:Name="dgContractorSkills" 
                       Margin="6,5,5,262"
-                      AutoGenerateColumns="False"
-                      ItemsSource="{Binding ContractorSkills}" 
-                      SelectedItem="{Binding SelectedSkill}">
+                      AutoGenerateColumns="False">
+
+
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="*" 
                                             Header="Contractor Availability" 
-                                            Binding="{Binding Skill}"/>
+                                            Binding="{Binding AvailDateFormat}"/>
+                                            <!--BOUND OF THE PROPERTY NAME-->
                     </DataGrid.Columns>
                 </DataGrid>
 
 
                 <!-- AVAILABILITY MANAGEMENT -->
 
-                <Button x:Name="btnAvailability"
-                        Command="{Binding AddSkillCommand}"
+                <Button x:Name="btnAddAvailability"
+
                         Width="70" Height="30"
                         Content="ADD" 
                         Grid.Column="1"
                         Margin="168,178,10,211" 
-                        FontSize="12"/>
+                        FontSize="12"
+                        Command="{Binding AddAvailabilityCommand}"/>
 
-                <DatePicker Text="{Binding SelectedSkill.Skill, 
-                            Mode=TwoWay, 
-                            UpdateSourceTrigger=PropertyChanged}"
+                <DatePicker SelectedDate="{Binding AvailableDate.AvailDate}"
                             x:Name="cmbBoxRemove_Copy" 
                             Height="31" 
                             Margin="6,178,89,209" 
@@ -116,17 +118,17 @@
 
                 <Button 
                         x:Name="RemoveAvailability"
-                        Command="{Binding UpdateSkill}"
                         Width="70" 
                         Height="30"
                         Content="REMOVE" 
                         Margin="168,224,10,0" 
-                        VerticalAlignment="Top" Grid.Column="1"/>
+                        VerticalAlignment="Top" 
+                        Grid.Column="1"
+                        Command="{Binding RemoveAvailabilityCommand}"/>
 
-                <DatePicker Text="{Binding SelectedSkill.Skill, 
-                            Mode=TwoWay, 
-                            UpdateSourceTrigger=PropertyChanged}"
-                            x:Name="cmbBoxRemove_Copy3" 
+                    <DatePicker SelectedDate="{Binding SelectedAvailableContractor.AvailDate,
+                                               Mode=TwoWay}"
+                            x:Name="dpRemoveAvailability" 
                             Height="31" 
                             Margin="8,223,89,165"
                             Grid.Column="1" />
