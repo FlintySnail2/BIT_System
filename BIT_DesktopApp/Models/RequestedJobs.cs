@@ -16,25 +16,8 @@ namespace BIT_DesktopApp.Models
         public RequestedJobs()
         {
             _db = new SQLHelper();
-            string sql = "SELECT" +
-                         "           J.JobId," +
-                         "           C.OrganisationName," +
-                         "           C.FirstName + ' ' + C.LastName as [Contact Name]," +
-                         "           J.Description," +
-                         "           J.SkillTitle AS [SkillReq]," +
-                         "           J.Priority," +
-                         "           S.Status," +
-                         "           CONVERT(NVARCHAR, J.RequestedCompletionDate, 6) AS [RequestedCompletion]" +
-
-                         "       FROM" +
-                         "           Job AS J," +
-                         "           Client AS C," +
-                         "           Status AS S" +
-                         "       WHERE" +
-                         "           J.ClientId = C.ClientId" +
-                         "       AND J.Status = S.Status" +
-                         "       AND J.Status = 'Pending'";
-            DataTable dt = _db.ExecuteSQL(sql);
+            string sp = "usp_GetRequestedJob";
+            DataTable dt = _db.ExecuteSQL(sp);
             foreach (DataRow dataRow in dt.Rows)
             {
                 RequestedJob newRequestedJob = new RequestedJob(dataRow);

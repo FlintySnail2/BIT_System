@@ -195,17 +195,7 @@ namespace BIT_DesktopApp.Models
 
         public string UpdateStaffDetails(int coordinatorId)
         {
-            string updateSql = "UPDATE" +
-                               "    Staff" +
-                               "       SET" +
-                               "       FirstName = @FirstName," +
-                               "       LastName = @LastName," +
-                               "       Phone = @Phone," +
-                               "       Dob = @Dob," +
-                               "       Email = @Email," +
-                               "       Password =  @Password" +
-                               " WHERE" +
-                               "    StaffId = @StaffId";
+            string sp = "usp_UpdateStaff";
             SqlParameter[] objParams = new SqlParameter[7];
             objParams[0] = new SqlParameter("@StaffId", DbType.Int32);
             objParams[0].Value = coordinatorId; 
@@ -221,57 +211,34 @@ namespace BIT_DesktopApp.Models
             objParams[5].Value = Email;
             objParams[6] = new SqlParameter("Password", DbType.String);
             objParams[6].Value = Password;
-            int rowsAffected = _db.ExecuteNonQuery(updateSql, objParams);
+            int rowsAffected = _db.ExecuteNonQuery(sp, objParams,true);
             if (rowsAffected >= 1)
             {
-                return "Coordinator Successfully Updated ";
+                return "Staff member Successfully Updated ";
             }
 
-            return "Unable to update coordinator, please try again later";
+            return "Unable to update staff member, please try again later";
         }
 
         public string RemoveCoordinator(int staffId)
         {
-            string removeSql = " Update" +
-                               "    Staff" +
-                               " Set" +
-                               "    AccountStatus = 'Inactive'" +
-                               " WHERE" +
-                               "    StaffId = @StaffId";
+            string sp = "usp_RemoveStaff";
             SqlParameter[] objParams = new SqlParameter[1];
             objParams[0] = new SqlParameter("@StaffId", DbType.Int32);
             objParams[0].Value = staffId;
-            int rowsAffected = _db.ExecuteNonQuery(removeSql, objParams);
+            int rowsAffected = _db.ExecuteNonQuery(sp, objParams, true);
             if (rowsAffected >= 1)
             {
-                return "Coordinator Successfully Deleted";
+                return "Staff member Successfully Deleted";
             }
 
-            return "Unable to delete coordinator, please try again later";
+            return "Unable to delete staff member, please try again later";
 
         }
 
         public string InsertCoordinator()
         {
-            string insertSql = "SET DATEFORMAT DMY" +
-                "               INSERT INTO Staff(" +
-                               "            FirstName," +
-                               "            LastName," +
-                               "            Phone," +
-                               "            Dob," +
-                               "            Email," +
-                               "            Password," +
-                               "            StaffType," +
-                               "            AccountStatus)" +
-                            "            VALUES(" +
-                               "            @FirstName," +
-                               "            @LastName," +
-                               "            @Phone," +
-                               "            @Dob," +
-                               "            @Email," +
-                               "            @Password," +
-                               "            'Coordinator'," +
-                               "            'Active')";
+            string sp = "usp_InsertStaff";
             SqlParameter[] objParams = new SqlParameter[6];
             objParams[0] = new SqlParameter("@FirstName", DbType.String);
             objParams[0].Value = this.FirstName;
@@ -285,13 +252,13 @@ namespace BIT_DesktopApp.Models
             objParams[4].Value = this.Email;
             objParams[5] = new SqlParameter("@Password", DbType.String);
             objParams[5].Value = this.Password;
-            int rowsAffected = _db.ExecuteNonQuery(insertSql, objParams);
+            int rowsAffected = _db.ExecuteNonQuery(sp, objParams, true);
             if (rowsAffected >= 1)
             {
-                return "Coordinator Successfully Added";
+                return "Staff member Successfully Added";
             }
 
-            return "Unable to add coordinator, please try again later"; 
+            return "Unable to add new staff member, please try again later"; 
 
         }
 

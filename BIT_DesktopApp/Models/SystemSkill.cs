@@ -12,7 +12,20 @@ namespace BIT_DesktopApp.Models
 {
     public class SystemSkill : INotifyPropertyChanged
     {
+        #region Private Properties
         private string _skillName;
+        private void OnPropertyChanged(string prop)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            }
+        }
+
+        #endregion Private Properties
+
+        #region Public Properties 
+
         public SQLHelper _db;
 
         public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
@@ -41,13 +54,7 @@ namespace BIT_DesktopApp.Models
             }
         }
 
-        private void OnPropertyChanged(string prop)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-            }
-        }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -60,6 +67,10 @@ namespace BIT_DesktopApp.Models
                 OnPropertyChanged("SkillTitle");
             }
         }
+
+        #endregion Public Properties
+
+        #region Constructor
 
         public SystemSkill()
         {
@@ -74,20 +85,18 @@ namespace BIT_DesktopApp.Models
 
         public string InsertSystemSkill()
         {
-            string insertSql = @"INSERT INTO Skill(
-						            SkillTitle)
-				                VALUES(
-						            @Skill)";
+            string sp = "usp_InsertSystemSkill";
             SqlParameter[] objParams = new SqlParameter[1];
             objParams[0] = new SqlParameter("@Skill", DbType.String);
             objParams[0].Value = SkillName;
-            int rowsAffected = _db.ExecuteNonQuery(insertSql, objParams);
+            int rowsAffected = _db.ExecuteNonQuery(sp, objParams, true);
             if (rowsAffected >= 1)
             {
                 return "Skill Successfully Added";
             }
-
             return " Unable to to add skill, please try again later";
         }
+
+        #endregion Constructor
     }
 }

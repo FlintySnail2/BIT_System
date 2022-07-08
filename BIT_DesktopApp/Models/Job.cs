@@ -330,18 +330,13 @@ namespace BIT_DesktopApp.Models
 
         public string UpdateJobStatus(int jobId)
         {
-            string updateSql = "UPDATE" +
-                               "    Job" +
-                               "    SET" +
-                               "    Status = @JobStatus" +
-                               " WHERE " +
-                               "    JobId = @JobId";
+            string sp = "usp_UpdateJobStatus";
             SqlParameter[] objParams = new SqlParameter[2];
             objParams[0] = new SqlParameter("@JobStatus", DbType.String);
             objParams[0].Value = Status;
             objParams[1] = new SqlParameter("JobId", DbType.Int32);
             objParams[1].Value = JobId;
-            int rowsAffected = _db.ExecuteNonQuery(updateSql, objParams);
+            int rowsAffected = _db.ExecuteNonQuery(sp, objParams, true);
             if (rowsAffected >= 1)
             {
                 return "Job Status Successfully Updated";
@@ -363,26 +358,7 @@ namespace BIT_DesktopApp.Models
                     clientId = client.ClientId;
                 }
             }
-
-            string insertSql = @"   SET DATEFORMAT DMY;
-                                    INSERT INTO JOB(
-                                                 ClientId,
-                                                 Priority,
-                                                 SkillTitle,
-                                                 RequestedStartDate,
-                                                 RequestedCompletionDate,
-                                                 Status,
-                                                 Description,
-	                                             Region)
-                                             Values(
-	                                             @ClientId,
-                                                 @Priority,
-                                                 @SkillTitle,
-                                                 @ReqStartDate,
-                                                 @ReqCompletion,
-                                                 'Pending',
-                                                 @Description,
-	                                             @Location);";
+            string sp = "usp_InsertNewJob";
             SqlParameter[] objParameters =new SqlParameter[7];
             objParameters[0] = new SqlParameter("@ClientId",DbType.Int32);
             objParameters[0].Value = clientId;
@@ -398,7 +374,7 @@ namespace BIT_DesktopApp.Models
             objParameters[5].Value = Description;
             objParameters[6] = new SqlParameter("@Location",DbType.String);
             objParameters[6].Value = Location;
-            int rowsAffected = _db.ExecuteNonQuery(insertSql, objParameters);
+            int rowsAffected = _db.ExecuteNonQuery(sp, objParameters, true);
             if (rowsAffected >= 1)
             {
                 return "Job Successfully Updated";

@@ -11,21 +11,16 @@ namespace BIT_DesktopApp.Models
 {
     public class ContractorSkills : List<ContractorSkill>
     {
-
+        #region Constructor
 
         public ContractorSkills(int contractorId)
         {
             SQLHelper db = new SQLHelper();
-            string sql = @"select
-								SkillTitle
-							from	
-								ContractSkill
-							where
-								ContractorId = @ContractorId";
+            string sp = "usp_GetContractorSkillsById";
             SqlParameter[] objParams = new SqlParameter[1];
             objParams[0] = new SqlParameter("@ContractorId", DbType.Int32);
             objParams[0].Value = contractorId;
-            DataTable dataTable = db.ExecuteSQL(sql, objParams);
+            DataTable dataTable = db.ExecuteSQL(sp, objParams, true);
             foreach (DataRow dr in dataTable.Rows)
             {
                 ContractorSkill contractorSkill = new ContractorSkill(dr);
@@ -36,16 +31,15 @@ namespace BIT_DesktopApp.Models
         public ContractorSkills()
         {
             SQLHelper db = new SQLHelper();
-            string sql = "SELECT" +
-                "           SkillTitle" +
-                "         FROM" +
-                "           SKill";
-            DataTable contractorSkills = db.ExecuteSQL(sql);
+            string sp = "usp_GetContractorSkills";
+            DataTable contractorSkills = db.ExecuteSQL(sp);
             foreach (DataRow dr in contractorSkills.Rows)
             {
                 ContractorSkill contractorSkill = new ContractorSkill(dr);
                 this.Add(contractorSkill);
             }
         }
+
+        #endregion Constructor
     }
 }

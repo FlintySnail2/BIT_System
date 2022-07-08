@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,31 +13,13 @@ namespace BIT_DesktopApp.Models
     {
         private SQLHelper _db;
 
+        #region Constructor
         public Clients()
         {
             _db = new SQLHelper();
 
-            string sql = "SELECT" +
-                "           C.ClientId, " +
-                "           C.OrganisationName," +
-                "           C.FirstName," +
-                "           C.LastName," +
-                "           C.Phone," +
-                "           C.Email," +
-                "           L.Street, " +
-                        "   L.Suburb, "+   
-                        "   L.State, " + " " +
-                "           L.Zip, " +
-                "           L.Region" +
-                "       FROM" +
-                "           Client AS C," +
-                "           Location AS L" +
-                "       WHERE " +
-                "           C.ClientId = L.ClientId" +
-                "       AND " +
-                "           AccountStatus = 'Active'" +
-                "       ORDER BY C.ClientId ASC";
-            DataTable dataTable = _db.ExecuteSQL(sql);
+            string sp = "usp_GetAllClients";
+            DataTable dataTable = _db.ExecuteSQL(sp);
             foreach (DataRow dr in dataTable.Rows)
             {
                 Client newClient = new Client(dr);
@@ -47,35 +30,18 @@ namespace BIT_DesktopApp.Models
         public Clients(string searchText)
         {
             _db = new SQLHelper();
-            string sql = "SELECT" +
-                         "           C.ClientId, " +
-                         "           C.OrganisationName," +
-                         "           C.FirstName," +
-                         "           C.LastName," +
-                         "           C.Phone," +
-                         "           C.Email," +
-                         "           L.Street, " +
-                         "   L.Suburb, " +
-                         "   L.State, " + " " +
-                         "           L.Zip, " +
-                         "           L.Region" +
-                         "       FROM" +
-                         "           Client AS C," +
-                         "           Location AS L" +
-                         "       WHERE " +
-                         "           C.ClientId = L.ClientId" +
-                         "       AND " +
-                         "           AccountStatus = 'Active'" +
-                         "       AND" +
-            "                       OrganisationName LIKE '%" + searchText + "%'"; 
-                DataTable dataTable = _db.ExecuteSQL(sql);
+            string sp = "usp_SearchClients";
+            SqlParameter[] objParams = new SqlParameter[1];
+            objParams[0] = new SqlParameter("@searchText", DbType.String);
+            objParams[0].Value = searchText;
+            DataTable dataTable = _db.ExecuteSQL(sp, objParams, true);
             foreach (DataRow dr in dataTable.Rows)
             {
                 Client newClient = new Client(dr);
                 this.Add(newClient);
             }
         }
-        
+        #endregion Constructor
 
     }
 }

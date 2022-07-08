@@ -11,21 +11,16 @@ namespace BIT_DesktopApp.Models
 {
     public class ContractorAvailabilities : List<ContractorAvailability>
     {
+
+        #region Constructor
         public ContractorAvailabilities(int contractorId)
         {
             SQLHelper db = new SQLHelper();
-
-            string Sql = "SELECT " +
-                "          ContractorId,  " +
-                         " AvailabilityDate " +
-                         " FROM" +
-                         "   Availability" +
-                         " WHERE" +
-                         "   ContractorId = @ContractorId";
+            string sp = "usp_GetContractorAvailabilitiesById";
             SqlParameter[] objParams = new SqlParameter[1];
             objParams[0] = new SqlParameter("@ContractorId", DbType.Int32);
             objParams[0].Value = contractorId;
-            DataTable dt = db.ExecuteSQL(Sql, objParams);
+            DataTable dt = db.ExecuteSQL(sp, objParams, true);
             foreach (DataRow dr in dt.Rows)
             {
                 ContractorAvailability contractorAvailability= new ContractorAvailability(dr);
@@ -38,13 +33,8 @@ namespace BIT_DesktopApp.Models
         public ContractorAvailabilities()
         {
             SQLHelper db = new SQLHelper();
-
-            string Sql = "SELECT " +
-                "          ContractorId, " +
-                         " AvailabilityDate" +
-                         " FROM" +
-                         "   Availability";
-            DataTable dt = db.ExecuteSQL(Sql);
+            string sp = "usp_GetContractorAvalabilities";
+            DataTable dt = db.ExecuteSQL(sp);
             foreach (DataRow dr in dt.Rows)
             {
                 ContractorAvailability contractorAvailability = new ContractorAvailability(dr);
@@ -53,7 +43,7 @@ namespace BIT_DesktopApp.Models
 
 
         }
-
+        #endregion Constructor
 
     }
-    }
+}

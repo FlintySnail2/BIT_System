@@ -292,39 +292,7 @@ namespace BIT_DesktopApp.Models
 
         public string InsertClient()
         {
-            string sql1 = "INSERT INTO" +
-                          "               Client(" +
-                          "               OrganisationName," +
-                          "               FirstName," +
-                          "               LastName," +
-                          "               Phone," +
-                          "               Email," +
-                          "               Password," +
-                          "               AccountStatus)" +
-                          "       VALUES(" +
-                          "               @OrganisationName," +
-                          "               @FirstName," +
-                          "               @LastName," +
-                          "               @Phone," +
-                          "               @Email," +
-                          "               @Password," +
-                          "               'Active') " +
-                          " DECLARE @ClientId INT = @@IDENTITY " +
-                          "INSERT INTO" +
-                          "         Location(" +
-                          "         ClientId," +
-                          "         Region," +
-                          "         Street," +
-                          "         Suburb," +
-                          "         State," +
-                          "         Zip)" +
-                          "          VALUES(" +
-                          "         @ClientId," +
-                          "        @Region," +
-                          "        @Street," +
-                          "        @Suburb," +
-                          "        @State," +
-                          "        @Zip)";
+            string sp = "usp_InsertClient";
             SqlParameter[] objParams = new SqlParameter[11];
             objParams[0] = new SqlParameter("@OrganisationName", DbType.String);
             objParams[0].Value = this.OrganisationName;
@@ -348,11 +316,10 @@ namespace BIT_DesktopApp.Models
             objParams[9].Value = State;
             objParams[10] = new SqlParameter("@Zip", DbType.String);
             objParams[10].Value = Zip;
-
-            int rowsAffectedClient = _db.ExecuteNonQuery(sql1, objParams);
+            int rowsAffectedClient = _db.ExecuteNonQuery(sp, objParams, true);
             if (rowsAffectedClient >= 1)
             {
-                return "New Client & Location Successfully Added";
+                return "New Client Successfully Added";
              }
 
             return "An error occurred, please try again later";
@@ -360,26 +327,8 @@ namespace BIT_DesktopApp.Models
 
         public string UpdateClient(int clientId)
         {
-            string updateSql1 = "UPDATE" +
-                                "   Client" +
-                                "    SET" +
-                                "   OrganisationName = @OrganisationName," +
-                                "   FirstName = @FirstName," +
-                                "   LastName = @LastName," +
-                                "   Phone = @Phone," +
-                                "   Email = @Email" +
-                                " WHERE" +
-                                "   ClientId = @ClientId";
-            string updateSql2 = "UPDATE" +
-                                "   Location" +
-                                " SET      " +
-                                "   Street = @Street," +
-                                "   Suburb = @Suburb," +
-                                "   State = @State," +
-                                "   Zip = @Zip"+
-            " WHERE" +
-            "   ClientId = @ClientId";
-            SqlParameter[] objParams = new SqlParameter[6];
+            string sp = "usp_UpdateClient";
+            SqlParameter[] objParams = new SqlParameter[10];
             objParams[0] = new SqlParameter("@ClientId", DbType.Int32);
             objParams[0].Value = clientId;
             objParams[1] = new SqlParameter("@OrganisationName", DbType.String);
@@ -392,53 +341,33 @@ namespace BIT_DesktopApp.Models
             objParams[4].Value = Email;
             objParams[5] = new SqlParameter("@Phone", DbType.String);
             objParams[5].Value = Phone;
-            SqlParameter[] objParams2 = new SqlParameter[5];
-            objParams2[0] = new SqlParameter("@ClientId", DbType.Int32);
-            objParams2[0].Value = clientId;
-            objParams2[1] = new SqlParameter("@Street", DbType.String);
-            objParams2[1].Value = Street;
-            objParams2[2] = new SqlParameter("@Suburb", DbType.String);
-            objParams2[2].Value = Suburb;
-            objParams2[3] = new SqlParameter("@State", DbType.String);
-            objParams2[3].Value = State;
-            objParams2[4] = new SqlParameter("@Zip", DbType.String);
-            objParams2[4].Value = Zip;
-            int rowsAffectedClient = _db.ExecuteNonQuery(updateSql1, objParams);
-            int rowsAffectedLocation = _db.ExecuteNonQuery(updateSql2, objParams2);
-
-            if (rowsAffectedClient >= 1 && rowsAffectedLocation >= 1)
+            objParams[6] = new SqlParameter("@Street", DbType.String);
+            objParams[6].Value = Street;
+            objParams[7] = new SqlParameter("@Suburb", DbType.String);
+            objParams[7].Value = Suburb;
+            objParams[8] = new SqlParameter("@State", DbType.String);
+            objParams[8].Value = State;
+            objParams[9] = new SqlParameter("@Zip", DbType.String);
+            objParams[9].Value = Zip;
+            int rowsAffectedClient = _db.ExecuteNonQuery(sp, objParams, true);
+            if (rowsAffectedClient >= 1)
             {
                 return "Client successfully updated";
             }
-            if (rowsAffectedLocation >= 1)
-            {
-                return "Client Location Successfully Updated";
-            }
-            if (rowsAffectedClient >= 1)
-            {
-                return "Client Details Successfully Updated";
-            }
-
             return "An error has Occurred, please try again later";
         }
 
         public string RemoveClient(int clientId)
         {
-            string removeSql = "UPDATE " +
-                               "    Client " +
-                               " SET " +
-                               "    AccountStatus = 'Inactive'" +
-                               " WHERE " +
-                               "    ClientId = @ClientId";
+            string sp = "usp_RemoveClient";
             SqlParameter[] objParams = new SqlParameter[1];
             objParams[0] = new SqlParameter("@ClientId", DbType.Int32);
             objParams[0].Value = clientId;
-            int rowsAffectedClient = _db.ExecuteNonQuery(removeSql, objParams);
+            int rowsAffectedClient = _db.ExecuteNonQuery(sp, objParams, true);
             if (rowsAffectedClient >= 1)
             {
                 return "Client Successfully removed ";
             }
-
             return "Unable to remove client, please try again later ";
         }
         #endregion Public Methods

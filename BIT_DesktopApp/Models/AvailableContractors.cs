@@ -11,25 +11,16 @@ namespace BIT_DesktopApp.Models
 {
     public class AvailableContractors : List<AvailableContractor>
     {
+        #region Constructor
+
         private SQLHelper _db;
 
 
         public AvailableContractors(int contractorId)
         {
             _db = new SQLHelper();
-
-            string sql = "SELECT" +
-                         " CON.ContractorId,  " +
-                     "  CON.FirstName," +
-                     "  CON.LastName," +
-                     "  CS.SkillTitle," +
-                     "  A.AvailabilityDate," +
-                     "  CON.ContractorRating " +
-                     " FROM" +
-                     "  Contractor AS CON," +
-                     "  Availability AS A," +
-                     "  ContractSkill AS CS";
-            DataTable dt = _db.ExecuteSQL(sql);
+            string sp = "usp_GetAvailableContractors";
+            DataTable dt = _db.ExecuteSQL(sp);
             foreach (DataRow dr in dt.Rows)
             {
                 AvailableContractor newavailableContractor = new AvailableContractor(dr);
@@ -37,42 +28,24 @@ namespace BIT_DesktopApp.Models
             }
         }
 
+        //FIND AVAILABLE CONTRACTOR BASED ON CONTRACTOR SKILL AND AVAILABILITY
         public AvailableContractors(string skillReq, DateTime reqCompletion)
         {
             _db = new SQLHelper();
-
-            string findSql = "SELECT" + 
-                         " CON.ContractorId,  " +
-                     "  CON.FirstName," +
-                     "  CON.LastName," +
-                     "  CS.SkillTitle," +
-                     "  A.AvailabilityDate," + 
-                         "CON.ContractorRating " +
-                     " FROM" +
-                     "  Contractor AS CON," +
-                     "  Availability AS A," +
-                     "  ContractSkill AS CS" +
-                     " WHERE" +
-                     "  CS.ContractorId = CON.ContractorId" +
-                     " AND" +
-                     "  CON.ContractorId = A.ContractorId" +
-                    " AND" +
-                         " CS.SkillTitle = @Skill" +
-                "     AND" +
-                         " A.AvailabilityDate = @reqCompletion";
+            string sp = "usp_FindAvailableContractorBySkill&Id";
             SqlParameter[] objParams = new SqlParameter[2];
             objParams[0] = new SqlParameter("@Skill",DbType.String);
             objParams[0].Value = skillReq;
             objParams[1] = new SqlParameter("@reqCompletion", DbType.String);
             objParams[1].Value = reqCompletion;
-            DataTable dt = _db.ExecuteSQL(findSql,objParams);
+            DataTable dt = _db.ExecuteSQL(sp,objParams, true);
             foreach (DataRow datarow in dt.Rows)
             {
                 AvailableContractor newAvailableContractor = new AvailableContractor(datarow);
                 Add(newAvailableContractor);
             }
-
-
         }
+
+        #endregion Constructor
     }
 }

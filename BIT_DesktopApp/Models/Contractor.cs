@@ -376,39 +376,7 @@ namespace BIT_DesktopApp.Models
 
         public string InsertContractor()
         {
-            string insertSql = "SET DATEFORMAT DMY; INSERT INTO " +
-                               "    Contractor(" +
-                               "    FirstName," +
-                               "    LastName," +
-                               "    Street," +
-                               "    Suburb," +
-                               "    State," +
-                               "    Zip," +
-                               "    Phone," +
-                               "    Dob," +
-                               "    Email," +
-                               "    Password," +
-                               "    ABN," +
-                               "    LicenceNumber," +
-                               "    RateofPay," +
-                               "    ContractorRating," +
-                               "    AccountStatus)" +
-                               "VALUES(" +
-                               "    @FirstName," +
-                               "    @LastName," +
-                               "    @Street," +
-                               "    @Suburb," +
-                               "    @State," +
-                               "    @Zip," +
-                               "    @Phone," +
-                               "    @Dob," +
-                               "    @Email," +
-                               "    @Password," +
-                               "    @ABN," +
-                               "    @LicenceNumber," +
-                               "    @RateofPay," +
-                               "    '0'," +
-                               "    'Active')";
+            string sp = "usp_InsertContractor";
             SqlParameter[] objParams = new SqlParameter[13];
             objParams[0] = new SqlParameter("@FirstName", DbType.String);
             objParams[0].Value = FirstName;
@@ -436,9 +404,7 @@ namespace BIT_DesktopApp.Models
             objParams[11].Value = LicenceNumber;
             objParams[12] = new SqlParameter("@RateofPay", DbType.Decimal);
             objParams[12].Value = RateOfPay;
-            //objParams[13] = new SqlParameter("@SkillTitle", DbType.String);
-            //objParams[13].Value = SkillTitle;
-            int rowsAffectedContractor = _db.ExecuteNonQuery(insertSql, objParams);
+            int rowsAffectedContractor = _db.ExecuteNonQuery(sp, objParams, true);
 
 
             if (rowsAffectedContractor >= 1)
@@ -451,16 +417,11 @@ namespace BIT_DesktopApp.Models
 
         public string RemoveContractor(int contractorId)
         {
-            string removeSql = "UPDATE " +
-                               "    Contractor " +
-                               "SET " +
-                               "    AccountStatus = 'Inactive'" +
-                               "WHERE " +
-                               "    ContractorId = @ContractorId";
+            string sp = "usp_RemoveContractor";
             SqlParameter[] objParams = new SqlParameter[1];
             objParams[0] = new SqlParameter("@ContractorId", DbType.Int32);
             objParams[0].Value = contractorId;
-            int rowsAffectedContractor = _db.ExecuteNonQuery(removeSql, objParams);
+            int rowsAffectedContractor = _db.ExecuteNonQuery(sp, objParams, true);
             if (rowsAffectedContractor >= 1)
             {
                 return "Contractor Successfully removed ";
@@ -471,25 +432,7 @@ namespace BIT_DesktopApp.Models
 
         public string UpdateContractor(int contractorId)
         {
-
-            string updateSql = "UPDATE " +
-                               "  Contractor " +
-                               " SET " +
-                               "    FirstName = @FirstName," +
-                               "    LastName = @LastName," +
-                               "    Dob = @Dob," +
-                               "    Street = @Street," +
-                               "    Suburb = @Suburb," +
-                               "    State = @State," +
-                               "    Zip = @Zip," +
-                               "    Phone = @Phone," +
-                               "    Email = @Email," +
-                               "    ABN = @ABN," +
-                               "    LicenceNumber = @LicenceNumber," +
-                               "    RateofPay = @RateofPay," +
-                               "    ContractorRating = @ContractorRating" +
-                               " WHERE" +
-                               "  ContractorId = @ContractorId";
+            string sp = "usp_UpdateContractor";
             SqlParameter[] objParams = new SqlParameter[14];
             objParams[0] = new SqlParameter("@ContractorId", DbType.Int32);
             objParams[0].Value = contractorId;
@@ -519,7 +462,7 @@ namespace BIT_DesktopApp.Models
             objParams[12].Value = RateOfPay;
             objParams[13] = new SqlParameter("@ContractorRating", DbType.String);
             objParams[13].Value = ContractorRating;
-            int rowsAffectedContractor = _db.ExecuteNonQuery(updateSql, objParams);
+            int rowsAffectedContractor = _db.ExecuteNonQuery(sp, objParams, true);
             if (rowsAffectedContractor >= 1)
             {
                 return "Contractor successfully updated ";
@@ -530,18 +473,13 @@ namespace BIT_DesktopApp.Models
 
         public string updateContractorSkills(int contractorId, string skillTitle)
         {
-            string updateSql = "INSERT INTO ContractSkill(" +
-                               " SkillTitle," +
-                               " ContractorId)" +
-                               " VALUES(" +
-                               "    @SkillTitle," +
-                               "       @ContractorId) ";
-                               SqlParameter[] objParams = new SqlParameter[2];
+            string sp = "usp_UpdateContractorSkill";
+            SqlParameter[] objParams = new SqlParameter[2];
             objParams[0] = new SqlParameter("@ContractorId", DbType.Int32);
             objParams[0].Value = contractorId;
             objParams[1] = new SqlParameter("@SkillTitle", DbType.String);
             objParams[1].Value = skillTitle;
-            int rowsAffectedContractor = _db.ExecuteNonQuery(updateSql, objParams);
+            int rowsAffectedContractor = _db.ExecuteNonQuery(sp, objParams, true);
             if (rowsAffectedContractor >= 1)
             {
                 return "Contractor Skill Successfully Updated";
@@ -553,18 +491,13 @@ namespace BIT_DesktopApp.Models
 
         public string RemoveContractorSkill(int contractorId, string skill)
         {
-            string deleteSql = @"DELETE FROM ContractSkill
-                                         WHERE
-                                             ContractorId = @ContractorId
-                                         AND
-                                            SkillTitle = @SkillTitle";
-      
+            string sp = "usp_RemoveContractorSkill";
             SqlParameter[] objParams = new SqlParameter[2];
             objParams[0] = new SqlParameter("@ContractorId", DbType.Int32);
             objParams[0].Value = contractorId;
             objParams[1] = new SqlParameter("@SkillTitle", DbType.String);
             objParams[1].Value = skill;
-            int rowsAffectedContractor = _db.ExecuteNonQuery(deleteSql, objParams);
+            int rowsAffectedContractor = _db.ExecuteNonQuery(sp, objParams, true);
             if (rowsAffectedContractor >= 1)
             {
                 return "Contractor Skill Successfully removed";

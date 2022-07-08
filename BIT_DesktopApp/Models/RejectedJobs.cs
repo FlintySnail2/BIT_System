@@ -11,33 +11,15 @@ namespace BIT_DesktopApp.Models
     public class RejectedJobs : List<RejectedJob>
     {
 
+        #region Constructors
 
         private SQLHelper _db;
 
         public RejectedJobs()
         {
             _db = new SQLHelper();
-            string sql = "SELECT" +
-                         "           J.JobId," +
-                         "           C.OrganisationName," +
-                         "           C.FirstName + ' ' + C.LastName as [Contact Name]," +
-                         "           CON.FirstName AS ContractorName," +
-                         "           J.Description," +
-                         "           J.SkillTitle AS [SkillReq]," +
-                         "           J.Priority," +
-                         "           S.Status," +
-                         "           CONVERT(NVARCHAR, J.RequestedCompletionDate, 6) AS [RequestedCompletion]" +
-                         "       FROM" +
-                         "           Job AS J," +
-                         "           Client AS C," +
-                         "           Status AS S," +
-                         "           Contractor AS CON" +
-                         "       WHERE" +
-                         "           J.ClientId = C.ClientId" +
-                         "       AND J.Status = S.Status" +
-                         "           AND CON.ContractorId = J.ContractorId" +
-                         "       AND J.Status = 'Rejected'";
-            DataTable dt = _db.ExecuteSQL(sql);
+            string sp = "usp_GetRejectedJobs";
+            DataTable dt = _db.ExecuteSQL(sp);
             foreach (DataRow dataRow in dt.Rows )
             {
                 RejectedJob newRejectedJob = new RejectedJob(dataRow);
@@ -46,5 +28,7 @@ namespace BIT_DesktopApp.Models
             }
 
         }
+
+        #endregion Constructors
     }
 }

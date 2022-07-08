@@ -5,8 +5,8 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//Added by Peter P
 using System.Diagnostics;
+using System.Data.SqlClient;
 
 namespace BIT_DesktopApp.Models
 {
@@ -15,71 +15,35 @@ namespace BIT_DesktopApp.Models
 
         private SQLHelper _db;
 
+        #region Constructor
+
         public Contractors()
         {
             _db = new SQLHelper();
-            string sql = "SELECT " +
-                "           C.ContractorId," +
-                "           C.FirstName," +
-                "           C.LastName, " +            
-                "           C.Dob," +
-                "           C.Street," +
-                "           C.Suburb, " +
-                "           C.State, " +
-                "           C.Zip," +
-                "           C.Phone," +
-                "           C.Email,    " +
-                "           C.ABN," +
-                "           C.LicenceNumber," +
-                "           C.RateofPay," +
-                "           C.ContractorRating" +
-                "       FROM" +
-                "           Contractor AS C" +
-                "       WHERE " +
-                "          AccountStatus = 'Active'";
-            DataTable datatable = _db.ExecuteSQL(sql);
+            string sp = "usp_GetContractors";
+            DataTable datatable = _db.ExecuteSQL(sp);
             foreach (DataRow dr in datatable.Rows)
             {
                 Contractor newContractor = new Contractor(dr);
                 this.Add(newContractor);
             }
-
 		}
 
         public Contractors(string searchText)
         {
             _db = new SQLHelper();
-            string sql = "SELECT DISTINCT" +
-                "           C.ContractorId," +
-                "           C.FirstName," +
-                "           C.LastName, " +
-                "           c.dob," +
-                "           c.street," +
-                "           c.suburb, " +
-                "           c.state, " +
-                "           c.zip," +
-                "           c.phone," +
-                "           c.email,    " +
-                "           c.abn," +
-                "           c.licencenumber," +
-                "           c.rateofpay," +
-                "           C.ContractorRating, " +
-            "               S.SkillTitle " +
-                "           FROM" +
-                "               ContractSkill AS S," +
-                "               Contractor AS C" +
-                "           WHERE" +
-                "               S.ContractorId = C.ContractorId" +
-                "           AND     " +
-                "               C.FirstName  LIKE '%" + searchText + "%' ";
-            DataTable dataTable = _db.ExecuteSQL(sql);
+            string sp = "usp_SearchContractors";
+            SqlParameter[] objParams = new SqlParameter[1];
+            objParams[0] = new SqlParameter("@SearchText", DbType.String);
+            objParams[0].Value = searchText;
+            DataTable dataTable = _db.ExecuteSQL(sp, objParams, true);
             foreach (DataRow dr in dataTable.Rows)
             {
                 Contractor newContractor = new Contractor(dr);
                 this.Add(newContractor);
             }
-
         }
+        #endregion Constructor
 
     }
 }

@@ -11,23 +11,19 @@ namespace BIT_DesktopApp.Models
 {
     public class SystemSkills : List<SystemSkill>
     {
-        private SQLHelper _db;
+        #region Contructors
 
+        private SQLHelper _db;
 
         public SystemSkills(string skillName)
         {
             SQLHelper db = new SQLHelper();
 
-            string sql = @"SELECT
-                            SkillTitle
-                        FROM
-                            Skill
-                        WHERE
-                            SkillTitle = @Skill";
+            string sp = "usp_GetSystemSkillByName";
             SqlParameter[] objParams = new SqlParameter[1];
             objParams[0] = new SqlParameter("@Skill", DbType.String);
             objParams[0].Value = skillName;
-            DataTable dataTable = db.ExecuteSQL(sql, objParams);
+            DataTable dataTable = db.ExecuteSQL(sp, objParams, true);
             foreach (DataRow dr in dataTable.Rows)
             {
                 SystemSkill systemSkill = new SystemSkill(dr);
@@ -40,18 +36,14 @@ namespace BIT_DesktopApp.Models
         {
             _db = new SQLHelper();
 
-            string sql = @"SELECT
-                            SkillTitle
-                        FROM
-                            Skill";
-            DataTable dataTable = _db.ExecuteSQL(sql);
+            string sp = "usp_GetSystemSkill";
+            DataTable dataTable = _db.ExecuteSQL(sp);
             foreach (DataRow dr in dataTable.Rows)
             {
                 SystemSkill newSystemSkill = new SystemSkill(dr);
                 this.Add(newSystemSkill);
             }
         }
-        
-
+        #endregion Constructors
     }
 }

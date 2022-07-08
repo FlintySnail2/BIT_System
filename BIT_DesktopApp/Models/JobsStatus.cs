@@ -15,11 +15,8 @@ namespace BIT_DesktopApp.Models
         public JobsStatus()
         {
             SQLHelper db = new SQLHelper();
-            string sql = "SELECT" +
-                "           Status" +
-                "          FROM" +
-                "           Status";
-            DataTable jobsStatus = db.ExecuteSQL(sql);
+            string sp = "usp_GetJobStatus";
+            DataTable jobsStatus = db.ExecuteSQL(sp);
             foreach (DataRow dr in jobsStatus.Rows)
             {
                 JobStatus jobStatus = new JobStatus(dr);

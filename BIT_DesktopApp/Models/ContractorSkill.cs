@@ -12,11 +12,24 @@ namespace BIT_DesktopApp.Models
 {
     public class ContractorSkill : INotifyPropertyChanged, IDataErrorInfo
     {
-        #region Properties
+        #region Private Properties
 
         private int _contractorId;
         private string _skill;
         private SQLHelper _db;
+        private void OnPropertyChanged(string prop)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            }
+        }
+
+        #endregion Private Properties
+
+        #region Public Properties
+
+
         public event PropertyChangedEventHandler PropertyChanged;
         public Dictionary<string,string> ErrorCollection { get; private set; } = new Dictionary<string,string>();
         public string Error { get { return null; } }
@@ -43,14 +56,7 @@ namespace BIT_DesktopApp.Models
             }
         }
 
-        private void OnPropertyChanged(string prop)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-            }
-        }
-
+        
         public int ContractorId { get { return _contractorId; } }
         public string Skill
         {
@@ -59,7 +65,7 @@ namespace BIT_DesktopApp.Models
                 OnPropertyChanged("Skill");
             }
         }
-        #endregion Properties
+        #endregion Public Properties
 
         #region Constructor
 
@@ -81,7 +87,6 @@ namespace BIT_DesktopApp.Models
         }
 
         #endregion Constructor
-
 
     }
 }

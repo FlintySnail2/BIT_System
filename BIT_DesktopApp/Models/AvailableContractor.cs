@@ -11,17 +11,15 @@ namespace BIT_DesktopApp.Models
 {
     public class AvailableContractor : INotifyPropertyChanged
     {
+
+        #region Private Properties
+
         private int _contractorId;
         private string _firstName;
         private string _lastName;
         private string _skillTitle;
         private DateTime _availabilityDate;
         private string _contractorRating;
-        private Decimal _rateOfPay;
-        private string _phone;
-        private string _email;
-        public SQLHelper _db;
-        public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string prop)
         {
             if (PropertyChanged != null)
@@ -30,6 +28,11 @@ namespace BIT_DesktopApp.Models
             }
         }
 
+        #endregion Private Properties
+
+        #region Public Properties
+        public SQLHelper _db;
+        public event PropertyChangedEventHandler PropertyChanged;
         public int ContractorId
         {
             get { return _contractorId; }
@@ -91,30 +94,9 @@ namespace BIT_DesktopApp.Models
             }
         }
 
-        public decimal RateOPay
-        {
-            get { return _rateOfPay; }
-            set { _rateOfPay = value;
-                OnPropertyChanged("RateOfPay");
-            }
-        }
+        #endregion Public Properties
 
-        public string Phone
-        {
-            get { return _phone; }
-            set { _phone = value;
-            OnPropertyChanged("Phone");}
-        }
-
-        public string Email
-        {
-            get { return _email; }
-            set
-            {
-                _email = value;
-                OnPropertyChanged("Email");
-            }
-        }
+        #region Constructor
 
         public AvailableContractor()
         {
@@ -130,12 +112,8 @@ namespace BIT_DesktopApp.Models
             SkillTitle = dr["SkillTitle"].ToString();
             AvailabilityDate = Convert.ToDateTime(dr["AvailabilityDate"].ToString());
             ContractorRating = dr["ContractorRating"].ToString();
-            RateOPay = Convert.ToDecimal(dr["RateOfPay"].ToString());
-            Phone = dr["Phone"].ToString();
-            Email = dr["Email"].ToString();
-
         }
+        #endregion Constructor
 
-        
     }
 }

@@ -11,6 +11,7 @@ namespace BIT_DesktopApp.Models
 {
     public class RejectedJob
     {
+        #region Private Properties
         private int _jobId;
         private string _OrganisationName;
         private string _contactName;
@@ -18,6 +19,11 @@ namespace BIT_DesktopApp.Models
         private string _description;
         private string _status;
         private DateTime _requestedCompletion;
+
+        #endregion Private Properties
+
+        #region Public Properties
+
         public SQLHelper _db;
 
 
@@ -67,8 +73,12 @@ namespace BIT_DesktopApp.Models
             set { _requestedCompletion = value; }
         }
 
+        //READ ONLY FIELD
         public string ReqCompletion => _requestedCompletion.ToShortDateString();
 
+        #endregion Public Properties
+
+        #region Constructor
 
         public RejectedJob()
         {
@@ -89,23 +99,19 @@ namespace BIT_DesktopApp.Models
 
         }
 
+        #endregion Constructor
+
+        #region Public Methods
+
         public string ReassignJob(int jobId, int contractorId)
         {
-            string assignSql = @"UPDATE
-                                    Job
-                                SET
-                                    Status = 'Assigned',
-                                    ContractorId = @ContractorId
-                                WHERE
-                                    JobId = @JobId";
-
-
+            string sp = "usp_ReAssignJob";
             SqlParameter[] objParams = new SqlParameter[2];
             objParams[0] = new SqlParameter("@JobId", DbType.Int32);
             objParams[0].Value = jobId;
             objParams[1] = new SqlParameter("@ContractorId", DbType.Int32);
             objParams[1].Value = contractorId;
-            int rowsAffected = _db.ExecuteNonQuery(assignSql, objParams);
+            int rowsAffected = _db.ExecuteNonQuery(sp, objParams, true);
             if (rowsAffected >= 1)
             {
                 return "Job Assigned Successfully";
@@ -114,5 +120,6 @@ namespace BIT_DesktopApp.Models
             return "Unable to assign job, please try again later";
 
         }
+        #endregion Public Methods
     }
 }

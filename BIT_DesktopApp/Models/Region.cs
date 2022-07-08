@@ -61,7 +61,5 @@ namespace BIT_DesktopApp.Models
 
 
         #endregion
-
-
     }
 }

@@ -16,18 +16,11 @@ namespace BIT_DesktopApp.Models
         public AbsentContractorSkill(int contractorId)
         {
             SQLHelper db = new SQLHelper();
-
-            string sql = @"SELECT distinct 
-                            s.SkillTitle
-                        From 
-                            Skill s where
-                            s.SkillTitle not in (select cs.SkillTitle
-                        From ContractSkill cs 
-                        where cs.ContractorId = @ContractorId)";
+            string sp = "usp_AbsentContractorSkill";
             SqlParameter[] objParams = new SqlParameter[1];
             objParams[0] = new SqlParameter("@ContractorId", DbType.Int32);
             objParams[0].Value = contractorId;
-            DataTable dataTable = db.ExecuteSQL(sql, objParams);
+            DataTable dataTable = db.ExecuteSQL(sp, objParams,true);
             foreach (DataRow dr in dataTable.Rows)
             {
                 ContractorSkill absentContractorSkill = new ContractorSkill(dr);
