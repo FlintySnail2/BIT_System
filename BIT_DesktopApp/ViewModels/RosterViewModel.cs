@@ -21,12 +21,26 @@ namespace BIT_DesktopApp.ViewModels
         private Contractor _selectedContractor;
         private ContractorAvailability _selectedContractorAvailability;
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        
 
         private string _searchText;
         private RelayCommand _searchCommand;
         private RelayCommand _addAvailabilityCommand;
         private RelayCommand _removeAvailabilityCommand;
+
+        private void OnPropertyChanged(string prop)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            }
+        }
+
+        #endregion Private Properties
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #region Remove Availability
 
         public RelayCommand RemoveAvailabilityCommand
         {
@@ -40,6 +54,16 @@ namespace BIT_DesktopApp.ViewModels
                 }
             set {  _removeAvailabilityCommand = value; }
         }
+
+        public void RemoveAvailability()
+        {
+            string message = SelectedAvailableContractor.DeleteAvailability(SelectedContractor.ContractorId);
+            MessageBox.Show(message);
+        }
+
+        #endregion Remove Availability
+
+        #region Search
 
         public RelayCommand SearchCommand
         {
@@ -71,12 +95,9 @@ namespace BIT_DesktopApp.ViewModels
             }
         }
 
-        public void RemoveAvailability()
-        {
-            string message = SelectedAvailableContractor.DeleteAvailability(SelectedContractor.ContractorId);
-            MessageBox.Show(message);
-        }
+        #endregion Search
 
+        #region Add Availability
 
         public RelayCommand AddAvailabilityCommand
         {
@@ -103,27 +124,25 @@ namespace BIT_DesktopApp.ViewModels
         }
 
 
-        private void OnPropertyChanged(string prop)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-            }
-        }
+        #endregion Add Availability
 
-        #endregion Private Properties
-         
+        #region Constructors
+
         public ContractorAvailability AvailableDate
         {
             get { return _availableDate; }
-            set { _availableDate = value;
+            set
+            {
+                _availableDate = value;
                 OnPropertyChanged("AvailableDate");
             }
         }
         public ObservableCollection<ContractorAvailability> AvailableDates
         {
             get { return _availableDates; }
-            set { _availableDates = value;
+            set
+            {
+                _availableDates = value;
                 OnPropertyChanged("AvailableDates");
             }
         }
@@ -141,14 +160,18 @@ namespace BIT_DesktopApp.ViewModels
         public ContractorAvailability selectedContractorAvailability
         {
             get { return _selectedContractorAvailability; }
-            set { _selectedContractorAvailability = value;
+            set
+            {
+                _selectedContractorAvailability = value;
                 OnPropertyChanged("SelectedContractorAvailability");
             }
         }
         public ObservableCollection<Contractor> Contractors
         {
             get { return _contractors; }
-            set {_contractors = value;
+            set
+            {
+                _contractors = value;
                 OnPropertyChanged("Contractors");
             }
         }
@@ -156,12 +179,14 @@ namespace BIT_DesktopApp.ViewModels
         public Contractor SelectedContractor
         {
             get { return _selectedContractor; }
-            set { _selectedContractor = value;
-                OnPropertyChanged( "SelectedContractor");
+            set
+            {
+                _selectedContractor = value;
+                OnPropertyChanged("SelectedContractor");
 
                 ContractorAvailabilities allDates = new ContractorAvailabilities(SelectedContractor.ContractorId);
                 this.AvailableDates = new ObservableCollection<ContractorAvailability>(allDates);
-                }
+            }
         }
 
         public RosterViewModel()
@@ -171,5 +196,6 @@ namespace BIT_DesktopApp.ViewModels
             AvailableDate = new ContractorAvailability();
         }
 
+        #endregion Constructors
     }
 }

@@ -265,7 +265,7 @@ namespace BIT_DesktopApp.ViewModels
             }
         }
 
-        #endregion contractor Skills
+        #endregion Contractor Skills
 
         #region Contractors
 
@@ -347,10 +347,12 @@ namespace BIT_DesktopApp.ViewModels
 
         #endregion Absent Skill
 
+        #region Constructor
+
         public ContractorViewModel()
         {
-           Contractors allContractors = new Contractors();
-            Contractors = new ObservableCollection<Contractor>(allContractors); 
+            Contractors allContractors = new Contractors();
+            Contractors = new ObservableCollection<Contractor>(allContractors);
             ContractorSkill = new ContractorSkill();
             SystemSkills newSystemSkills = new SystemSkills();
             SystemSkill = new ObservableCollection<SystemSkill>(newSystemSkills);
@@ -366,5 +368,6 @@ namespace BIT_DesktopApp.ViewModels
             return new ObservableCollection<Contractor>(allContractors);
         }
 
+        #endregion Constructor
     }
 }

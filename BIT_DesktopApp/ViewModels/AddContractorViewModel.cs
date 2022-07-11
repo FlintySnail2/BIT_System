@@ -13,11 +13,11 @@ namespace BIT_DesktopApp.ViewModels
 {
     public class AddContractorViewModel : INotifyPropertyChanged
     {
-        
+
+        #region Private Properties
+
         private Contractor _newContractor;
         private RelayCommand _addCommand;
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged(string prop)
         {
@@ -27,6 +27,7 @@ namespace BIT_DesktopApp.ViewModels
             }
         }
 
+        #endregion Private Properties
 
         #region Add Method
         public RelayCommand AddCommand
@@ -54,6 +55,10 @@ namespace BIT_DesktopApp.ViewModels
 
         #endregion Add Method
 
+        #region Constructor
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public Contractor NewContractor
         {
             get { return _newContractor; }
@@ -69,6 +74,8 @@ namespace BIT_DesktopApp.ViewModels
         {
             NewContractor = new Contractor();
         }
-        
+
+        #endregion Constructor
+
     }
 }

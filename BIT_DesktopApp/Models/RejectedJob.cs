@@ -1,6 +1,7 @@
 ﻿using BIT_DesktopApp.DAL;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BIT_DesktopApp.Models
 {
-    public class RejectedJob
+    public class RejectedJob : INotifyPropertyChanged
     {
         #region Private Properties
         private int _jobId;
@@ -19,6 +20,15 @@ namespace BIT_DesktopApp.Models
         private string _description;
         private string _status;
         private DateTime _requestedCompletion;
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged(string prop)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            }
+        }
 
         #endregion Private Properties
 
@@ -51,7 +61,9 @@ namespace BIT_DesktopApp.Models
             {
                 return _skillReq;
             }
-            set { _skillReq = value; }
+            set { _skillReq = value;
+                OnPropertyChanged("SKillTitle");
+            }
 
         }
 
@@ -92,10 +104,10 @@ namespace BIT_DesktopApp.Models
             JobId = Convert.ToInt32(dr["JobId"].ToString());
             OrganisationName = dr["OrganisationName"].ToString();
             ContactName = dr["Contact Name"].ToString();
-            SkillReq = dr["SkillReq"].ToString();
+            SkillReq = dr["SkillTitle"].ToString();
             Description = dr["Description"].ToString();
             Status = dr["Status"].ToString();
-            RequestedCompletion = Convert.ToDateTime(dr["RequestedCompletion"].ToString());
+            RequestedCompletion = Convert.ToDateTime(dr["Requested Completion"].ToString());
 
         }
 

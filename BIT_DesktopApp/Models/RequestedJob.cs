@@ -83,7 +83,7 @@ namespace BIT_DesktopApp.Models
             set
             {
                 _skillReq = value;
-                OnPropertyChanged("SkillReq");
+                OnPropertyChanged("SkillTitle");
             }
 
         }
@@ -147,10 +147,10 @@ namespace BIT_DesktopApp.Models
             JobId = Convert.ToInt32(dr["JobId"].ToString());
             OrganisationName = dr["OrganisationName"].ToString();
             ContactName = dr["Contact Name"].ToString();
-            SkillReq = dr["SkillReq"].ToString();
+            SkillReq = dr["SkillTitle"].ToString();
             Description = dr["Description"].ToString();
             Status = dr["Status"].ToString();
-            RequestedCompletion = Convert.ToDateTime(dr["RequestedCompletion"].ToString());
+            RequestedCompletion = Convert.ToDateTime(dr["Requested Completion"].ToString());
             //ContractorRating = dr["ContractorRating"].ToString();
 
         }

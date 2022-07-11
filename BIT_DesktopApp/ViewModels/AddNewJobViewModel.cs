@@ -12,7 +12,9 @@ namespace BIT_DesktopApp.ViewModels
 {
     public class AddNewJobViewModel : INotifyPropertyChanged
     {
-        
+
+        #region Private Properties
+
         private Job _newJob;
         private Client _clientName;
         private Client _selectedClient;
@@ -25,8 +27,6 @@ namespace BIT_DesktopApp.ViewModels
         private ObservableCollection<SystemSkill> _systemSkills;
         private RelayCommand _confirmCommand;
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         private void OnPropertyChanged(string prop)
         {
             if (PropertyChanged != null)
@@ -34,6 +34,10 @@ namespace BIT_DesktopApp.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
             }
         }
+
+        #endregion Private Properties
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         #region Priority
 
@@ -173,6 +177,8 @@ namespace BIT_DesktopApp.ViewModels
 
         #endregion Add Command
 
+        #region Constructor
+
         public Job NewJob
         {
             get { return _newJob; }
@@ -194,6 +200,8 @@ namespace BIT_DesktopApp.ViewModels
             RegionList = new ObservableCollection<Region>(newRegion);
 
         }
+
+        #endregion Constructor
     }
 }
 

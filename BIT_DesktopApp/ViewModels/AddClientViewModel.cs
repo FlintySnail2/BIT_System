@@ -13,10 +13,10 @@ namespace BIT_DesktopApp.ViewModels
     public class AddClientViewModel : INotifyPropertyChanged
     {
 
-      
+        #region Private Properties
+
         private Client _newClient;
         private RelayCommand _confirmCommand;
-        public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged(string prop)
         {
@@ -26,15 +26,9 @@ namespace BIT_DesktopApp.ViewModels
             }
         }
 
-        public Client NewClient
-        {
-            get { return _newClient; }
-            set
-            {
-                _newClient = value;
-                OnPropertyChanged("NewClient");
-            }
-        }
+        #endregion Private Properties
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         #region Add Method
 
@@ -63,14 +57,33 @@ namespace BIT_DesktopApp.ViewModels
 
         #endregion Add Method
 
+        #region Constructor
 
-       
-
+        public Client NewClient
+        {
+            get { return _newClient; }
+            set
+            {
+                _newClient = value;
+                OnPropertyChanged("NewClient");
+            }
+        }
 
         public AddClientViewModel()
         {
             NewClient = new Client();
         }
+
+        #endregion Constructor
+        
+
+        
+
+
+       
+
+
+
 
     }
 }

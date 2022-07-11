@@ -52,8 +52,6 @@ namespace BIT_DesktopApp.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        
-
         #region Update Command
 
         public RelayCommand UpdateCommand
@@ -240,7 +238,6 @@ namespace BIT_DesktopApp.ViewModels
 
         #endregion Find Contractor
 
-
         #region Selected Job
 
         public Job SelectedJob
@@ -352,6 +349,8 @@ namespace BIT_DesktopApp.ViewModels
 
         #endregion Job Status
 
+        #region Constructors 
+
         public AvailableContractor SelectedContractor
         {
             get { return _selectedContractor; }
@@ -361,12 +360,6 @@ namespace BIT_DesktopApp.ViewModels
                 OnPropertyChanged("SelectedContractor");
             }
         }
-        #region Assign Job
-
-
-
-        #endregion Assign Job
-
 
         public ObservableCollection<Job> Jobs
         {
@@ -378,7 +371,7 @@ namespace BIT_DesktopApp.ViewModels
             }
         }
 
-        
+
 
 
 
@@ -401,5 +394,8 @@ namespace BIT_DesktopApp.ViewModels
             Jobs allJobs = new Jobs();
             return new ObservableCollection<Job>(allJobs);
         }
+
+        #endregion Constructors
+
     }
 }

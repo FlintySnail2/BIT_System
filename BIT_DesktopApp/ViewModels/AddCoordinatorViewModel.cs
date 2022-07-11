@@ -12,11 +12,11 @@ namespace BIT_DesktopApp.ViewModels
 {
     public class AddCoordinatorViewModel : INotifyPropertyChanged
     {
-        
+
+        #region Private Properties
+
         private Coordinator _newCoordinator;
         private RelayCommand _confirmCommand;
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged(string prop)
         {
@@ -25,6 +25,9 @@ namespace BIT_DesktopApp.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
             }
         }
+        #endregion Private Properties
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
 
         #region Add Command 
@@ -53,6 +56,8 @@ namespace BIT_DesktopApp.ViewModels
 
         #endregion Add Command
 
+        #region Constructor
+
         public Coordinator NewCoordinator
         {
             get { return _newCoordinator; }
@@ -68,5 +73,7 @@ namespace BIT_DesktopApp.ViewModels
         {
             NewCoordinator = new Coordinator();
         }
+
+        #endregion Constructor
     }
 }

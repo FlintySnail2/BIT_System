@@ -345,7 +345,8 @@
 
                             <TextBox  Text="{Binding 
                                     SelectedRequestedJob.RequestedCompletion, 
-                                              Mode = TwoWay}"
+                                              Mode = TwoWay,
+                                                StringFormat=dd/MM/yy}"
                                       x:Name="txtReqCompletn" 
                                       Grid.Row="0" 
                                       Grid.Column="3" 
@@ -454,80 +455,6 @@
                 </TabItem>
                 <TabItem Header="Rejected Jobs" Margin="34,0,-53,0" Grid.Row="1">
                     <Grid>
-
-                        <!--<DataGrid Grid.Column="0" 
-                              Name="dgRejectedjobs"
-                              ItemsSource="{Binding RejectedJobs, Mode=TwoWay}" 
-                              SelectedItem="{Binding SelectedRequestedJob, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                              AutoGenerateColumns="False" Height="120"  RenderTransformOrigin="0.566,0.187"   Margin="10,0,10,320">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Width="*" Header="Client" Binding="{Binding OrganisationName}"/>
-                                <DataGridTextColumn Width="*" Header="Contact Name" Binding="{Binding ContactName}"/>
-                                <DataGridTextColumn Width="*" Header="Skill Required" Binding="{Binding SkillReq}"/>
-                                <DataGridTextColumn Width="*" Header="Description" Binding="{Binding Description}"/>
-                                <DataGridTextColumn Width="*" Header="Job Status" Binding="{Binding Status}"/>
-                                <DataGridTextColumn Width="*" Header="Requested Date" Binding="{Binding ReqCompletion}"/>
-                            </DataGrid.Columns>
-                        </DataGrid>-->
-
-                        <!--<Grid VerticalAlignment="Top" Margin="10,150,10,0" Height="40">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            -->
-                        <!--First Two Column data -->
-                        <!--
-
-                            <Label Content="Skill Required : " 
-                                   Grid.Row="0" 
-                                   Grid.Column="0" 
-                                   Foreground="#fff" 
-                                   Grid.RowSpan="2" 
-                                   Grid.ColumnSpan="4" 
-                                   Margin="10,5,-507,0"/>
-
-                            <TextBox  Text="{Binding 
-                                    SelectedRequestedJob.SkillReq, 
-                                              Mode = TwoWay}"
-                                      x:Name="txtSksillReq" 
-                                      Grid.Row="0" 
-                                      Grid.Column="1" 
-                                      Margin="4,10,5,10" />
-
-                            <Label Content="Requested Completion : " 
-                                   Grid.Row="0" 
-                                   Grid.Column="2" 
-                                   Foreground="#fff" 
-                                   Grid.RowSpan="2" 
-                                   Grid.ColumnSpan="4" 
-                                   Margin="10,5,-507,0"/>
-
-                            <TextBox  Text="{Binding 
-                                    SelectedRequestedJob.RequestedCompletion, 
-                                              Mode = TwoWay}"
-                                      x:Name="txtReqCsmpletion" 
-                                      Grid.Row="0" 
-                                      Grid.Column="3" 
-                                      Margin="4,10,5,10" />
-
-                            <Button x:Name="btsnFind" 
-                                    Command="{Binding UpdateCommand}"
-                                    HorizontalAlignment="Right"
-                                    Content="FIND"
-                                    Grid.Row="0" 
-                                    Grid.Column="4" 
-                                    Width="150" Height="30" />-->
-
-                        <!--</Grid>-->
-
                         <DataGrid Grid.Column="0" 
                               Name="dgRejectedJobs"
                               ItemsSource="{Binding RejectedJobs}"
@@ -583,7 +510,8 @@
 
                             <TextBox  Text="{Binding 
                                     SelectedRejectedJob.RequestedCompletion, 
-                                              Mode = TwoWay}"
+                                              Mode = TwoWay,
+                                              StringFormat=dd/MM/yyyy}"
                                       x:Name="txtReqComplemtn" 
                                       Grid.Row="0" 
                                       Grid.Column="3" 

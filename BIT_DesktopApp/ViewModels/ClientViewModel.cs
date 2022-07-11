@@ -190,17 +190,14 @@ namespace BIT_DesktopApp.ViewModels
 
         #endregion Client
 
-
+        #region Constructor
 
         public ClientViewModel()
         {
-            //COMMENTED OUT AS USING MOQ
             this.Clients = GetClients();
 
             Regions allRegions = new Regions();
             this.Regions = new ObservableCollection<Region>(allRegions);
-
-           
         }
 
         public virtual ObservableCollection<Client> GetClients()
@@ -209,10 +206,10 @@ namespace BIT_DesktopApp.ViewModels
            return new ObservableCollection<Client>(allClients);
         }
 
-
+        #endregion Constructor
     }
 
-    
+
 
 
 

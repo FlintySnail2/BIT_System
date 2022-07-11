@@ -19,6 +19,7 @@ namespace BIT_DesktopApp.ViewModels
     {
         
         #region Private Properties
+
         private Coordinator _selectedCoordinator;
         private ObservableCollection<Coordinator> _coordinators;
 
@@ -36,18 +37,6 @@ namespace BIT_DesktopApp.ViewModels
         }
 
         #endregion Private Properties
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public ObservableCollection<Coordinator> Coordinators
-        {
-            get { return _coordinators; }
-            set
-            {
-                _coordinators = value;
-                OnPropertyChanged("Coordinators");
-            }
-        }
 
         #region Update Command
 
@@ -139,7 +128,19 @@ namespace BIT_DesktopApp.ViewModels
         }
         #endregion Search Command
 
-        #region Selected Coordinator
+        #region Constructor
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public ObservableCollection<Coordinator> Coordinators
+        {
+            get { return _coordinators; }
+            set
+            {
+                _coordinators = value;
+                OnPropertyChanged("Coordinators");
+            }
+        }
         public Coordinator SelectedCoordinator
         {
             get { return _selectedCoordinator; }
@@ -150,13 +151,12 @@ namespace BIT_DesktopApp.ViewModels
             }
         }
 
-        #endregion Selected coordinator
-
-
         public CoordinatorViewModel()
         {
             Coordinators allCoordinators = new Coordinators();
             this.Coordinators = new ObservableCollection<Coordinator>(allCoordinators);
         }
+
+        #endregion Constructor
     }
 }
