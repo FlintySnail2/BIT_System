@@ -12,12 +12,9 @@ namespace BIT_WebApplication.BLL
 
         public static DataTable GetAllSkills()
         {
-            string sql = "SELECT" +
-                         " SkillTitle" +
-                         " FROM" +
-                         " ContractSkill";
+            string sp  = "usp_GetAllSkills";
             SQLHelper _db = new SQLHelper();
-            DataTable skills = _db.ExecuteSQL(sql);
+            DataTable skills = _db.ExecuteSQL(sp);
             return skills;
 
         }

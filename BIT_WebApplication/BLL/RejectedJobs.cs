@@ -11,31 +11,10 @@ namespace BIT_WebApplication.BLL
     {
         public DataTable AllRejectedJobs()
         {
-            string sql = "SELECT" +
-        "                   J.JobId, " +
-        "                   C.OrganisationName AS Client," +
-        "                   C.FirstName + ' ' + C.LastName AS [Contact Name]," +
-        "                   CON.FirstName + ' ' + CON.LastName AS Technician," +
-        "                   R.Comment AS Reason," +
-        "                   J.RequestedStartDate AS [Service Day]," +
-        "                   J.RequestedCompletionDate AS [Requested Completion]," +
-        "                   J.Description" +
-        "               FROM" +
-        "                   Job AS J," +
-        "                   Client AS C," +
-        "                   Contractor AS CON," +
-        "                   RejectedJob AS R" +
-        "               WHERE" +
-        "                  C.ClientId = J.ClientId" +
-        "               AND" +
-        "                  J.ContractorId = CON.ContractorId" +
-        "               AND" +
-        "                  R.JobId = J.JobId" +
-        "               AND" +
-        "                  J.Status = 'Rejected'";
+            string sp = "usp_GetAllRejectedJobs";
             
             SQLHelper helper = new SQLHelper();
-            DataTable dt = helper.ExecuteSQL(sql);
+            DataTable dt = helper.ExecuteSQL(sp);
             return dt;
         }
     }

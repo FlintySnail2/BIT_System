@@ -26,20 +26,13 @@ namespace BIT_WebApplication.BLL
 
         public int CheckClient()
         {
-            string sql = "SELECT" +
-                "           ClientId" +
-                "         FROM" +
-                "           Client" +
-                "         WHERE" +
-                "           Email = @Email" +
-                "         AND" +
-                "           Password = @Password ";
+            string sp = "usp_CheckClient";
             SqlParameter[] objParmas = new SqlParameter[2];
             objParmas[0] = new SqlParameter("@Email", DbType.String);
             objParmas[0].Value = Email;
             objParmas[1] = new SqlParameter("@Password", DbType.String);
             objParmas[1].Value = Password;
-            DataTable dt = _db.ExecuteSQL(sql, objParmas);
+            DataTable dt = _db.ExecuteSQL(sp, objParmas, true);
             int id = -1;
             if (dt.Rows.Count > 0)
             {
@@ -51,20 +44,13 @@ namespace BIT_WebApplication.BLL
 
         public int CheckContractor()
         {
-            string sql = "SELECT" +
-                "           ContractorId" +
-                "         FROM" +
-                "           Contractor" +
-                "         WHERE" +
-                "           Email = @Email" +
-                "         AND" +
-                "           Password = @Password ";
+            string sp = "usp_CheckContractor";
             SqlParameter[] objParmas = new SqlParameter[2];
             objParmas[0] = new SqlParameter("@Email", DbType.String);
             objParmas[0].Value = Email;
             objParmas[1] = new SqlParameter("@Password", DbType.String);
             objParmas[1].Value = Password;
-            DataTable dt = _db.ExecuteSQL(sql, objParmas);
+            DataTable dt = _db.ExecuteSQL(sp, objParmas, true);
             int id = -1;
             if (dt.Rows.Count > 0)
             {
@@ -76,20 +62,13 @@ namespace BIT_WebApplication.BLL
 
         public int CheckStaff()
         {
-            string sql = "SELECT" +
-                "           StaffId" +
-                "         FROM" +
-                "           Staff" +
-                "         WHERE" +
-                "           Email = @Email" +
-                "         AND" +
-                "           Password = @Password ";
+            string sp = "usp_CheckStaff";
             SqlParameter[] objParmas = new SqlParameter[2];
             objParmas[0] = new SqlParameter("@Email", DbType.String);
             objParmas[0].Value = Email;
             objParmas[1] = new SqlParameter("@Password", DbType.String);
             objParmas[1].Value = Password;
-            DataTable dt = _db.ExecuteSQL(sql, objParmas);
+            DataTable dt = _db.ExecuteSQL(sp, objParmas, true);
             int id = -1;
             if (dt.Rows.Count > 0)
             {

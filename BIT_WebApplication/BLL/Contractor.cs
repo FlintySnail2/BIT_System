@@ -29,31 +29,11 @@ using System.Web;
 
         public DataTable AllAssignedJobs()
         {
-            string sql = "SELECT" +
-                "            J.JobId AS [Job Number]," +
-                "            C.OrganisationName AS Client," +
-                "            C.FirstName + ' ' + C.LastName AS [Contact Name]," +
-                "            C.Phone AS [Contact Number] ," +
-                "            CONVERT(NVARCHAR, J.RequestedCompletionDate, 6) AS [Requested Completion]," +
-                "            J.SkillTitle AS [Skill Required]," +
-                "            J.Priority AS [Job Priority]," +
-                "            J.Description AS [Job Description]" +
-                "         FROM" +
-                "           Job AS J," +
-                "           Client AS C," +
-                "           Contractor AS CON" +
-                "         WHERE" +
-                "           C.ClientId = J.ClientId" +
-                "         AND" +
-                "           J.ContractorId = CON.ContractorId" +
-                "         AND" +
-                "           CON.ContractorId = @Contractor_Id" + 
-                "         AND" +
-                "          J.Status = 'Assigned'"; 
+            string sp = "usp_GetAllAssignedJobs"; 
             SqlParameter[] objParams = new SqlParameter[1];
             objParams[0] = new SqlParameter("@Contractor_Id", DbType.Int32);
             objParams[0].Value = this.ContractorId;
-            DataTable contractorJobs = _db.ExecuteSQL(sql, objParams);
+            DataTable contractorJobs = _db.ExecuteSQL(sp, objParams, true);
             return contractorJobs;
         }
 
@@ -64,30 +44,11 @@ using System.Web;
 
         public DataTable AllAcceptedJobs()
         {
-            string sql = "SELECT" +
-                    "            J.JobId AS [Job Number]," +
-                    "            C.OrganisationName AS Client," +
-                    "            C.FirstName + ' ' + C.LastName AS [Contact Name]," +
-                    "            CONVERT(NVARCHAR, J.RequestedCompletionDate, 6) AS [Requested Completion]," +
-                    "            J.SkillTitle AS [Skill Required]," +
-                    "            J.Status AS [Job Status]," +
-                    "            J.Description AS [Job Description]" +
-                    "         FROM" +
-                    "           Job AS J," +
-                    "           Client AS C," +
-                    "           Contractor AS CON" +
-                    "         WHERE" +
-                    "           C.ClientId = J.ClientId" +
-                    "         AND" +
-                    "           J.ContractorId = CON.ContractorId" +
-                    "         AND" +
-                    "           J.Status = 'Accepted'" +
-                    "         AND" +
-                    "           CON.ContractorId = @Contractor_Id";
+            string sp = "usp_GetAllAcceptedJobs";
             SqlParameter[] objParams = new SqlParameter[1];
             objParams[0] = new SqlParameter("@Contractor_Id", DbType.Int32);
             objParams[0].Value = this.ContractorId;
-            DataTable contractorJobs = _db.ExecuteSQL(sql, objParams);
+            DataTable contractorJobs = _db.ExecuteSQL(sp, objParams, true);
             return contractorJobs;
         }
 
@@ -96,50 +57,26 @@ using System.Web;
         public int AcceptJob(int jobId)
         {
             int returnValue = 0;
-            string sql = "UPDATE" +
-                "               Job" +
-                "         SET" +
-                "           Status = 'Accepted'" +
-                "         WHERE" +
-                "           JobId = @JobId";
+            string sp = "usp_AcceptJob";
             SqlParameter[] objParams = new SqlParameter[1];
             objParams[0] = new SqlParameter("@JobId", DbType.Int32);
             objParams[0].Value = jobId;
-            returnValue = _db.ExecuteNonQuery(sql, objParams);
+            returnValue = _db.ExecuteNonQuery(sp, objParams, true);
             return returnValue;
         }
 
         public int RejectJob(int jobId, string comment)
         {
             int returnValue = 0;
-            string updatesql = "UPDATE" +
-                         "               Job" +
-                         "         SET" +
-                         "           Status = 'Rejected'" +       
-                         "         WHERE" +
-                         "           JobId = @JobId" +
-                         "       ";
-            SqlParameter[] objParams1 = new SqlParameter[1];
-            objParams1[0] = new SqlParameter("@JobId", DbType.Int32);
-            objParams1[0].Value = jobId;
-            _db.ExecuteNonQuery(updatesql, objParams1);
-
-        string insertSql = "         INSERT INTO  RejectedJob(" +
-                               "              JobId," +
-                               "              ContractorId, " +
-                               "              Comment)" +
-                               "         VALUES(" +
-                               "           @JobId," +
-                               "           @ContractorId," +
-                               "           @Comment)";
-        SqlParameter[] objParams2 = new SqlParameter[3];
-        objParams2[0] = new SqlParameter("@JobId", DbType.Int32);
-        objParams2[0].Value = jobId;
-        objParams2[1] = new SqlParameter("@ContractorId",DbType.Int32);
-        objParams2[1].Value = ContractorId;
-        objParams2[2] = new SqlParameter("@Comment", DbType.String);
-        objParams2[2].Value = comment;
-        returnValue = _db.ExecuteNonQuery(insertSql, objParams2);
+            string sp = "usp_RejectJob";
+            SqlParameter[] objParams = new SqlParameter[3];
+            objParams[0] = new SqlParameter("@JobId", DbType.Int32);
+            objParams[0].Value = jobId;
+            objParams[1] = new SqlParameter("@ContractorId", DbType.Int32);
+            objParams[1].Value = ContractorId;
+            objParams[2] = new SqlParameter("@Comment", DbType.String);
+            objParams[2].Value = comment;
+        _db.ExecuteNonQuery(sp, objParams, true);
         return returnValue;
 
         }
@@ -148,36 +85,17 @@ using System.Web;
         {
 
         int returnValue = 0;
-        string updatesql = "UPDATE" +
-                           "               Job" +
-                           "         SET" +
-                           "           Status = 'Completed'," +
-                           "            DistanceTravelled = @Distance," +
-                        "                HoursOnJob = @Hours    "  +     
-                           "         WHERE" +
-                           "           JobId = @JobId" +
-                           "       ";
-        SqlParameter[] objParams1 = new SqlParameter[3];
-        objParams1[0] = new SqlParameter("@Distance", DbType.Int32);
-        objParams1[0].Value = kilometers;
-        objParams1[1] = new SqlParameter("@Hours", DbType.Decimal);
-        objParams1[1].Value = hours;
-        objParams1[2] = new SqlParameter("@JobId", DbType.Int32);
-        objParams1[2].Value = jobId;
-        _db.ExecuteNonQuery(updatesql, objParams1);
-
-        string insertSql = "         INSERT INTO  Feedback(" +
-                           "              JobId," +
-                           "              Comment)" +
-                           "         VALUES(" +
-                           "           @JobId," +
-                           "           @Comment)";
-        SqlParameter[] objParams2 = new SqlParameter[2];
-        objParams2[0] = new SqlParameter("@JobId", DbType.Int32);
-        objParams2[0].Value = jobId;
-        objParams2[1] = new SqlParameter("@Comment", DbType.String);
-        objParams2[1].Value = comment;
-        returnValue = _db.ExecuteNonQuery(insertSql, objParams2);
+        string sp = "usp_CompleteJob";
+        SqlParameter[] objParams = new SqlParameter[3];
+        objParams[0] = new SqlParameter("@Distance", DbType.Int32);
+        objParams[0].Value = kilometers;
+        objParams[1] = new SqlParameter("@Hours", DbType.Decimal);
+        objParams[1].Value = hours;
+        objParams[2] = new SqlParameter("@JobId", DbType.Int32);
+        objParams[2].Value = jobId;
+        objParams[3] = new SqlParameter("@Comment", DbType.String);
+        objParams[3].Value = comment;
+        _db.ExecuteNonQuery(sp, objParams, true);
         return returnValue;
     }
         #endregion Public Methods
