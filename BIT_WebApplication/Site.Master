@@ -21,6 +21,7 @@
 </head>
 <body>
     <form runat="server" >
+
         <div class="navbar-styling">
             <nav class="navbar navbar-expand-lg  navbar-dark p-md-3 ">
                 <a class="navbar-brand" href="#">
@@ -129,12 +130,14 @@
         </asp:ContentPlaceHolder> 
 
         <!-- JAVASCRIPT -->
-<script src="../Scripts/main.js" ></script>
+<%--<script src="../Scripts/main.js" ></script>
         
              <!-- FOOTER -->
          <footer class="site-footer">
             <p class="copyright">&copy;<asp:Label ID="lblCopyrightYear" runat="server" Text="Label" /> BIT Services Pty Ltd</p>
-        </footer>
+        </footer>--%>
     </form>
+
+   
 </body>
 </html>

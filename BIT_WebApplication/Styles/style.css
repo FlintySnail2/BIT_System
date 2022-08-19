@@ -28,6 +28,10 @@
     opacity: .90;
 }
 
+.nav-Width{
+    width: 600px
+}
+
 /****** Background Image Styling ******/
 
 .Backdrop {

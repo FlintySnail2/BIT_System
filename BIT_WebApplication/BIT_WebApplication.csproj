@@ -563,6 +563,7 @@
     <Content Include="Views\RejectedJobHistory.aspx" />
     <Content Include="Views\RejectedJobs.aspx" />
     <Content Include="Views\RequestedJobs.aspx" />
+    <Content Include="Views\StaffDashboard.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Scripts\umd\popper.min.js.map" />
@@ -666,6 +667,13 @@
     </Compile>
     <Compile Include="Views\RequestedJobs.aspx.designer.cs">
       <DependentUpon>RequestedJobs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StaffDashboard.aspx.cs">
+      <DependentUpon>StaffDashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\StaffDashboard.aspx.designer.cs">
+      <DependentUpon>StaffDashboard.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

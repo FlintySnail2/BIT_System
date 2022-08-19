@@ -20,6 +20,7 @@
                             </center>
                         </div>
                     </div>
+
                         <div class="row">
                         <div class="col-12 mx-auto">
                             <asp:GridView ID="gvCompletedJobs" 

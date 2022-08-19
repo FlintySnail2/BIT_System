@@ -75,10 +75,10 @@ namespace BIT_WebApplication.BLL
         public DataTable AllCompletedJobs()
         {
             string sp = "usp_GetAllCompletedJobs";
-            SqlParameter[] objParams = new SqlParameter[1];
-            objParams[0] = new SqlParameter("@Contractor_Id", DbType.Int32);
-            objParams[0].Value = this.ContractorId;
-            DataTable contractorJobs = _db.ExecuteSQL(sp, objParams, true);
+            //SqlParameter[] objParams = new SqlParameter[1];
+            //objParams[0] = new SqlParameter("@Contractor_Id", DbType.Int32);
+            //objParams[0].Value = this.ContractorId;
+            DataTable contractorJobs = _db.ExecuteSQL(sp);
             return contractorJobs;
         }
 

@@ -9,10 +9,10 @@ namespace BIT_WebApplication
 {
     public partial class SiteMaster : MasterPage
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            lblCopyrightYear.Text = DateTime.Today.Year.ToString();
-        }
+        //protected void Page_Load(object sender, EventArgs e)
+        //{
+        //    lblCopyrightYear.Text = DateTime.Today.Year.ToString();
+        //}
 
         protected void lbtnRejectedJobHistory_Click(object sender, EventArgs e)
         {
